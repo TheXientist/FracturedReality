@@ -81,6 +81,14 @@
       "name": "/actions/mixedreality/in/ExternalCamera",
       "type": "pose",
       "requirement": "optional"
+    },
+    {
+      "name": "/actions/spaceship/in/move",
+      "type": "vector2"
+    },
+    {
+      "name": "/actions/spaceship/in/rotate",
+      "type": "vector2"
     }
   ],
   "action_sets": [
@@ -99,6 +107,10 @@
     {
       "name": "/actions/mixedreality",
       "usage": "single"
+    },
+    {
+      "name": "/actions/spaceship",
+      "usage": "leftright"
     }
   ],
   "default_bindings": [
