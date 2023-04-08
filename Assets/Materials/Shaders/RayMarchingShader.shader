@@ -1,22 +1,15 @@
-﻿// This defines a simple unlit Shader object that is compatible with a custom Scriptable Render Pipeline.
-// It applies a hardcoded color, and demonstrates the use of the LightMode Pass tag.
-// It is not compatible with SRP Batcher.
-
-Shader "Examples/RayMarching"
+﻿Shader "Custom/RayMarching"
 {
     SubShader
     {
+        Tags{
+            "Queue" = "Transparent"
+        }
+
         Pass
         {
-        Tags {
-            "Queue" = "Background+1"
-            "IgnoreProjector" = "True"
-            "RenderType" = "Transparent"
-            "LightMode" = "RayMarching"
-        }
         Blend SrcAlpha OneMinusSrcAlpha
         ZWrite Off
-        ZTest Off
 
             HLSLPROGRAM
             #pragma vertex vert
@@ -24,8 +17,11 @@ Shader "Examples/RayMarching"
 
             float4x4 unity_MatrixVP;
             float4x4 unity_ObjectToWorld;
+            float4x4 unity_CameraToWorld;
             float3 _WorldSpaceCameraPos;
             float4 _ProjectionParams;
+            float4 _ZBufferParams;
+            sampler2D _CameraDepthTexture;
 
             struct VS_IN
             {
@@ -39,13 +35,7 @@ Shader "Examples/RayMarching"
                 float4 fragPosWS : WORLDPOS;
                 float4 lightPosWS : LIGHTPOS;
                 float3 normals : FSNORMALS;
-                float4 screenPos : TEXCOORD1;
-            };
-
-            struct FS_OUT
-            {
-                float4 color;
-                float zvalue;
+                float2 screenPos : TEXCOORD1;
             };
 
             FS_IN vert(VS_IN IN)
@@ -55,6 +45,7 @@ Shader "Examples/RayMarching"
                 o.positionCS = mul(unity_MatrixVP, worldPos);
                 o.fragPosWS = worldPos;
                 o.normals = IN.normals;
+                o.screenPos = float2(o.positionCS.x * 0.5 + 0.5, o.positionCS.y * -0.5 + 0.5);
                 return o;
             }
 
@@ -174,12 +165,16 @@ Shader "Examples/RayMarching"
             }
 
             float DE(float3 pos) {
-                return Difference(pos, float3(0, 0, 0), float3(1, 1, 1));
+                return DEfractal1(pos, float3(0, 0, 0), float3(1, 1, 1));
             }
 
-            FS_OUT frag(FS_IN IN) : SV_TARGET
+            float4 frag(FS_IN IN) : SV_TARGET
             {
-                FS_OUT o;
+                float3 view = mul((float3x3)unity_CameraToWorld, float3(0, 0, 1));
+
+                float cameraDepth = tex2D(_CameraDepthTexture, IN.screenPos).x;
+                float linearDepth = 1.0 / (_ZBufferParams.x * cameraDepth + _ZBufferParams.y);
+                float worldDepth = linearDepth * _ProjectionParams.z;
 
                 float a = 50; //inverse ambient occlusion strength
                 float3 direction = normalize(IN.fragPosWS - _WorldSpaceCameraPos);
@@ -189,7 +184,6 @@ Shader "Examples/RayMarching"
                 float lastDistance = fidelity + 1; //upcoming marching step
                 float thisDistance = 0;
                 float smallestDistance = _ProjectionParams.b; //smallest recorded distance, necessary for glow
-
 
                 int steps = 0;
                 int maxSteps = 10 / fidelity; //max amount of steps
@@ -204,16 +198,15 @@ Shader "Examples/RayMarching"
                     }
                     currentPos += direction * thisDistance;
 
+                    if (dot(currentPos - _WorldSpaceCameraPos, view) > worldDepth) break;
                     if (thisDistance < fidelity) break; //break if fidelity is reached
                     if (steps >= maxSteps) break; //break if max steps are reached
                     if (length(currentPos - _WorldSpaceCameraPos) > _ProjectionParams.b) break; //break if far clipping plane is reached
                 }
 
-                if (length(currentPos - _WorldSpaceCameraPos) >= _ProjectionParams.b) {
+                if (length(currentPos - _WorldSpaceCameraPos) >= _ProjectionParams.b || dot(currentPos - _WorldSpaceCameraPos, view) > worldDepth) {
                     //float glow = 1 / smallestDistance * 0.1;
-                    o.zvalue = 1;
-                    o.color = float4(0, 0, 0, 0); //returns a transparent pixel if the ray reached the far clipping plane
-                    return o;
+                    return float4(0, 0, 0, 0); //returns a transparent pixel if the ray reached the far clipping plane
                 }
 
                 //raymarched lighting
@@ -256,7 +249,7 @@ Shader "Examples/RayMarching"
                         i *= intensity;
                     }
 
-                    illumination = (1 - asin(b / c) / 1.57) / (d * d) * i;
+                    illumination = (1 - asin(b / c) / 1.57) / (d * d) * i; //1.57 = PI/2
                 }
 
                 //float3 xDir = float3(1, 0, 0);
@@ -280,14 +273,10 @@ Shader "Examples/RayMarching"
 
                 float rayLength = length(currentPos - _WorldSpaceCameraPos); //how far did the ray march before hitting its target?
 
-                o.zvalue = depth;
-
-                //illumination = lightSteps / 100.0;
-
-                o.color = float4(illumination, illumination, illumination, 1);
-                //o.color = float4(ambientOcclusion - (1 - depth) * 0.1, ambientOcclusion - (1 - depth) * 0.05, ambientOcclusion, 1);
-                //o.color = float4(depth, depth, depth, 1);
-                return o;
+                //return float4(cameraDepth, cameraDepth, cameraDepth, ceil(cameraDepth));
+                return float4(0.1 * ambientOcclusion + 0.9 * illumination, 0.1 * ambientOcclusion + 0.9 * illumination, 0.1 * ambientOcclusion + 0.9 * illumination, 1);
+                //return  float4(ambientOcclusion - (1 - depth) * 0.1, ambientOcclusion - (1 - depth) * 0.05, ambientOcclusion, 1);
+                //return  float4(depth, depth, depth, 1);
             }
             ENDHLSL
         }

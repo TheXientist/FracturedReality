@@ -55,7 +55,7 @@ public class RenderPipelineInstance : RenderPipeline
             // Schedule a command to draw the Skybox if required
             if (camera.clearFlags == CameraClearFlags.Skybox && RenderSettings.skybox != null)
             {
-                context.DrawSkybox(camera);
+                //context.DrawSkybox(camera);
             }
 
             // Instruct the graphics API to perform all scheduled commands
