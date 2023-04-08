@@ -10,7 +10,7 @@ Shader "Examples/NormalShader"
         {
             Tags
             {
-                "LightMode" = "ExampleLightModeTag"
+                "LightMode" = "Normals"
             }
 
             HLSLPROGRAM

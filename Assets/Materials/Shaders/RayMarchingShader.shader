@@ -12,10 +12,10 @@ Shader "Examples/RayMarching"
             "Queue" = "Background+1"
             "IgnoreProjector" = "True"
             "RenderType" = "Transparent"
-            "LightMode" = "ExampleLightModeTag"
+            "LightMode" = "RayMarching"
         }
         Blend SrcAlpha OneMinusSrcAlpha
-        ZWrite On
+        ZWrite Off
         ZTest Off
 
             HLSLPROGRAM
@@ -26,7 +26,6 @@ Shader "Examples/RayMarching"
             float4x4 unity_ObjectToWorld;
             float3 _WorldSpaceCameraPos;
             float4 _ProjectionParams;
-            sampler2D _LastCameraDepthTexture;
 
             struct VS_IN
             {
@@ -38,6 +37,7 @@ Shader "Examples/RayMarching"
             {
                 float4 positionCS : SV_POSITION; //cameraspace
                 float4 fragPosWS : WORLDPOS;
+                float4 lightPosWS : LIGHTPOS;
                 float3 normals : FSNORMALS;
                 float4 screenPos : TEXCOORD1;
             };
@@ -50,31 +50,47 @@ Shader "Examples/RayMarching"
 
             FS_IN vert(VS_IN IN)
             {
-                FS_IN OUT;
+                FS_IN o;
                 float4 worldPos = mul(unity_ObjectToWorld, IN.positionOS);
-                OUT.positionCS = mul(unity_MatrixVP, worldPos);
-                OUT.fragPosWS = worldPos;
-                OUT.normals = IN.normals;
-                return OUT;
+                o.positionCS = mul(unity_MatrixVP, worldPos);
+                o.fragPosWS = worldPos;
+                o.normals = IN.normals;
+                return o;
             }
 
-            float DEsphere(float3 currentPos, float3 offset) {
-                return length(offset - currentPos) - 1;
+            float DEcube(float3 pos, float3 offset, float3 scale) {
+                pos *= 1 / scale;
+                pos -= offset;
+                return length(max(abs(float3(0, 0, 0) - pos) - 1, 0));
             }
 
-            float DEcube(float3 currentPos, float3 offset) {
-                return length(max(abs(offset - currentPos) - 1, 0));
+            float DEsphere(float3 pos, float3 offset, float3 scale) {
+                pos *= 1 / scale;
+                pos -= offset;
+                return length(float3(0, 0, 0) - pos) - 1;
             }
 
-            float DEisphere(float3 z, float3 offset)
+            float DEisphere(float3 pos, float3 offset, float3 scale)
             {
-                z.xy = offset - (z.xy % 1) - float3(0.5, 0.5, 0.5);
-                return length(z) - 0.3;
+                pos *= 1 / scale;
+                pos -= offset;
+                pos.xy = float3(0, 0, 0) - (pos.xy % 1) - float3(0.5, 0.5, 0.5);
+                return length(pos) - 0.3;
             }
 
-            float DEtetra(float3 z) {
+            float DEtorus(float3 pos, float3 offset, float3 scale) {
+                pos *= 1 / scale;
+                pos -= offset;
+                float radius = 0.5;
+                float inner = 0.2;
+                return length(float2(length(pos.xz) - radius, pos.y)) - inner;
+            }
+
+            float DEtetra(float3 pos, float3 offset, float3 scale) {
+                pos *= 1 / scale;
+                pos -= offset;
                 int Iterations = 10;
-                float Scale = 2.0;
+                float rescale = 2.0;
                 float3 a1 = float3(1, 1, 1);
                 float3 a2 = float3(-1, -1, 1);
                 float3 a3 = float3(1, -1, -1);
@@ -83,23 +99,43 @@ Shader "Examples/RayMarching"
                 int n = 0;
                 float dist, d;
                 while (n < Iterations) {
-                    c = a1; dist = length(z - a1);
-                    d = length(z - a2); if (d < dist) { c = a2; dist = d; }
-                    d = length(z - a3); if (d < dist) { c = a3; dist = d; }
-                    d = length(z - a4); if (d < dist) { c = a4; dist = d; }
-                    z = Scale * z - c * (Scale - 1.0);
+                    c = a1; dist = length(pos - a1);
+                    d = length(pos - a2); if (d < dist) { c = a2; dist = d; }
+                    d = length(pos - a3); if (d < dist) { c = a3; dist = d; }
+                    d = length(pos - a4); if (d < dist) { c = a4; dist = d; }
+                    pos = rescale * pos - c * (rescale - 1.0);
                     n++;
                 }
 
-                return length(z) * pow(Scale, float(-n));
+                return length(pos) * pow(rescale, float(-n));
             }
 
-            float mandelbulb(float3 pos, float3 offset) { //mandelbrot
-                pos *= 1/1; //replacesecond value for scaling
+            float DEfractal1(float3 pos, float3 offset, float3 scale) {
+                pos *= 1 / scale;
+                pos -= offset;
+                float s = 3;
+                pos = abs(pos);
+                float3  p0 = pos * 0.9;
+                for (float i = 0; i < 5; i++) {
+                    pos = 1 - abs(pos - 1);
+                    pos = 1 - abs(abs(pos - 2) - 1);
+                    float g = -4.5 * clamp(0.45 * max(1.6 / dot(pos, pos), 0.7), 0, 1.2);
+                    pos *= g;
+                    pos += p0;
+                    s *= g;
+                }
+                s = abs(s);
+                float a = 3.8;
+                pos -= clamp(pos, -a, a);
+                return length(pos) / s;
+            }
+
+            float Mandelbulb(float3 pos, float3 offset, float3 scale) { //mandelbulb
+                pos *= 1 / scale;
                 pos -= offset;
                 float Bailout = 4;
                 int Iterations = 20;
-                int Power = 2;
+                int Power = 8;
                 float3 z = pos;
                 float dr = 1.0;
                 float r = 0.0;
@@ -122,13 +158,25 @@ Shader "Examples/RayMarching"
                     z += pos;
                 }
                 return 0.5 * log(r) * r / dr;
-                return 0.5 / length(pos - offset) * log(r) * r / dr; //specifies how much of the result should be returned, lower value undershoots less and increases distance where bulb disappears
+                return 0.5 / length(pos - offset) * log(r) * r / dr;
+            }
+
+            float Union(float3 pos, float3 offset, float3 scale) {
+                return min(DEtorus(pos, offset, float3(2, 2, 2)), DEcube(pos, offset, scale));
+            }
+
+            float Intersection(float3 pos, float3 offset, float3 scale) {
+                return max(DEtorus(pos, offset, float3(2, 2, 2)), DEcube(pos, offset, scale));
+            }
+
+            float Difference(float3 pos, float3 offset, float3 scale) {
+                return max(-DEtorus(pos, offset, float3(2, 2, 2)), DEcube(pos, offset, scale));
             }
 
             float DE(float3 pos) {
-                return DEisphere(pos, float3(0, 0, 0));
+                return Difference(pos, float3(0, 0, 0), float3(1, 1, 1));
             }
-            
+
             FS_OUT frag(FS_IN IN) : SV_TARGET
             {
                 FS_OUT o;
@@ -142,28 +190,73 @@ Shader "Examples/RayMarching"
                 float thisDistance = 0;
                 float smallestDistance = _ProjectionParams.b; //smallest recorded distance, necessary for glow
 
+
                 int steps = 0;
                 int maxSteps = 10 / fidelity; //max amount of steps
                 maxSteps = 200;
 
-                while (length(currentPos - _WorldSpaceCameraPos) < _ProjectionParams.b) {
+                while (true) {
                     lastDistance = thisDistance;
                     thisDistance = DE(currentPos);
+                    ++steps;
                     if (smallestDistance > thisDistance) {
                         smallestDistance = thisDistance;
                     }
                     currentPos += direction * thisDistance;
 
                     if (thisDistance < fidelity) break; //break if fidelity is reached
-                    if (++steps >= maxSteps) break; //break if max steps are reached
+                    if (steps >= maxSteps) break; //break if max steps are reached
                     if (length(currentPos - _WorldSpaceCameraPos) > _ProjectionParams.b) break; //break if far clipping plane is reached
                 }
 
                 if (length(currentPos - _WorldSpaceCameraPos) >= _ProjectionParams.b) {
                     //float glow = 1 / smallestDistance * 0.1;
                     o.zvalue = 1;
-                    o.color = float4(0, 0, 0, 0); //returns a black pixel if the ray reached the far clipping plane
+                    o.color = float4(0, 0, 0, 0); //returns a transparent pixel if the ray reached the far clipping plane
                     return o;
+                }
+
+                //raymarched lighting
+                float3 lightPos = float3(10, 10, 10);
+                float intensity = 7;
+                float exposure = 3;
+                float3 lightDir = normalize(currentPos - lightPos);
+                float3 currentLightPos = lightPos; //current position of the marching ray
+
+                float lightFidelity = 0.001;
+                int lightSteps = 0;
+                int maxLightSteps = 50; //max amount of steps
+
+                float minRatio = 1;
+                float illumination = 0;
+
+                while (true) {
+                    float distance = DE(currentLightPos);
+                    ++lightSteps;
+                    float ratio = distance / length(currentLightPos - currentPos);
+                    currentLightPos += lightDir * distance;
+
+                    if (ratio < minRatio) minRatio = ratio;
+
+                    if (length(currentLightPos - currentPos) < lightFidelity * 10) break; //break if the target location is within fidelity range
+                    if (distance < lightFidelity) break; //break if fidelity is reached
+                    if (lightSteps >= maxLightSteps) break; //break if max steps are reached
+                }
+
+                if (length(currentLightPos - currentPos) < lightFidelity * 10) { //if target was hit
+                    float c = 1 / minRatio; //kathete, radius
+
+                    float b = sqrt(c * c - 1); //hypotenuse
+
+                    float d = length(lightPos - currentPos); //distance from light source
+
+                    float i = intensity;
+
+                    for (int j = 1; j < exposure; ++j) {
+                        i *= intensity;
+                    }
+
+                    illumination = (1 - asin(b / c) / 1.57) / (d * d) * i;
                 }
 
                 //float3 xDir = float3(1, 0, 0);
@@ -172,7 +265,7 @@ Shader "Examples/RayMarching"
 
                 //semi functioning normals
                 /*
-                float3 nA = normalize(float3(DE(currentPos + xDir) - DE(currentPos - xDir), 
+                float3 nA = normalize(float3(DE(currentPos + xDir) - DE(currentPos - xDir),
                     DE(currentPos + yDir) - DE(currentPos - yDir),
                     DE(currentPos + zDir) - DE(currentPos - zDir)));
                 */
@@ -182,15 +275,18 @@ Shader "Examples/RayMarching"
 
                 float ambientOcclusion = 1 - ((float)steps / (a + (float)steps));
 
-
                 float4 clip_pos = mul(unity_MatrixVP, float4(currentPos, 1.0));
                 float depth = clip_pos.z / clip_pos.w;
 
                 float rayLength = length(currentPos - _WorldSpaceCameraPos); //how far did the ray march before hitting its target?
 
                 o.zvalue = depth;
-                o.color = float4(ambientOcclusion - (1 - depth) * 0.1, ambientOcclusion - (1 - depth) * 0.05, ambientOcclusion, 1);
-                o.color = float4(depth, depth, depth, 1);
+
+                //illumination = lightSteps / 100.0;
+
+                o.color = float4(illumination, illumination, illumination, 1);
+                //o.color = float4(ambientOcclusion - (1 - depth) * 0.1, ambientOcclusion - (1 - depth) * 0.05, ambientOcclusion, 1);
+                //o.color = float4(depth, depth, depth, 1);
                 return o;
             }
             ENDHLSL

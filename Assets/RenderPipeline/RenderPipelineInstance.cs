@@ -34,20 +34,23 @@ public class RenderPipelineInstance : RenderPipeline
             context.SetupCameraProperties(camera);
 
             // Tell Unity which geometry to draw, based on its LightMode Pass tag value
-            ShaderTagId shaderTagId = new ShaderTagId("ExampleLightModeTag");
+            ShaderTagId rayMarchingID = new ShaderTagId("RayMarching");
+            ShaderTagId normalsID = new ShaderTagId("Normals");
 
             // Tell Unity how to sort the geometry, based on the current Camera
             var sortingSettings = new SortingSettings(camera);
 
             // Create a DrawingSettings struct that describes which geometry to draw and how to draw it
-            DrawingSettings drawingSettings = new DrawingSettings(shaderTagId, sortingSettings);
+            DrawingSettings rayMarchingSettings = new DrawingSettings(rayMarchingID, sortingSettings);
+            DrawingSettings normalsSettings = new DrawingSettings(normalsID, sortingSettings);
 
             // Tell Unity how to filter the culling results, to further specify which geometry to draw
             // Use FilteringSettings.defaultValue to specify no filtering
             FilteringSettings filteringSettings = FilteringSettings.defaultValue;
 
             // Schedule a command to draw the geometry, based on the settings you have defined
-            context.DrawRenderers(cullingResults, ref drawingSettings, ref filteringSettings);
+            context.DrawRenderers(cullingResults, ref normalsSettings, ref filteringSettings);
+            context.DrawRenderers(cullingResults, ref rayMarchingSettings, ref filteringSettings);
 
             // Schedule a command to draw the Skybox if required
             if (camera.clearFlags == CameraClearFlags.Skybox && RenderSettings.skybox != null)
