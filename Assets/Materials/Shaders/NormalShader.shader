@@ -4,6 +4,11 @@
     {
         Pass
         {
+            Tags {
+                "RenderType" = "Opaque"
+            }
+            ZWrite On
+
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -17,7 +22,6 @@
             {
                 float4 positionOS   : POSITION; //objectspace
                 float3 normals : NORMAL;
-
             };
 
             struct FS_IN
@@ -40,7 +44,6 @@
             float4 frag(FS_IN IN) : SV_TARGET
             {
                 float4 clip_pos = mul(unity_MatrixVP, float4(IN.worldPos.x, IN.worldPos.y, IN.worldPos.z, 1.0));
-                return length(IN.worldPos - _WorldSpaceCameraPos);
                 return float4(IN.normals.x, IN.normals.y, IN.normals.z, 1);
             }
             ENDHLSL

@@ -8,8 +8,8 @@
 
         Pass
         {
-        Blend SrcAlpha OneMinusSrcAlpha
-        ZWrite Off
+            Blend SrcAlpha OneMinusSrcAlpha
+            ZWrite Off
 
             HLSLPROGRAM
             #pragma vertex vert
@@ -21,6 +21,7 @@
             float3 _WorldSpaceCameraPos;
             float4 _ProjectionParams;
             float4 _ZBufferParams;
+            float4 _ScreenParams;
             sampler2D _CameraDepthTexture;
 
             struct VS_IN
@@ -52,20 +53,20 @@
             float DEcube(float3 pos, float3 offset, float3 scale) {
                 pos *= 1 / scale;
                 pos -= offset;
-                return length(max(abs(float3(0, 0, 0) - pos) - 1, 0));
+                return length(max(abs(pos) - 1, 0));
             }
 
             float DEsphere(float3 pos, float3 offset, float3 scale) {
                 pos *= 1 / scale;
                 pos -= offset;
-                return length(float3(0, 0, 0) - pos) - 1;
+                return length(-pos) - 1;
             }
 
             float DEisphere(float3 pos, float3 offset, float3 scale)
             {
                 pos *= 1 / scale;
                 pos -= offset;
-                pos.xy = float3(0, 0, 0) - (pos.xy % 1) - float3(0.5, 0.5, 0.5);
+                pos.xy = -(pos.xy % 1) - float3(0.5, 0.5, 0.5);
                 return length(pos) - 0.3;
             }
 
@@ -164,59 +165,149 @@
                 return max(-DEtorus(pos, offset, float3(2, 2, 2)), DEcube(pos, offset, scale));
             }
 
+            float Mirror(float3 pos, float3 offset, float3 scale) {
+                float3 mirrorPos = (-0.5, -1, -2);
+                float3 mirrorNormal = (1, 1, 1);
+                return min(length(-pos / scale + offset) - 0.5, length(-pos / scale + offset) - 0.5);
+            }
+
+            float DEplane(float3 pos, float3 offset, float3 scale) {
+                pos = pos / scale - offset;
+                float3 orientation = float3(1, 1, 1);
+                return 1;
+            }
+
             float DE(float3 pos) {
-                return DEfractal1(pos, float3(0, 0, 0), float3(1, 1, 1));
+                return DEsphere(pos, float3(0, 0, 0), float3(1, 1, 1));
             }
 
             float4 frag(FS_IN IN) : SV_TARGET
             {
-                float3 view = mul((float3x3)unity_CameraToWorld, float3(0, 0, 1));
+                float3 view = mul((float3x3)unity_CameraToWorld, float3(0, 0, 1)); //camera view vector
 
-                float cameraDepth = tex2D(_CameraDepthTexture, IN.screenPos).x;
-                float linearDepth = 1.0 / (_ZBufferParams.x * cameraDepth + _ZBufferParams.y);
-                float worldDepth = linearDepth * _ProjectionParams.z;
+                float cameraDepth = tex2D(_CameraDepthTexture, IN.screenPos).x; //camera depth texture
+                float linearDepth = 1.0 / (_ZBufferParams.x * cameraDepth + _ZBufferParams.y); //linear camera depth
+                float worldDepth = linearDepth * _ProjectionParams.z; //depth in world space
 
-                float a = 50; //inverse ambient occlusion strength
                 float3 direction = normalize(IN.fragPosWS - _WorldSpaceCameraPos);
                 float3 currentPos = _WorldSpaceCameraPos; //current position of the marching ray
-                float maxFidelity = 0.0005; //max dynamic fidelity
-                float fidelity = max(DE(_WorldSpaceCameraPos) / 1000, maxFidelity); //fidelity increases dynamically with distance from target, automatic LOD
-                float lastDistance = fidelity + 1; //upcoming marching step
-                float thisDistance = 0;
-                float smallestDistance = _ProjectionParams.b; //smallest recorded distance, necessary for glow
+                float3 lastPos = currentPos;
+
+                float fidelity;
+                float minFidelity = 0.001; //max dynamic fidelity
+
+                float distance;
 
                 int steps = 0;
-                int maxSteps = 10 / fidelity; //max amount of steps
-                maxSteps = 200;
+                int maxSteps = 200;
 
                 while (true) {
-                    lastDistance = thisDistance;
-                    thisDistance = DE(currentPos);
+                    distance = DE(currentPos);
+                    lastPos = currentPos;
+                    currentPos += direction * distance;
                     ++steps;
-                    if (smallestDistance > thisDistance) {
-                        smallestDistance = thisDistance;
+
+                    if (dot(currentPos - _WorldSpaceCameraPos, view) > worldDepth) return float4(0, 0, 0, 0); //return miss if depth is higher than normal geometry (=occluded)
+                    fidelity = max(sqrt(length(currentPos - _WorldSpaceCameraPos)) / 1000, minFidelity);
+                    if (distance < fidelity) { //break if fidelity is reached
+
+                        currentPos += direction * distance * (distance / fidelity) * (1 - dot(view, direction)) * 5; //extrapolate against depth banding
+                        break;
                     }
-                    currentPos += direction * thisDistance;
-
-                    if (dot(currentPos - _WorldSpaceCameraPos, view) > worldDepth) break;
-                    if (thisDistance < fidelity) break; //break if fidelity is reached
                     if (steps >= maxSteps) break; //break if max steps are reached
-                    if (length(currentPos - _WorldSpaceCameraPos) > _ProjectionParams.b) break; //break if far clipping plane is reached
+                    if (length(currentPos - _WorldSpaceCameraPos) > _ProjectionParams.b) return float4(0, 0, 0, 0); //return miss if far clipping plane is reached
                 }
 
-                if (length(currentPos - _WorldSpaceCameraPos) >= _ProjectionParams.b || dot(currentPos - _WorldSpaceCameraPos, view) > worldDepth) {
-                    //float glow = 1 / smallestDistance * 0.1;
-                    return float4(0, 0, 0, 0); //returns a transparent pixel if the ray reached the far clipping plane
+                float ambientOcclusion = 1 - ((float)steps / (float)maxSteps);
+                float depth = length(currentPos - _WorldSpaceCameraPos);
+
+                //normals
+                float3 normal;
+                int mode = 1; //0 = fast normals, 1 = fancy normals, 2 = (doesnt work) hybrid
+
+                if (mode == 0) {
+                    //fast ddx/ddy normals
+                    normal = -normalize(cross(ddx(currentPos), ddy(currentPos)));
+                }
+                else if (mode == 1) {
+                    //fancy normals
+                    float3 dir = normalize(IN.fragPosWS + ddx(IN.fragPosWS) - _WorldSpaceCameraPos);
+                    float3 pos = _WorldSpaceCameraPos;
+                    int nSteps = 0;
+
+                    while (nSteps++ < steps + 3) {
+                        float dist = DE(pos);
+                        pos += dir * dist;
+                        if (dist < fidelity) {
+                            pos += dir * dist * (dist / fidelity) * (1 - dot(view, dir)) * 5; //extrapolate against depth banding
+                            break;
+                        }
+                    }
+                    float3 nT = pos - currentPos;
+
+                    dir = normalize(IN.fragPosWS + ddy(IN.fragPosWS) - _WorldSpaceCameraPos);
+                    pos = _WorldSpaceCameraPos;
+                    nSteps = 0;
+
+                    while (nSteps++ < steps + 3) {
+                        float dist = DE(pos);
+                        pos += dir * dist;
+                        if (dist < fidelity) {
+                            pos += dir * dist * (dist / fidelity) * (1 - dot(view, dir)) * 5; //extrapolate against depth banding
+                            break;
+                        }
+                    }
+                    float3 nB = pos - currentPos;
+
+                    normal = -normalize(cross(nT, nB));
+                }
+                else {
+                    //fancy normals x fast normals, doesnt currently work properly
+                    int xIndex = IN.screenPos.x * _ScreenParams.x % 2; // 0 when first index, 1 when second (?)
+                    int yIndex = IN.screenPos.y * _ScreenParams.y % 2;
+
+                    float3 nT;
+                    float3 nB;
+
+                    float3 dir = normalize(IN.fragPosWS + ddx(IN.fragPosWS) - _WorldSpaceCameraPos);
+                    float3 pos = _WorldSpaceCameraPos;
+                    int nSteps = 0;
+                    while (nSteps++ < steps + 3) {
+                        float dist = DE(pos);
+                        pos += dir * dist;
+                        if (dist < fidelity) {
+                            pos += dir * dist * (dist / fidelity) * (1 - dot(view, dir)) * 5; //extrapolate against depth banding
+                            break;
+                        }
+                    }
+                    nT = (pos - currentPos) * xIndex + ddx(currentPos) * (1 - xIndex);
+
+
+                    dir = normalize(IN.fragPosWS + ddy(IN.fragPosWS) - _WorldSpaceCameraPos);
+                    pos = _WorldSpaceCameraPos;
+                    nSteps = 0;
+
+                    while (nSteps++ < steps + 3) {
+                        float dist = DE(pos);
+                        pos += dir * dist;
+                        if (dist < fidelity) {
+                            pos += dir * dist * (dist / fidelity) * (1 - dot(view, dir)) * 5; //extrapolate against depth banding
+                            break;
+                        }
+                    }
+                    nB = (pos - currentPos) * yIndex + ddy(currentPos) * (1 - yIndex);
+
+                    normal = -normalize(cross(nT, nB));
                 }
 
-                //raymarched lighting
+                //shadow ray
                 float3 lightPos = float3(10, 10, 10);
                 float intensity = 7;
                 float exposure = 3;
                 float3 lightDir = normalize(currentPos - lightPos);
                 float3 currentLightPos = lightPos; //current position of the marching ray
 
-                float lightFidelity = 0.001;
+                float LFidelity = fidelity * 2;
                 int lightSteps = 0;
                 int maxLightSteps = 50; //max amount of steps
 
@@ -224,22 +315,22 @@
                 float illumination = 0;
 
                 while (true) {
-                    float distance = DE(currentLightPos);
+                    distance = DE(currentLightPos);
                     ++lightSteps;
                     float ratio = distance / length(currentLightPos - currentPos);
                     currentLightPos += lightDir * distance;
 
                     if (ratio < minRatio) minRatio = ratio;
 
-                    if (length(currentLightPos - currentPos) < lightFidelity * 10) break; //break if the target location is within fidelity range
-                    if (distance < lightFidelity) break; //break if fidelity is reached
-                    if (lightSteps >= maxLightSteps) break; //break if max steps are reached
+                    if (length(currentLightPos - currentPos) < LFidelity * 10) break; //break if the target location is within fidelity range
+                    if (lightSteps >= maxLightSteps) break; //if something is hit or max steps are reached
                 }
 
-                if (length(currentLightPos - currentPos) < lightFidelity * 10) { //if target was hit
-                    float c = 1 / minRatio; //kathete, radius
+                if (length(currentLightPos - currentPos) < LFidelity * 10) {  //break if the target location is within fidelity range
+                    float b = 1 /minRatio; //hypotenuse
+                    float c = sqrt(b * b - 1); //ankathete = sqrt(b^2 - a^2)
 
-                    float b = sqrt(c * c - 1); //hypotenuse
+                    float alpha = acos(c / b); 
 
                     float d = length(lightPos - currentPos); //distance from light source
 
@@ -249,34 +340,23 @@
                         i *= intensity;
                     }
 
-                    illumination = (1 - asin(b / c) / 1.57) / (d * d) * i; //1.57 = PI/2
+                    illumination = (alpha / 1.57); //1.57 = PI/2
                 }
 
-                //float3 xDir = float3(1, 0, 0);
-                //float3 yDir = float3(0, 1, 0);
-                //float3 zDir = float3(0, 0, 1);
+                float ambient = 0.1;
+                float ambientIllumination = ambientOcclusion * ambient;
+                float phong = dot(-lightDir, normal);
 
-                //semi functioning normals
-                /*
-                float3 nA = normalize(float3(DE(currentPos + xDir) - DE(currentPos - xDir),
-                    DE(currentPos + yDir) - DE(currentPos - yDir),
-                    DE(currentPos + zDir) - DE(currentPos - zDir)));
-                */
+                float light = max(illumination, ambientIllumination);
 
-                //dfdx normals
-                //float3 nB = ddx(currentPos * 100);
-
-                float ambientOcclusion = 1 - ((float)steps / (a + (float)steps));
-
-                float4 clip_pos = mul(unity_MatrixVP, float4(currentPos, 1.0));
-                float depth = clip_pos.z / clip_pos.w;
-
-                float rayLength = length(currentPos - _WorldSpaceCameraPos); //how far did the ray march before hitting its target?
-
-                //return float4(cameraDepth, cameraDepth, cameraDepth, ceil(cameraDepth));
-                return float4(0.1 * ambientOcclusion + 0.9 * illumination, 0.1 * ambientOcclusion + 0.9 * illumination, 0.1 * ambientOcclusion + 0.9 * illumination, 1);
-                //return  float4(ambientOcclusion - (1 - depth) * 0.1, ambientOcclusion - (1 - depth) * 0.05, ambientOcclusion, 1);
-                //return  float4(depth, depth, depth, 1);
+                //return float4(phong, phong, phong, 1);
+                
+                //return float4(normal.x, normal.y, normal.z, 1);
+                //return float4(illumination, illumination, illumination, 1);
+                return float4(light, light, light, 1);
+                //return  float4(ambientOcclusion, ambientOcclusion, ambientOcclusion, 1);
+                //return  float4(steps % 2 * 0.5, 0, 0, 1); //distinguish marching layers
+                //return  float4(lightSteps % 2 * 0.5, 0, 0, 1); //distinguish light layers
             }
             ENDHLSL
         }
