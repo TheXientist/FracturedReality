@@ -23,11 +23,15 @@ public class SC_SpaceshipController : MonoBehaviour
 
     [SerializeField, Header("Left Stick Input Mapping")] 
     private DOF leftStickX;
+    [SerializeField] private bool invertLX;
     [SerializeField] private DOF leftStickY;
+    [SerializeField] private bool invertLY;
 
     [SerializeField, Header("Right Stick Input Mapping")]
     private DOF rightStickX;
+    [SerializeField] private bool invertRX;
     [SerializeField] private DOF rightStickY;
+    [SerializeField] private bool invertRY;
 
     [Header("Movement Parameters"), SerializeField]
     private float moveSpeed;
@@ -80,10 +84,10 @@ public class SC_SpaceshipController : MonoBehaviour
         rotationInput = Vector3.zero;
 
         // Map all the stick values into their corresponding input axis
-        SolveMapping(leftStickX, leftStickInput.x);
-        SolveMapping(leftStickY, leftStickInput.y);
-        SolveMapping(rightStickX, rightStickInput.x);
-        SolveMapping(rightStickY, rightStickInput.y);
+        SolveMapping(leftStickX, invertLX ? -leftStickInput.x : leftStickInput.x);
+        SolveMapping(leftStickY, invertLY ? -leftStickInput.y : leftStickInput.y);
+        SolveMapping(rightStickX, invertRX ? -rightStickInput.x : rightStickInput.x);
+        SolveMapping(rightStickY, invertRY ? -rightStickInput.y : rightStickInput.y);
 
         if (!debug) return;
         Debug.Log("LeftStick: " + leftStickInput);
