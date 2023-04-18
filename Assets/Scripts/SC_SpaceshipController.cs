@@ -13,7 +13,7 @@ public class SC_SpaceshipController : MonoBehaviour
         rotateX, rotateY, rotateZ
     }
     
-    [SerializeField] private bool vr;
+    [SerializeField] private bool debug, vr;
     private SteamVR_Action_Vector2 leftStickAction;
     private SteamVR_Action_Vector2 rightStickAction;
 
@@ -62,8 +62,8 @@ public class SC_SpaceshipController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MoveUpdate();
         RotationUpdate();
+        MoveUpdate();
     }
 
     private void ParseInputs()
@@ -85,11 +85,13 @@ public class SC_SpaceshipController : MonoBehaviour
         SolveMapping(rightStickX, rightStickInput.x);
         SolveMapping(rightStickY, rightStickInput.y);
 
+        if (!debug) return;
         Debug.Log("LeftStick: " + leftStickInput);
         Debug.Log("RightStick: " + rightStickInput);
         Debug.Log("MoveInput: " + moveInput);
         Debug.Log("RotationInput: " + rotationInput);
         Debug.Log("Velocity: " + velocity);
+        Debug.Log("AngularVelocity: " + angularVelocity);
     }
 
     private void SolveMapping(DOF map, float input)
@@ -166,12 +168,33 @@ public class SC_SpaceshipController : MonoBehaviour
 
     private void RotationUpdate()
     {
-        /*
-        Vector3 currentRotationEulers = rigidbody.rotation.eulerAngles;
-        Vector3 targetRotationEulers = currentRotationEulers + rotationInput;
-        rigidbody.MoveRotation(Quaternion.Euler(targetRotationEulers));*/
+        angularVelocity += rotationInput * rotationAcceleration;
         
+        // Stop rotating if there's no input
         
+        if (rotationInput.x == 0f)
+            if (Mathf.Abs(angularVelocity.x) > rotationDeceleration)
+                angularVelocity.x += rotationDeceleration * (angularVelocity.x > 0f ? -1f : 1f);
+            else
+                angularVelocity.x = 0f;
+        if (rotationInput.y == 0f)
+            if (Mathf.Abs(angularVelocity.y) > rotationDeceleration)
+                angularVelocity.y += rotationDeceleration * (angularVelocity.y > 0f ? -1f : 1f);
+            else
+                angularVelocity.y = 0f;
+        if (rotationInput.z == 0f)
+            if (Mathf.Abs(angularVelocity.z) > rotationDeceleration)
+                angularVelocity.z += rotationDeceleration * (angularVelocity.z > 0f ? -1f : 1f);
+            else
+                angularVelocity.z = 0f;
+
+        angularVelocity =
+            Vector3Extensions.Clamp(angularVelocity, -rotationSpeed * Vector3.one, rotationSpeed * Vector3.one);
+
+        Vector3 rotationVector = angularVelocity.z * transform.forward;
+        rotationVector += angularVelocity.x * transform.right;
+        rotationVector += angularVelocity.y * transform.up;
+        rb.angularVelocity = rotationVector;
     }
 }
 

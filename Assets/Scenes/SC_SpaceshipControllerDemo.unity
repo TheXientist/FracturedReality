@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.024967156, g: 0.022754043, b: 0.070475414, a: 1}
+  m_IndirectSpecularColor: {r: 0.024951262, g: 0.022750102, b: 0.07044999, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -988,17 +988,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c148067ed48b394197463c8d67ba35a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug: 1
   vr: 0
   leftStickX: 0
   leftStickY: 2
   rightStickX: 4
   rightStickY: 1
-  moveSpeed: 10
-  moveAcceleration: 1
-  moveDeceleration: 1
-  rotationSpeed: 0
-  rotationAcceleration: 0
-  rotationDeceleration: 0
+  moveSpeed: 30
+  moveAcceleration: 1.5
+  moveDeceleration: 0.5
+  rotationSpeed: 2
+  rotationAcceleration: 0.3
+  rotationDeceleration: 0.1
 --- !u!54 &1575024088
 Rigidbody:
   m_ObjectHideFlags: 0
