@@ -43,6 +43,9 @@ public class SC_SpaceshipController : MonoBehaviour
     private Vector3 moveInput, rotationInput;
     
     private Rigidbody rb;
+    
+    // WIP, should just be set via controls/script
+    public Transform target;
 
     private void Awake()
     {
@@ -172,6 +175,15 @@ public class SC_SpaceshipController : MonoBehaviour
 
     private void RotationUpdate()
     {
+        if (target)
+        {
+            // Calculate the rotation angle to look at the target object
+            Quaternion targetRotation = Quaternion.LookRotation(target.position - transform.position, transform.up);
+            Quaternion newRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed);
+            rb.MoveRotation(newRotation);
+            return;
+        }
+        
         angularVelocity += rotationInput * rotationAcceleration;
         
         // Stop rotating if there's no input

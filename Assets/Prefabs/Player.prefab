@@ -111,7 +111,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3061859875470130509}
-  m_LocalRotation: {x: 0.011265654, y: -0.45527542, z: 0.005761205, w: 0.8902608}
+  m_LocalRotation: {x: 0.011265654, y: -0.4552754, z: 0.005761205, w: 0.89026076}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -135,13 +135,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debug: 0
   vr: 0
-  leftStickX: 5
+  leftStickX: 0
   invertLX: 0
   leftStickY: 2
   invertLY: 0
   rightStickX: 4
   invertRX: 0
-  rightStickY: 3
+  rightStickY: 1
   invertRY: 0
   moveSpeed: 40
   moveAcceleration: 1.5
@@ -149,6 +149,7 @@ MonoBehaviour:
   rotationSpeed: 2
   rotationAcceleration: 0.3
   rotationDeceleration: 0.1
+  target: {fileID: 0}
 --- !u!114 &3061859875470130511
 MonoBehaviour:
   m_ObjectHideFlags: 0
