@@ -9,8 +9,8 @@ public class SC_SpaceshipController : MonoBehaviour
 {
     public enum DOF
     {
-        moveX, moveY, moveZ,
-        rotateX, rotateY, rotateZ
+        moveX = 1, moveY = 2, moveZ = 4,
+        rotateX = 8, rotateY = 16, rotateZ = 32
     }
     
     [SerializeField] private bool debug, vr;
@@ -57,6 +57,12 @@ public class SC_SpaceshipController : MonoBehaviour
         {
             InitVR();
         }
+
+        DOF usedAxes = leftStickX | leftStickY | rightStickX | rightStickY;
+
+        if ((usedAxes & DOF.rotateX) == 0) rb.constraints |= RigidbodyConstraints.FreezeRotationX;
+        if ((usedAxes & DOF.rotateY) == 0) rb.constraints |= RigidbodyConstraints.FreezeRotationY;
+        if ((usedAxes & DOF.rotateZ) == 0) rb.constraints |= RigidbodyConstraints.FreezeRotationZ;
     }
 
     private void InitVR()

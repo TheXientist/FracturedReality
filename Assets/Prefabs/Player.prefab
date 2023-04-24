@@ -135,19 +135,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debug: 0
   vr: 0
-  leftStickX: 0
+  leftStickX: 1
   invertLX: 0
-  leftStickY: 2
+  leftStickY: 4
   invertLY: 0
-  rightStickX: 4
+  rightStickX: 16
   invertRX: 0
-  rightStickY: 1
+  rightStickY: 2
   invertRY: 0
   deadzonePerAxis: 0.3
-  moveSpeed: 40
-  moveAcceleration: 1.5
+  moveSpeed: 50
+  moveAcceleration: 3
   moveDeceleration: 0.5
-  rotationSpeed: 2
+  rotationSpeed: 1
   rotationAcceleration: 0.3
   rotationDeceleration: 0.1
   target: {fileID: 0}
