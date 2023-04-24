@@ -111,10 +111,8 @@ public class SC_SpaceshipController : MonoBehaviour
     /// </summary>
     private void ApplyDeadzone(ref Vector2 vector)
     {
-        Debug.Log("Before Deadzone: " + vector);
         vector.x = vector.x >= 0f ? Mathf.InverseLerp(deadzonePerAxis, 1f, vector.x) : -Mathf.InverseLerp(deadzonePerAxis, 1f, -vector.x);
         vector.y = vector.y >= 0f ? Mathf.InverseLerp(deadzonePerAxis, 1f, vector.y) : -Mathf.InverseLerp(deadzonePerAxis, 1f, -vector.y);
-        Debug.Log("After Deadzone: " + vector);
     }
 
     private void SolveMapping(DOF map, float input)
