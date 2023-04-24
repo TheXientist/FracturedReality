@@ -33,6 +33,9 @@ public class SC_SpaceshipController : MonoBehaviour
     [SerializeField] private DOF rightStickY;
     [SerializeField] private bool invertRY;
 
+    [SerializeField, Header("Additional Input Parameters")]
+    [Range(0f, 5f)] private float deadzonePerAxis;
+
     [Header("Movement Parameters"), SerializeField]
     private float moveSpeed;
     [SerializeField] private float moveAcceleration, moveDeceleration;
@@ -80,8 +83,10 @@ public class SC_SpaceshipController : MonoBehaviour
         {
             leftStickInput = leftStickAction.axis;
             rightStickInput = rightStickAction.axis;
+            ApplyDeadzone(ref leftStickInput);
+            ApplyDeadzone(ref rightStickInput);
         }
-        
+
         // Reset all inputs
         moveInput = Vector3.zero;
         rotationInput = Vector3.zero;
@@ -99,6 +104,17 @@ public class SC_SpaceshipController : MonoBehaviour
         Debug.Log("RotationInput: " + rotationInput);
         Debug.Log("Velocity: " + velocity);
         Debug.Log("AngularVelocity: " + angularVelocity);
+    }
+
+    /// <summary>
+    /// Applies the deadzone (set in inspector) to each input axis separately
+    /// </summary>
+    private void ApplyDeadzone(ref Vector2 vector)
+    {
+        Debug.Log("Before Deadzone: " + vector);
+        vector.x = vector.x >= 0f ? Mathf.InverseLerp(deadzonePerAxis, 1f, vector.x) : -Mathf.InverseLerp(deadzonePerAxis, 1f, -vector.x);
+        vector.y = vector.y >= 0f ? Mathf.InverseLerp(deadzonePerAxis, 1f, vector.y) : -Mathf.InverseLerp(deadzonePerAxis, 1f, -vector.y);
+        Debug.Log("After Deadzone: " + vector);
     }
 
     private void SolveMapping(DOF map, float input)
@@ -131,11 +147,15 @@ public class SC_SpaceshipController : MonoBehaviour
     private void OnLeftStick(InputValue value)
     {
         leftStickInput = value.Get<Vector2>();
+        
+        ApplyDeadzone(ref leftStickInput);
     }
 
     private void OnRightStick(InputValue value)
     {
         rightStickInput = value.Get<Vector2>();
+        
+        ApplyDeadzone(ref rightStickInput);
     }
 
     private void MoveUpdate()
