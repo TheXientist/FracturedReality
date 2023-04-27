@@ -13,10 +13,12 @@ public class BulletModule : MonoBehaviour
     [HideInInspector]
     public float rotationSpeed;
 
+    private const int LIFETIME = 8;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(DestroySelfAfterSeconds(LIFETIME));
     }
 
     private void Update()
@@ -26,5 +28,17 @@ public class BulletModule : MonoBehaviour
 
         transform.position += movement;
         transform.Rotate(0, 0, rotationAmount);
+    }
+
+    public IEnumerator DestroySelf()
+    {
+        Destroy(gameObject);
+        yield return null;
+    }
+
+    public IEnumerator DestroySelfAfterSeconds(int seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        Destroy(gameObject);       
     }
 }
