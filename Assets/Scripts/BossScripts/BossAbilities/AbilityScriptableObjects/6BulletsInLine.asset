@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5abf039c8c673ed4c835340e5a046734, type: 3}
   m_Name: 6BulletsInLine
   m_EditorClassIdentifier: 
-  m_bulletModuleSpeed: 1
+  m_bulletModuleSpeed: 3
   m_bulletModuleRotationSpeed: 0
   abilityPropability: 3
   abilityCooldown: 3

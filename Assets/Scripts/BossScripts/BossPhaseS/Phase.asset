@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Phase
   m_EditorClassIdentifier: 
   phaseAbilityScripts:
-  - {fileID: 11400000, guid: 8db7f899755407f4785a949b9c838a66, type: 2}
+  - {fileID: 11400000, guid: 2a62890425ac0104789b0b33abd17e0d, type: 2}
   abilityPropabilityList: 000000000000000000000000
   percentPhaseCondition: 0.5

@@ -25,7 +25,7 @@ public abstract class BossClass : MonoBehaviour
         {
             yield return useRandomPhaseAbility(phaseList[currentPhase].phaseAbilityScripts, phaseList[currentPhase].abilityPropabilityList);
             yield return new WaitForSeconds(abilityCooldownTime);
-
+            print("in phase " +  currentPhase);
         }
 
         if(phaseList.Count > currentPhase) 
@@ -41,6 +41,7 @@ public abstract class BossClass : MonoBehaviour
     {
         foreach (var phase in phaseList)
         {
+            print("begin fight werwerwerwer");
             yield return this.phase();
         }
     }
