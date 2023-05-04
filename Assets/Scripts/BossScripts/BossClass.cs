@@ -84,5 +84,10 @@ public abstract class BossClass : MonoBehaviour
         }
     }
 
+    public void TakeDamage(float damage)
+    {
+        bossCurrentHealth -= damage;
+    }
+
 
 }

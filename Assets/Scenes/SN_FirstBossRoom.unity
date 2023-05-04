@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 948473942}
   m_Layer: 0
   m_Name: PlayerDummy
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -661,21 +661,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 385258494092766532, guid: 498eab25bc037614b9babcbb38ddfe55,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 385258494092766532, guid: 498eab25bc037614b9babcbb38ddfe55,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 385258494092766532, guid: 498eab25bc037614b9babcbb38ddfe55,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 385258494092766532, guid: 498eab25bc037614b9babcbb38ddfe55,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.65
       objectReference: {fileID: 0}
@@ -724,15 +709,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 385258494092766532, guid: 498eab25bc037614b9babcbb38ddfe55,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4619662400575479392, guid: 498eab25bc037614b9babcbb38ddfe55,
         type: 3}
       propertyPath: m_Name
       value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4619662400575479392, guid: 498eab25bc037614b9babcbb38ddfe55,
+        type: 3}
+      propertyPath: m_TagString
+      value: Finish
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 498eab25bc037614b9babcbb38ddfe55, type: 3}

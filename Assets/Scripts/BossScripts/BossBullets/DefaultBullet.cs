@@ -16,8 +16,19 @@ public class DefaultBullet : AbstractBullet, IBullet
     private void OnTriggerEnter(Collider other)
     {
         //implement player trigger enter and call DestroySelf() afterwards
-        Debug.Log(other.gameObject.name);
-        DestroySelf();
+        if(other.tag == "Player")
+        {
+            Debug.Log(other.gameObject.name);
+            //get player component
+            DestroySelf();
+        }
+        else if(other.tag == "Obstacle")
+        {
+            Debug.Log(other.gameObject.name);
+            other.GetComponent<Obstacle>().TakeDamage(base.m_DamageValue);
+            DestroySelf();
+        }
+
     }
 
 
