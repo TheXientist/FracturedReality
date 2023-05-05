@@ -74,12 +74,12 @@ public class SpaceshipController : MonoBehaviour
     private void Update()
     {
         ParseInputs();
-        RotationUpdate();
-        MoveUpdate();
     }
 
     private void FixedUpdate()
     {
+        RotationUpdate();
+        MoveUpdate();
     }
 
     private void ParseInputs()
@@ -201,6 +201,7 @@ public class SpaceshipController : MonoBehaviour
     {
         if (target)
         {
+            rb.angularVelocity = Vector3.zero;
             // Calculate the rotation angle to look at the target object
             Quaternion targetRotation = Quaternion.LookRotation(target.position - transform.position, transform.up);
             Quaternion newRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed);
