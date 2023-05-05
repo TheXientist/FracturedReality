@@ -17,19 +17,19 @@ namespace Valve.VR
     public class SteamVR_Input_ActionSet_spaceship : Valve.VR.SteamVR_ActionSet
     {
         
-        public virtual SteamVR_Action_Vector2 move
+        public virtual SteamVR_Action_Vector2 leftstick
         {
             get
             {
-                return SteamVR_Actions.spaceship_move;
+                return SteamVR_Actions.spaceship_leftstick;
             }
         }
         
-        public virtual SteamVR_Action_Vector2 rotate
+        public virtual SteamVR_Action_Vector2 rightstick
         {
             get
             {
-                return SteamVR_Actions.spaceship_rotate;
+                return SteamVR_Actions.spaceship_rightstick;
             }
         }
     }

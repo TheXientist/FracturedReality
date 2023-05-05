@@ -87,11 +87,11 @@
       "requirement": "optional"
     },
     {
-      "name": "/actions/spaceship/in/move",
+      "name": "/actions/spaceship/in/leftstick",
       "type": "vector2"
     },
     {
-      "name": "/actions/spaceship/in/rotate",
+      "name": "/actions/spaceship/in/rightstick",
       "type": "vector2"
     }
   ],
