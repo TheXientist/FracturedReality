@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2962399403135272689}
   - component: {fileID: 2962399403135272692}
   m_Layer: 0
-  m_Name: DebugConsole
+  m_Name: PR_DebugConsole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

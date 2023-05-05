@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
 
-public class SC_SpaceshipController : MonoBehaviour
+public class SpaceshipController : MonoBehaviour
 {
     public enum DOF
     {
