@@ -14,10 +14,7 @@ public class SC_SpaceshipController : MonoBehaviour
     }
     
     [SerializeField] private bool debug, vr;
-    private SteamVR_Action_Vector2 leftStickAction;
-    private SteamVR_Action_Vector2 rightStickAction;
-
-    //public Interactable leftController, rightController;
+    private SteamVR_Action_Vector2 leftStickAction, rightStickAction;
 
     private Vector2 leftStickInput, rightStickInput;
 
@@ -67,19 +64,22 @@ public class SC_SpaceshipController : MonoBehaviour
 
     private void InitVR()
     {
-        leftStickAction = SteamVR_Input.GetAction<SteamVR_Action_Vector2>("spaceship", "move");
-        rightStickAction = SteamVR_Input.GetAction<SteamVR_Action_Vector2>("spaceship", "rotate");
+        SteamVR_Actions._default.Deactivate();
+        SteamVR_Actions.spaceship.Activate();
+        
+        leftStickAction = SteamVR_Input.GetAction<SteamVR_Action_Vector2>("spaceship", "leftStick");
+        rightStickAction = SteamVR_Input.GetAction<SteamVR_Action_Vector2>("spaceship", "rightStick");
     }
 
     private void Update()
     {
         ParseInputs();
+        RotationUpdate();
+        MoveUpdate();
     }
 
     private void FixedUpdate()
     {
-        RotationUpdate();
-        MoveUpdate();
     }
 
     private void ParseInputs()
