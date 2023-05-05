@@ -41,7 +41,7 @@ public class Explosion : AbilityScriptableObject
     {
         GameObject projectile = SpawnObjectAtPosition(bossPosition, m_bulletPrefab);
 
-        while(projectile.transform.localScale.magnitude <= 200)
+        while(projectile.transform.localScale.magnitude <= 100)
         {
             projectile.transform.localScale *= m_explosionSpeed;
             

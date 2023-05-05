@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52ce6392d33e2a4b8560c23a4bdb625, type: 3}
   m_Name: Explosion
   m_EditorClassIdentifier: 
-  m_bulletSpeed: 1
+  m_bulletModuleSpeed: 1
+  m_bulletModuleRotationSpeed: 0
   abilityPropability: 3
   abilityCooldown: 3
   m_explosionSpeed: 1.01
-  m_bulletPrefab: {fileID: 2284762768716151613, guid: 19c793d591266a04baf5ccc4d861cf1b,
+  m_bulletPrefab: {fileID: 2284762768716151613, guid: 08e53eed0d081bf4fbf8aff4d866bb78,
     type: 3}

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletModule : MonoBehaviour
+public class AmmunationModule : MonoBehaviour
 {
     [HideInInspector]
     public float speed = 1f;

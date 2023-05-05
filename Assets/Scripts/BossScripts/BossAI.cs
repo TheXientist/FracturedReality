@@ -26,7 +26,8 @@ public class BossAI : BossClass
         if(bossCurrentHealth <= 0)
         {
             //boss dead
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            //Destroy(gameObject);
         }
     }
 

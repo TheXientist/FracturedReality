@@ -19,7 +19,7 @@ public class DefaultBullet : AbstractBullet, IBullet
         if(other.tag == "Player")
         {
             Debug.Log(other.gameObject.name);
-            //get player component
+            other.GetComponent<Player>().TakeDamage(m_DamageValue);
             DestroySelf();
         }
         else if(other.tag == "Obstacle")
