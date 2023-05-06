@@ -178,7 +178,7 @@
             }
 
             float DE(float3 pos) {
-                return DEsphere(pos, float3(0, 0, 0), float3(1, 1, 1));
+                return DEfractal1(pos, float3(0, 0, 0), float3(1, 1, 1));
             }
 
             float4 frag(FS_IN IN) : SV_TARGET
@@ -223,13 +223,11 @@
 
                 //normals
                 float3 normal;
-                int mode = 1; //0 = fast normals, 1 = fancy normals, 2 = (doesnt work) hybrid
 
-                if (mode == 0) {
+                if (false) {
                     //fast ddx/ddy normals
                     normal = -normalize(cross(ddx(currentPos), ddy(currentPos)));
-                }
-                else if (mode == 1) {
+                } else {
                     //fancy normals
                     float3 dir = normalize(IN.fragPosWS + ddx(IN.fragPosWS) - _WorldSpaceCameraPos);
                     float3 pos = _WorldSpaceCameraPos;
@@ -261,47 +259,9 @@
 
                     normal = -normalize(cross(nT, nB));
                 }
-                else {
-                    //fancy normals x fast normals, doesnt currently work properly
-                    int xIndex = IN.screenPos.x * _ScreenParams.x % 2; // 0 when first index, 1 when second (?)
-                    int yIndex = IN.screenPos.y * _ScreenParams.y % 2;
-
-                    float3 nT;
-                    float3 nB;
-
-                    float3 dir = normalize(IN.fragPosWS + ddx(IN.fragPosWS) - _WorldSpaceCameraPos);
-                    float3 pos = _WorldSpaceCameraPos;
-                    int nSteps = 0;
-                    while (nSteps++ < steps + 3) {
-                        float dist = DE(pos);
-                        pos += dir * dist;
-                        if (dist < fidelity) {
-                            pos += dir * dist * (dist / fidelity) * (1 - dot(view, dir)) * 5; //extrapolate against depth banding
-                            break;
-                        }
-                    }
-                    nT = (pos - currentPos) * xIndex + ddx(currentPos) * (1 - xIndex);
-
-
-                    dir = normalize(IN.fragPosWS + ddy(IN.fragPosWS) - _WorldSpaceCameraPos);
-                    pos = _WorldSpaceCameraPos;
-                    nSteps = 0;
-
-                    while (nSteps++ < steps + 3) {
-                        float dist = DE(pos);
-                        pos += dir * dist;
-                        if (dist < fidelity) {
-                            pos += dir * dist * (dist / fidelity) * (1 - dot(view, dir)) * 5; //extrapolate against depth banding
-                            break;
-                        }
-                    }
-                    nB = (pos - currentPos) * yIndex + ddy(currentPos) * (1 - yIndex);
-
-                    normal = -normalize(cross(nT, nB));
-                }
 
                 //shadow ray
-                float3 lightPos = float3(10, 10, 10);
+                float3 lightPos = float3(3, 10, 5);
                 float intensity = 7;
                 float exposure = 3;
                 float3 lightDir = normalize(currentPos - lightPos);
@@ -326,7 +286,7 @@
                     if (lightSteps >= maxLightSteps) break; //if something is hit or max steps are reached
                 }
 
-                if (length(currentLightPos - currentPos) < LFidelity * 10) {  //break if the target location is within fidelity range
+                if (length(currentLightPos - currentPos) < LFidelity * 10) {
                     float b = 1 /minRatio; //hypotenuse
                     float c = sqrt(b * b - 1); //ankathete = sqrt(b^2 - a^2)
 
@@ -343,14 +303,20 @@
                     illumination = (alpha / 1.57); //1.57 = PI/2
                 }
 
-                float ambient = 0.1;
+                //specular
+                float specularStrength = 10;
+                float shininess = 32;
+                float specular = pow(max(dot(view, reflect(-lightDir, normal)), 0.0), shininess) * illumination * specularStrength;
+
+                float ambient = 0.04;
                 float ambientIllumination = ambientOcclusion * ambient;
                 float phong = dot(-lightDir, normal);
 
-                float light = max(illumination, ambientIllumination);
+                float light = max(illumination + specular, ambientIllumination);
 
                 //return float4(phong, phong, phong, 1);
                 
+                //return float4(specular, specular, specular, 1);
                 //return float4(normal.x, normal.y, normal.z, 1);
                 //return float4(illumination, illumination, illumination, 1);
                 return float4(light, light, light, 1);
