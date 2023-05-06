@@ -19,6 +19,7 @@
             float4x4 unity_ObjectToWorld;
             float4x4 unity_CameraToWorld;
             float3 _WorldSpaceCameraPos;
+            float4 _WorldSpaceLightPos0;
             float4 _ProjectionParams;
             float4 _ZBufferParams;
             float4 _ScreenParams;
@@ -102,7 +103,7 @@
                 return length(pos) * pow(rescale, float(-n));
             }
 
-            float DEfractal1(float3 pos, float3 offset, float3 scale) {
+            float DEfractal(float3 pos, float3 offset, float3 scale) {
                 pos *= 1 / scale;
                 pos -= offset;
                 float s = 3;
@@ -178,7 +179,7 @@
             }
 
             float DE(float3 pos) {
-                return DEfractal1(pos, float3(0, 0, 0), float3(1, 1, 1));
+                return DEfractal(pos, float3(0, 0, 0), float3(1, 1, 1));
             }
 
             float4 frag(FS_IN IN) : SV_TARGET
@@ -201,7 +202,7 @@
                 int steps = 0;
                 int maxSteps = 200;
 
-                while (true) {
+                while (steps < maxSteps) {
                     distance = DE(currentPos);
                     lastPos = currentPos;
                     currentPos += direction * distance;
@@ -214,7 +215,7 @@
                         currentPos += direction * distance * (distance / fidelity) * (1 - dot(view, direction)) * 5; //extrapolate against depth banding
                         break;
                     }
-                    if (steps >= maxSteps) break; //break if max steps are reached
+
                     if (length(currentPos - _WorldSpaceCameraPos) > _ProjectionParams.b) return float4(0, 0, 0, 0); //return miss if far clipping plane is reached
                 }
 
@@ -262,69 +263,76 @@
                 }
 
                 //shadow ray
-                float3 lightPos = float3(3, 10, 5);
+                float3 lightDir = -float3(_WorldSpaceLightPos0.x, _WorldSpaceLightPos0.y, _WorldSpaceLightPos0.z);
+                float3 lightPos = currentPos - lightDir * _ProjectionParams.z;
                 float intensity = 3;
                 float exposure = 1;
-                float3 lightDir = normalize(currentPos - lightPos);
                 float3 currentLightPos = lightPos; //current position of the marching ray
 
-                float LFidelity = fidelity * 2;
+                float LFidelity = fidelity;
                 int lightSteps = 0;
                 int maxLightSteps = 50; //max amount of steps
 
                 float minRatio = 1;
+                float maxInside = 0;
+
+                float ambient = 0;
                 float illumination = 0;
+
+                bool hit = false;
+                float insideDist = 0;
 
                 while (true) {
                     distance = DE(currentLightPos);
                     ++lightSteps;
                     float ratio = distance / length(currentLightPos - currentPos);
                     currentLightPos += lightDir * distance;
-
                     if (ratio < minRatio) minRatio = ratio;
 
-                    if (length(currentLightPos - currentPos) < LFidelity * 10) break; //break if the target location is within fidelity range
-                    if (lightSteps >= maxLightSteps) break; //if something is hit or max steps are reached
+                    if (length(currentLightPos - currentPos) < LFidelity * 8) break; //if the target location is within fidelity range
+
+                    if (lightSteps >= maxLightSteps || distance < LFidelity) { //when max steps are reached
+                        hit = true;
+                        break;
+                    }
                 }
 
-                if (length(currentLightPos - currentPos) < LFidelity * 10) {
-                    float b = 1 /minRatio; //hypotenuse
+                float d = length(lightPos - currentPos); //distance from light source
+                float i = pow(intensity, exposure); //for inverse square law add '/ (d * d)'
+
+                if (!hit) {
+                    float b = 1 / minRatio; //hypotenuse
                     float c = sqrt(b * b - 1); //ankathete = sqrt(b^2 - a^2)
 
                     float alpha = acos(c / b); 
 
-                    float d = length(lightPos - currentPos); //distance from light source
-
-                    float i = intensity;
-
-                    for (int j = 1; j < exposure; ++j) {
-                        i *= intensity;
-                    }
-
-                    illumination = (alpha / 1.57) * i; //1.57 = PI/2
+                    illumination = min(dot(-lightDir, normal), (alpha / 1.57) * i); //1.57 = PI/2
                 }
 
                 //specular
                 float specularStrength = 10;
-                float shininess = 32;
+                float shininess = 16;
                 float specular = pow(max(dot(view, reflect(-lightDir, normal)), 0.0), shininess) * illumination * specularStrength;
 
-                float ambient = 0.07;
+                float ambientBase = 0.1;
+                ambient *= ambientBase;
+                ambient = 0.07;
                 float ambientIllumination = ambientOcclusion * ambient;
-                float phong = dot(-lightDir, normal);
 
                 float light = max(illumination, ambientIllumination);
-                float3 baseColor = float3(1, 1, 1);
+                float3 baseColor = normal;
 
                 //return float4(phong, phong, phong, 1);
                 
-                //return float4(specular, specular, specular, 1);
-                //return float4(normal.x, normal.y, normal.z, 1);
-                //return float4(illumination, illumination, illumination, 1);
-                //return  float4(ambientOcclusion, ambientOcclusion, ambientOcclusion, 1);
-                return float4(light * baseColor.x + specular, light * baseColor.y + specular, light * baseColor.z + specular, 1);
                 //return  float4(steps % 2 * 0.5, 0, 0, 1); //distinguish marching layers
                 //return  float4(lightSteps % 2 * 0.5, 0, 0, 1); //distinguish light layers
+
+                //return float4(specular, specular, specular, 1);
+                //return float4(normal.x, normal.y, normal.z, 1);
+                //return float4(baseColor.x, baseColor.y, baseColor.z, 1);
+                //return float4(illumination, illumination, illumination, 1);
+                //return float4(ambientOcclusion, ambientOcclusion, ambientOcclusion, 1);
+                return float4(light * baseColor.x + specular, light * baseColor.y + specular, light * baseColor.z + specular, 1);
             }
             ENDHLSL
         }
