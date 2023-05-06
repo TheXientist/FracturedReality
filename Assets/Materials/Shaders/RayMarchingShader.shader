@@ -263,8 +263,8 @@
 
                 //shadow ray
                 float3 lightPos = float3(3, 10, 5);
-                float intensity = 7;
-                float exposure = 3;
+                float intensity = 3;
+                float exposure = 1;
                 float3 lightDir = normalize(currentPos - lightPos);
                 float3 currentLightPos = lightPos; //current position of the marching ray
 
@@ -301,7 +301,7 @@
                         i *= intensity;
                     }
 
-                    illumination = (alpha / 1.57); //1.57 = PI/2
+                    illumination = (alpha / 1.57) * i; //1.57 = PI/2
                 }
 
                 //specular
@@ -309,11 +309,12 @@
                 float shininess = 32;
                 float specular = pow(max(dot(view, reflect(-lightDir, normal)), 0.0), shininess) * illumination * specularStrength;
 
-                float ambient = 0.04;
+                float ambient = 0.07;
                 float ambientIllumination = ambientOcclusion * ambient;
                 float phong = dot(-lightDir, normal);
 
-                float light = max(illumination + specular, ambientIllumination);
+                float light = max(illumination, ambientIllumination);
+                float3 baseColor = float3(1, 1, 1);
 
                 //return float4(phong, phong, phong, 1);
                 
@@ -321,7 +322,7 @@
                 //return float4(normal.x, normal.y, normal.z, 1);
                 //return float4(illumination, illumination, illumination, 1);
                 //return  float4(ambientOcclusion, ambientOcclusion, ambientOcclusion, 1);
-                return float4(light, light, light, 1);
+                return float4(light * baseColor.x + specular, light * baseColor.y + specular, light * baseColor.z + specular, 1);
                 //return  float4(steps % 2 * 0.5, 0, 0, 1); //distinguish marching layers
                 //return  float4(lightSteps % 2 * 0.5, 0, 0, 1); //distinguish light layers
             }
