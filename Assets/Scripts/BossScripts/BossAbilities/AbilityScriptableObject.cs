@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 
 
-public class AbilityScriptableObject : ScriptableObject
+public abstract class AbilityScriptableObject : ScriptableObject
 {
     /// <summary>
     /// The bullet speed. Multiplier in percent ( to double the speed, double the value)
@@ -51,7 +51,7 @@ public class AbilityScriptableObject : ScriptableObject
 
         GameObject bulletModule = Instantiate(bulletModulePrefab, firingPosition + (targetPosition - firingPosition).normalized * spawnThreshold, Quaternion.LookRotation(direction, Vector3.up));
 
-        BulletModule bulletModuleScript = bulletModule.GetComponent<BulletModule>();
+        AmmunationModule bulletModuleScript = bulletModule.GetComponent<AmmunationModule>();
         bulletModuleScript.direction = direction;
         bulletModuleScript.speed = m_bulletModuleSpeed;
         bulletModuleScript.rotationSpeed = m_bulletModuleRotationSpeed;
