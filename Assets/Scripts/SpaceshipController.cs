@@ -44,8 +44,7 @@ public class SpaceshipController : MonoBehaviour
     
     private Rigidbody rb;
     
-    // WIP, should just be set via controls/script
-    public Transform target;
+    [SerializeField] private Transform target;
 
     private void Awake()
     {
@@ -236,6 +235,13 @@ public class SpaceshipController : MonoBehaviour
         rotationVector += angularVelocity.x * transform.right;
         rotationVector += angularVelocity.y * transform.up;
         rb.angularVelocity = rotationVector;
+    }
+    
+    public void SetTarget(Transform t)
+    {
+        // TODO: test if setting is legal
+        target = t;
+        // TODO: maybe, switch control scheme ?
     }
 }
 
