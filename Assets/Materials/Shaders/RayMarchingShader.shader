@@ -218,7 +218,8 @@
                     if (length(currentPos - _WorldSpaceCameraPos) > _ProjectionParams.b) return float4(0, 0, 0, 0); //return miss if far clipping plane is reached
                 }
 
-                float ambientOcclusion = 1 - ((float)steps / (float)maxSteps);
+                float AOstrength = 5;
+                float ambientOcclusion = pow(1 - ((float)steps / (float)maxSteps), AOstrength);
                 float depth = length(currentPos - _WorldSpaceCameraPos);
 
                 //normals
@@ -319,8 +320,8 @@
                 //return float4(specular, specular, specular, 1);
                 //return float4(normal.x, normal.y, normal.z, 1);
                 //return float4(illumination, illumination, illumination, 1);
-                return float4(light, light, light, 1);
                 //return  float4(ambientOcclusion, ambientOcclusion, ambientOcclusion, 1);
+                return float4(light, light, light, 1);
                 //return  float4(steps % 2 * 0.5, 0, 0, 1); //distinguish marching layers
                 //return  float4(lightSteps % 2 * 0.5, 0, 0, 1); //distinguish light layers
             }
