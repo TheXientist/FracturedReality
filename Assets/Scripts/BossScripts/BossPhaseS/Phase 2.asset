@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92156b7ef9ad65d448926cc1298a2dae, type: 3}
-  m_Name: Phase
+  m_Name: Phase 2
   m_EditorClassIdentifier: 
   phaseAbilityScripts:
   - {fileID: 11400000, guid: 2a62890425ac0104789b0b33abd17e0d, type: 2}
+  - {fileID: 11400000, guid: a519a66589b62074d940de209ae2d20f, type: 2}
+  - {fileID: 11400000, guid: 4b74be4fb41ee1b49aab5dc2307901e4, type: 2}
+  - {fileID: 11400000, guid: ed8cf79a23115934d8f45134ac20cc13, type: 2}
   abilityPropabilityList: 000000000000000000000000
-  percentPhaseCondition: 0.5
+  percentPhaseCondition: 0

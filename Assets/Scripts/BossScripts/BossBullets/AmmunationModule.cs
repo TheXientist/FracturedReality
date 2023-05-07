@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class AmmunationModule : MonoBehaviour
 {
-    [HideInInspector]
+    
     public float speed = 1f;
 
     [HideInInspector]
     public Vector3 direction;
 
-    [HideInInspector]
+    
     public float rotationSpeed;
 
     private const int LIFETIME = 8;
