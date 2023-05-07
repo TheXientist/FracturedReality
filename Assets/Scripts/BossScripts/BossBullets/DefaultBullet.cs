@@ -15,6 +15,7 @@ public class DefaultBullet : AbstractBullet, IBullet
 
     private void OnTriggerEnter(Collider other)
     {
+        print(other.gameObject.name);
         //implement player trigger enter and call DestroySelf() afterwards
         if(other.tag == "Player")
         {

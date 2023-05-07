@@ -21,6 +21,9 @@ public class Player : MonoBehaviour
 
     private float nextFireTime = 0f;
 
+    [SerializeField]
+    private float projectileThreshold = 1f;
+
     void Start()
     {
         playerCurrentHealth = playerMaxHealth;
@@ -51,7 +54,7 @@ public class Player : MonoBehaviour
         {
             Vector3 direction = (m_BossObject.transform.position - transform.position).normalized;
 
-            GameObject temp = Instantiate(m_currentBullet, m_bulletSpawnpoint.position + (m_BossObject.transform.position - m_bulletSpawnpoint.position).normalized, Quaternion.LookRotation(direction, Vector3.up));
+            GameObject temp = Instantiate(m_currentBullet, m_bulletSpawnpoint.position + (m_BossObject.transform.position - m_bulletSpawnpoint.position).normalized * projectileThreshold, Quaternion.LookRotation(direction, Vector3.up));
 
             temp.GetComponent<AmmunationModule>().direction = direction;
 
@@ -59,5 +62,10 @@ public class Player : MonoBehaviour
         }
 
 
+    }
+
+    public void OnFire()
+    {
+        ShootBullet();
     }
 }
