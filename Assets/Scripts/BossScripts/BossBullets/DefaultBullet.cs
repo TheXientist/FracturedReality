@@ -15,17 +15,14 @@ public class DefaultBullet : AbstractBullet, IBullet
 
     private void OnTriggerEnter(Collider other)
     {
-        print(other.gameObject.name);
         //implement player trigger enter and call DestroySelf() afterwards
-        if(other.tag == "Player")
+        if(other.CompareTag("Player"))
         {
-            Debug.Log(other.gameObject.name);
             other.GetComponent<Player>().TakeDamage(m_DamageValue);
             DestroySelf();
         }
-        else if(other.tag == "Obstacle")
+        else if(other.CompareTag("Obstacle"))
         {
-            Debug.Log(other.gameObject.name);
             other.GetComponent<Obstacle>().TakeDamage(base.m_DamageValue);
             DestroySelf();
         }
