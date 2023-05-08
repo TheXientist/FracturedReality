@@ -41,6 +41,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(float damage)
     {
         playerCurrentHealth -= damage;
+        Debug.Log("Player health: " + playerCurrentHealth);
     }
 
     public void DestroySelf()
