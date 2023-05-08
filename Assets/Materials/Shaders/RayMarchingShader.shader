@@ -179,7 +179,7 @@
             }
 
             float DE(float3 pos) {
-                return DEfractal(pos, float3(0, 0, 0), float3(1, 1, 1));
+                return DEfractal(pos, float3(0, 0, 0), float3(3, 3, 3));
             }
 
             float4 frag(FS_IN IN) : SV_TARGET
