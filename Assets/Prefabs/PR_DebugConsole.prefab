@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2962399403135272690}
   - component: {fileID: 2962399403135272689}
   - component: {fileID: 2962399403135272692}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PR_DebugConsole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 2962399403686950323}
   - component: {fileID: 2962399403686950326}
   - component: {fileID: 2962399403686950325}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Static Infos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 2962399403845045255}
   - component: {fileID: 2962399403845045257}
   - component: {fileID: 2962399403845045256}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +290,7 @@ GameObject:
   - component: {fileID: 2962399403989437590}
   - component: {fileID: 2962399403989437592}
   - component: {fileID: 2962399403989437591}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Scrolling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
