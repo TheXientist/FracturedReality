@@ -1,5 +1,8 @@
 ﻿Shader "Custom/RayMarching"
 {
+    Properties {
+        _FractalCount ("Integer display name", Integer) = 0
+    }
     SubShader
     {
         Tags{
@@ -30,6 +33,18 @@
             
             //sampler2D _CameraDepthTexture;
             UNITY_DECLARE_SCREENSPACE_TEXTURE(_CameraDepthTexture);
+            
+            // Must be identical to the struct in Fractal.cs
+            struct FractalData
+            {
+                int type;
+                float3 pos;
+                float3 rotation;
+                float3 scale;
+            };
+            StructuredBuffer<FractalData> _FractalBuffer;
+            
+            int _FractalCount;
 
             struct VS_IN
             {
@@ -194,7 +209,28 @@
             }
 
             float DE(float3 pos) {
-                return DEfractal(pos, float3(0, 0, 0), float3(3, 3, 3));
+                float minDist = 1000000.0;
+                for (int i = 0; i < _FractalCount; i++)
+                {
+                    FractalData frac = _FractalBuffer[i];
+                    float dist = 0.0f;
+
+                    switch (frac.type)
+                    {
+                    case 0:
+                        dist = DEfractal(pos, frac.pos, frac.scale);
+                        break;
+                    case 1:
+                        dist = Mandelbulb(pos, frac.pos, frac.scale);
+                        break;
+                    default:
+                        dist = minDist;
+                        break;
+                    }
+
+                    if (dist < minDist) minDist = dist;
+                }
+                return minDist;
             }
             
             float4 frag(FS_IN IN) : SV_TARGET
