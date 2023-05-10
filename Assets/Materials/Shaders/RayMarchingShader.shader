@@ -38,9 +38,7 @@
             struct FractalData
             {
                 int type;
-                float3 pos;
-                float3 rotation;
-                float3 scale;
+                float4x4 worldToLocal;
             };
             StructuredBuffer<FractalData> _FractalBuffer;
             
@@ -210,18 +208,21 @@
 
             float DE(float3 pos) {
                 float minDist = 1000000.0;
+                float4 pos4 = float4(pos,1); // Needed for matrix transformation
+                
                 for (int i = 0; i < _FractalCount; i++)
                 {
                     FractalData frac = _FractalBuffer[i];
+                    float3 localPos = mul(frac.worldToLocal, pos4);
                     float dist = 0.0f;
 
                     switch (frac.type)
                     {
                     case 0:
-                        dist = DEfractal(pos, frac.pos, frac.scale);
+                        dist = DEfractal(localPos, float3(0,0,0), float3(1,1,1));
                         break;
                     case 1:
-                        dist = Mandelbulb(pos, frac.pos, frac.scale);
+                        dist = Mandelbulb(localPos, float3(0,0,0), float3(1,1,1));
                         break;
                     default:
                         dist = minDist;

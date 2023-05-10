@@ -14,21 +14,17 @@ public class Fractal : MonoBehaviour
     struct FractalData
     {
         public int type;
-        public Vector3 position;
-        public Vector3 rotation;
-        public Vector3 scale;
+        public Matrix4x4 worldToLocal;
 
-        public FractalData(int t, Vector3 p, Vector3 r, Vector3 s)
+        public FractalData(int t, Matrix4x4 m)
         {
             type = t;
-            position = p;
-            rotation = r;
-            scale = s;
+            worldToLocal = m;
         }
 
         public static int SizeOf()
         {
-            return sizeof(int) + 3 * 3 * sizeof(float);
+            return sizeof(int) + 4 * 4 * sizeof(float);
         }
     }
 
@@ -81,29 +77,16 @@ public class Fractal : MonoBehaviour
     }
 
     /// <summary>
-    /// Update all fields of the data struct except for type
+    /// Update the transform matrix
     /// </summary>
-    /// <returns>true if any field had to be updated</returns>
+    /// <returns>true if it had to be updated</returns>
     private bool UpdateData()
     {
-        bool dirty = false;
-        if (myData.position != transform.position)
-        {
-            myData.position = transform.position;
-            dirty = true;
-        }
-        if (myData.rotation != transform.rotation.eulerAngles)
-        {
-            myData.rotation = transform.rotation.eulerAngles;
-            dirty = true;
-        }
-        if (myData.scale != transform.localScale)
-        {
-            myData.scale = transform.localScale;
-            dirty = true;
-        }
+        if (myData.worldToLocal == transform.worldToLocalMatrix) return false;
+        
+        myData.worldToLocal = transform.worldToLocalMatrix;
+        return true;
 
-        return dirty;
     }
 
     private void RegisterSelf()
@@ -111,9 +94,7 @@ public class Fractal : MonoBehaviour
         id = allFractalData.Count;
         
         myData = new FractalData((int)type,
-            transform.position,
-            transform.rotation.eulerAngles,
-            transform.localScale);
+            transform.worldToLocalMatrix);
 
         allFractalData.Add(myData);
     }
