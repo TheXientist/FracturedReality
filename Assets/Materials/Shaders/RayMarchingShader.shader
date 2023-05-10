@@ -1,5 +1,8 @@
 ﻿Shader "Custom/RayMarching"
 {
+    Properties {
+        _FractalCount ("Integer display name", Integer) = 0
+    }
     SubShader
     {
         Tags{
@@ -14,21 +17,39 @@
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma multi_compile_instancing // enable GPU instancing
 
-            float4x4 unity_MatrixVP;
+            // Needed for UNITY_VERTEX_INPUT_INSTANCE_ID
+            // appears to include everything commented out below
+            #include "UnityCG.cginc"
+            /*float4x4 unity_MatrixVP;
             float4x4 unity_ObjectToWorld;
             float4x4 unity_CameraToWorld;
             float3 _WorldSpaceCameraPos;
             float4 _WorldSpaceLightPos0;
             float4 _ProjectionParams;
             float4 _ZBufferParams;
-            float4 _ScreenParams;
-            sampler2D _CameraDepthTexture;
+            float4 _ScreenParams;*/
+            
+            //sampler2D _CameraDepthTexture;
+            UNITY_DECLARE_SCREENSPACE_TEXTURE(_CameraDepthTexture);
+            
+            // Must be identical to the struct in Fractal.cs
+            struct FractalData
+            {
+                int type;
+                float4x4 worldToLocal;
+            };
+            StructuredBuffer<FractalData> _FractalBuffer;
+            
+            int _FractalCount;
 
             struct VS_IN
             {
                 float4 positionOS   : POSITION; //objectspace
                 float3 normals : NORMAL;
+
+                UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 
             struct FS_IN
@@ -38,11 +59,18 @@
                 float4 lightPosWS : LIGHTPOS;
                 float3 normals : FSNORMALS;
                 float2 screenPos : TEXCOORD1;
+
+                UNITY_VERTEX_OUTPUT_STEREO
             };
 
             FS_IN vert(VS_IN IN)
             {
                 FS_IN o;
+
+                UNITY_SETUP_INSTANCE_ID(IN);
+                UNITY_INITIALIZE_OUTPUT(FS_IN, o);
+                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+                
                 float4 worldPos = mul(unity_ObjectToWorld, IN.positionOS);
                 o.positionCS = mul(unity_MatrixVP, worldPos);
                 o.fragPosWS = worldPos;
@@ -179,14 +207,40 @@
             }
 
             float DE(float3 pos) {
-                return DEfractal(pos, float3(0, 0, 0), float3(1, 1, 1));
-            }
+                float minDist = 1000000.0;
+                float4 pos4 = float4(pos,1); // Needed for matrix transformation
+                
+                for (int i = 0; i < _FractalCount; i++)
+                {
+                    FractalData frac = _FractalBuffer[i];
+                    float3 localPos = mul(frac.worldToLocal, pos4);
+                    float dist = 0.0f;
 
+                    switch (frac.type)
+                    {
+                    case 0:
+                        dist = DEfractal(localPos, float3(0,0,0), float3(1,1,1));
+                        break;
+                    case 1:
+                        dist = Mandelbulb(localPos, float3(0,0,0), float3(1,1,1));
+                        break;
+                    default:
+                        dist = minDist;
+                        break;
+                    }
+
+                    if (dist < minDist) minDist = dist;
+                }
+                return minDist;
+            }
+            
             float4 frag(FS_IN IN) : SV_TARGET
             {
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
+                
                 float3 view = mul((float3x3)unity_CameraToWorld, float3(0, 0, 1)); //camera view vector
 
-                float cameraDepth = tex2D(_CameraDepthTexture, IN.screenPos).x; //camera depth texture
+                float cameraDepth = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_CameraDepthTexture, IN.screenPos).x; //camera depth texture
                 float linearDepth = 1.0 / (_ZBufferParams.x * cameraDepth + _ZBufferParams.y); //linear camera depth
                 float worldDepth = linearDepth * _ProjectionParams.z; //depth in world space
 
@@ -320,7 +374,7 @@
                 float ambientIllumination = ambientOcclusion * ambient;
 
                 float light = max(illumination, ambientIllumination);
-                float3 baseColor = normal;
+                float3 baseColor = abs(normal);
 
                 //return float4(phong, phong, phong, 1);
                 
