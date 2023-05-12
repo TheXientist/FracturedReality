@@ -1,7 +1,20 @@
 ﻿Shader "Custom/RayMarching"
 {
-    Properties {
+    Properties{
         _FractalCount ("Integer display name", Integer) = 0
+
+        _VR ("VR", Integer) = 1
+
+        _DepthSteps ("Depth Marching Steps", Integer) = 200
+        _LightSteps ("Light Marching Steps", Integer) = 50
+        _Fidelity ("Raymarching Detail", Float) = 0.001
+        _AO ("Ambient Occlusion Strength", Float) = 5
+        _IAmbient ("Ambient Brightness", FLoat) = 0.07
+        _ISpecular ("Specular Intensity", Float) = 5
+        _Shininess ("Shininess", Float) = 5
+        _NormalMode ("Normal Rendering Mode", Int) = 1
+        _Fov ("Foveated Rendering Curve", Float) = 2.4
+        _FovSteps ("FR Minimum Marching Steps", Integer) = 0
     }
     SubShader
     {
@@ -19,19 +32,8 @@
             #pragma fragment frag
             #pragma multi_compile_instancing // enable GPU instancing
 
-            // Needed for UNITY_VERTEX_INPUT_INSTANCE_ID
-            // appears to include everything commented out below
             #include "UnityCG.cginc"
-            /*float4x4 unity_MatrixVP;
-            float4x4 unity_ObjectToWorld;
-            float4x4 unity_CameraToWorld;
-            float3 _WorldSpaceCameraPos;
-            float4 _WorldSpaceLightPos0;
-            float4 _ProjectionParams;
-            float4 _ZBufferParams;
-            float4 _ScreenParams;*/
             
-            //sampler2D _CameraDepthTexture;
             UNITY_DECLARE_SCREENSPACE_TEXTURE(_CameraDepthTexture);
             
             // Must be identical to the struct in Fractal.cs
@@ -43,6 +45,17 @@
             StructuredBuffer<FractalData> _FractalBuffer;
             
             int _FractalCount;
+            int _DepthSteps;
+            int _LightSteps;
+            float _Fidelity;
+            int _VR;
+            float _AO;
+            float _IAmbient;
+            float _ISpecular;
+            float _Shininess;
+            int _NormalMode;
+            float _Fov;
+            int _FovSteps;
 
             struct VS_IN
             {
@@ -79,37 +92,30 @@
                 return o;
             }
 
-            float DEcube(float3 pos, float3 offset, float3 scale) {
-                pos *= 1 / scale;
-                pos -= offset;
+            float DEcube(float3 pos) {
                 return length(max(abs(pos) - 1, 0));
             }
 
-            float DEsphere(float3 pos, float3 offset, float3 scale) {
-                pos *= 1 / scale;
-                pos -= offset;
+            float DEsphere(float3 pos) {
+
                 return length(-pos) - 1;
             }
 
-            float DEisphere(float3 pos, float3 offset, float3 scale)
+            float DEisphere(float3 pos)
             {
-                pos *= 1 / scale;
-                pos -= offset;
+
                 pos.xy = -(pos.xy % 1) - float3(0.5, 0.5, 0.5);
                 return length(pos) - 0.3;
             }
 
-            float DEtorus(float3 pos, float3 offset, float3 scale) {
-                pos *= 1 / scale;
-                pos -= offset;
+            float DEtorus(float3 pos) {
                 float radius = 0.5;
                 float inner = 0.2;
                 return length(float2(length(pos.xz) - radius, pos.y)) - inner;
             }
 
-            float DEtetra(float3 pos, float3 offset, float3 scale) {
-                pos *= 1 / scale;
-                pos -= offset;
+            float DEtetra(float3 pos) {
+
                 int Iterations = 10;
                 float rescale = 2.0;
                 float3 a1 = float3(1, 1, 1);
@@ -131,9 +137,7 @@
                 return length(pos) * pow(rescale, float(-n));
             }
 
-            float DEfractal(float3 pos, float3 offset, float3 scale) {
-                pos *= 1 / scale;
-                pos -= offset;
+            float DEfractal(float3 pos) {
                 float s = 3;
                 pos = abs(pos);
                 float3  p0 = pos * 0.9;
@@ -151,9 +155,8 @@
                 return length(pos) / s;
             }
 
-            float Mandelbulb(float3 pos, float3 offset, float3 scale) { //mandelbulb
-                pos *= 1 / scale;
-                pos -= offset;
+            float Mandelbulb(float3 pos) { //mandelbulb
+
                 float Bailout = 4;
                 int Iterations = 20;
                 int Power = 8;
@@ -179,35 +182,28 @@
                     z += pos;
                 }
                 return 0.5 * log(r) * r / dr;
-                return 0.5 / length(pos - offset) * log(r) * r / dr;
+                return 0.5 / length(pos) * log(r) * r / dr;
             }
 
-            float Union(float3 pos, float3 offset, float3 scale) {
-                return min(DEtorus(pos, offset, float3(2, 2, 2)), DEcube(pos, offset, scale));
+            float Union(float3 pos) {
+                return min(DEtorus(pos), DEcube(pos));
             }
 
-            float Intersection(float3 pos, float3 offset, float3 scale) {
-                return max(DEtorus(pos, offset, float3(2, 2, 2)), DEcube(pos, offset, scale));
+            float Intersection(float3 pos) {
+                return max(DEtorus(pos), DEcube(pos));
             }
 
-            float Difference(float3 pos, float3 offset, float3 scale) {
-                return max(-DEtorus(pos, offset, float3(2, 2, 2)), DEcube(pos, offset, scale));
+            float Difference(float3 pos) {
+                return max(-DEtorus(pos), DEcube(pos));
             }
 
-            float Mirror(float3 pos, float3 offset, float3 scale) {
-                float3 mirrorPos = (-0.5, -1, -2);
-                float3 mirrorNormal = (1, 1, 1);
-                return min(length(-pos / scale + offset) - 0.5, length(-pos / scale + offset) - 0.5);
-            }
-
-            float DEplane(float3 pos, float3 offset, float3 scale) {
-                pos = pos / scale - offset;
+            float DEplane(float3 pos) {
                 float3 orientation = float3(1, 1, 1);
                 return 1;
             }
 
             float DE(float3 pos) {
-                float minDist = 1000000.0;
+                float minDist = _ProjectionParams.z;
                 float4 pos4 = float4(pos,1); // Needed for matrix transformation
                 
                 for (int i = 0; i < _FractalCount; i++)
@@ -219,10 +215,10 @@
                     switch (frac.type)
                     {
                     case 0:
-                        dist = DEfractal(localPos, float3(0,0,0), float3(1,1,1));
+                        dist = DEfractal(localPos);
                         break;
                     case 1:
-                        dist = Mandelbulb(localPos, float3(0,0,0), float3(1,1,1));
+                        dist = Mandelbulb(localPos);
                         break;
                     default:
                         dist = minDist;
@@ -240,6 +236,8 @@
                 
                 float3 view = mul((float3x3)unity_CameraToWorld, float3(0, 0, 1)); //camera view vector
 
+                if(_VR == 1) IN.screenPos.y = 1 - IN.screenPos.y; //Flip y in VR
+
                 float cameraDepth = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_CameraDepthTexture, IN.screenPos).x; //camera depth texture
                 float linearDepth = 1.0 / (_ZBufferParams.x * cameraDepth + _ZBufferParams.y); //linear camera depth
                 float worldDepth = linearDepth * _ProjectionParams.z; //depth in world space
@@ -249,21 +247,24 @@
                 float3 lastPos = currentPos;
 
                 float fidelity;
-                float minFidelity = 0.001; //max dynamic fidelity
 
                 float distance;
 
                 int steps = 0;
-                int maxSteps = 200;
 
-                while (steps < maxSteps) {
+                //Foveated LOD
+                float2 centerPos = float2(IN.screenPos.x * 2 - 1, IN.screenPos.y * 2 - 1);
+
+                _DepthSteps = lerp(_DepthSteps, _FovSteps, pow(length(centerPos), _Fov));
+
+                while (steps < _DepthSteps) {
                     distance = DE(currentPos);
                     lastPos = currentPos;
                     currentPos += direction * distance;
                     ++steps;
 
                     if (dot(currentPos - _WorldSpaceCameraPos, view) > worldDepth) return float4(0, 0, 0, 0); //return miss if depth is higher than normal geometry (=occluded)
-                    fidelity = max(sqrt(length(currentPos - _WorldSpaceCameraPos)) / 1000, minFidelity);
+                    fidelity = max(sqrt(length(currentPos - _WorldSpaceCameraPos)) / 1000, _Fidelity);
                     if (distance < fidelity) { //break if fidelity is reached
 
                         currentPos += direction * distance * (distance / fidelity) * (1 - dot(view, direction)) * 5; //extrapolate against depth banding
@@ -273,17 +274,16 @@
                     if (length(currentPos - _WorldSpaceCameraPos) > _ProjectionParams.b) return float4(0, 0, 0, 0); //return miss if far clipping plane is reached
                 }
 
-                float AOstrength = 5;
-                float ambientOcclusion = pow(1 - ((float)steps / (float)maxSteps), AOstrength);
+                float ambientOcclusion = pow(1 - ((float)steps / (float)_DepthSteps), _AO);
                 float depth = length(currentPos - _WorldSpaceCameraPos);
 
                 //normals
                 float3 normal;
 
-                if (false) {
+                if (_NormalMode == 0) {
                     //fast ddx/ddy normals
                     normal = -normalize(cross(ddx(currentPos), ddy(currentPos)));
-                } else {
+                } else if (_NormalMode == 1) {
                     //fancy normals
                     float3 dir = normalize(IN.fragPosWS + ddx(IN.fragPosWS) - _WorldSpaceCameraPos);
                     float3 pos = _WorldSpaceCameraPos;
@@ -316,6 +316,8 @@
                     normal = -normalize(cross(nT, nB));
                 }
 
+                if (_VR) normal = -normal;
+
                 //shadow ray
                 float3 lightDir = -float3(_WorldSpaceLightPos0.x, _WorldSpaceLightPos0.y, _WorldSpaceLightPos0.z);
                 float3 lightPos = currentPos - lightDir * _ProjectionParams.z;
@@ -323,14 +325,10 @@
                 float exposure = 1;
                 float3 currentLightPos = lightPos; //current position of the marching ray
 
-                float LFidelity = fidelity;
                 int lightSteps = 0;
-                int maxLightSteps = 50; //max amount of steps
 
                 float minRatio = 1;
-                float maxInside = 0;
 
-                float ambient = 0;
                 float illumination = 0;
 
                 bool hit = false;
@@ -343,40 +341,36 @@
                     currentLightPos += lightDir * distance;
                     if (ratio < minRatio) minRatio = ratio;
 
-                    if (length(currentLightPos - currentPos) < LFidelity * 8) break; //if the target location is within fidelity range
+                    if (length(currentLightPos - currentPos) < fidelity * 8) break; //if the target location is within fidelity range
 
-                    if (lightSteps >= maxLightSteps || distance < LFidelity) { //when max steps are reached
+                    if (lightSteps >= _LightSteps || distance < fidelity) { //when max steps are reached
                         hit = true;
                         break;
                     }
                 }
 
                 float d = length(lightPos - currentPos); //distance from light source
-                float i = pow(intensity, exposure); //for inverse square law add '/ (d * d)'
+                float i = pow(intensity, exposure);
+                if (false) {
+                    i = pow(intensity, exposure) / (d * d); //inverse square law
+                }
 
                 if (!hit) {
                     float b = 1 / minRatio; //hypotenuse
                     float c = sqrt(b * b - 1); //ankathete = sqrt(b^2 - a^2)
 
-                    float alpha = acos(c / b); 
+                    float alpha = acos(c / b);
 
-                    illumination = min(dot(-lightDir, normal), (alpha / 1.57) * i); //1.57 = PI/2
+                    illumination = min(dot(-lightDir, normal) * i, (alpha / 1.57) * i); //1.57 = PI/2
                 }
 
                 //specular
-                float specularStrength = 10;
-                float shininess = 16;
-                float specular = pow(max(dot(view, reflect(-lightDir, normal)), 0.0), shininess) * illumination * specularStrength;
+                float specular = pow(max(dot(normalize(currentPos - _WorldSpaceCameraPos), reflect(-lightDir, normal)), 0.0), pow(2, _Shininess)) * illumination * max(_ISpecular, 0);
 
-                float ambientBase = 0.1;
-                ambient *= ambientBase;
-                ambient = 0.07;
-                float ambientIllumination = ambientOcclusion * ambient;
+                float ambientIllumination = ambientOcclusion * _IAmbient;
 
                 float light = max(illumination, ambientIllumination);
                 float3 baseColor = abs(normal);
-
-                //return float4(phong, phong, phong, 1);
                 
                 //return  float4(steps % 2 * 0.5, 0, 0, 1); //distinguish marching layers
                 //return  float4(lightSteps % 2 * 0.5, 0, 0, 1); //distinguish light layers
@@ -386,6 +380,7 @@
                 //return float4(baseColor.x, baseColor.y, baseColor.z, 1);
                 //return float4(illumination, illumination, illumination, 1);
                 //return float4(ambientOcclusion, ambientOcclusion, ambientOcclusion, 1);
+                //return float4(light, light, light, 1);
                 return float4(light * baseColor.x + specular, light * baseColor.y + specular, light * baseColor.z + specular, 1);
             }
             ENDHLSL
