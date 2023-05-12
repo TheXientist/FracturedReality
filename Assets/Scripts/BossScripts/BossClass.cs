@@ -1,12 +1,24 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public abstract class BossClass : MonoBehaviour, IDamageable
 {
     public float bossMaxHealth;
-    public float bossCurrentHealth;
+    [SerializeField] protected float bossCurrentHealth;
+
+    public float BossCurrentHealth
+    {
+        protected set
+        {
+            bossCurrentHealth = value;
+            healthDisplay.text = "Boss Health:\n" + bossCurrentHealth;
+        }
+        get => bossCurrentHealth;
+    }
+
     protected int currentPhase = 0;
     protected int abilityCooldownTime = 0;
 
@@ -16,12 +28,14 @@ public abstract class BossClass : MonoBehaviour, IDamageable
     [SerializeField]
     protected GameObject m_Player;
 
+    [SerializeField]
+    private TextMeshProUGUI healthDisplay;
+
     private void Start()
     {
         //to make sure, the last phase lasts till the end of the boss-fight
         phaseList[phaseList.Count].percentPhaseCondition = 0;
     }
-
 
     public IEnumerator phase() 
     {
@@ -92,7 +106,7 @@ public abstract class BossClass : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
-        bossCurrentHealth -= damage;
+        BossCurrentHealth -= damage;
     }
 
 
