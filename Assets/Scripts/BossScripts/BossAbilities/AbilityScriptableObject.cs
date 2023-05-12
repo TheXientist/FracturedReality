@@ -5,16 +5,7 @@ using UnityEngine;
 
 
 public abstract class AbilityScriptableObject : ScriptableObject
-{
-    /// <summary>
-    /// The bullet speed. Multiplier in percent ( to double the speed, double the value)
-    /// </summary>
-    [SerializeField]
-    private float m_bulletModuleSpeed = 1f;
-
-    [SerializeField]
-    private float m_bulletModuleRotationSpeed = 0f;
-
+{  
     /// <summary>
     /// Propability of the ability. Higher value = more likely to use.
     /// </summary>
@@ -44,7 +35,7 @@ public abstract class AbilityScriptableObject : ScriptableObject
     /// <param name="targetPosition"></param>Position of the target.
     /// <param name="firingPosition"></param>Position where the bullet will start.
     /// <param name="bulletModulePrefab"></param>Bullet Prefab.
-    public void ShootAtPosition(Vector3 targetPosition, Vector3 firingPosition, GameObject bulletModulePrefab, float spawnThreshold )
+    public void ShootAtPosition(Vector3 targetPosition, Vector3 firingPosition, GameObject bulletModulePrefab, float spawnThreshold, float bulletModuleSpeed, float bulletModuleRotationSpeed)
     {
 
         Vector3 direction = (targetPosition - firingPosition).normalized;
@@ -53,8 +44,8 @@ public abstract class AbilityScriptableObject : ScriptableObject
 
         AmmunationModule bulletModuleScript = bulletModule.GetComponent<AmmunationModule>();
         bulletModuleScript.direction = direction;
-        bulletModuleScript.speed = m_bulletModuleSpeed;
-        bulletModuleScript.rotationSpeed = m_bulletModuleRotationSpeed;
+        bulletModuleScript.speed = bulletModuleSpeed;
+        bulletModuleScript.rotationSpeed = bulletModuleRotationSpeed;
     }
 
     /// <summary>
@@ -68,8 +59,6 @@ public abstract class AbilityScriptableObject : ScriptableObject
 
         return spawnedObject;
     }
-
-
 
 
 

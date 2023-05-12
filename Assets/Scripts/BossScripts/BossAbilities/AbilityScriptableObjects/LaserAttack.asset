@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 179b3f4e99f8a4640b68a20b857c5922, type: 3}
+  m_Name: LaserAttack
+  m_EditorClassIdentifier: 
+  m_bulletModuleSpeed: 1
+  m_bulletModuleRotationSpeed: 0
+  abilityPropability: 3
+  abilityCooldown: 5
+  m_laserPrefab: {fileID: 1456456425288734, guid: a688f5f905455c74fa98f22c365a237d,
+    type: 3}
+  laserDuration: 4
+  m_spawnThreshold: 20
+  laserDealy: 5
+  m_warningSound: {fileID: -2111358459812710707, guid: c1d88c22ab038864785d0476a5cd3325,
+    type: 3}

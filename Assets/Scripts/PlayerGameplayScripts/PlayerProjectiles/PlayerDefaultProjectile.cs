@@ -14,9 +14,9 @@ public class PlayerDefaultProjectile : AbstractBullet
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Boss")
+        if(other.CompareTag("Boss") || other.CompareTag("Obstacle"))
         {
-            other.GetComponent<BossClass>().TakeDamage(base.m_DamageValue);
+            other.GetComponent<IDamageable>().TakeDamage(base.m_DamageValue);
             Destroy(gameObject);
         }
     }
