@@ -17,6 +17,8 @@ public class ConLaser : MonoBehaviour
     public Light pl;
     public float moveHitToSource;
 
+    public bool isAttacking=false;
+
     private LineRenderer lr;
     private Vector3[] resultVectors;
     private float dist;
@@ -77,7 +79,7 @@ public class ConLaser : MonoBehaviour
                 }
 
                 RaycastHit hit;
-                if (Physics.Raycast(currentPosition, resultVectors[i], out hit, blockLength))
+                if (Physics.Raycast(currentPosition, resultVectors[i], out hit, blockLength) && !hit.transform.CompareTag("Enemy"))
                 {
                     hitPosition = currentPosition + resultVectors[i] * hit.distance;
                     hitPosition = Vector3.MoveTowards(hitPosition, transform.position, moveHitToSource);
@@ -128,7 +130,7 @@ public class ConLaser : MonoBehaviour
         GetComponent<Renderer>().material.SetFloat("_Distance", dist);
         GetComponent<Renderer>().material.SetVector("_Position", transform.position);
 
-        if (Input.GetMouseButton(0))
+        if (isAttacking)
         {
             globalProgress = 0f;
         }

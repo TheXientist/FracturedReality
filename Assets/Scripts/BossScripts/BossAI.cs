@@ -7,7 +7,9 @@ public class BossAI : BossClass
 {
     // Start is called before the first frame update
     void Start()
-    {       
+    {
+        bossCurrentHealth = bossMaxHealth;
+
         //start the main coroutine
         StartCoroutine("StartFight");        
     }

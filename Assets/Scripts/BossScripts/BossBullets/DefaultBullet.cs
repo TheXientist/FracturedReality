@@ -23,7 +23,7 @@ public class DefaultBullet : AbstractBullet, IBullet
         }
         else if(other.CompareTag("Obstacle"))
         {
-            other.GetComponent<Obstacle>().TakeDamage(base.m_DamageValue);
+            other.GetComponent<IDamageable>().TakeDamage(base.m_DamageValue);
             DestroySelf();
         }
 

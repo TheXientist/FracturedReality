@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BossClass : MonoBehaviour
+public abstract class BossClass : MonoBehaviour, IDamageable
 {
     public float bossMaxHealth;
     public float bossCurrentHealth;
@@ -15,6 +15,12 @@ public abstract class BossClass : MonoBehaviour
 
     [SerializeField]
     protected GameObject m_Player;
+
+    private void Start()
+    {
+        //to make sure, the last phase lasts till the end of the boss-fight
+        phaseList[phaseList.Count].percentPhaseCondition = 0;
+    }
 
 
     public IEnumerator phase() 
