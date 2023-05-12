@@ -2,10 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Valve.VR;
 
 public class Player : MonoBehaviour, IDamageable
 {
-    public float playerCurrentHealth = 0;
+    private float playerCurrentHealth = 0;
+
+    public float PlayerCurrentHealth
+    {
+        get => playerCurrentHealth;
+        set
+        {
+            playerCurrentHealth = value;
+            healthDisplay.text = "Ship Health:\n" + playerCurrentHealth;
+        }
+    }
     public float playerMaxHealth = 100;
 
     [SerializeField]
@@ -17,21 +28,48 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField]
     private GameObject m_currentBullet;
 
+    [SerializeField] private TextMeshProUGUI firerateDisplay, healthDisplay;
+
     public float fireRate = 1f;
 
     private float nextFireTime = 0f;
 
+    private float NextFireTime
+    {
+        get => nextFireTime;
+        set
+        {
+            nextFireTime = value;
+            switch (nextFireTime)
+            {
+                case > 0f:
+                    firerateDisplay.text = "Blaster cooling\ndown...";
+                    firerateDisplay.color = new Color(255, 180, 0);
+                    break;
+                default:
+                    firerateDisplay.text = "Blaster ready";
+                    firerateDisplay.color = Color.cyan;
+                    break;
+            }
+        }
+    }
+
     [SerializeField]
     private float projectileThreshold = 1f;
 
+    private SteamVR_Action_Boolean fireAction;
+
     void Start()
     {
-        playerCurrentHealth = playerMaxHealth;
+        PlayerCurrentHealth = playerMaxHealth;
+        fireAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("spaceship", "fire");
+        fireAction.AddOnStateDownListener(OnFire, SteamVR_Input_Sources.Any);
     }
 
     // Update is called once per frame
     void Update()
     {
+        NextFireTime -= Time.deltaTime;
         if(playerCurrentHealth <= 0)
         {
             DestroySelf();
@@ -40,8 +78,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
-        playerCurrentHealth -= damage;
-        Debug.Log("Player health: " + playerCurrentHealth);
+        PlayerCurrentHealth -= damage;
     }
 
     public void DestroySelf()
@@ -51,7 +88,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void ShootBullet()
     {
-        if(Time.time >= nextFireTime && m_BossObject != null)
+        if(nextFireTime <= 0f && m_BossObject != null)
         {
             Vector3 direction = (m_BossObject.transform.position - transform.position).normalized;
 
@@ -59,13 +96,13 @@ public class Player : MonoBehaviour, IDamageable
 
             temp.GetComponent<AmmunationModule>().direction = direction;
 
-            nextFireTime = Time.time + 1f / fireRate;
+            NextFireTime = 1f / fireRate;
         }
 
 
     }
 
-    public void OnFire()
+    public void OnFire(SteamVR_Action_Boolean action, SteamVR_Input_Sources source)
     {
         ShootBullet();
     }
