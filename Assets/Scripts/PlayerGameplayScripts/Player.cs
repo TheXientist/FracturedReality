@@ -28,7 +28,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField]
     private GameObject m_currentBullet;
 
-    [SerializeField] private TextMeshProUGUI firerateDisplay, healthDisplay;
+    private TextMeshProUGUI firerateDisplay, healthDisplay;
 
     public float fireRate = 1f;
 
@@ -61,6 +61,8 @@ public class Player : MonoBehaviour, IDamageable
 
     void Start()
     {
+        healthDisplay = GameObject.FindWithTag("ShipHealthDisplay").GetComponent<TextMeshProUGUI>();
+        firerateDisplay = GameObject.FindWithTag("WeaponStateDisplay").GetComponent<TextMeshProUGUI>();
         PlayerCurrentHealth = playerMaxHealth;
         fireAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("spaceship", "fire");
         fireAction.AddOnStateDownListener(OnFireVR, SteamVR_Input_Sources.Any);

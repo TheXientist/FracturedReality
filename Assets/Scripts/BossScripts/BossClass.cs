@@ -28,11 +28,11 @@ public abstract class BossClass : MonoBehaviour, IDamageable
     [SerializeField]
     protected GameObject m_Player;
 
-    [SerializeField]
-    private TextMeshProUGUI healthDisplay;
+    protected TextMeshProUGUI healthDisplay;
 
     private void Start()
     {
+        Debug.Log("BossClass.Start");
         //to make sure, the last phase lasts till the end of the boss-fight
         phaseList[phaseList.Count].percentPhaseCondition = 0;
     }

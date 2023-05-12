@@ -7,6 +7,9 @@ TagManager:
   - Boss
   - Enemy
   - Obstacle
+  - BossHealthDisplay
+  - ShipHealthDisplay
+  - WeaponStateDisplay
   layers:
   - Default
   - TransparentFX
