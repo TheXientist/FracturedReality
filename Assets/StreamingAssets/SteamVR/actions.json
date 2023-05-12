@@ -93,6 +93,10 @@
     {
       "name": "/actions/spaceship/in/rightstick",
       "type": "vector2"
+    },
+    {
+      "name": "/actions/spaceship/in/fire",
+      "type": "boolean"
     }
   ],
   "action_sets": [

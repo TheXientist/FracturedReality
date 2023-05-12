@@ -32,5 +32,13 @@ namespace Valve.VR
                 return SteamVR_Actions.spaceship_rightstick;
             }
         }
+        
+        public virtual SteamVR_Action_Boolean fire
+        {
+            get
+            {
+                return SteamVR_Actions.spaceship_fire;
+            }
+        }
     }
 }

@@ -61,6 +61,8 @@ namespace Valve.VR
         
         private static SteamVR_Action_Vector2 p_spaceship_rightstick;
         
+        private static SteamVR_Action_Boolean p_spaceship_fire;
+        
         public static SteamVR_Action_Boolean default_InteractUI
         {
             get
@@ -237,6 +239,14 @@ namespace Valve.VR
             }
         }
         
+        public static SteamVR_Action_Boolean spaceship_fire
+        {
+            get
+            {
+                return SteamVR_Actions.p_spaceship_fire.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
         private static void InitializeActionArrays()
         {
             Valve.VR.SteamVR_Input.actions = new Valve.VR.SteamVR_Action[] {
@@ -261,7 +271,8 @@ namespace Valve.VR
                     SteamVR_Actions.buggy_Reset,
                     SteamVR_Actions.mixedreality_ExternalCamera,
                     SteamVR_Actions.spaceship_leftstick,
-                    SteamVR_Actions.spaceship_rightstick};
+                    SteamVR_Actions.spaceship_rightstick,
+                    SteamVR_Actions.spaceship_fire};
             Valve.VR.SteamVR_Input.actionsIn = new Valve.VR.ISteamVR_Action_In[] {
                     SteamVR_Actions.default_InteractUI,
                     SteamVR_Actions.default_Teleport,
@@ -283,7 +294,8 @@ namespace Valve.VR
                     SteamVR_Actions.buggy_Reset,
                     SteamVR_Actions.mixedreality_ExternalCamera,
                     SteamVR_Actions.spaceship_leftstick,
-                    SteamVR_Actions.spaceship_rightstick};
+                    SteamVR_Actions.spaceship_rightstick,
+                    SteamVR_Actions.spaceship_fire};
             Valve.VR.SteamVR_Input.actionsOut = new Valve.VR.ISteamVR_Action_Out[] {
                     SteamVR_Actions.default_Haptic};
             Valve.VR.SteamVR_Input.actionsVibration = new Valve.VR.SteamVR_Action_Vibration[] {
@@ -302,7 +314,8 @@ namespace Valve.VR
                     SteamVR_Actions.default_ToggleConsole,
                     SteamVR_Actions.platformer_Jump,
                     SteamVR_Actions.buggy_Brake,
-                    SteamVR_Actions.buggy_Reset};
+                    SteamVR_Actions.buggy_Reset,
+                    SteamVR_Actions.spaceship_fire};
             Valve.VR.SteamVR_Input.actionsSingle = new Valve.VR.SteamVR_Action_Single[] {
                     SteamVR_Actions.default_Squeeze,
                     SteamVR_Actions.buggy_Throttle};
@@ -332,7 +345,8 @@ namespace Valve.VR
                     SteamVR_Actions.buggy_Brake,
                     SteamVR_Actions.buggy_Reset,
                     SteamVR_Actions.spaceship_leftstick,
-                    SteamVR_Actions.spaceship_rightstick};
+                    SteamVR_Actions.spaceship_rightstick,
+                    SteamVR_Actions.spaceship_fire};
         }
         
         private static void PreInitActions()
@@ -359,6 +373,7 @@ namespace Valve.VR
             SteamVR_Actions.p_mixedreality_ExternalCamera = ((SteamVR_Action_Pose)(SteamVR_Action.Create<SteamVR_Action_Pose>("/actions/mixedreality/in/ExternalCamera")));
             SteamVR_Actions.p_spaceship_leftstick = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/spaceship/in/leftstick")));
             SteamVR_Actions.p_spaceship_rightstick = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/spaceship/in/rightstick")));
+            SteamVR_Actions.p_spaceship_fire = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/spaceship/in/fire")));
         }
     }
 }

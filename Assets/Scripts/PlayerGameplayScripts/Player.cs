@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Valve.VR;
 
 public class Player : MonoBehaviour
 {
@@ -56,9 +57,13 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float projectileThreshold = 1f;
 
+    private SteamVR_Action_Boolean fireAction;
+
     void Start()
     {
         PlayerCurrentHealth = playerMaxHealth;
+        fireAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("spaceship", "fire");
+        fireAction.AddOnStateDownListener(OnFire, SteamVR_Input_Sources.Any);
     }
 
     // Update is called once per frame
@@ -97,7 +102,7 @@ public class Player : MonoBehaviour
 
     }
 
-    public void OnFire()
+    public void OnFire(SteamVR_Action_Boolean action, SteamVR_Input_Sources source)
     {
         ShootBullet();
     }
