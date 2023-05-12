@@ -63,7 +63,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         PlayerCurrentHealth = playerMaxHealth;
         fireAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("spaceship", "fire");
-        fireAction.AddOnStateDownListener(OnFire, SteamVR_Input_Sources.Any);
+        fireAction.AddOnStateDownListener(OnFireVR, SteamVR_Input_Sources.Any);
     }
 
     // Update is called once per frame
@@ -102,8 +102,9 @@ public class Player : MonoBehaviour, IDamageable
 
     }
 
-    public void OnFire(SteamVR_Action_Boolean action, SteamVR_Input_Sources source)
-    {
-        ShootBullet();
-    }
+    // Callback func for SteamVR input
+    public void OnFireVR(SteamVR_Action_Boolean action, SteamVR_Input_Sources source) => ShootBullet();
+    
+    // Callback func for Unity InputSystem (non-VR)
+    public void OnFire() => ShootBullet();
 }
