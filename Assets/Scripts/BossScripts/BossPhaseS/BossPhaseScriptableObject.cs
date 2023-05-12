@@ -6,8 +6,8 @@ public class BossPhaseScriptableObject : ScriptableObject
 {
     [SerializeField]
     public List<AbilityScriptableObject> phaseAbilityScripts;
-
-    [SerializeField]
+    
+    [HideInInspector]
     public List<int> abilityPropabilityList;
 
     [SerializeField]
