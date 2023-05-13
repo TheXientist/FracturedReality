@@ -41,16 +41,16 @@ public class ConLaser : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+   /* private void FixedUpdate()
     {
         if(m_raycastHit) 
         {
-            DealDamageWhenHit(hit);
+        //    DealDamageWhenHit(hit);
         }
         
     }
-
-    void Update()
+   */
+    private void FixedUpdate()
     {
         //Curvy Start
 
@@ -142,6 +142,11 @@ public class ConLaser : MonoBehaviour
                     em.enabled = false;
                     //ps.enableEmission = false;
                 }
+            }
+
+            if (m_raycastHit)
+            {
+                    DealDamageWhenHit(hit);
             }
         }
 
