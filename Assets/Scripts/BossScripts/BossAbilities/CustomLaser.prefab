@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4554328157299890}
   - component: {fileID: 198393212302295922}
   - component: {fileID: 199667438415861134}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HitEmbers
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -5205,7 +5205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcd9e77d8a469f74d9660313eb3e5a0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLength: 32
+  maxLength: 1000
   hitEffect: {fileID: 1805397458125066}
   meshRenderer1: {fileID: 23552619590768562}
   meshRenderer2: {fileID: 23466032628000348}
@@ -5214,7 +5214,7 @@ MonoBehaviour:
   - {fileID: 198393212302295922}
   - {fileID: 198171957954546346}
   - {fileID: 198489493707879460}
-  segmentCount: 32
+  segmentCount: 200
   globalProgressSpeed: 2
   shaderProgressCurve:
     serializedVersion: 2
@@ -10252,7 +10252,7 @@ GameObject:
   - component: {fileID: 4899671700938944}
   - component: {fileID: 198844309244843756}
   - component: {fileID: 199570055319659088}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HitFlare
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -15347,7 +15347,7 @@ GameObject:
   - component: {fileID: 4708116598570824}
   - component: {fileID: 198171957954546346}
   - component: {fileID: 199382966264552684}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HitDistortionSphere
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -20170,7 +20170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4877130759886966}
   - component: {fileID: 108400216422107850}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HitLight
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -20271,7 +20271,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4627692398237432
 Transform:
   m_ObjectHideFlags: 0
@@ -30270,7 +30270,7 @@ GameObject:
   - component: {fileID: 4831543805897012}
   - component: {fileID: 4550176445140653185}
   - component: {fileID: 6374837426345239598}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HitEffect
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -30307,7 +30307,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6374837426345239598
 MonoBehaviour:
