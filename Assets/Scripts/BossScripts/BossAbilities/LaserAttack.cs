@@ -42,7 +42,7 @@ public class LaserAttack : AbilityScriptableObject
 
         Destroy(sound.gameObject);
 
-       GameObject tempLaser = Instantiate(m_laserPrefab, bossObject.transform.position, bossObject.transform.rotation, bossObject.transform);
+        GameObject tempLaser = Instantiate(m_laserPrefab, bossObject.transform.position, bossObject.transform.rotation);//, bossObject.transform);
        
 
        m_targetLaser = tempLaser.GetComponent<ObjectTargetLaser>();
