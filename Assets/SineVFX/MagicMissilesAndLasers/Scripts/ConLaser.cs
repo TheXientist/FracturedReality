@@ -26,6 +26,9 @@ public class ConLaser : MonoBehaviour
     private Vector3 hitPosition;
     private Vector3 currentPosition;
 
+    private bool m_raycastHit = false;
+    RaycastHit hit;
+
     void Start()
     {
         globalProgress = 1f;
@@ -36,6 +39,15 @@ public class ConLaser : MonoBehaviour
         {
             resultVectors[i] = transform.forward;
         }
+    }
+
+    private void FixedUpdate()
+    {
+        if(m_raycastHit) 
+        {
+            DealDamageWhenHit(hit);
+        }
+        
     }
 
     void Update()
@@ -78,9 +90,13 @@ public class ConLaser : MonoBehaviour
                     currentPosition += resultVectors[j] * blockLength;
                 }
 
-                RaycastHit hit;
-                if (Physics.Raycast(currentPosition, resultVectors[i], out hit, blockLength) && !hit.transform.CompareTag("Enemy"))
+
+                m_raycastHit = Physics.Raycast(currentPosition, resultVectors[i], out hit, blockLength);
+
+                if (m_raycastHit && !hit.transform.CompareTag("Enemy"))
                 {
+                    
+
                     hitPosition = currentPosition + resultVectors[i] * hit.distance;
                     hitPosition = Vector3.MoveTowards(hitPosition, transform.position, moveHitToSource);
                     if (hitEffect)
@@ -91,6 +107,10 @@ public class ConLaser : MonoBehaviour
                     dist = Vector3.Distance(hitPosition, transform.position);
 
                     break;
+                }
+                else
+                {
+                m_raycastHit=false;
                 }
             }
 
@@ -162,5 +182,14 @@ public class ConLaser : MonoBehaviour
             hitPsArray[1].Emit(100);
         }
 
+    }
+
+    public void DealDamageWhenHit(RaycastHit hit)
+    {
+
+        if (hit.transform.CompareTag("Obstacle") || hit.transform.CompareTag("Player"))
+        {
+            hit.transform.GetComponent<IDamageable>().TakeDamage(5f);
+        }
     }
 }
