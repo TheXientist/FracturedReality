@@ -24,6 +24,6 @@ MonoBehaviour:
   moveSpeed: 30
   moveAcceleration: 1
   moveDeceleration: 0.3
-  rotationSpeed: 1
+  rotationSpeed: 10
   rotationAcceleration: 0.1
   rotationDeceleration: 0.05
