@@ -14,12 +14,13 @@ public class BossAI : MonoBehaviour, IDamageable
         private set
         {
             bossCurrentHealth = value;
-            healthDisplay.text = "Boss Health:\n" + bossCurrentHealth;
+            healthDisplay.text = (value <= 0f) ? "You won!" : "Boss Health:\n" + bossCurrentHealth;
         }
         get => bossCurrentHealth;
     }
     private int currentPhase = 0;
     private int abilityCooldownTime = 0;
+    private bool destroyed = false;
 
     [SerializeField]
     private List<BossPhaseScriptableObject> phaseList;
@@ -42,29 +43,20 @@ public class BossAI : MonoBehaviour, IDamageable
         phaseList[phaseList.Count-1].percentPhaseCondition = 0;
 
         //start the main coroutine
-        StartCoroutine("StartBossScene");        
-    }
-
-    private void Update()
-    {
-        if(bossCurrentHealth <= 0)
-        {
-            //boss dead
-            gameObject.SetActive(false);
-            //Destroy(gameObject);
-        }
+        //StartCoroutine("StartBossScene"); --> start by Spawn animation       
     }
 
     //Fight coroutine (Main)  possible to add "pre-events"
-    private IEnumerator StartBossScene()
+    public void StartBossScene()
     {
-        yield return BeginFight();
-
-        yield return null;
+        StartCoroutine(BeginFight());
     }
 
     private IEnumerator Phase()
     {
+        if (destroyed)
+            yield break;
+        
         CalculatePhaseAbilityPropabilities();
 
         while (bossCurrentHealth > bossMaxHealth * phaseList[currentPhase].percentPhaseCondition)
@@ -113,8 +105,21 @@ public class BossAI : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
+        if (destroyed) return;
+        
         BossCurrentHealth -= damage;
+        if (bossCurrentHealth <= 0)
+        {
+            destroyed = true;
+            GetComponent<Animator>().SetTrigger("Death");
+        }
     }
 
-
+    // Called by Death animation
+    public void Despawn()
+    {
+        gameObject.SetActive(false);
+        // Unlock player targeting
+        FindObjectOfType<SpaceshipController>().RemoveTarget();
+    }
 }
