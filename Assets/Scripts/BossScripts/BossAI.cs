@@ -6,8 +6,18 @@ using UnityEngine;
 
 public class BossAI : MonoBehaviour, IDamageable
 {
-    public float bossMaxHealth;
-    public float bossCurrentHealth;
+    [SerializeField] private float bossMaxHealth;
+    private float bossCurrentHealth;
+
+    public float BossCurrentHealth
+    {
+        private set
+        {
+            bossCurrentHealth = value;
+            healthDisplay.text = "Boss Health:\n" + bossCurrentHealth;
+        }
+        get => bossCurrentHealth;
+    }
     private int currentPhase = 0;
     private int abilityCooldownTime = 0;
 
@@ -17,6 +27,8 @@ public class BossAI : MonoBehaviour, IDamageable
     [SerializeField]
     private GameObject player;
 
+    private TextMeshProUGUI healthDisplay;
+
 
     // Start is called before the first frame update
     private void Start()
@@ -24,7 +36,7 @@ public class BossAI : MonoBehaviour, IDamageable
         Debug.Log("BossAI.Start");
         
         healthDisplay = GameObject.FindWithTag("BossHealthDisplay").GetComponent<TextMeshProUGUI>();
-        bossCurrentHealth = bossMaxHealth;
+        BossCurrentHealth = bossMaxHealth;
 
         //to make sure, the last phase lasts till the end of the boss-fight
         phaseList[phaseList.Count-1].percentPhaseCondition = 0;
@@ -101,7 +113,7 @@ public class BossAI : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
-        bossCurrentHealth -= damage;
+        BossCurrentHealth -= damage;
     }
 
 
