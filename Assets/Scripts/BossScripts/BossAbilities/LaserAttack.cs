@@ -54,9 +54,8 @@ public class LaserAttack : AbilityScriptableObject
 
        yield return new WaitForSeconds(laserDuration);
 
-       tempLaser.GetComponent<ObjectTargetLaser>().laser.isAttacking = false;
+       m_targetLaser.laser.isAttacking = false;
 
-        Destroy(tempLaser);
-
+       Destroy(tempLaser);
     }
 }

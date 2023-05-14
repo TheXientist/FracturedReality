@@ -5205,7 +5205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcd9e77d8a469f74d9660313eb3e5a0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLength: 1000
+  maxLength: 100
   hitEffect: {fileID: 1805397458125066}
   meshRenderer1: {fileID: 23552619590768562}
   meshRenderer2: {fileID: 23466032628000348}
@@ -5214,7 +5214,7 @@ MonoBehaviour:
   - {fileID: 198393212302295922}
   - {fileID: 198171957954546346}
   - {fileID: 198489493707879460}
-  segmentCount: 200
+  segmentCount: 10
   globalProgressSpeed: 2
   shaderProgressCurve:
     serializedVersion: 2

@@ -8,7 +8,9 @@ public class ConLaser : MonoBehaviour
     public float maxLength = 16.0f;
     public GameObject hitEffect;
     public Renderer meshRenderer1;
+    private bool meshRend1Set;
     public Renderer meshRenderer2;
+    private bool meshRend2Set;
     public ParticleSystem[] hitPsArray;
     public int segmentCount = 32;
     public float globalProgressSpeed = 1f;
@@ -19,37 +21,37 @@ public class ConLaser : MonoBehaviour
 
     public bool isAttacking=false;
 
+    private Renderer renderer;
     private LineRenderer lr;
+    private IDamageable currentDamageReceiver;
+    private GameObject currentBlockingObject;
     private Vector3[] resultVectors;
     private float dist;
     private float globalProgress;
     private Vector3 hitPosition;
     private Vector3 currentPosition;
+    private int hittableLayerMask;
 
-    private bool m_raycastHit = false;
-    RaycastHit hit;
+    public static bool m_raycastHit = false;
+    public static RaycastHit hit;
 
     void Start()
     {
         globalProgress = 1f;
-        lr = this.GetComponent<LineRenderer>();
+        lr = GetComponent<LineRenderer>();
+        renderer = GetComponent<Renderer>();
         lr.positionCount = segmentCount;
         resultVectors = new Vector3[segmentCount + 1];
         for (int i = 0; i < segmentCount + 1; i++)
         {
             resultVectors[i] = transform.forward;
         }
-    }
 
-   /* private void FixedUpdate()
-    {
-        if(m_raycastHit) 
-        {
-        //    DealDamageWhenHit(hit);
-        }
-        
+        meshRend1Set = meshRenderer1 != null;
+        meshRend2Set = meshRenderer2 != null;
+        hittableLayerMask = LayerMask.GetMask("Spaceship", "Environment");
     }
-   */
+    
     private void FixedUpdate()
     {
         //Curvy Start
@@ -91,12 +93,10 @@ public class ConLaser : MonoBehaviour
                 }
 
 
-                m_raycastHit = Physics.Raycast(currentPosition, resultVectors[i], out hit, blockLength);
+                m_raycastHit = Physics.Raycast(currentPosition, resultVectors[i], out hit, blockLength, hittableLayerMask);
 
-                if (m_raycastHit && !hit.transform.CompareTag("Enemy"))
+                if (m_raycastHit)
                 {
-                    
-
                     hitPosition = currentPosition + resultVectors[i] * hit.distance;
                     hitPosition = Vector3.MoveTowards(hitPosition, transform.position, moveHitToSource);
                     if (hitEffect)
@@ -105,16 +105,24 @@ public class ConLaser : MonoBehaviour
                     }
 
                     dist = Vector3.Distance(hitPosition, transform.position);
-
+                    
+                    // Only get new IDamageable if hit changed
+                    if (!hit.transform.gameObject.Equals(currentBlockingObject))
+                    {
+                        currentBlockingObject = hit.transform.gameObject;
+                        currentDamageReceiver = currentBlockingObject.GetComponent<IDamageable>();
+                    }
+                    
                     break;
-                }
-                else
-                {
-                m_raycastHit=false;
                 }
             }
 
-        //Collision End
+            if (!m_raycastHit)
+            {
+                currentDamageReceiver = null;
+                currentBlockingObject = null;
+            }
+            //Collision End
 
 
         //Emit Particles on Collision Start
@@ -143,17 +151,12 @@ public class ConLaser : MonoBehaviour
                     //ps.enableEmission = false;
                 }
             }
-
-            if (m_raycastHit)
-            {
-                    DealDamageWhenHit(hit);
-            }
         }
 
         //Emit Particles on Collision End
 
-        GetComponent<Renderer>().material.SetFloat("_Distance", dist);
-        GetComponent<Renderer>().material.SetVector("_Position", transform.position);
+        renderer.material.SetFloat("_Distance", dist);
+        renderer.material.SetVector("_Position", transform.position);
 
         if (isAttacking)
         {
@@ -171,9 +174,9 @@ public class ConLaser : MonoBehaviour
         }        
 
         float progress = shaderProgressCurve.Evaluate(globalProgress);
-        GetComponent<Renderer>().material.SetFloat("_Progress", progress);
+        renderer.material.SetFloat("_Progress", progress);
 
-        if (meshRenderer1 != null && meshRenderer2 != null)
+        if (meshRend1Set && meshRend2Set)
         {
             meshRenderer1.material.SetFloat("_Progress", progress);
             meshRenderer2.material.SetFloat("_Progress", progress);
@@ -182,19 +185,14 @@ public class ConLaser : MonoBehaviour
         float width = lineWidthCurve.Evaluate(globalProgress);
         lr.widthMultiplier = width;
 
-        if (Input.GetMouseButtonDown(0) && hitEffect)
+        /*if (Input.GetMouseButtonDown(0) && hitEffect)
         {
             hitPsArray[1].Emit(100);
-        }
+        }*/
 
-    }
-
-    public void DealDamageWhenHit(RaycastHit hit)
-    {
-
-        if (hit.transform.CompareTag("Obstacle") || hit.transform.CompareTag("Player"))
-        {
-            hit.transform.GetComponent<IDamageable>().TakeDamage(5f);
-        }
+        // Damage
+        // TODO: add tickrate (?)
+        if (m_raycastHit)
+            currentDamageReceiver.TakeDamage(5f);
     }
 }
