@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftStickX: 1
   invertLX: 0
-  leftStickY: 4
+  leftStickY: 2
   invertLY: 0
   rightStickX: 16
   invertRX: 0
-  rightStickY: 2
+  rightStickY: 4
   invertRY: 0
   deadzonePerAxis: 0.25
   moveSpeed: 30
