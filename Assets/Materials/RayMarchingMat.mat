@@ -58,11 +58,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints:
     - _DepthSteps: 100
-    - _FovSteps: 0
+    - _FovSteps: 200
     - _FractalCount: 1
     - _LightSteps: 50
     - _Shininess: -28
-    - _VR: 1
+    - _VR: 0
     m_Floats:
     - _AO: 5
     - _Ambient: 0.07
@@ -71,7 +71,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _Fidelity: 0
-    - _Fov: 2.4
+    - _Fov: 0
     - _FovSteps: 75
     - _GlossMapScale: 1
     - _Glossiness: 0.5
