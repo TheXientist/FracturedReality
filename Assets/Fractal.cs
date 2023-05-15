@@ -126,7 +126,9 @@ public class Fractal : MonoBehaviour
 
     private void OnDisable()
     {
-        if (allFractalsBuffer != null)
-            allFractalsBuffer.Release();
+        allFractalData.RemoveAt(id);
+        CreateComputeBuffer(ref allFractalsBuffer, allFractalData, FractalData.SizeOf());
+        raymarchingMaterial.SetBuffer(BUFFER_ID, allFractalsBuffer);
+        raymarchingMaterial.SetInteger(COUNT_ID, allFractalData.Count);
     }
 }
