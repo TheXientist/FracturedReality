@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5abf039c8c673ed4c835340e5a046734, type: 3}
   m_Name: 3BulletsInLineRotating
   m_EditorClassIdentifier: 
-  m_bulletModuleSpeed: 20
-  m_bulletModuleRotationSpeed: 100
   abilityPropability: 3
   abilityCooldown: 1
   m_bulletPrefab: {fileID: 4185635229755856287, guid: 9f1e3a06775fd0e4f9de2b273e6fd2c6,
     type: 3}
   m_spawnThreshold: 3
+  m_bulletModuleSpeed: 60
+  m_bulletModuleRotationSpeed: 100

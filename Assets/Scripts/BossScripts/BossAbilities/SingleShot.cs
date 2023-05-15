@@ -34,7 +34,8 @@ public class SingleShot : AbilityScriptableObject
     /// <returns></returns>
     public override IEnumerator Execute(GameObject bossObject, GameObject playerObject)
     {
-        ShootAtPosition(playerObject.transform.position, bossObject.transform.position, m_bulletPrefab, m_spawnThreshold, m_bulletModuleSpeed, m_bulletModuleRotationSpeed);
+        ShootAtPredictedPlayerPosition(playerObject.transform.position, playerObject.GetComponent<Rigidbody>().velocity, bossObject.transform.position, m_bulletModuleSpeed, m_bulletPrefab, m_bulletModuleRotationSpeed);
+        //ShootAtPosition(playerObject.transform.position, bossObject.transform.position, m_bulletPrefab, m_spawnThreshold, m_bulletModuleSpeed, m_bulletModuleRotationSpeed);
 
         yield return null;
     }
