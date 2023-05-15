@@ -5205,7 +5205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcd9e77d8a469f74d9660313eb3e5a0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLength: 100
+  maxLength: 1000
   hitEffect: {fileID: 1805397458125066}
   meshRenderer1: {fileID: 23552619590768562}
   meshRenderer2: {fileID: 23466032628000348}

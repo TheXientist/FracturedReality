@@ -2137,6 +2137,34 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1117523605}
+    - target: {fileID: 6293280729080821923, guid: c9e3ea407176b544791a0efe22ae7e8c,
+        type: 3}
+      propertyPath: bossMaxHealth
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6293280729080821923, guid: c9e3ea407176b544791a0efe22ae7e8c,
+        type: 3}
+      propertyPath: phaseList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6293280729080821923, guid: c9e3ea407176b544791a0efe22ae7e8c,
+        type: 3}
+      propertyPath: phaseList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 59f613395ea207b46be59768d3f47540,
+        type: 2}
+    - target: {fileID: 6293280729080821923, guid: c9e3ea407176b544791a0efe22ae7e8c,
+        type: 3}
+      propertyPath: phaseList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 404fc808bd54630419d5aa3eefcfc461,
+        type: 2}
+    - target: {fileID: 6293280729080821923, guid: c9e3ea407176b544791a0efe22ae7e8c,
+        type: 3}
+      propertyPath: phaseList.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5be5defc6aae5414dba37e847c918c40,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9e3ea407176b544791a0efe22ae7e8c, type: 3}
 --- !u!4 &6293280729080821922 stripped
