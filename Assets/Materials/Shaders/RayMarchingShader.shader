@@ -1,7 +1,7 @@
 ﻿Shader "Custom/RayMarching"
 {
     Properties{
-        _FractalCount ("Integer display name", Integer) = 0
+        _FractalCount ("Fractal Count", Integer) = 0
 
         _VR ("VR", Integer) = 1
 

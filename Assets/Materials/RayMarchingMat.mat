@@ -12,7 +12,7 @@ Material:
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -60,11 +60,11 @@ Material:
     - _DepthSteps: 100
     - _FovSteps: 200
     - _FractalCount: 1
-    - _LightSteps: 50
+    - _LightSteps: 80
     - _Shininess: -28
-    - _VR: 0
+    - _VR: 1
     m_Floats:
-    - _AO: 5
+    - _AO: 0.8
     - _Ambient: 0.07
     - _BumpScale: 1
     - _Cutoff: 0.5
