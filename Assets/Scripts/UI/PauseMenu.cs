@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
     private InputActions input;
     private GameObject panel;
     private bool paused;
+    private bool started;
     
     public SteamVR_Action_Boolean actionToggle = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("default", "TogglePause");
 
@@ -23,45 +24,52 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
         }
         input.PauseMenu.Enable();
 
-        actionToggle.onChange += Toggle;
+        actionToggle.onChange += ToggleVR;
     }
 
     private void OnDisable()
     {
-        actionToggle.onChange -= Toggle;
+        actionToggle.onChange -= ToggleVR;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         panel = transform.GetChild(0).gameObject;
-        Time.timeScale = 0f;
-        paused = true;
+
+        StartCoroutine(PauseAfterSeconds(1f));
     }
 
-    private void Toggle(SteamVR_Action_Boolean action, SteamVR_Input_Sources sources, bool value)
+    private IEnumerator PauseAfterSeconds(float s)
     {
-        paused = value;
-        Time.timeScale = value ? 0f : 1f;
-        panel.SetActive(value);
+        yield return new WaitForSeconds(s);
+        Toggle(true);
+    }
+
+    private void ToggleVR(SteamVR_Action_Boolean action, SteamVR_Input_Sources sources, bool value)
+    {
+        // First VR toggle is always TRUE
+        if (!started)
+        {
+            started = true;
+            Toggle(false);
+            return;
+        }
+        Toggle(value);
+    }
+
+    private void Toggle(bool shouldPause)
+    {
+        paused = shouldPause;
+        panel.SetActive(shouldPause);
+        Time.timeScale = paused ? 0f : 1f;
     }
 
     public void OnToggle(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            if (paused)
-            {
-                paused = false;
-                Time.timeScale = 1f;
-                panel.SetActive(false);
-            }
-            else
-            {
-                paused = true;
-                Time.timeScale = 0f;
-                panel.SetActive(true);
-            }
+            Toggle(!paused);
         }
     }
 }

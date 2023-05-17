@@ -284,24 +284,6 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/default/in/togglepause"
-                  }
-               },
-               "mode" : "toggle_button",
-               "path" : "/user/hand/left/input/x"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/default/in/togglepause"
-                  }
-               },
-               "mode" : "toggle_button",
-               "path" : "/user/hand/right/input/x"
-            },
-            {
-               "inputs" : {
-                  "click" : {
                      "output" : "/actions/default/in/toggleconsole"
                   }
                },
@@ -316,6 +298,24 @@
                },
                "mode" : "toggle_button",
                "path" : "/user/hand/right/input/joystick"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/togglepause"
+                  }
+               },
+               "mode" : "toggle_button",
+               "path" : "/user/hand/left/input/x"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/togglepause"
+                  }
+               },
+               "mode" : "toggle_button",
+               "path" : "/user/hand/right/input/x"
             }
          ]
       },
@@ -389,10 +389,15 @@
       }
    },
    "category" : "steamvr_input",
-   "controller_type" : "oculus_touch",
+   "controller_type" : "pico_controller",
    "description" : "",
    "interaction_profile" : "",
    "name" : "fractured_reality_bindings",
-   "options" : {},
+   "options" : {
+      "compatibility_mode" : true,
+      "simulate_hmd" : true,
+      "simulate_rendermodel" : true,
+      "simulated_controller_type" : "oculus_touch"
+   },
    "simulated_actions" : []
 }
