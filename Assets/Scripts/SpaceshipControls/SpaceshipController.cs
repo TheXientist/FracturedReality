@@ -33,7 +33,7 @@ public class SpaceshipController : MonoBehaviour
             InitVR();
         }
         
-        SetControlSettings(defaultControls);
+        SetControlSettings(target ? lockedOnControls : defaultControls);
     }
 
     private void OnValidate()

@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3053fb4716cee4468a925e99738a1f64, type: 3}
-  m_Name: Drone Movement
+  m_Name: Sphere Movement
   m_EditorClassIdentifier: 
   leftStickX: 1
   invertLX: 0
-  leftStickY: 4
+  leftStickY: 2
   invertLY: 0
   rightStickX: 16
   invertRX: 0
-  rightStickY: 2
+  rightStickY: 4
   invertRY: 0
   deadzonePerAxis: 0.25
   moveSpeed: 30
   moveAcceleration: 1
   moveDeceleration: 0.3
-  rotationSpeed: 2
-  rotationAcceleration: 0.05
+  rotationSpeed: 10
+  rotationAcceleration: 0.1
   rotationDeceleration: 0.05

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3053fb4716cee4468a925e99738a1f64, type: 3}
-  m_Name: Drone Movement
+  m_Name: Racer Movement
   m_EditorClassIdentifier: 
-  leftStickX: 1
+  leftStickX: 16
   invertLX: 0
   leftStickY: 4
   invertLY: 0
-  rightStickX: 16
+  rightStickX: 1
   invertRX: 0
   rightStickY: 2
   invertRY: 0
