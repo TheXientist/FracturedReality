@@ -48,14 +48,7 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
 
     private void ToggleVR(SteamVR_Action_Boolean action, SteamVR_Input_Sources sources, bool value)
     {
-        // First VR toggle is always TRUE
-        if (!started)
-        {
-            started = true;
-            Toggle(false);
-            return;
-        }
-        Toggle(value);
+        Toggle(!value);
     }
 
     private void Toggle(bool shouldPause)
