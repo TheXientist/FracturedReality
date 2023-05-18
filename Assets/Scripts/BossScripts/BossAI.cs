@@ -18,6 +18,7 @@ public class BossAI : MonoBehaviour, IDamageable
         }
         get => bossCurrentHealth;
     }
+
     private int currentPhase = 0;
     private int abilityCooldownTime = 0;
     private bool destroyed = false;
@@ -29,6 +30,10 @@ public class BossAI : MonoBehaviour, IDamageable
     private GameObject player;
 
     private TextMeshProUGUI healthDisplay;
+
+    private int m_currentAbilityNumber;
+
+    private IEnumerator m_bossCoroutine;
 
 
     // Start is called before the first frame update
@@ -49,7 +54,10 @@ public class BossAI : MonoBehaviour, IDamageable
     //Fight coroutine (Main)  possible to add "pre-events"
     public void StartBossScene()
     {
-        StartCoroutine(BeginFight());
+        m_bossCoroutine= BeginFight();
+
+        StartCoroutine(m_bossCoroutine);
+
     }
 
     private IEnumerator Phase()
@@ -88,10 +96,10 @@ public class BossAI : MonoBehaviour, IDamageable
 
     private IEnumerator UseRandomPhaseAbility(List<AbilityScriptableObject> phseAbilityScriptList, List<int> abilityPropabilityList)
     {
-        int tempAbilityNumber = GetRandomAbility(abilityPropabilityList);
-        abilityCooldownTime = phseAbilityScriptList[tempAbilityNumber].abilityCooldown;
+        m_currentAbilityNumber = GetRandomAbility(abilityPropabilityList);
+        abilityCooldownTime = phseAbilityScriptList[m_currentAbilityNumber].abilityCooldown;
 
-        yield return phseAbilityScriptList[tempAbilityNumber].Execute(gameObject, player);
+        yield return phseAbilityScriptList[m_currentAbilityNumber].Execute(gameObject, player);
     }
 
     private void CalculatePhaseAbilityPropabilities()
@@ -110,6 +118,7 @@ public class BossAI : MonoBehaviour, IDamageable
         BossCurrentHealth -= damage;
         if (bossCurrentHealth <= 0)
         {
+            StopBossFight();
             destroyed = true;
             GetComponent<Animator>().SetTrigger("Death");
         }
@@ -121,5 +130,11 @@ public class BossAI : MonoBehaviour, IDamageable
         gameObject.SetActive(false);
         // Unlock player targeting
         FindObjectOfType<SpaceshipController>().RemoveTarget();
+    }
+
+    public void StopBossFight()
+    {
+        phaseList[currentPhase].phaseAbilityScripts[m_currentAbilityNumber].InterruptCurrentAbility();
+        StopCoroutine(m_bossCoroutine);
     }
 }

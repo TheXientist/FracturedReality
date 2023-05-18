@@ -23,6 +23,9 @@ public class LaserAttack : AbilityScriptableObject
     [SerializeField]
     private AudioSource m_warningSound;
 
+    private AudioSource m_currentSound;
+
+    private GameObject m_currentLaserObject;
 
     public override IEnumerator Execute(GameObject bossObject, GameObject playerObject)
     {
@@ -33,29 +36,39 @@ public class LaserAttack : AbilityScriptableObject
 
     public IEnumerator SpawnLaser(GameObject bossObject, GameObject playerObject)
     {
-        AudioSource sound = Instantiate(m_warningSound);
+        m_currentSound = Instantiate(m_warningSound);
 
-
-        sound.Play();
+        m_currentSound.Play();
 
         yield return new WaitForSeconds(laserDealy);
 
-        Destroy(sound.gameObject);
-
-        GameObject tempLaser = Instantiate(m_laserPrefab, bossObject.transform.position, bossObject.transform.rotation);//, bossObject.transform);
+        Destroy(m_currentSound.gameObject);
        
+        m_currentLaserObject = Instantiate(m_laserPrefab, bossObject.transform.position, bossObject.transform.rotation);//, bossObject.transform);
 
-       m_targetLaser = tempLaser.GetComponent<ObjectTargetLaser>();
-
+        m_targetLaser = m_currentLaserObject.GetComponent<ObjectTargetLaser>();
 
         m_targetLaser.laserTarget = playerObject;
 
-       m_targetLaser.laser.isAttacking = true;
+        m_targetLaser.laser.isAttacking = true;
 
-       yield return new WaitForSeconds(laserDuration);
+        yield return new WaitForSeconds(laserDuration);
 
-       m_targetLaser.laser.isAttacking = false;
+        m_targetLaser.laser.isAttacking = false;
 
-       Destroy(tempLaser);
+        Destroy(m_currentLaserObject);       
+    }
+
+    public override void InterruptCurrentAbility()
+    {
+        if (m_currentSound != null)
+        {
+            Destroy(m_currentSound.gameObject);
+        }
+
+        if (m_currentLaserObject != null)
+        {
+            Destroy(m_currentLaserObject);
+        }
     }
 }

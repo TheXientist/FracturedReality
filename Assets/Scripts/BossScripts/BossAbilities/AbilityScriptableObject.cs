@@ -29,6 +29,8 @@ public abstract class AbilityScriptableObject : ScriptableObject
         yield return null; 
     }
 
+    public virtual void InterruptCurrentAbility(){}
+
     /// <summary>
     /// Will fire the bulletprefab from the firingPosition to the taretPosition. No homing.
     /// </summary>
@@ -37,7 +39,6 @@ public abstract class AbilityScriptableObject : ScriptableObject
     /// <param name="bulletModulePrefab"></param>Bullet Prefab.
     public void ShootAtPosition(Vector3 targetPosition, Vector3 firingPosition, GameObject bulletModulePrefab, float spawnThreshold, float bulletModuleSpeed, float bulletModuleRotationSpeed)
     {
-
         Vector3 direction = (targetPosition - firingPosition).normalized;
 
         GameObject bulletModule = Instantiate(bulletModulePrefab, firingPosition + (targetPosition - firingPosition).normalized * spawnThreshold, Quaternion.LookRotation(direction, Vector3.up));
