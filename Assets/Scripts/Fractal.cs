@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Fractal : MonoBehaviour
 {
@@ -30,7 +31,6 @@ public class Fractal : MonoBehaviour
 
     private static List<FractalData> allFractalData = new List<FractalData>();
     private static ComputeBuffer allFractalsBuffer;
-    private static bool bufferInitialized;
 
     [SerializeField] private FractalType type;
 
@@ -50,17 +50,12 @@ public class Fractal : MonoBehaviour
     {
         BUFFER_ID = Shader.PropertyToID("_FractalBuffer");
         COUNT_ID = Shader.PropertyToID("_FractalCount");
-        RegisterSelf();
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        //if (bufferInitialized) return;
-        
-        CreateComputeBuffer(ref allFractalsBuffer, allFractalData, FractalData.SizeOf());
-        raymarchingMaterial.SetBuffer(BUFFER_ID, allFractalsBuffer);
-        raymarchingMaterial.SetInteger(COUNT_ID, allFractalData.Count);
-        bufferInitialized = true;
+        RegisterSelf();
+        RefreshBuffer();
     }
 
     private void Update()
@@ -71,8 +66,7 @@ public class Fractal : MonoBehaviour
         {
             // Replace updated data and then write buffer
             allFractalData[id] = myData;
-            allFractalsBuffer.SetData(allFractalData);
-            raymarchingMaterial.SetBuffer(BUFFER_ID, allFractalsBuffer);
+            RefreshBuffer();
         }
     }
 
@@ -86,7 +80,6 @@ public class Fractal : MonoBehaviour
         
         myData.worldToLocal = transform.worldToLocalMatrix;
         return true;
-
     }
 
     private void RegisterSelf()
@@ -124,11 +117,16 @@ public class Fractal : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    private void RefreshBuffer()
     {
-        allFractalData.RemoveAt(id);
         CreateComputeBuffer(ref allFractalsBuffer, allFractalData, FractalData.SizeOf());
         raymarchingMaterial.SetBuffer(BUFFER_ID, allFractalsBuffer);
         raymarchingMaterial.SetInteger(COUNT_ID, allFractalData.Count);
+    }
+
+    private void OnDisable()
+    {
+        allFractalData.RemoveAt(id);
+        RefreshBuffer();
     }
 }
