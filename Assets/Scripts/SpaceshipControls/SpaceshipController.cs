@@ -7,7 +7,7 @@ using DOF = ControlSettings.DOF;
 
 public class SpaceshipController : MonoBehaviour
 {
-    [SerializeField] private GameObject playerRig, camera;
+    [SerializeField] private GameObject playerPrefabVR, camera;
     [SerializeField] private bool debug, vr;
     private SteamVR_Action_Vector2 leftStickAction, rightStickAction;
     private GameObject vrArmature;
@@ -36,20 +36,6 @@ public class SpaceshipController : MonoBehaviour
         SetControlSettings(target ? lockedOnControls : defaultControls);
     }
 
-    private void OnValidate()
-    {
-        // Add / remove the VR player rig
-        if (vr && !playerRig.activeSelf)
-        {
-            playerRig.SetActive(true);
-            camera.SetActive(false);
-        } else if (!vr && playerRig.activeSelf)
-        {
-            playerRig.SetActive(false);
-            camera.SetActive(true);
-        }
-    }
-
     private void SetControlSettings(ControlSettings controls)
     {
         currentControls = controls;
@@ -68,6 +54,10 @@ public class SpaceshipController : MonoBehaviour
 
     private void InitVR()
     {
+        vrArmature = Instantiate(playerPrefabVR, transform);
+        vrArmature.SetActive(true);
+        camera.SetActive(false);
+        
         SteamVR_Actions._default.Deactivate();
         SteamVR_Actions.spaceship.Activate();
         
