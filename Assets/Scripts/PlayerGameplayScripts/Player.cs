@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Valve.VR;
 
 public class Player : MonoBehaviour, IDamageable
@@ -87,6 +88,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         //tell boss the player is dead
         m_BossObject.GetComponent<BossAI>().StopBossFight();
+        SceneManager.LoadScene(0);
         //gameObject.SetActive(false);
     }
 

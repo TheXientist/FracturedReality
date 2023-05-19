@@ -54,7 +54,12 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
     private void Toggle(bool shouldPause)
     {
         paused = shouldPause;
-        panel.SetActive(shouldPause);
+
+        if(panel != null)
+        {
+            panel.SetActive(shouldPause);
+        }
+
         Time.timeScale = paused ? 0f : 1f;
     }
 

@@ -55,7 +55,7 @@ public class Fractal : MonoBehaviour
 
     private void Start()
     {
-        if (bufferInitialized) return;
+        //if (bufferInitialized) return;
         
         CreateComputeBuffer(ref allFractalsBuffer, allFractalData, FractalData.SizeOf());
         raymarchingMaterial.SetBuffer(BUFFER_ID, allFractalsBuffer);
