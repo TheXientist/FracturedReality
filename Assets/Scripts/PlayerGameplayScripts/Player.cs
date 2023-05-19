@@ -23,8 +23,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField]
     private Transform m_bulletSpawnpoint;
 
-    [SerializeField]
-    private GameObject m_BossObject;
+    public GameObject m_BossObject;
 
     [SerializeField]
     private GameObject m_currentBullet;

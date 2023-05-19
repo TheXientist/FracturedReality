@@ -36,10 +36,19 @@ public class BossAI : MonoBehaviour, IDamageable
     private IEnumerator m_bossCoroutine;
 
 
+    private void SetupReferences()
+    {
+        SpaceshipController.Instance.SetTarget(transform);
+        SpaceshipController.Instance.GetComponent<Player>().m_BossObject = gameObject;
+        player = SpaceshipController.Instance.gameObject;
+    }
+    
     // Start is called before the first frame update
     private void Start()
     {
         Debug.Log("BossAI.Start");
+        
+        SetupReferences();
         
         healthDisplay = GameObject.FindWithTag("BossHealthDisplay").GetComponent<TextMeshProUGUI>();
         BossCurrentHealth = bossMaxHealth;

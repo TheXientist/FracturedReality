@@ -7,6 +7,8 @@ using DOF = ControlSettings.DOF;
 
 public class SpaceshipController : MonoBehaviour
 {
+    public static SpaceshipController Instance { get; private set; }
+    
     [SerializeField] private GameObject playerPrefabVR, camera;
     [SerializeField] private bool debug, vr;
     private SteamVR_Action_Vector2 leftStickAction, rightStickAction;
@@ -27,6 +29,19 @@ public class SpaceshipController : MonoBehaviour
 
     private void Awake()
     {
+        // There is already another spaceship
+        // Probably because of scene load
+        if (Instance != null)
+        {
+            // "Reset" current Instance to state of this object
+            Instance.GetComponent<Player>().PlayerCurrentHealth = GetComponent<Player>().playerMaxHealth;
+            // Then destroy this (duplicate)
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
         rb = GetComponent<Rigidbody>();
         if (vr)
         {
