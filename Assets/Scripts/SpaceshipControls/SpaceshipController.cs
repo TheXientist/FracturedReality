@@ -10,6 +10,7 @@ public class SpaceshipController : MonoBehaviour
     public static SpaceshipController Instance { get; private set; }
     
     [SerializeField] private GameObject playerPrefabVR, camera;
+    [SerializeField] private Material raymarchingMaterial;
     [SerializeField] private bool debug, vr;
     private SteamVR_Action_Vector2 leftStickAction, rightStickAction;
     private GameObject vrArmature;
@@ -46,7 +47,8 @@ public class SpaceshipController : MonoBehaviour
         if (vr)
         {
             InitVR();
-        }
+        } else
+            raymarchingMaterial.SetInteger("_VR", 0);
         
         SetControlSettings(target ? lockedOnControls : defaultControls);
     }
@@ -69,6 +71,8 @@ public class SpaceshipController : MonoBehaviour
 
     private void InitVR()
     {
+        raymarchingMaterial.SetInteger("_VR", 1);
+        
         vrArmature = Instantiate(playerPrefabVR, transform);
         vrArmature.SetActive(true);
         camera.SetActive(false);
