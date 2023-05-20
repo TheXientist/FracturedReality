@@ -59,7 +59,7 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
         {
             panel.SetActive(shouldPause);
         }
-
+        
         Time.timeScale = paused ? 0f : 1f;
     }
 
@@ -70,4 +70,23 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
             Toggle(!paused);
         }
     }
+
+    public IEnumerator PauseOnReload(float s)
+    {
+        yield return new WaitForSeconds(s);
+        Toggle(true);
+    }
+
+    private void Update()
+    {
+        if(paused)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+    }
+
 }

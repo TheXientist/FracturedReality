@@ -34,6 +34,8 @@ public class Player : MonoBehaviour, IDamageable
 
     private float nextFireTime = 0f;
 
+    public FadeBlackScreen m_fadeBlackScreen;
+
     private float NextFireTime
     {
         get => nextFireTime;
@@ -65,7 +67,7 @@ public class Player : MonoBehaviour, IDamageable
         firerateDisplay = GameObject.FindWithTag("WeaponStateDisplay").GetComponent<TextMeshProUGUI>();
         PlayerCurrentHealth = playerMaxHealth;
         fireAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("spaceship", "fire");
-        fireAction.AddOnStateDownListener(OnFireVR, SteamVR_Input_Sources.Any);       
+        fireAction.AddOnStateDownListener(OnFireVR, SteamVR_Input_Sources.Any);
     }
 
     // Update is called once per frame
@@ -79,16 +81,17 @@ public class Player : MonoBehaviour, IDamageable
         PlayerCurrentHealth -= damage;
         if (playerCurrentHealth <= 0)
         {
-            DestroySelf();
+           StartCoroutine( DestroySelf());
         }
     }
 
-    public void DestroySelf()
+    public IEnumerator DestroySelf()
     {
         //tell boss the player is dead
         m_BossObject.GetComponent<BossAI>().StopBossFight();
+        yield return m_fadeBlackScreen.FadeOut(0.01f);
+
         SceneManager.LoadScene(0);
-        //gameObject.SetActive(false);
     }
 
     public void ShootBullet()
