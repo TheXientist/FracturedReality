@@ -81,6 +81,7 @@ public class Player : MonoBehaviour, IDamageable
         PlayerCurrentHealth -= damage;
         if (playerCurrentHealth <= 0)
         {
+            PlayerCurrentHealth = 0;
            StartCoroutine( DestroySelf());
         }
     }
