@@ -17,5 +17,5 @@ MonoBehaviour:
   m_bulletPrefab: {fileID: 4185635229755856287, guid: f295c3bceb73db74b96e28c64f09c827,
     type: 3}
   m_spawnThreshold: 3
-  m_bulletModuleSpeed: 60
+  m_bulletModuleSpeed: 80
   m_bulletModuleRotationSpeed: 100
