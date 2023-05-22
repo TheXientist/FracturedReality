@@ -27,6 +27,8 @@ public class LaserAttack : AbilityScriptableObject
 
     private GameObject m_currentLaserObject;
 
+    private GameObject warningDisplay;
+
     public override IEnumerator Execute(GameObject bossObject, GameObject playerObject)
     {
         yield return SpawnLaser(bossObject, playerObject);
@@ -40,7 +42,12 @@ public class LaserAttack : AbilityScriptableObject
 
         m_currentSound.Play();
 
+        warningDisplay = GameObject.FindWithTag("WarningDisplay").transform.GetChild(0).gameObject;
+        warningDisplay.SetActive(true);
+
         yield return new WaitForSeconds(laserDealy);
+
+        warningDisplay.SetActive(false);
 
         Destroy(m_currentSound.gameObject);
        
