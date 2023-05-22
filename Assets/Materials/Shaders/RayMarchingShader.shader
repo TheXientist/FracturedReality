@@ -155,6 +155,28 @@
                 return length(pos) / s;
             }
 
+            float DEfractalAnimated(float3 pos) {
+                float timer1 = sin(_Time.y * 0.75) * 0.5 + 0.5;
+                float timer2 = sin(_Time.y * 1.33) * 0.5 + 0.5;
+                float timer3 = sin(_Time.y * 1.93) * 0.5 + 0.5;
+
+                float s = 3;
+                pos = abs(pos);
+                float3  p0 = pos * 0.9;
+                for (float i = 0; i < 5; i++) {
+                    pos = 1 - abs(pos - 1);
+                    pos = 1 - abs(abs(pos - 2) - 1);
+                    float g = (-3.5 - 1 * timer3) * clamp(0.45 * max(1.6 / dot(pos, pos), 0.7), 0, 0.8 + 0.4 * timer2);
+                    pos *= g;
+                    pos += p0;
+                    s *= g;
+                }
+                s = abs(s);
+                float a = 1.8 + 2 * timer1;
+                pos -= clamp(pos, -a, a);
+                return length(pos) / s;
+            }
+
             float Mandelbulb(float3 pos) { //mandelbulb
 
                 float Bailout = 4;
@@ -215,7 +237,7 @@
                     switch (frac.type)
                     {
                     case 0:
-                        dist = DEfractal(localPos);
+                        dist = DEfractalAnimated(localPos);
                         break;
                     case 1:
                         dist = Mandelbulb(localPos);
