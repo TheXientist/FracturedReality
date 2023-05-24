@@ -3098,8 +3098,9 @@ MonoBehaviour:
   playerPrefabVR: {fileID: 9101574440703911807, guid: 9fd09a23e178ce7448f876ee152b6358,
     type: 3}
   camera: {fileID: 3061859875343879396}
+  raymarchingMaterial: {fileID: 2100000, guid: 9b70661f60311954f843379b4ac45a8d, type: 2}
   debug: 0
-  vr: 1
+  vr: 0
   defaultControls: {fileID: 11400000, guid: 150cd2d3f21c94709972b1f5b94e2027, type: 2}
   lockedOnControls: {fileID: 11400000, guid: 157c2173bf11249bc8a4ac5124e19814, type: 2}
   target: {fileID: 0}
@@ -3220,6 +3221,7 @@ MonoBehaviour:
   m_currentBullet: {fileID: 8083039225130457355, guid: 3e6fd02594efb0948983f7e05a97b213,
     type: 3}
   fireRate: 2
+  m_fadeBlackScreen: {fileID: 0}
   projectileThreshold: 5
 --- !u!135 &1956742967641723284
 SphereCollider:
