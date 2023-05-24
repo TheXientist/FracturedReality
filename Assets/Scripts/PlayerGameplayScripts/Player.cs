@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -76,6 +77,8 @@ public class Player : MonoBehaviour, IDamageable
         NextFireTime -= Time.deltaTime;
     }
 
+    public event Action OnDamaged;
+
     public void TakeDamage(float damage)
     {
         PlayerCurrentHealth -= damage;
@@ -84,6 +87,7 @@ public class Player : MonoBehaviour, IDamageable
             PlayerCurrentHealth = 0;
            StartCoroutine( DestroySelf());
         }
+        OnDamaged?.Invoke();
     }
 
     public IEnumerator DestroySelf()

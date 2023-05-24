@@ -2849,6 +2849,8 @@ GameObject:
   - component: {fileID: 9101574440704113693}
   - component: {fileID: 9101574440692578891}
   - component: {fileID: 9101574440693665993}
+  - component: {fileID: 8230493308563880150}
+  - component: {fileID: 8123221799965755508}
   m_Layer: 3
   m_Name: VRCamera
   m_TagString: MainCamera
@@ -2934,6 +2936,41 @@ Behaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9101574440703897305}
   m_Enabled: 1
+--- !u!114 &8230493308563880150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9101574440703897305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b9e6615bb1649fc8a4e5e470c730c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vignetteShader: {fileID: 4800000, guid: 03993668043b640fd88efadd1f51581f, type: 3}
+  radius: 1.5
+  feather: 1.24
+--- !u!95 &8123221799965755508
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9101574440703897305}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b44d57dfbe0af4a0e9e7c3169bacdd6f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &9101574440703898939
 GameObject:
   m_ObjectHideFlags: 0
@@ -3720,6 +3757,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7464457987853852714, guid: 849fa46458bbda44a9c2942933840e1d,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7464457987853852714, guid: 849fa46458bbda44a9c2942933840e1d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7464457987853852714, guid: 849fa46458bbda44a9c2942933840e1d,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7464457987853852714, guid: 849fa46458bbda44a9c2942933840e1d,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -3777,6 +3829,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7464457987853852714, guid: 849fa46458bbda44a9c2942933840e1d,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 849fa46458bbda44a9c2942933840e1d, type: 3}

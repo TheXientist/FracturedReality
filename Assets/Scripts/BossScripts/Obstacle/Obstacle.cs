@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,9 +28,12 @@ public class Obstacle : MonoBehaviour, IDamageable
         Destroy(gameObject);
     }
 
+    public event Action OnDamaged;
+
     public void TakeDamage(float damage)
     {
         obstacleCurrentHealth -= damage;
+        OnDamaged?.Invoke();
     }
 
 
