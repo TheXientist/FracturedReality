@@ -1,8 +1,10 @@
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BossAI : MonoBehaviour, IDamageable
 {
@@ -27,7 +29,11 @@ public class BossAI : MonoBehaviour, IDamageable
     private List<BossPhaseScriptableObject> phaseList;
 
     [SerializeField]
-    private GameObject player;
+    private Player player;
+
+    [SerializeField, Tooltip("Range the player has to stay within to not get damaged")] private float maxPlayerRange;
+    [SerializeField] private int damagePerSecondWhenOutOfRange;
+    private float lastDamageTickTime;
 
     private TextMeshProUGUI healthDisplay;
 
@@ -40,7 +46,7 @@ public class BossAI : MonoBehaviour, IDamageable
     {
         SpaceshipController.Instance.SetTarget(transform);
         SpaceshipController.Instance.GetComponent<Player>().m_BossObject = gameObject;
-        player = SpaceshipController.Instance.gameObject;
+        player = SpaceshipController.Instance.GetComponent<Player>();
     }
     
     // Start is called before the first frame update
@@ -58,6 +64,22 @@ public class BossAI : MonoBehaviour, IDamageable
 
         //start the main coroutine
         //StartCoroutine("StartBossScene"); --> start by Spawn animation       
+    }
+
+    private void Update()
+    {
+        CheckDistanceToPlayer();
+    }
+
+    private void CheckDistanceToPlayer()
+    {
+        if (Vector3.Distance(transform.position, player.transform.position) <= maxPlayerRange) return;
+
+        if (Time.time - lastDamageTickTime > 1f)
+        {
+            lastDamageTickTime = Time.time;
+            player.TakeDamage(damagePerSecondWhenOutOfRange);
+        }
     }
 
     //Fight coroutine (Main)  possible to add "pre-events"
@@ -108,7 +130,7 @@ public class BossAI : MonoBehaviour, IDamageable
         m_currentAbilityNumber = GetRandomAbility(abilityPropabilityList);
         abilityCooldownTime = phseAbilityScriptList[m_currentAbilityNumber].abilityCooldown;
 
-        yield return phseAbilityScriptList[m_currentAbilityNumber].Execute(gameObject, player);
+        yield return phseAbilityScriptList[m_currentAbilityNumber].Execute(gameObject, player.gameObject);
     }
 
     private void CalculatePhaseAbilityPropabilities()
