@@ -37,6 +37,8 @@ public class Player : MonoBehaviour, IDamageable
 
     public FadeBlackScreen m_fadeBlackScreen;
 
+    private bool animatingDamage;
+
     private float NextFireTime
     {
         get => nextFireTime;
@@ -82,12 +84,34 @@ public class Player : MonoBehaviour, IDamageable
     public void TakeDamage(float damage)
     {
         PlayerCurrentHealth -= damage;
+        
+        if (!animatingDamage)
+            StartCoroutine(FlashRed());
+        
         if (playerCurrentHealth <= 0)
         {
             PlayerCurrentHealth = 0;
            StartCoroutine( DestroySelf());
         }
         OnDamaged?.Invoke();
+    }
+
+    private IEnumerator FlashRed()
+    {
+        animatingDamage = true;
+
+        if (SpaceshipController.VR)
+        {
+            SteamVR_Fade.Start(new Color(1f, 0f, 0f, 0.1f), 0.25f);
+            yield return new WaitForSeconds(0.25f);
+            SteamVR_Fade.Start(Color.clear, 0.5f);
+        }
+        else
+        {
+            // TODO: non-VR alternative
+        }
+        
+        animatingDamage = false;
     }
 
     public IEnumerator DestroySelf()

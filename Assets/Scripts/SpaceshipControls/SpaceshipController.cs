@@ -11,7 +11,8 @@ public class SpaceshipController : MonoBehaviour
     
     [SerializeField] private GameObject playerPrefabVR, camera;
     [SerializeField] private Material raymarchingMaterial;
-    [SerializeField] private bool debug, vr;
+    [SerializeField] private bool debug, vr; 
+    public static bool VR => Instance.vr;
     private SteamVR_Action_Vector2 leftStickAction, rightStickAction;
     private GameObject vrArmature;
 

@@ -2493,6 +2493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9e05292e0d62b542ac5bba92674a86d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
 --- !u!114 &3968111722285571973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2505,6 +2506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
@@ -2532,6 +2534,7 @@ MonoBehaviour:
     type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
 --- !u!1 &9101574440703873971
 GameObject:
   m_ObjectHideFlags: 0
@@ -2849,7 +2852,6 @@ GameObject:
   - component: {fileID: 9101574440704113693}
   - component: {fileID: 9101574440692578891}
   - component: {fileID: 9101574440693665993}
-  - component: {fileID: 8230493308563880150}
   - component: {fileID: 8123221799965755508}
   m_Layer: 3
   m_Name: VRCamera
@@ -2936,21 +2938,6 @@ Behaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9101574440703897305}
   m_Enabled: 1
---- !u!114 &8230493308563880150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9101574440703897305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29b9e6615bb1649fc8a4e5e470c730c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vignetteShader: {fileID: 4800000, guid: 03993668043b640fd88efadd1f51581f, type: 3}
-  radius: 1.5
-  feather: 1.24
 --- !u!95 &8123221799965755508
 Animator:
   serializedVersion: 4
@@ -3739,21 +3726,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 75.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7464457987853852714, guid: 849fa46458bbda44a9c2942933840e1d,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7464457987853852714, guid: 849fa46458bbda44a9c2942933840e1d,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7464457987853852714, guid: 849fa46458bbda44a9c2942933840e1d,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 7464457987853852714, guid: 849fa46458bbda44a9c2942933840e1d,
         type: 3}
