@@ -219,9 +219,18 @@
                 return max(-DEtorus(pos), DEcube(pos));
             }
 
-            float DEplane(float3 pos) {
-                float3 orientation = float3(1, 1, 1);
-                return 1;
+            float3 Mirror(float3 pos, float3 pivot, float3 norm) {
+                norm = normalize(norm);
+                float dist = dot(pos - pivot, norm);
+                if (dist > 0) return pos;
+                return pos - norm * 2 * dist; //mirrored pos
+            }
+
+            float mCube(float3 pos){
+                float3 mPos = pos; //modifiable position
+                mPos = Mirror(mPos, float3(-1, -1, -1) * _SinTime.y, float3(1, 1, 1));
+                mPos = Mirror(mPos, float3(1, 1, 1), float3(-1, -1, -1));
+                return DEcube(mPos);
             }
 
             float DE(float3 pos) {
@@ -237,10 +246,13 @@
                     switch (frac.type)
                     {
                     case 0:
-                        dist = DEfractalAnimated(localPos);
+                        dist = DEfractal(localPos);
                         break;
                     case 1:
                         dist = Mandelbulb(localPos);
+                        break;
+                    case 2:
+                        dist = mCube(localPos);
                         break;
                     default:
                         dist = minDist;

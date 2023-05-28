@@ -59,10 +59,10 @@ Material:
     m_Ints:
     - _DepthSteps: 100
     - _FovSteps: 200
-    - _FractalCount: 1
+    - _FractalCount: 0
     - _LightSteps: 80
     - _Shininess: -28
-    - _VR: 1
+    - _VR: 0
     m_Floats:
     - _AO: 0.8
     - _Ambient: 0.07
