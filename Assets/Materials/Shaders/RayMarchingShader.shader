@@ -2,6 +2,7 @@
 {
     Properties{
         _FractalCount ("Fractal Count", Integer) = 0
+        _MirrorCount("Mirror Count", Integer) = 0
 
         _VR ("VR", Integer) = 1
 
@@ -42,9 +43,18 @@
                 int type;
                 float4x4 worldToLocal;
             };
+
+            struct MirrorData
+            {
+                float3 position;
+                float3 normal;
+            };
+
             StructuredBuffer<FractalData> _FractalBuffer;
+            StructuredBuffer<MirrorData> _MirrorBuffer;
             
             int _FractalCount;
+            int _MirrorCount;
             int _DepthSteps;
             int _LightSteps;
             float _Fidelity;
@@ -219,25 +229,31 @@
                 return max(-DEtorus(pos), DEcube(pos));
             }
 
-            float3 Mirror(float3 pos, float3 pivot, float3 norm) {
-                norm = normalize(norm);
-                float dist = dot(pos - pivot, norm);
+            float3 Mirror(float3 pos, float3 position, float3 normal) { //mirors current position
+                normal = normalize(normal);
+                float dist = dot(pos - position, normal);
                 if (dist > 0) return pos;
-                return pos - norm * 2 * dist; //mirrored pos
+                return pos - normal * 2 * dist;
+            }
+
+            float3 ApplyMirrors(float3 pos) {
+                float3 mPos = pos;
+                for (int i = 0; i < _MirrorCount; ++i) {
+                    MirrorData m = _MirrorBuffer[i];
+                    mPos = Mirror(mPos, m.position, m.normal);
+                }
+                return mPos;
             }
 
             float mCube(float3 pos){
-                float3 mPos = pos; //modifiable position
-                mPos = Mirror(mPos, float3(-1, -1, -1) * _SinTime.y, float3(1, 1, 1));
-                mPos = Mirror(mPos, float3(1, 1, 1), float3(-1, -1, -1));
-                return DEcube(mPos);
+                return DEcube(ApplyMirrors(pos));
             }
 
             float DE(float3 pos) {
                 float minDist = _ProjectionParams.z;
                 float4 pos4 = float4(pos,1); // Needed for matrix transformation
                 
-                for (int i = 0; i < _FractalCount; i++)
+                for (int i = 0; i < _FractalCount; ++i)
                 {
                     FractalData frac = _FractalBuffer[i];
                     float3 localPos = mul(frac.worldToLocal, pos4);
