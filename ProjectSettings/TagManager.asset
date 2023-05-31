@@ -11,6 +11,7 @@ TagManager:
   - ShipHealthDisplay
   - WeaponStateDisplay
   - WarningDisplay
+  - TransformManager
   layers:
   - Default
   - TransparentFX

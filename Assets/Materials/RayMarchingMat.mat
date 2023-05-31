@@ -61,8 +61,9 @@ Material:
     - _FovSteps: 200
     - _FractalCount: 0
     - _LightSteps: 80
-    - _MirrorCount: 0
+    - _MirrorCount: 1
     - _Shininess: -28
+    - _TransformCount: 0
     - _VR: 0
     m_Floats:
     - _AO: 0.8
@@ -78,10 +79,10 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _IAmbient: 0.07
-    - _ISpecular: 2.5
+    - _ISpecular: 0
     - _Metallic: 0
     - _Mode: 0
-    - _NormalMode: 1
+    - _NormalMode: 4
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Shininess: 1.5

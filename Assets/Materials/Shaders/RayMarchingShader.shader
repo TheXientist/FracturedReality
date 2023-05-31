@@ -2,7 +2,7 @@
 {
     Properties{
         _FractalCount ("Fractal Count", Integer) = 0
-        _MirrorCount("Mirror Count", Integer) = 0
+        _TransformCount("Transform Count", Integer) = 0
 
         _VR ("VR", Integer) = 1
 
@@ -44,17 +44,17 @@
                 float4x4 worldToLocal;
             };
 
-            struct MirrorData
+            struct TransformData
             {
-                float3 position;
-                float3 normal;
+                int mirror; //0 = false, 1 = true
+                float4x4 data;
             };
 
             StructuredBuffer<FractalData> _FractalBuffer;
-            StructuredBuffer<MirrorData> _MirrorBuffer;
+            StructuredBuffer<TransformData> _TransformBuffer;
             
             int _FractalCount;
-            int _MirrorCount;
+            int _TransformCount;
             int _DepthSteps;
             int _LightSteps;
             float _Fidelity;
@@ -229,29 +229,35 @@
                 return max(-DEtorus(pos), DEcube(pos));
             }
 
-            float3 Mirror(float3 pos, float3 position, float3 normal) { //mirors current position
+            float3 Mirror(float3 pos, float3 position, float3 normal) { //mirrors current position if it is behind the mirror plane
                 normal = normalize(normal);
                 float dist = dot(pos - position, normal);
                 if (dist > 0) return pos;
                 return pos - normal * 2 * dist;
             }
 
-            float3 ApplyMirrors(float3 pos) {
+            float3 ApplyTransforms(float3 pos) {
                 float3 mPos = pos;
-                for (int i = 0; i < _MirrorCount; ++i) {
-                    MirrorData m = _MirrorBuffer[i];
-                    mPos = Mirror(mPos, m.position, m.normal);
+                for (int i = 0; i < _TransformCount; ++i) {
+                    if (_TransformBuffer[i].mirror == 1) {
+                        float4x4 m = _TransformBuffer[i].data;
+                        float3 position = float3(m[0][0], m[0][1], m[0][2]);
+                        float3 normal = float3(m[1][0], m[1][1], m[1][2]);
+                        mPos = Mirror(mPos, position, normal);
+                    } else {
+                        mPos = mul(_TransformBuffer[i].data, float4(mPos, 1));
+                    }
                 }
                 return mPos;
             }
 
             float mCube(float3 pos){
-                return DEcube(ApplyMirrors(pos));
+                return DEcube(ApplyTransforms(pos));
             }
 
             float DE(float3 pos) {
                 float minDist = _ProjectionParams.z;
-                float4 pos4 = float4(pos,1); // Needed for matrix transformation
+                float4 pos4 = float4(pos, 1); // Needed for matrix transformation
                 
                 for (int i = 0; i < _FractalCount; ++i)
                 {
@@ -365,6 +371,9 @@
 
                     normal = -normalize(cross(nT, nB));
                 }
+                else {
+                    normal = float3(1, 1, 1);
+                }
 
                 if (_VR) normal = -normal;
 
@@ -430,8 +439,8 @@
                 //return float4(baseColor.x, baseColor.y, baseColor.z, 1);
                 //return float4(illumination, illumination, illumination, 1);
                 //return float4(ambientOcclusion, ambientOcclusion, ambientOcclusion, 1);
-                //return float4(light, light, light, 1);
-                return float4(light * baseColor.x + specular, light * baseColor.y + specular, light * baseColor.z + specular, 1);
+                return float4(light, light, light, 1);
+                //return float4(light * baseColor.x + specular, light * baseColor.y + specular, light * baseColor.z + specular, 1);
             }
             ENDHLSL
         }
