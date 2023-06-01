@@ -1,8 +1,10 @@
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BossAI : MonoBehaviour, IDamageable
 {
@@ -120,6 +122,8 @@ public class BossAI : MonoBehaviour, IDamageable
         }
     }
 
+    public event Action OnDamaged;
+
     public void TakeDamage(float damage)
     {
         if (destroyed) return;
@@ -131,6 +135,7 @@ public class BossAI : MonoBehaviour, IDamageable
             destroyed = true;
             GetComponent<Animator>().SetTrigger("Death");
         }
+        OnDamaged?.Invoke();
     }
 
     // Called by Death animation
