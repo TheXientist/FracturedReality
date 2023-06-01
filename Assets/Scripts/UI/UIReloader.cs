@@ -27,6 +27,7 @@ public class UIReloader : MonoBehaviour
     public void ReloadPauseScreen()
     {
         pauseMenu = FindObjectOfType<PauseMenu>();
+        pauseMenu.AllowToggle();
         StartCoroutine(pauseMenu.PauseOnReload(1f)); 
     }
 }
