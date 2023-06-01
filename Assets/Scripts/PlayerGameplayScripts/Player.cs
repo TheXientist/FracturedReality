@@ -10,6 +10,8 @@ public class Player : MonoBehaviour, IDamageable
 {
     private float playerCurrentHealth = 0;
 
+    public static event Action OnPlayerDeath;
+
     public float PlayerCurrentHealth
     {
         get => playerCurrentHealth;
@@ -91,7 +93,8 @@ public class Player : MonoBehaviour, IDamageable
         if (playerCurrentHealth <= 0)
         {
             PlayerCurrentHealth = 0;
-           StartCoroutine( DestroySelf());
+            StartCoroutine( DestroySelf());
+            OnPlayerDeath?.Invoke();
         }
         OnDamaged?.Invoke();
     }

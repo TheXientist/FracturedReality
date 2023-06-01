@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
     private GameObject panel;
     private bool paused;
     private bool started;
+    private bool allowToggle = true;
     
     public SteamVR_Action_Boolean actionToggle = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("default", "TogglePause");
 
@@ -38,6 +39,7 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
         panel = transform.GetChild(0).gameObject;
 
         StartCoroutine(PauseAfterSeconds(1f));
+        Player.OnPlayerDeath += DisallowToggle;
     }
 
     private IEnumerator PauseAfterSeconds(float s)
@@ -47,12 +49,14 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
     }
 
     private void ToggleVR(SteamVR_Action_Boolean action, SteamVR_Input_Sources sources, bool value)
-    {
+    {       
         Toggle(!value);
     }
 
     private void Toggle(bool shouldPause)
     {
+        if (!allowToggle) return;
+
         paused = shouldPause;
 
         if(panel != null)
@@ -77,7 +81,17 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
         Toggle(true);
     }
 
-    private void Update()
+    private void DisallowToggle()
+    {
+        allowToggle = false;
+    }
+
+    public void AllowToggle()
+    {
+        allowToggle = true;
+    }
+
+        private void Update()
     {
         if(paused)
         {
