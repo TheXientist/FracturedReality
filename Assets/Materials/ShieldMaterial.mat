@@ -40,8 +40,11 @@ Material:
     - _BUILTIN_ZTest: 4
     - _BUILTIN_ZWrite: 0
     - _BUILTIN_ZWriteControl: 0
-    - _FresnelPower: -0.38
+    - _FresnelPower: -0.47
+    - _InvFresnelPower: 0.53
+    - _OffsetFrequency: 1
     - _VertexFrequency: 1
+    - _VertexOffset: 0.2
     m_Colors:
     - _FresnelColor: {r: 0.105882354, g: 0.02745098, b: 0.23529412, a: 1}
     - _FrontColor: {r: 31.999996, g: 31.999996, b: 31.999996, a: 1}
