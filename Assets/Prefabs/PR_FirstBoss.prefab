@@ -111,7 +111,7 @@ Transform:
   m_GameObject: {fileID: 3764602986980618844}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13.900303, y: -2.2832022, z: -10.644268}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4.2266135, y: 4.2266135, z: 4.2266135}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1232567987}
@@ -137,6 +137,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 404fc808bd54630419d5aa3eefcfc461, type: 2}
   - {fileID: 11400000, guid: 5be5defc6aae5414dba37e847c918c40, type: 2}
   player: {fileID: 0}
+  maxPlayerRange: 270
+  damagePerSecondWhenOutOfRange: 5
 --- !u!65 &6293280729080821924
 BoxCollider:
   m_ObjectHideFlags: 0

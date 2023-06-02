@@ -41,6 +41,8 @@ public class BossAI : MonoBehaviour, IDamageable
 
     private IEnumerator m_bossCoroutine;
 
+    private GameObject warningDisplay;
+
 
     private void SetupReferences()
     {
@@ -61,6 +63,8 @@ public class BossAI : MonoBehaviour, IDamageable
 
         //to make sure, the last phase lasts till the end of the boss-fight
         phaseList[phaseList.Count-1].percentPhaseCondition = 0;
+        
+        warningDisplay = GameObject.FindWithTag("RangeDisplay").transform.GetChild(0).gameObject;
 
         //start the main coroutine
         //StartCoroutine("StartBossScene"); --> start by Spawn animation       
@@ -73,8 +77,13 @@ public class BossAI : MonoBehaviour, IDamageable
 
     private void CheckDistanceToPlayer()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) <= maxPlayerRange) return;
-
+        if (Vector3.Distance(transform.position, player.transform.position) <= maxPlayerRange)
+        {
+            warningDisplay.SetActive(false);
+            return;
+        }
+        warningDisplay.SetActive(true);
+        
         if (Time.time - lastDamageTickTime > 1f)
         {
             lastDamageTickTime = Time.time;
@@ -168,4 +177,12 @@ public class BossAI : MonoBehaviour, IDamageable
         phaseList[currentPhase].phaseAbilityScripts[m_currentAbilityNumber].InterruptCurrentAbility();
         StopCoroutine(m_bossCoroutine);
     }
+    
+    #if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, maxPlayerRange);
+    }
+#endif
 }

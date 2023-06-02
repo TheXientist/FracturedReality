@@ -47,7 +47,7 @@ Material:
     - _VertexOffset: 0.2
     m_Colors:
     - _FresnelColor: {r: 0.105882354, g: 0.02745098, b: 0.23529412, a: 1}
-    - _FrontColor: {r: 31.999996, g: 31.999996, b: 31.999996, a: 1}
+    - _FrontColor: {r: 1.9999998, g: 1.9999998, b: 1.9999998, a: 0.16470589}
     - _VertexOffset: {r: -0.2, g: -0.2, b: -0.2, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5692574126223146623
