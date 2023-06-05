@@ -29,7 +29,11 @@ public class BossAI : MonoBehaviour, IDamageable
     private List<BossPhaseScriptableObject> phaseList;
 
     [SerializeField]
-    private GameObject player;
+    private Player player;
+
+    [SerializeField, Tooltip("Range the player has to stay within to not get damaged")] private float maxPlayerRange;
+    [SerializeField] private int damagePerSecondWhenOutOfRange;
+    private float lastDamageTickTime;
 
     private TextMeshProUGUI healthDisplay;
 
@@ -37,12 +41,14 @@ public class BossAI : MonoBehaviour, IDamageable
 
     private IEnumerator m_bossCoroutine;
 
+    private GameObject warningDisplay;
+
 
     private void SetupReferences()
     {
         SpaceshipController.Instance.SetTarget(transform);
         SpaceshipController.Instance.GetComponent<Player>().m_BossObject = gameObject;
-        player = SpaceshipController.Instance.gameObject;
+        player = SpaceshipController.Instance.GetComponent<Player>();
     }
     
     // Start is called before the first frame update
@@ -57,9 +63,32 @@ public class BossAI : MonoBehaviour, IDamageable
 
         //to make sure, the last phase lasts till the end of the boss-fight
         phaseList[phaseList.Count-1].percentPhaseCondition = 0;
+        
+        warningDisplay = GameObject.FindWithTag("RangeDisplay").transform.GetChild(0).gameObject;
 
         //start the main coroutine
         //StartCoroutine("StartBossScene"); --> start by Spawn animation       
+    }
+
+    private void Update()
+    {
+        CheckDistanceToPlayer();
+    }
+
+    private void CheckDistanceToPlayer()
+    {
+        if (Vector3.Distance(transform.position, player.transform.position) <= maxPlayerRange)
+        {
+            warningDisplay.SetActive(false);
+            return;
+        }
+        warningDisplay.SetActive(true);
+        
+        if (Time.time - lastDamageTickTime > 1f)
+        {
+            lastDamageTickTime = Time.time;
+            player.TakeDamage(damagePerSecondWhenOutOfRange);
+        }
     }
 
     //Fight coroutine (Main)  possible to add "pre-events"
@@ -110,7 +139,7 @@ public class BossAI : MonoBehaviour, IDamageable
         m_currentAbilityNumber = GetRandomAbility(abilityPropabilityList);
         abilityCooldownTime = phseAbilityScriptList[m_currentAbilityNumber].abilityCooldown;
 
-        yield return phseAbilityScriptList[m_currentAbilityNumber].Execute(gameObject, player);
+        yield return phseAbilityScriptList[m_currentAbilityNumber].Execute(gameObject, player.gameObject);
     }
 
     private void CalculatePhaseAbilityPropabilities()
@@ -151,4 +180,12 @@ public class BossAI : MonoBehaviour, IDamageable
         phaseList[currentPhase].phaseAbilityScripts[m_currentAbilityNumber].InterruptCurrentAbility();
         StopCoroutine(m_bossCoroutine);
     }
+    
+    #if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, maxPlayerRange);
+    }
+#endif
 }
