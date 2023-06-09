@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using GD.MinMaxSlider;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Valve.VR;
 
 public class Player : MonoBehaviour, IDamageable
@@ -29,9 +32,10 @@ public class Player : MonoBehaviour, IDamageable
     public GameObject m_BossObject;
 
     [SerializeField]
-    private GameObject m_currentBullet;
+    private AmmunationModule m_currentBullet;
 
-    private TextMeshProUGUI firerateDisplay, healthDisplay;
+    private TextMeshProUGUI healthDisplay, heatText;
+    private Image heatDisplay;
 
     public float fireRate = 1f;
 
@@ -44,21 +48,7 @@ public class Player : MonoBehaviour, IDamageable
     private float NextFireTime
     {
         get => nextFireTime;
-        set
-        {
-            nextFireTime = value;
-            switch (nextFireTime)
-            {
-                case > 0f:
-                    firerateDisplay.text = "Blaster cooling\ndown...";
-                    firerateDisplay.color = new Color(255, 180, 0);
-                    break;
-                default:
-                    firerateDisplay.text = "Blaster ready";
-                    firerateDisplay.color = Color.cyan;
-                    break;
-            }
-        }
+        set => nextFireTime = value;
     }
 
     [SerializeField]
@@ -66,10 +56,35 @@ public class Player : MonoBehaviour, IDamageable
 
     private SteamVR_Action_Boolean fireAction;
 
+    [SerializeField, MinMaxSlider(0f, 5f)] private Vector2 chargeTime;
+    private float minChargeTime => chargeTime.x;
+    private float maxChargeTime => chargeTime.y;
+    private float lastBtnDownTime;
+    private float lastHeatAddTime;
+
+    [Header("Heat")] [SerializeField] private int maxHeat;
+    [SerializeField] private int heatPerShot, heatPerOvercharge;
+    [SerializeField, Tooltip("Heat loss per 10ms when cooling down")]
+    private int cooldownRate;
+    [SerializeField] private float cooldownAfterSeconds;
+    private int currentHeat;
+
+    private int CurrentHeat
+    {
+        get => currentHeat;
+        set
+        {
+            currentHeat = value;
+            heatDisplay.fillAmount = (float)currentHeat / maxHeat;
+        }
+    }
+    public bool IsOverheated { get; private set; }
+
     void Start()
     {
         healthDisplay = GameObject.FindWithTag("ShipHealthDisplay").GetComponent<TextMeshProUGUI>();
-        firerateDisplay = GameObject.FindWithTag("WeaponStateDisplay").GetComponent<TextMeshProUGUI>();
+        heatText = GameObject.FindWithTag("WeaponStateDisplay").GetComponent<TextMeshProUGUI>();
+        heatDisplay = GameObject.FindWithTag("HeatDisplay").GetComponent<Image>();
         PlayerCurrentHealth = playerMaxHealth;
         fireAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("spaceship", "fire");
         fireAction.AddOnStateDownListener(OnFireVR, SteamVR_Input_Sources.Any);
@@ -79,6 +94,11 @@ public class Player : MonoBehaviour, IDamageable
     void Update()
     {
         NextFireTime -= Time.deltaTime;
+
+        if (lastHeatAddTime > 0f && Time.time - lastHeatAddTime > cooldownAfterSeconds)
+        {
+            StartCoroutine(CooldownRoutine());
+        }
     }
 
     public event Action OnDamaged;
@@ -132,9 +152,9 @@ public class Player : MonoBehaviour, IDamageable
         {
             Vector3 direction = (m_BossObject.transform.position - transform.position).normalized;
 
-            GameObject temp = Instantiate(m_currentBullet, m_bulletSpawnpoint.position + (m_BossObject.transform.position - m_bulletSpawnpoint.position).normalized * projectileThreshold, Quaternion.LookRotation(direction, Vector3.up));
+            AmmunationModule temp = Instantiate(m_currentBullet, m_bulletSpawnpoint.position + (m_BossObject.transform.position - m_bulletSpawnpoint.position).normalized * projectileThreshold, Quaternion.LookRotation(direction, Vector3.up));
 
-            temp.GetComponent<AmmunationModule>().direction = direction;
+            temp.direction = direction;
 
             NextFireTime = 1f / fireRate;
         }
@@ -143,8 +163,84 @@ public class Player : MonoBehaviour, IDamageable
     }
 
     // Callback func for SteamVR input
-    public void OnFireVR(SteamVR_Action_Boolean action, SteamVR_Input_Sources source) => ShootBullet();
-    
+    public void OnFireVR(SteamVR_Action_Boolean action, SteamVR_Input_Sources source) => OnFireInput(action.stateDown);
+
+    private void OnFireInput(bool btnDown)
+    {
+        if (IsOverheated)
+        {
+            // TODO: SFX & visual feedback
+            lastBtnDownTime = -1f; // mark invalid stateDown
+            return;
+        }
+        
+        if (btnDown || lastBtnDownTime < 0f)
+        {
+            lastBtnDownTime = Time.time;
+            return;
+        }
+
+        float btnDownTime = Time.time - lastBtnDownTime;
+        if (btnDownTime >= minChargeTime && btnDownTime <= maxChargeTime)
+        {
+            // Perfectly charged attack (2 bullets, no heat)
+            ShootBullet();
+            ShootBullet();
+            // TODO: SFX, UI display
+        } else if (btnDownTime < minChargeTime)
+        {
+            // Regular attack
+            ShootBullet();
+            AddHeat(heatPerShot);
+        }
+        else
+        {
+            // Overheat
+            AddHeat(heatPerOvercharge);
+        }
+    }
+
+    private void AddHeat(int amount)
+    {
+        CurrentHeat += amount;
+        if (currentHeat >= maxHeat)
+        {
+            CurrentHeat = maxHeat;
+            StartCoroutine(OverheatRoutine());
+        }
+        lastHeatAddTime = Time.time;
+    }
+
+    private IEnumerator OverheatRoutine()
+    {
+        // TODO: SFX
+        IsOverheated = true;
+        heatDisplay.color = Color.red;
+        heatText.text = "Overheated!";
+        heatText.color = Color.red;
+        
+        yield return new WaitForSeconds(3f);
+        while (currentHeat > 0)
+        {
+            CurrentHeat -= cooldownRate;
+            yield return new WaitForSeconds(0.1f);
+        }
+        IsOverheated = false;
+        heatDisplay.color = new Color(1f, .7f, .2f);
+        heatText.text = "Blaster Heat";
+        heatText.color = new Color(1f, .7f, .2f);
+    }
+
+    private IEnumerator CooldownRoutine()
+    {
+        lastHeatAddTime = -1f;
+        while (currentHeat > 0 && lastHeatAddTime < 0f)
+        {
+            CurrentHeat -= cooldownRate;
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
     // Callback func for Unity InputSystem (non-VR)
-    public void OnFire() => ShootBullet();
+    public void OnFire(InputValue v) => OnFireInput(v.isPressed);
 }

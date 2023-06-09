@@ -2627,7 +2627,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3061859875470130509}
-  m_LocalRotation: {x: 0.011265654, y: -0.45527542, z: 0.005761205, w: 0.8902608}
+  m_LocalRotation: {x: 0.011265654, y: -0.4552754, z: 0.005761205, w: 0.89026076}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2774,11 +2774,17 @@ MonoBehaviour:
   playerMaxHealth: 1000
   m_bulletSpawnpoint: {fileID: 3061859875470130508}
   m_BossObject: {fileID: 0}
-  m_currentBullet: {fileID: 8083039225130457355, guid: 3e6fd02594efb0948983f7e05a97b213,
+  m_currentBullet: {fileID: -7181034891209170459, guid: 3e6fd02594efb0948983f7e05a97b213,
     type: 3}
   fireRate: 2
   m_fadeBlackScreen: {fileID: 0}
   projectileThreshold: 5
+  chargeTime: {x: 2, y: 2.5}
+  maxHeat: 100
+  heatPerShot: 10
+  heatPerOvercharge: 50
+  cooldownRate: 1
+  cooldownAfterSeconds: 3
 --- !u!135 &1956742967641723284
 SphereCollider:
   m_ObjectHideFlags: 0

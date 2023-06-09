@@ -12,6 +12,7 @@ TagManager:
   - WeaponStateDisplay
   - WarningDisplay
   - RangeDisplay
+  - HeatDisplay
   layers:
   - Default
   - TransparentFX
