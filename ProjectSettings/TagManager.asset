@@ -13,6 +13,8 @@ TagManager:
   - WarningDisplay
   - RangeDisplay
   - HeatDisplay
+  - ChargeDisplay
+  - ChargeMark
   layers:
   - Default
   - TransparentFX

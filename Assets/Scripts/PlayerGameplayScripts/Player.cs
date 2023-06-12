@@ -35,7 +35,7 @@ public class Player : MonoBehaviour, IDamageable
     private AmmunationModule m_currentBullet;
 
     private TextMeshProUGUI healthDisplay, heatText;
-    private Image heatDisplay;
+    private Image heatDisplay, chargeDisplay, chargeMark;
 
     public float fireRate = 1f;
 
@@ -59,6 +59,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField, MinMaxSlider(0f, 5f)] private Vector2 chargeTime;
     private float minChargeTime => chargeTime.x;
     private float maxChargeTime => chargeTime.y;
+    private bool buttonDown;
     private float lastBtnDownTime;
     private float lastHeatAddTime;
 
@@ -85,9 +86,13 @@ public class Player : MonoBehaviour, IDamageable
         healthDisplay = GameObject.FindWithTag("ShipHealthDisplay").GetComponent<TextMeshProUGUI>();
         heatText = GameObject.FindWithTag("WeaponStateDisplay").GetComponent<TextMeshProUGUI>();
         heatDisplay = GameObject.FindWithTag("HeatDisplay").GetComponent<Image>();
+        chargeDisplay = GameObject.FindWithTag("ChargeDisplay").GetComponent<Image>();
+        chargeMark = GameObject.FindWithTag("ChargeMark").GetComponent<Image>();
         PlayerCurrentHealth = playerMaxHealth;
         fireAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("spaceship", "fire");
         fireAction.AddOnStateDownListener(OnFireVR, SteamVR_Input_Sources.Any);
+
+        chargeMark.fillAmount = 1f - (minChargeTime / maxChargeTime);
     }
 
     // Update is called once per frame
@@ -99,6 +104,29 @@ public class Player : MonoBehaviour, IDamageable
         {
             StartCoroutine(CooldownRoutine());
         }
+        
+        UpdateChargeDisplay();
+    }
+
+    private void UpdateChargeDisplay()
+    {
+        float chargePercentage = chargeDisplay.fillAmount;
+        if (buttonDown)
+        {
+            float btnDownTime = Time.time - lastBtnDownTime;
+            chargePercentage = btnDownTime / maxChargeTime;
+            if (chargePercentage > 1f)
+                chargeDisplay.color = Color.red;
+            else if (btnDownTime >= minChargeTime)
+                chargeDisplay.color = Color.green;
+        }
+        else if (chargePercentage > 0f)
+        {
+            chargePercentage -= 2f * Time.deltaTime;
+            chargeDisplay.color = Color.white;
+        }
+        
+        chargeDisplay.fillAmount = chargePercentage;
     }
 
     public event Action OnDamaged;
@@ -174,12 +202,16 @@ public class Player : MonoBehaviour, IDamageable
             return;
         }
         
+        buttonDown = btnDown;
+        
+        // Button down
         if (btnDown || lastBtnDownTime < 0f)
         {
             lastBtnDownTime = Time.time;
             return;
         }
-
+        
+        // Button release
         float btnDownTime = Time.time - lastBtnDownTime;
         if (btnDownTime >= minChargeTime && btnDownTime <= maxChargeTime)
         {
