@@ -27,7 +27,8 @@ public class Player : MonoBehaviour, IDamageable
     public float playerMaxHealth = 100;
 
     [SerializeField]
-    private Transform m_bulletSpawnpoint;
+    private Transform m_bulletSpawnpointLeft, m_bulletSpawnpointRight;
+    private bool lastFiredRight;
 
     public GameObject m_BossObject;
 
@@ -174,15 +175,31 @@ public class Player : MonoBehaviour, IDamageable
         SceneManager.LoadScene(0);
     }
 
-    public void ShootBullet()
+    public void ShootBullet(bool charged = false)
     {
         if(nextFireTime <= 0f && m_BossObject != null)
         {
-            Vector3 direction = (m_BossObject.transform.position - transform.position).normalized;
+            Vector3 spawnPos = lastFiredRight ? m_bulletSpawnpointLeft.position : m_bulletSpawnpointRight.position;
+            lastFiredRight = !lastFiredRight;
+            
+            Vector3 direction = (m_BossObject.transform.position - spawnPos).normalized;
 
-            AmmunationModule temp = Instantiate(m_currentBullet, m_bulletSpawnpoint.position + (m_BossObject.transform.position - m_bulletSpawnpoint.position).normalized * projectileThreshold, Quaternion.LookRotation(direction, Vector3.up));
+            AmmunationModule temp = Instantiate(m_currentBullet, spawnPos, Quaternion.LookRotation(direction, Vector3.up));
 
             temp.direction = direction;
+
+            if (charged)
+            {
+                // Fire additional bullet
+                spawnPos = lastFiredRight ? m_bulletSpawnpointLeft.position : m_bulletSpawnpointRight.position;
+                lastFiredRight = !lastFiredRight;
+            
+                direction = (m_BossObject.transform.position - spawnPos).normalized;
+
+                temp = Instantiate(m_currentBullet, spawnPos, Quaternion.LookRotation(direction, Vector3.up));
+
+                temp.direction = direction;
+            }
 
             NextFireTime = 1f / fireRate;
         }
@@ -216,9 +233,8 @@ public class Player : MonoBehaviour, IDamageable
         if (btnDownTime >= minChargeTime && btnDownTime <= maxChargeTime)
         {
             // Perfectly charged attack (2 bullets, no heat)
-            ShootBullet();
-            ShootBullet();
-            // TODO: SFX, UI display
+            ShootBullet(charged: true);
+            // TODO: SFX
         } else if (btnDownTime < minChargeTime)
         {
             // Regular attack
