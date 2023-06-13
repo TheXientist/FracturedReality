@@ -199,7 +199,8 @@ public class Player : MonoBehaviour, IDamageable
                 temp = Instantiate(m_currentBullet, spawnPos, Quaternion.LookRotation(direction, Vector3.up));
 
                 temp.direction = direction;
-            }
+            } else 
+                AddHeat(heatPerShot);
 
             NextFireTime = 1f / fireRate;
         }
@@ -230,17 +231,9 @@ public class Player : MonoBehaviour, IDamageable
         
         // Button release
         float btnDownTime = Time.time - lastBtnDownTime;
-        if (btnDownTime >= minChargeTime && btnDownTime <= maxChargeTime)
-        {
-            // Perfectly charged attack (2 bullets, no heat)
-            ShootBullet(charged: true);
-            // TODO: SFX
-        } else if (btnDownTime < minChargeTime)
-        {
-            // Regular attack
-            ShootBullet();
-            AddHeat(heatPerShot);
-        }
+        
+        if (btnDownTime <= maxChargeTime)
+            ShootBullet(btnDownTime >= minChargeTime);
         else
         {
             // Overheat
