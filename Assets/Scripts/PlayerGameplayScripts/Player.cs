@@ -82,6 +82,15 @@ public class Player : MonoBehaviour, IDamageable
     }
     public bool IsOverheated { get; private set; }
 
+    [Header("EMP"), SerializeField] private float empCooldown;
+    [SerializeField] private float empRange;
+    private bool empReady = true;
+    [SerializeField] private GameObject explosionPrefab;
+    [SerializeField] private Transform explosionSpawnPosition;
+
+    private TextMeshProUGUI empText;
+    private GameObject empDisplay;
+
     void Start()
     {
         healthDisplay = GameObject.FindWithTag("ShipHealthDisplay").GetComponent<TextMeshProUGUI>();
@@ -89,6 +98,8 @@ public class Player : MonoBehaviour, IDamageable
         heatDisplay = GameObject.FindWithTag("HeatDisplay").GetComponent<Image>();
         chargeDisplay = GameObject.FindWithTag("ChargeDisplay").GetComponent<Image>();
         chargeMark = GameObject.FindWithTag("ChargeMark").GetComponent<Image>();
+        empText = GameObject.FindWithTag("EMPText").GetComponent<TextMeshProUGUI>();
+        empDisplay = GameObject.FindWithTag("EMPBorder");
         PlayerCurrentHealth = playerMaxHealth;
         fireAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("spaceship", "fire");
         fireAction.AddOnStateDownListener(OnFireVR, SteamVR_Input_Sources.Any);
@@ -241,6 +252,46 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
+    private void OnDeflectInput()
+    {
+        if (!empReady)
+        {
+            // TODO: visual / sfx feedback
+            return;
+        }
+
+        StartCoroutine(Deflect());
+    }
+
+    private IEnumerator Deflect()
+    {
+        // VFX
+        var explosionVFX = Instantiate(explosionPrefab).transform;
+        explosionVFX.SetParent(explosionSpawnPosition);
+        explosionVFX.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        yield return new WaitForSeconds(0.2f);
+        
+        // Destroy bullets
+        // TODO: separate layer for bullets
+        Collider[] bullets = Physics.OverlapSphere(transform.position, empRange, LayerMask.GetMask("Enemy"));
+        foreach (var bullet in bullets)
+        {
+            if (bullet.tag.Equals("Boss")) continue;
+            // TODO: instead trigger destroy animation
+            Destroy(bullet.gameObject);
+        }
+        
+        // Cooldown
+        empReady = false;
+        empDisplay.gameObject.SetActive(false);
+        empText.text = "EMP on cooldown";
+        
+        yield return new WaitForSeconds(empCooldown);
+        empReady = true;
+        empDisplay.gameObject.SetActive(true);
+        empText.text = "EMP ready";
+    }
+
     private void AddHeat(int amount)
     {
         CurrentHeat += amount;
@@ -284,4 +335,13 @@ public class Player : MonoBehaviour, IDamageable
 
     // Callback func for Unity InputSystem (non-VR)
     public void OnFire(InputValue v) => OnFireInput(v.isPressed);
+    private void OnDeflect() => OnDeflectInput();
+    
+    #if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, empRange);
+    }
+#endif
 }
