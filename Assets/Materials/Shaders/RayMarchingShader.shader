@@ -107,13 +107,11 @@
             }
 
             float DEsphere(float3 pos) {
-
                 return length(-pos) - 1;
             }
 
             float DEisphere(float3 pos)
             {
-
                 pos.xy = -(pos.xy % 1) - float3(0.5, 0.5, 0.5);
                 return length(pos) - 0.3;
             }
@@ -218,15 +216,15 @@
             }
 
             float Union(float3 pos) {
-                return min(DEtorus(pos), DEcube(pos));
+                return min(DEsphere(pos), DEcube(pos));
             }
 
             float Intersection(float3 pos) {
-                return max(DEtorus(pos), DEcube(pos));
+                return max(DEsphere(pos), DEcube(pos));
             }
 
             float Difference(float3 pos) {
-                return max(-DEtorus(pos), DEcube(pos));
+                return max(-DEsphere(pos), DEcube(pos));
             }
 
             float3 Mirror(float3 pos, float3 position, float3 normal) { //mirrors current position if it is behind the mirror plane
