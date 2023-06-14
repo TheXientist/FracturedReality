@@ -1,5 +1,5 @@
 {
-    "name": "FracturedReality",
+    "name": "InputActions",
     "maps": [
         {
             "name": "Player",
@@ -27,6 +27,15 @@
                     "name": "Fire",
                     "type": "Button",
                     "id": "054a5e92-e8d7-4dfd-a5c1-d7ab47472ef1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Deflect",
+                    "type": "Button",
+                    "id": "275a577b-6737-4278-b62a-f057f24c0acc",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -218,6 +227,17 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b79bee6c-d501-4c09-8190-b0c1a0e03379",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Deflect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

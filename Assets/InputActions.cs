@@ -51,6 +51,15 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""id"": ""054a5e92-e8d7-4dfd-a5c1-d7ab47472ef1"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Deflect"",
+                    ""type"": ""Button"",
+                    ""id"": ""275a577b-6737-4278-b62a-f057f24c0acc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 }
@@ -240,6 +249,17 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""XR"",
                     ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b79bee6c-d501-4c09-8190-b0c1a0e03379"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Deflect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -858,6 +878,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player_LeftStick = m_Player.FindAction("LeftStick", throwIfNotFound: true);
         m_Player_RightStick = m_Player.FindAction("RightStick", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+        m_Player_Deflect = m_Player.FindAction("Deflect", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -935,6 +956,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_LeftStick;
     private readonly InputAction m_Player_RightStick;
     private readonly InputAction m_Player_Fire;
+    private readonly InputAction m_Player_Deflect;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -942,6 +964,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @LeftStick => m_Wrapper.m_Player_LeftStick;
         public InputAction @RightStick => m_Wrapper.m_Player_RightStick;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
+        public InputAction @Deflect => m_Wrapper.m_Player_Deflect;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -960,6 +983,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                @Deflect.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDeflect;
+                @Deflect.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDeflect;
+                @Deflect.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDeflect;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -973,6 +999,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
+                @Deflect.started += instance.OnDeflect;
+                @Deflect.performed += instance.OnDeflect;
+                @Deflect.canceled += instance.OnDeflect;
             }
         }
     }
@@ -1165,6 +1194,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnLeftStick(InputAction.CallbackContext context);
         void OnRightStick(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnDeflect(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

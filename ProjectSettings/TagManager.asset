@@ -12,6 +12,11 @@ TagManager:
   - WeaponStateDisplay
   - WarningDisplay
   - RangeDisplay
+  - HeatDisplay
+  - ChargeDisplay
+  - ChargeMark
+  - EMPText
+  - EMPBorder
   layers:
   - Default
   - TransparentFX
