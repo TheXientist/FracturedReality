@@ -13,7 +13,7 @@ public abstract class TransformStage : MonoBehaviour
 
     void OnEnable()
     {
-        manager = GameObject.FindWithTag("TransformManager").GetComponent<TransformManager>();
+        manager = FindObjectOfType<TransformManager>();
         if (manager)
         {
             if (!manager.transformStages.Contains(this)) manager.transformStages.Add(this);
