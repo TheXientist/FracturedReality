@@ -195,7 +195,8 @@ public class Player : MonoBehaviour, IDamageable
             Vector3 spawnPos = lastFiredRight ? m_bulletSpawnpointLeft.position : m_bulletSpawnpointRight.position;
             lastFiredRight = !lastFiredRight;
             
-            Vector3 direction = (m_BossObject.transform.position - spawnPos).normalized;
+            Vector3 direction = m_BossObject.activeSelf ? (m_BossObject.transform.position - spawnPos) : transform.forward;
+            direction.Normalize();
 
             AmmunationModule temp = Instantiate(m_currentBullet, spawnPos, Quaternion.LookRotation(direction, Vector3.up));
 
