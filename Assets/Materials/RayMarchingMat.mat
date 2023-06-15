@@ -9,6 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: RayMarchingMat
   m_Shader: {fileID: 4800000, guid: 5030ab7dd3e3b5449b8f52c753805663, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -17,6 +19,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -63,8 +66,8 @@ Material:
     - _LightSteps: 80
     - _MirrorCount: 1
     - _Shininess: -28
-    - _TransformCount: 9
-    - _VR: 0
+    - _TransformCount: 0
+    - _VR: 1
     m_Floats:
     - _AO: 0.8
     - _Ambient: 0.07

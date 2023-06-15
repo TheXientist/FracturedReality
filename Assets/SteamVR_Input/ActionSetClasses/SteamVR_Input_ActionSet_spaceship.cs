@@ -40,5 +40,13 @@ namespace Valve.VR
                 return SteamVR_Actions.spaceship_fire;
             }
         }
+        
+        public virtual SteamVR_Action_Boolean deflect
+        {
+            get
+            {
+                return SteamVR_Actions.spaceship_deflect;
+            }
+        }
     }
 }

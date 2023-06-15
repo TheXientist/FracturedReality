@@ -370,7 +370,7 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/spaceship/in/fire"
+                     "output" : "/actions/spaceship/in/deflect"
                   }
                },
                "mode" : "button",

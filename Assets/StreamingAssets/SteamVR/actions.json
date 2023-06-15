@@ -101,6 +101,10 @@
     {
       "name": "/actions/spaceship/in/fire",
       "type": "boolean"
+    },
+    {
+      "name": "/actions/spaceship/in/deflect",
+      "type": "boolean"
     }
   ],
   "action_sets": [

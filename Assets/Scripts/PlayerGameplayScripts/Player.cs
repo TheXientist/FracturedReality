@@ -55,7 +55,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField]
     private float projectileThreshold = 1f;
 
-    private SteamVR_Action_Boolean fireAction;
+    private SteamVR_Action_Boolean fireAction, deflectAction;
 
     [SerializeField, MinMaxSlider(0f, 5f)] private Vector2 chargeTime;
     private float minChargeTime => chargeTime.x;
@@ -102,7 +102,9 @@ public class Player : MonoBehaviour, IDamageable
         empDisplay = GameObject.FindWithTag("EMPBorder");
         PlayerCurrentHealth = playerMaxHealth;
         fireAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("spaceship", "fire");
-        fireAction.AddOnStateDownListener(OnFireVR, SteamVR_Input_Sources.Any);
+        fireAction.AddOnChangeListener(OnFireVR, SteamVR_Input_Sources.Any);
+        deflectAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("spaceship", "deflect");
+        deflectAction.AddOnStateDownListener(OnDeflectVR, SteamVR_Input_Sources.Any);
 
         chargeMark.fillAmount = 1f - (minChargeTime / maxChargeTime);
     }
@@ -220,7 +222,8 @@ public class Player : MonoBehaviour, IDamageable
     }
 
     // Callback func for SteamVR input
-    public void OnFireVR(SteamVR_Action_Boolean action, SteamVR_Input_Sources source) => OnFireInput(action.stateDown);
+    public void OnFireVR(SteamVR_Action_Boolean action, SteamVR_Input_Sources source, bool value) => OnFireInput(value);
+    public void OnDeflectVR(SteamVR_Action_Boolean action, SteamVR_Input_Sources source) => OnDeflectInput();
 
     private void OnFireInput(bool btnDown)
     {
