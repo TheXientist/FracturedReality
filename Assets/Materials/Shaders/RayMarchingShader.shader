@@ -2,6 +2,7 @@
 {
     Properties{
         _FractalCount ("Fractal Count", Integer) = 0
+        _TransformCount("Transform Count", Integer) = 0
 
         _VR ("VR", Integer) = 1
 
@@ -42,9 +43,18 @@
                 int type;
                 float4x4 worldToLocal;
             };
+
+            struct TransformData
+            {
+                int mirror; //0 = false, 1 = true
+                float4x4 data;
+            };
+
             StructuredBuffer<FractalData> _FractalBuffer;
+            StructuredBuffer<TransformData> _TransformBuffer;
             
             int _FractalCount;
+            int _TransformCount;
             int _DepthSteps;
             int _LightSteps;
             float _Fidelity;
@@ -97,13 +107,11 @@
             }
 
             float DEsphere(float3 pos) {
-
                 return length(-pos) - 1;
             }
 
             float DEisphere(float3 pos)
             {
-
                 pos.xy = -(pos.xy % 1) - float3(0.5, 0.5, 0.5);
                 return length(pos) - 0.3;
             }
@@ -208,27 +216,48 @@
             }
 
             float Union(float3 pos) {
-                return min(DEtorus(pos), DEcube(pos));
+                return min(DEsphere(pos), DEcube(pos));
             }
 
             float Intersection(float3 pos) {
-                return max(DEtorus(pos), DEcube(pos));
+                return max(DEsphere(pos), DEcube(pos));
             }
 
             float Difference(float3 pos) {
-                return max(-DEtorus(pos), DEcube(pos));
+                return max(-DEsphere(pos), DEcube(pos));
             }
 
-            float DEplane(float3 pos) {
-                float3 orientation = float3(1, 1, 1);
-                return 1;
+            float3 Mirror(float3 pos, float3 position, float3 normal) { //mirrors current position if it is behind the mirror plane
+                normal = normalize(normal);
+                float dist = dot(pos - position, normal);
+                if (dist > 0) return pos;
+                return pos - normal * 2 * dist;
+            }
+
+            float3 ApplyTransforms(float3 pos) {
+                float3 mPos = pos;
+                for (int i = 0; i < _TransformCount; ++i) {
+                    if (_TransformBuffer[i].mirror == 1) {
+                        float4x4 m = _TransformBuffer[i].data;
+                        float3 position = float3(m[0][0], m[0][1], m[0][2]);
+                        float3 normal = float3(m[1][0], m[1][1], m[1][2]);
+                        mPos = Mirror(mPos, position, normal);
+                    } else {
+                        mPos = mul(_TransformBuffer[i].data, float4(mPos, 1));
+                    }
+                }
+                return mPos;
+            }
+
+            float mCube(float3 pos){
+                return DEcube(ApplyTransforms(pos));
             }
 
             float DE(float3 pos) {
                 float minDist = _ProjectionParams.z;
-                float4 pos4 = float4(pos,1); // Needed for matrix transformation
+                float4 pos4 = float4(pos, 1); // Needed for matrix transformation
                 
-                for (int i = 0; i < _FractalCount; i++)
+                for (int i = 0; i < _FractalCount; ++i)
                 {
                     FractalData frac = _FractalBuffer[i];
                     float3 localPos = mul(frac.worldToLocal, pos4);
@@ -237,10 +266,13 @@
                     switch (frac.type)
                     {
                     case 0:
-                        dist = DEfractalAnimated(localPos);
+                        dist = DEfractal(localPos);
                         break;
                     case 1:
                         dist = Mandelbulb(localPos);
+                        break;
+                    case 2:
+                        dist = mCube(localPos);
                         break;
                     default:
                         dist = minDist;
@@ -337,6 +369,9 @@
 
                     normal = -normalize(cross(nT, nB));
                 }
+                else {
+                    normal = float3(1, 1, 1);
+                }
 
                 if (_VR) normal = -normal;
 
@@ -402,8 +437,8 @@
                 //return float4(baseColor.x, baseColor.y, baseColor.z, 1);
                 //return float4(illumination, illumination, illumination, 1);
                 //return float4(ambientOcclusion, ambientOcclusion, ambientOcclusion, 1);
-                //return float4(light, light, light, 1);
-                return float4(light * baseColor.x + specular, light * baseColor.y + specular, light * baseColor.z + specular, 1);
+                return float4(light, light, light, 1);
+                //return float4(light * baseColor.x + specular, light * baseColor.y + specular, light * baseColor.z + specular, 1);
             }
             ENDHLSL
         }

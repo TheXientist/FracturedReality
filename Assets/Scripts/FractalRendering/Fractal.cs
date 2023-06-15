@@ -5,11 +5,12 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[ExecuteInEditMode]
 public class Fractal : MonoBehaviour
 {
     enum FractalType
     {
-        Mandelbox = 0, Mandelbulb = 1
+        Mandelbox = 0, Mandelbulb = 1, Mirror = 2
     }
     // Must be identical to the struct in the shader
     struct FractalData
