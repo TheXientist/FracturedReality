@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityPropability: 3
   abilityCooldown: 1
+  animationTriggerName: DefaultAttack
   m_bulletPrefab: {fileID: 4185635229755856287, guid: 7a25034d073d54f4ba750012eef7113f,
     type: 3}
   m_spawnThreshold: 3

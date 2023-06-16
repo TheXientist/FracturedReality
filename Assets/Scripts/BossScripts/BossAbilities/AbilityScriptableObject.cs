@@ -18,6 +18,8 @@ public abstract class AbilityScriptableObject : ScriptableObject
     [SerializeField]
     public int abilityCooldown = 3;
 
+    [SerializeField] public string animationTriggerName;
+    
     /// <summary>
     /// Call to use the ability. Should be overwritten in children to define ability.
     /// </summary>

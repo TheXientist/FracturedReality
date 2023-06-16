@@ -43,6 +43,8 @@ public class BossAI : MonoBehaviour, IDamageable
 
     private GameObject warningDisplay;
 
+    [SerializeField] private Animator animator;
+
 
     private void SetupReferences()
     {
@@ -73,6 +75,12 @@ public class BossAI : MonoBehaviour, IDamageable
     private void Update()
     {
         CheckDistanceToPlayer();
+        FacePlayer();
+    }
+
+    private void FacePlayer()
+    {
+        transform.forward = (player.transform.position - transform.position).normalized;
     }
 
     private void CheckDistanceToPlayer()
@@ -137,9 +145,12 @@ public class BossAI : MonoBehaviour, IDamageable
     private IEnumerator UseRandomPhaseAbility(List<AbilityScriptableObject> phseAbilityScriptList, List<int> abilityPropabilityList)
     {
         m_currentAbilityNumber = GetRandomAbility(abilityPropabilityList);
-        abilityCooldownTime = phseAbilityScriptList[m_currentAbilityNumber].abilityCooldown;
+        var currentAbility = phseAbilityScriptList[m_currentAbilityNumber];
+        abilityCooldownTime = currentAbility.abilityCooldown;
 
-        yield return phseAbilityScriptList[m_currentAbilityNumber].Execute(gameObject, player.gameObject);
+        animator.SetTrigger(currentAbility.animationTriggerName);
+        
+        yield return currentAbility.Execute(gameObject, player.gameObject);
     }
 
     private void CalculatePhaseAbilityPropabilities()
@@ -162,7 +173,7 @@ public class BossAI : MonoBehaviour, IDamageable
         {
             StopBossFight();
             destroyed = true;
-            GetComponent<Animator>().SetTrigger("Death");
+            animator.SetTrigger("Death");
         }
         OnDamaged?.Invoke();
     }

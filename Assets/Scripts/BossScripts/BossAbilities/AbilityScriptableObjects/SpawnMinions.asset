@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ecd0db5366d15541a743ddbcdd1f193, type: 3}
   m_Name: SpawnMinions
   m_EditorClassIdentifier: 
-  m_bulletPrefab: {fileID: 0}
-  m_bulletSpeed: 1
-  m_bossBulletThreshold: 3
   abilityPropability: 3
-  m_SpawnPrefab: {fileID: 0}
+  abilityCooldown: 3
+  animationTriggerName: HomingAttack
+  m_MinionPrefab: {fileID: 0}
