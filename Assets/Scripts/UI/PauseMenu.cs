@@ -25,12 +25,12 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
         }
         input.PauseMenu.Enable();
 
-        actionToggle.onChange += ToggleVR;
+        actionToggle.AddOnStateDownListener(ToggleVR, SteamVR_Input_Sources.Any);
     }
 
     private void OnDisable()
     {
-        actionToggle.onChange -= ToggleVR;
+        actionToggle.RemoveOnStateDownListener(ToggleVR, SteamVR_Input_Sources.Any);
     }
 
     // Start is called before the first frame update
@@ -48,9 +48,9 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
         Toggle(true);
     }
 
-    private void ToggleVR(SteamVR_Action_Boolean action, SteamVR_Input_Sources sources, bool value)
+    private void ToggleVR(SteamVR_Action_Boolean action, SteamVR_Input_Sources sources)
     {       
-        Toggle(!value);
+        Toggle(!paused);
     }
 
     private void Toggle(bool shouldPause)
