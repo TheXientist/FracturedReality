@@ -32,16 +32,19 @@ public class HomingBullet : AbstractBullet, IBullet
 
     private void Update()
     {
-        Vector3 movement = direction * speed * Time.deltaTime;
-        transform.position += movement;
-
-        distance -= speed * Time.deltaTime;
-
-        if (distance <= 0 && !m_homing )
+        if (m_homing)
         {
-            m_homing = true;
             direction = (target.transform.position - transform.position).normalized;
         }
+        else
+        {
+            distance -= speed * Time.deltaTime;
+            if (distance <= 0)
+                m_homing = true;
+        }
+        
+        Vector3 movement = direction * speed * Time.deltaTime;
+        transform.position += movement;
     }
 
 
