@@ -11,6 +11,9 @@ public class BossAI : MonoBehaviour, IDamageable
     [SerializeField] private float bossMaxHealth;
     private float bossCurrentHealth;
 
+    [SerializeField]
+    private bool invincible;
+    
     public float BossCurrentHealth
     {
         private set
@@ -43,6 +46,8 @@ public class BossAI : MonoBehaviour, IDamageable
 
     private GameObject warningDisplay;
 
+    [SerializeField] private Animator animator;
+
 
     private void SetupReferences()
     {
@@ -66,6 +71,9 @@ public class BossAI : MonoBehaviour, IDamageable
         
         warningDisplay = GameObject.FindWithTag("RangeDisplay").transform.GetChild(0).gameObject;
 
+        // Make boss invincible during spawn animation
+        invincible = true;
+
         //start the main coroutine
         //StartCoroutine("StartBossScene"); --> start by Spawn animation       
     }
@@ -73,6 +81,12 @@ public class BossAI : MonoBehaviour, IDamageable
     private void Update()
     {
         CheckDistanceToPlayer();
+        FacePlayer();
+    }
+
+    private void FacePlayer()
+    {
+        transform.forward = (player.transform.position - transform.position).normalized;
     }
 
     private void CheckDistanceToPlayer()
@@ -94,7 +108,8 @@ public class BossAI : MonoBehaviour, IDamageable
     //Fight coroutine (Main)  possible to add "pre-events"
     public void StartBossScene()
     {
-        m_bossCoroutine= BeginFight();
+        invincible = false;
+        m_bossCoroutine = BeginFight();
 
         StartCoroutine(m_bossCoroutine);
 
@@ -137,9 +152,15 @@ public class BossAI : MonoBehaviour, IDamageable
     private IEnumerator UseRandomPhaseAbility(List<AbilityScriptableObject> phseAbilityScriptList, List<int> abilityPropabilityList)
     {
         m_currentAbilityNumber = GetRandomAbility(abilityPropabilityList);
-        abilityCooldownTime = phseAbilityScriptList[m_currentAbilityNumber].abilityCooldown;
+        var currentAbility = phseAbilityScriptList[m_currentAbilityNumber];
+        abilityCooldownTime = currentAbility.abilityCooldown;
 
-        yield return phseAbilityScriptList[m_currentAbilityNumber].Execute(gameObject, player.gameObject);
+        animator.SetTrigger(currentAbility.animationTriggerName);
+        
+        yield return new WaitForSeconds(currentAbility.abilityWindup);
+        
+        if (!destroyed) // Check if boss got killed during windup
+            yield return currentAbility.Execute(gameObject, player.gameObject);
     }
 
     private void CalculatePhaseAbilityPropabilities()
@@ -155,14 +176,14 @@ public class BossAI : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
-        if (destroyed) return;
+        if (destroyed || invincible) return;
         
         BossCurrentHealth -= damage;
         if (bossCurrentHealth <= 0)
         {
             StopBossFight();
             destroyed = true;
-            GetComponent<Animator>().SetTrigger("Death");
+            animator.SetTrigger("Death");
         }
         OnDamaged?.Invoke();
     }

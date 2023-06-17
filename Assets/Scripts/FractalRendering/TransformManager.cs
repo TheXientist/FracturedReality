@@ -16,6 +16,7 @@ public class TransformManager : MonoBehaviour
     [SerializeField] private Material raymarchingMaterial;
 
     public bool showPlanes = true;
+    private bool renderingPlanes;
     public bool refresh = false;
 
     #region Shader IDs
@@ -29,19 +30,38 @@ public class TransformManager : MonoBehaviour
     {
         BUFFER_ID = Shader.PropertyToID("_TransformBuffer");
         COUNT_ID = Shader.PropertyToID("_TransformCount");
+        renderingPlanes = !showPlanes; // Make sure to update plane visibility on first frame
     }
 
     private void OnEnable()
     {
+        transformStages.Clear();
+        foreach(TransformStage child in GetComponentsInChildren<TransformStage>())
+        {
+            transformStages.Add(child);
+        }
         Register();
         RefreshBuffer();
     }
 
+    private void OnDisable()
+    {
+        foreach (TransformStage child in GetComponentsInChildren<TransformStage>())
+        {
+            transformStages.Remove(child);
+        }
+        Refresh();
+    }
+
     private void Update()
     {
-        foreach (TransformStage stage in transformStages)
+        if (showPlanes != renderingPlanes)
         {
-            stage.gameObject.GetComponent<MeshRenderer>().enabled = showPlanes;
+            foreach (TransformStage stage in transformStages)
+            {
+                stage.gameObject.GetComponent<MeshRenderer>().enabled = showPlanes;
+            }
+            renderingPlanes = showPlanes;
         }
 
         for (int i = 0; i < transformStages.Count; ++i)
@@ -114,11 +134,5 @@ public class TransformManager : MonoBehaviour
         CreateComputeBuffer(ref allTransformsBuffer, allTransformData, TransformData.SizeOf());
         raymarchingMaterial.SetBuffer(BUFFER_ID, allTransformsBuffer);
         raymarchingMaterial.SetInteger(COUNT_ID, allTransformData.Count);
-    }
-
-    private void OnDisable()
-    {
-        allTransformData = new List<TransformData>();
-        RefreshBuffer();
     }
 }

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 179b3f4e99f8a4640b68a20b857c5922, type: 3}
   m_Name: LaserAttack
   m_EditorClassIdentifier: 
-  m_bulletModuleSpeed: 1
-  m_bulletModuleRotationSpeed: 0
   abilityPropability: 3
+  abilityWindup: 1
   abilityCooldown: 5
+  animationTriggerName: LaserAttack
   m_laserPrefab: {fileID: 1456456425288734, guid: a688f5f905455c74fa98f22c365a237d,
     type: 3}
   laserDuration: 4

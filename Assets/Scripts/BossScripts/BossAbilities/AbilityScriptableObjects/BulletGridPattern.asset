@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7f2527399d0cf842b655e276df5cfb7, type: 3}
+  m_Name: BulletGridPattern
+  m_EditorClassIdentifier: 
+  abilityPropability: 3
+  abilityCooldown: 2
+  animationTriggerName: PlaneAttack
+  m_bulletPrefab: {fileID: 4185635229755856287, guid: a2eb47fc14d607f48889e469f39bd95a,
+    type: 3}
+  GridSize: 50
+  bulletOffset: 5
+  bulletSpeed: 50
+  bulletSpawnPropability: 5
