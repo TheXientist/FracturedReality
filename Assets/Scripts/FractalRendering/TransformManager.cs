@@ -16,6 +16,7 @@ public class TransformManager : MonoBehaviour
     [SerializeField] private Material raymarchingMaterial;
 
     public bool showPlanes = true;
+    private bool renderingPlanes;
     public bool refresh = false;
 
     #region Shader IDs
@@ -29,10 +30,12 @@ public class TransformManager : MonoBehaviour
     {
         BUFFER_ID = Shader.PropertyToID("_TransformBuffer");
         COUNT_ID = Shader.PropertyToID("_TransformCount");
+        renderingPlanes = !showPlanes; // Make sure to update plane visibility on first frame
     }
 
     private void OnEnable()
     {
+        transformStages.Clear();
         foreach(TransformStage child in GetComponentsInChildren<TransformStage>())
         {
             transformStages.Add(child);
@@ -47,13 +50,18 @@ public class TransformManager : MonoBehaviour
         {
             transformStages.Remove(child);
         }
+        Refresh();
     }
 
     private void Update()
     {
-        foreach (TransformStage stage in transformStages)
+        if (showPlanes != renderingPlanes)
         {
-            stage.gameObject.GetComponent<MeshRenderer>().enabled = showPlanes;
+            foreach (TransformStage stage in transformStages)
+            {
+                stage.gameObject.GetComponent<MeshRenderer>().enabled = showPlanes;
+            }
+            renderingPlanes = showPlanes;
         }
 
         for (int i = 0; i < transformStages.Count; ++i)
