@@ -150,7 +150,10 @@ public class BossAI : MonoBehaviour, IDamageable
 
         animator.SetTrigger(currentAbility.animationTriggerName);
         
-        yield return currentAbility.Execute(gameObject, player.gameObject);
+        yield return new WaitForSeconds(currentAbility.abilityWindup);
+        
+        if (!destroyed) // Check if boss got killed during windup
+            yield return currentAbility.Execute(gameObject, player.gameObject);
     }
 
     private void CalculatePhaseAbilityPropabilities()

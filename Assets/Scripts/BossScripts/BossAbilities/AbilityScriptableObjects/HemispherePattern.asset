@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityPropability: 3
   abilityCooldown: 2
+  animationTriggerName: SprayAttack
   m_bulletPrefab: {fileID: 4185635229755856287, guid: a2eb47fc14d607f48889e469f39bd95a,
     type: 3}
   m_bulletCount: 50

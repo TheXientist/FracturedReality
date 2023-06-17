@@ -13,7 +13,13 @@ public abstract class AbilityScriptableObject : ScriptableObject
     public byte abilityPropability = 3;
 
     /// <summary>
-    /// Time in seconds the boss waits before using the next attack.
+    /// Time in seconds the boss waits before using this attack.
+    /// </summary>
+    [SerializeField]
+    public int abilityWindup = 0;
+    
+    /// <summary>
+    /// Time in seconds the boss waits before continuing to the next attack.
     /// </summary>
     [SerializeField]
     public int abilityCooldown = 3;
@@ -107,8 +113,4 @@ public abstract class AbilityScriptableObject : ScriptableObject
         Vector3 ret = targetPosition + targetSpeed * time;
         return ret;
     }
-
-
-
-
 }

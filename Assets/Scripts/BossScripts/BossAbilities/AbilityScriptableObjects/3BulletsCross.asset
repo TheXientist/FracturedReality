@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 3BulletsCross
   m_EditorClassIdentifier: 
   abilityPropability: 3
+  abilityWindup: 0
   abilityCooldown: 1
   animationTriggerName: DefaultAttack
   m_bulletPrefab: {fileID: 4185635229755856287, guid: 0dd37212031b0ce4a8e22c883ca40a04,

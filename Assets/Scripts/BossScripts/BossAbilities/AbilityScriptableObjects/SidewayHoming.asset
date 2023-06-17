@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: SidewayHoming
   m_EditorClassIdentifier: 
   abilityPropability: 3
-  abilityCooldown: 1
+  abilityWindup: 2
+  abilityCooldown: 5
+  animationTriggerName: HomingAttack
   firingAngle: 70
   bulletModuleSpeed: 60
   m_bulletPrefab: {fileID: 4185635229755856287, guid: 72cfe63fe54089745b3834e77f3aefdd,
