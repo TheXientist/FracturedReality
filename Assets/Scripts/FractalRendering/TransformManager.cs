@@ -33,8 +33,20 @@ public class TransformManager : MonoBehaviour
 
     private void OnEnable()
     {
+        foreach(TransformStage child in GetComponentsInChildren<TransformStage>())
+        {
+            transformStages.Add(child);
+        }
         Register();
         RefreshBuffer();
+    }
+
+    private void OnDisable()
+    {
+        foreach (TransformStage child in GetComponentsInChildren<TransformStage>())
+        {
+            transformStages.Remove(child);
+        }
     }
 
     private void Update()
@@ -114,11 +126,5 @@ public class TransformManager : MonoBehaviour
         CreateComputeBuffer(ref allTransformsBuffer, allTransformData, TransformData.SizeOf());
         raymarchingMaterial.SetBuffer(BUFFER_ID, allTransformsBuffer);
         raymarchingMaterial.SetInteger(COUNT_ID, allTransformData.Count);
-    }
-
-    private void OnDisable()
-    {
-        allTransformData = new List<TransformData>();
-        RefreshBuffer();
     }
 }
