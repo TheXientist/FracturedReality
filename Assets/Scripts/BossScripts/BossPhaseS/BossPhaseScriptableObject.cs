@@ -13,6 +13,12 @@ public class BossPhaseScriptableObject : ScriptableObject
     [SerializeField]
     public float percentPhaseCondition = 0f;
 
+    [SerializeField]
+    public AudioClip phaseMusic;
+
+    [SerializeField]
+    public AudioClip phasePreMusic;
+
     public void calculatePropability()
     {
 

@@ -11,6 +11,10 @@ public class BossAI : MonoBehaviour, IDamageable
     [SerializeField] private float bossMaxHealth;
     private float bossCurrentHealth;
 
+    private MusicFader m_musicFader;
+
+    public AudioClip deathSound;
+
     public float BossCurrentHealth
     {
         private set
@@ -55,6 +59,8 @@ public class BossAI : MonoBehaviour, IDamageable
     private void Start()
     {
         Debug.Log("BossAI.Start");
+
+        m_musicFader = FindAnyObjectByType<MusicFader>();
         
         SetupReferences();
         
@@ -107,7 +113,13 @@ public class BossAI : MonoBehaviour, IDamageable
         
         CalculatePhaseAbilityPropabilities();
 
-        while (bossCurrentHealth > bossMaxHealth * phaseList[currentPhase].percentPhaseCondition)
+        
+        if(phaseList[currentPhase].phaseMusic != null)
+        {
+            yield return m_musicFader.FadeMusic(phaseList[currentPhase].phaseMusic, phaseList[currentPhase].phasePreMusic);
+        }
+
+        while (bossCurrentHealth > bossMaxHealth * phaseList[currentPhase].percentPhaseCondition )
         {
             yield return UseRandomPhaseAbility(phaseList[currentPhase].phaseAbilityScripts, phaseList[currentPhase].abilityPropabilityList);
             yield return new WaitForSeconds(abilityCooldownTime);
@@ -163,6 +175,8 @@ public class BossAI : MonoBehaviour, IDamageable
             StopBossFight();
             destroyed = true;
             GetComponent<Animator>().SetTrigger("Death");
+            //m_musicFader.PlayDeathSound(deathSound);
+            StartCoroutine(m_musicFader.PlayDeathSound(deathSound));
         }
         OnDamaged?.Invoke();
     }

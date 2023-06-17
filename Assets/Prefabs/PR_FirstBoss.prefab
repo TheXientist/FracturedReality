@@ -132,10 +132,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossMaxHealth: 1000
+  deathSound: {fileID: 8300000, guid: 4bd863876bbfadb4a820881daf5c242b, type: 3}
   phaseList:
   - {fileID: 11400000, guid: 59f613395ea207b46be59768d3f47540, type: 2}
   - {fileID: 11400000, guid: 404fc808bd54630419d5aa3eefcfc461, type: 2}
-  - {fileID: 11400000, guid: 5be5defc6aae5414dba37e847c918c40, type: 2}
   player: {fileID: 0}
   maxPlayerRange: 270
   damagePerSecondWhenOutOfRange: 5
@@ -147,14 +147,22 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3764602986980618844}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 5, y: 5, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &6293280729080821927
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -171,12 +179,14 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &6293280728756015533
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 4796420687891172700}
     m_Modifications:
     - target: {fileID: 4765360294351652194, guid: 710c5fd5258a83e4a9f3a9dfb164e840,
@@ -281,6 +291,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4765360294351652194, guid: 710c5fd5258a83e4a9f3a9dfb164e840, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 710c5fd5258a83e4a9f3a9dfb164e840, type: 3}
 --- !u!4 &1546929891558331584 stripped
 Transform:
