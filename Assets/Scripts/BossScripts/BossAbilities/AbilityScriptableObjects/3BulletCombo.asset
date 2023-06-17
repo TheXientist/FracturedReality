@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8d5b063b3a707643af1835446674f58, type: 3}
+  m_Name: 3BulletCombo
+  m_EditorClassIdentifier: 
+  abilityPropability: 3
+  abilityWindup: 3
+  abilityCooldown: 0
+  animationTriggerName: DefaultAttack
+  subAbilities:
+  - {fileID: 11400000, guid: 952b399bea4a38e4ab48fb9c945190b8, type: 2}
+  - {fileID: 11400000, guid: 952b399bea4a38e4ab48fb9c945190b8, type: 2}
+  - {fileID: 11400000, guid: 952b399bea4a38e4ab48fb9c945190b8, type: 2}
+  - {fileID: 11400000, guid: e1b11b285e121484c8b477a8f230f0dc, type: 2}
+  - {fileID: 11400000, guid: e1b11b285e121484c8b477a8f230f0dc, type: 2}
+  - {fileID: 11400000, guid: e1b11b285e121484c8b477a8f230f0dc, type: 2}
+  useIndividualCooldowns: 1
+  useIndividualWindups: 0
