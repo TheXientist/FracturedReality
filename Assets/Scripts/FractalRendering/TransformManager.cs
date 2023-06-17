@@ -127,10 +127,4 @@ public class TransformManager : MonoBehaviour
         raymarchingMaterial.SetBuffer(BUFFER_ID, allTransformsBuffer);
         raymarchingMaterial.SetInteger(COUNT_ID, allTransformData.Count);
     }
-
-    private void OnDisable()
-    {
-        allTransformData = new List<TransformData>();
-        RefreshBuffer();
-    }
 }
