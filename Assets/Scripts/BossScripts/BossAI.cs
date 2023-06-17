@@ -11,6 +11,9 @@ public class BossAI : MonoBehaviour, IDamageable
     [SerializeField] private float bossMaxHealth;
     private float bossCurrentHealth;
 
+    [SerializeField]
+    private bool invincible;
+    
     public float BossCurrentHealth
     {
         private set
@@ -68,6 +71,9 @@ public class BossAI : MonoBehaviour, IDamageable
         
         warningDisplay = GameObject.FindWithTag("RangeDisplay").transform.GetChild(0).gameObject;
 
+        // Make boss invincible during spawn animation
+        invincible = true;
+
         //start the main coroutine
         //StartCoroutine("StartBossScene"); --> start by Spawn animation       
     }
@@ -102,7 +108,8 @@ public class BossAI : MonoBehaviour, IDamageable
     //Fight coroutine (Main)  possible to add "pre-events"
     public void StartBossScene()
     {
-        m_bossCoroutine= BeginFight();
+        invincible = false;
+        m_bossCoroutine = BeginFight();
 
         StartCoroutine(m_bossCoroutine);
 
@@ -169,7 +176,7 @@ public class BossAI : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
-        if (destroyed) return;
+        if (destroyed || invincible) return;
         
         BossCurrentHealth -= damage;
         if (bossCurrentHealth <= 0)
