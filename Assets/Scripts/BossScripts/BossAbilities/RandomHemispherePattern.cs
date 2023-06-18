@@ -19,16 +19,16 @@ public class RandomHemispherePattern : AbilityScriptableObject
     [SerializeField] private float spawnRadius;
 
 
-    public override IEnumerator Execute(GameObject bossObject, GameObject playerObject)
+    public override IEnumerator Execute(Transform spawn, Vector3 targetPosition)
     {
-        InstantiatePattern(bossObject, m_bulletCount, playerObject);
+        InstantiatePattern(spawn, m_bulletCount, targetPosition);
         yield return null;
     }
 
-    public void InstantiatePattern(GameObject bossObject, int bulletCount, GameObject playerObject)
+    public void InstantiatePattern(Transform spawn, int bulletCount, Vector3 targetPos)
     {
-        Vector3 firingPosition = bossObject.transform.position;
-        Quaternion rotationOffset = Quaternion.FromToRotation(Vector3.forward, (playerObject.transform.position - bossObject.transform.position).normalized);
+        Vector3 spawnPos = spawn.position;
+        Quaternion rotationOffset = Quaternion.FromToRotation(Vector3.forward, (targetPos - spawnPos).normalized);
 
         for (int j = 0; j <= bulletCount; j++)
         {
@@ -42,9 +42,9 @@ public class RandomHemispherePattern : AbilityScriptableObject
 
             Vector3 targetDirection = rotationOffset * targetOnHemisphere;
             
-            ShootAtPosition(firingPosition + (spawnRadius+1) * targetDirection, firingPosition + spawnRadius * targetDirection, m_bulletPrefab, 0, m_bulletModuleSpeed, 0);
+            ShootAtPosition(spawnPos + (spawnRadius+1) * targetDirection, spawnPos, m_bulletPrefab, 0, m_bulletModuleSpeed, 0);
         }
 
-        ShootAtPosition(playerObject.transform.position, firingPosition + spawnRadius * (playerObject.transform.position - bossObject.transform.position).normalized, m_bulletPrefab, 0,m_bulletModuleSpeed, 0);
+        ShootAtPosition(targetPos, spawnPos + spawnRadius * (targetPos - spawnPos).normalized, m_bulletPrefab, 0,m_bulletModuleSpeed, 0);
     }
 }

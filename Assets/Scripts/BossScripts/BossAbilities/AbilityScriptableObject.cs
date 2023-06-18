@@ -29,10 +29,10 @@ public abstract class AbilityScriptableObject : ScriptableObject
     /// <summary>
     /// Call to use the ability. Should be overwritten in children to define ability.
     /// </summary>
-    /// <param name="bossObject"></param>Boss gameobject.
-    /// <param name="playerObject"></param>Player gameobject.
+    /// <param name="spawnPosition"></param>Boss position (where to spawn attack).
+    /// <param name="targetPosition"></param>Player position.
     /// <returns></returns>
-    public virtual IEnumerator Execute(GameObject bossObject, GameObject playerObject)
+    public virtual IEnumerator Execute(Transform spawn, Vector3 targetPosition)
     {      
         yield return null; 
     }

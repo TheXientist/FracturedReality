@@ -23,10 +23,10 @@ public class Explosion : AbilityScriptableObject
     /// <param name="bossPosition"></param>
     /// <param name="playerPosition"></param>
     /// <returns></returns>
-    public override IEnumerator Execute(GameObject bossObject, GameObject playerObject)
+    public override IEnumerator Execute(Transform spawn, Vector3 targetPosition)
     {  
 
-        yield return Explode(bossObject.transform.position);
+        yield return Explode(spawn.position);
         
 
         yield return null;

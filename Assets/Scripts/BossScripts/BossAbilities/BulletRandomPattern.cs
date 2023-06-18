@@ -29,13 +29,13 @@ public class BulletRandomPattern : AbilityScriptableObject
     private int m_circleCount = 10;
 
 
-    public override IEnumerator Execute(GameObject bossObject, GameObject playerObject)
+    public override IEnumerator Execute(Transform spawn, Vector3 targetPosition)
     {
-        InstantiatePattern(bossObject, m_bulletCount, playerObject);
+        InstantiatePattern(spawn.position, m_bulletCount, targetPosition);
         yield return null;
     }
 
-    public void InstantiatePattern(GameObject bossObject, int bulletCount, GameObject playerObject)
+    public void InstantiatePattern(Vector3 bossPos, int bulletCount, Vector3 target)
     {
         float tempUpDirection = 0;
 
@@ -54,7 +54,7 @@ public class BulletRandomPattern : AbilityScriptableObject
             tempUpDirection -= m_circleSteps;
         }
 
-        ShootAtPosition(playerObject.transform.position, bossObject.transform.position, m_bulletPrefab, 0,m_bulletModuleSpeed, 0);
+        ShootAtPosition(target, bossPos, m_bulletPrefab, 0,m_bulletModuleSpeed, 0);
     }
 
 

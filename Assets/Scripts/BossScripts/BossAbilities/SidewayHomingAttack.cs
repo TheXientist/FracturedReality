@@ -17,20 +17,21 @@ public class SidewayHomingAttack : AbilityScriptableObject
     private bool shootNextLeft;
 
 
-    public override IEnumerator Execute(GameObject bossObject, GameObject playerObject)
+    public override IEnumerator Execute(Transform spawn, Vector3 targetPosition)
     {
-        ShootHomingAtPosition(playerObject, bossObject.transform.position);
+        ShootHomingAtPosition(targetPosition, spawn.position);
 
         yield return null;
     }
 
-    public void ShootHomingAtPosition(GameObject playerObject, Vector3 firingPosition)
+    public void ShootHomingAtPosition(Vector3 targetPos, Vector3 firingPosition)
     {
-        Vector3 interceptPosition = Intercept(playerObject.transform.position,
-            playerObject.GetComponent<Rigidbody>().velocity, firingPosition, bulletModuleSpeed);
+        var player = SpaceshipController.Instance.GetComponent<Rigidbody>();
+        Vector3 interceptPosition = Intercept(targetPos,
+            player.velocity, firingPosition, bulletModuleSpeed);
         
         // Aim left or right of predicted interception point
-        Vector3 targetPosition = interceptPosition + (shootNextLeft ? 1 : -1) * firingAngle * playerObject.transform.right; 
+        Vector3 targetPosition = interceptPosition + (shootNextLeft ? 1 : -1) * firingAngle * player.transform.right; 
         shootNextLeft = !shootNextLeft;
 
         Vector3 direction = (targetPosition - firingPosition).normalized;
