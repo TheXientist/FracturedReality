@@ -13,7 +13,7 @@ public class BossAI : MonoBehaviour, IDamageable
 
     private MusicFader m_musicFader;
 
-    public AudioClip deathSound;
+    [SerializeField] private AudioClip deathSound, postFightMusic;
 
     public float BossCurrentHealth
     {
@@ -113,15 +113,22 @@ public class BossAI : MonoBehaviour, IDamageable
         
         CalculatePhaseAbilityPropabilities();
 
+        var phase = phaseList[currentPhase];
         
-        if(phaseList[currentPhase].phaseMusic != null)
+        if(phase.phaseMusic != null)
         {
-            yield return m_musicFader.FadeMusic(phaseList[currentPhase].phaseMusic, phaseList[currentPhase].phasePreMusic);
+            if (phase.phasePreMusic != null)
+                // Fade premusic, then fade looping music
+                StartCoroutine(m_musicFader.PlayMusic(phase.phasePreMusic, true, false,
+                    () => StartCoroutine(m_musicFader.PlayMusic(phase.phaseMusic, false, true))));
+            
+            else
+                StartCoroutine(m_musicFader.PlayMusic(phase.phaseMusic, true, true));
         }
 
-        while (bossCurrentHealth > bossMaxHealth * phaseList[currentPhase].percentPhaseCondition )
+        while (bossCurrentHealth > bossMaxHealth * phase.percentPhaseCondition )
         {
-            yield return UseRandomPhaseAbility(phaseList[currentPhase].phaseAbilityScripts, phaseList[currentPhase].abilityPropabilityList);
+            yield return UseRandomPhaseAbility(phase.phaseAbilityScripts, phase.abilityPropabilityList);
             yield return new WaitForSeconds(abilityCooldownTime);
         }
 
@@ -175,8 +182,10 @@ public class BossAI : MonoBehaviour, IDamageable
             StopBossFight();
             destroyed = true;
             GetComponent<Animator>().SetTrigger("Death");
-            //m_musicFader.PlayDeathSound(deathSound);
-            StartCoroutine(m_musicFader.PlayDeathSound(deathSound));
+            
+            // Play death sound, then loop post-fight music
+            StartCoroutine(m_musicFader.PlayMusic(deathSound, true, false,
+                () => StartCoroutine(m_musicFader.PlayMusic(postFightMusic, false, true)))); // Doesn't work, maybe because this gameobject will be inactive at that point?
         }
         OnDamaged?.Invoke();
     }

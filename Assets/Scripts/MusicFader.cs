@@ -1,136 +1,62 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class MusicFader : MonoBehaviour
 {
-    public AudioSource audisource;
-    private float fadeTimer;
-    private float currentvolume;
-    public float m_startVolume = 0.5f;
+    [SerializeField] private AudioSource trackA, trackB, atmo;
+    [SerializeField]
+    private float targetVolume = 0.5f;
     public float fadeDuration = 1f;
-
-    private bool m_bossIsAlive = true;
-
-    private AudioClip loopableAudioClip;
-
-    public AudioClip postFightMusic;
 
     private void Start()
     {
-        audisource = GetComponent<AudioSource>();
-
-        fadeTimer = fadeDuration;
+        trackA.volume = targetVolume;
+        trackB.volume = targetVolume;
     }
 
-    private void Update()
+    public IEnumerator PlayMusic(AudioClip clip, bool fade, bool loop, Action callback = null)
     {
-        if (!audisource.isPlaying && m_bossIsAlive)
-        {
-            audisource.loop = true;
-            audisource.clip = loopableAudioClip;
-            audisource.Play();
-        }
+        // Current track is playing in A,
+        // new clip will fade in in B
+        trackB.clip = clip;
+        trackB.loop = loop;
+        trackB.volume = 0f;
+        trackA.volume = targetVolume;
+        trackB.Play();
 
-        if (!audisource.isPlaying && !m_bossIsAlive)
+        while (fade && trackB.volume <= targetVolume)
         {
-            audisource.loop = true;
-            audisource.clip = postFightMusic;
-            audisource.Play();
+            trackB.volume += targetVolume / (10f * fadeDuration);
+            trackA.volume -= targetVolume / (10f * fadeDuration);
+            yield return new WaitForSeconds(1/10f);
         }
+        
+        // Set current track to A again
+        trackA.clip = trackB.clip;
+        trackA.volume = targetVolume;
+        trackA.time = trackB.time;
+        trackA.loop = loop;
+        trackA.Play();
+        trackB.Stop();
+        
+        // If it's a non-looping track, inform caller that it has ended
+        if (loop) yield return null;
+
+        yield return new WaitForSeconds(clip.length - fadeDuration);
+        callback?.Invoke();
     }
 
-    public IEnumerator FadeMusic(AudioClip musicClip, bool loopable)
+    public IEnumerator FadeOut(float duration)
     {
-        yield return FadeDown();
-
-        audisource.loop = loopable;
-        audisource.clip = musicClip;
-        audisource.Play();
-
-        yield return FadeUp(m_startVolume);
-
-        yield return null;
-    }
-
-    public IEnumerator FadeMusic(AudioClip musicClip, AudioClip preMusicClip)
-    {
-        yield return FadeDown();
-
-        if(preMusicClip != null )
+        while (trackA.volume > 0f)
         {
-            audisource.loop = false;
-            audisource.clip = preMusicClip;
-            audisource.Play();
-            loopableAudioClip = musicClip;
+            trackA.volume -= targetVolume / (10f * duration);
+            yield return new WaitForSeconds(1/10f);
         }
-        else
-        {
-            audisource.loop = true;
-            audisource.clip = musicClip;
-            audisource.Play();
-        }
-
-        yield return FadeUp(m_startVolume);
-
-        yield return null;
-    }
-
-
-
-    public IEnumerator FadeDown()
-    {
-        currentvolume = audisource.volume;
-        fadeTimer = fadeDuration;
-        while (audisource.volume > 0)
-        {
-            if (fadeTimer > 0)
-            {
-
-                fadeTimer -= Time.deltaTime;
-
-                float newVolume = Mathf.Lerp(0, currentvolume, fadeTimer / fadeDuration);
-
-                audisource.volume = newVolume;
-            }
-
-            yield return null;
-        }
-        yield return null;
-    }
-
-    public IEnumerator FadeUp(float targetVolume)
-    {
-        currentvolume = audisource.volume;
-        fadeTimer = fadeDuration;
-        while (audisource.volume < targetVolume)
-        {
-            if (fadeTimer > 0)
-            {
-                fadeTimer -= Time.deltaTime;
-
-                float newVolume = Mathf.Lerp(targetVolume, currentvolume, fadeTimer / fadeDuration);
-
-                audisource.volume = newVolume;
-            }
-
-            yield return null;
-        }
-        yield return null;
-    }
-
-    public IEnumerator PlayDeathSound(AudioClip deathSound)
-    {
-        m_bossIsAlive = false;
-        yield return FadeDown();
-
-        audisource.loop = false;
-        audisource.clip = deathSound;
-        audisource.Play();
-
-        yield return FadeUp(m_startVolume);
-
-        yield return null;
+        trackA.Stop();
     }
 
 }

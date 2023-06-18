@@ -1072,6 +1072,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 64854204, guid: c1d91ecf7a5e14a689fcef67f95363bf, type: 3}
+      propertyPath: menuTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: be2df2ae21b1c91478beba230b5b732e, type: 3}
     - target: {fileID: 62833022721870284, guid: c1d91ecf7a5e14a689fcef67f95363bf,
         type: 3}
       propertyPath: m_BossObject
@@ -1339,6 +1343,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1361022410136831796, guid: c1926e8d17351a14bb1a65d48683bc92,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1361022410136831796, guid: c1926e8d17351a14bb1a65d48683bc92,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: be2df2ae21b1c91478beba230b5b732e, type: 3}
     - target: {fileID: 7102136374920400054, guid: c1926e8d17351a14bb1a65d48683bc92,
         type: 3}
       propertyPath: m_Name
@@ -2313,13 +2327,18 @@ PrefabInstance:
     - target: {fileID: 6293280729080821923, guid: c9e3ea407176b544791a0efe22ae7e8c,
         type: 3}
       propertyPath: bossMaxHealth
-      value: 1000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6293280729080821923, guid: c9e3ea407176b544791a0efe22ae7e8c,
         type: 3}
       propertyPath: maxPlayerRange
       value: 259.86
       objectReference: {fileID: 0}
+    - target: {fileID: 6293280729080821923, guid: c9e3ea407176b544791a0efe22ae7e8c,
+        type: 3}
+      propertyPath: postFightMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 07da3af7e2a7f8744ba59658e9937d41, type: 3}
     - target: {fileID: 6293280729080821923, guid: c9e3ea407176b544791a0efe22ae7e8c,
         type: 3}
       propertyPath: phaseList.Array.size
