@@ -249,6 +249,22 @@
                 return mPos;
             }
 
+            float3 ReverseTransforms(float3 pos) {
+                float3 mPos = pos;
+                for (int i = _TransformCount - 2; i >= 0; --i) {
+                    if (_TransformBuffer[i].mirror == 1) {
+                        float4x4 m = _TransformBuffer[i].data;
+                        float3 position = float3(m[0][0], m[0][1], m[0][2]);
+                        float3 normal = float3(m[1][0], m[1][1], m[1][2]);
+                        mPos = Mirror(mPos, position, normal);
+                    }
+                    else {
+                        mPos = mul(_TransformBuffer[i].data, float4(mPos, 1));
+                    }
+                }
+                return mPos;
+            }
+
             float mCube(float3 pos){
                 return DEcube(ApplyTransforms(pos));
             }
@@ -427,7 +443,11 @@
                 float ambientIllumination = ambientOcclusion * _IAmbient;
 
                 float light = max(illumination, ambientIllumination);
-                float3 baseColor = abs(normal);
+                float3 baseColor = abs(ReverseTransforms(currentPos));
+                baseColor.r = sin(baseColor.r * 0.144);
+                baseColor.g = sin(baseColor.g * 0.333);
+                baseColor.b = sin(baseColor.b * 0.222);
+
                 
                 //return  float4(steps % 2 * 0.5, 0, 0, 1); //distinguish marching layers
                 //return  float4(lightSteps % 2 * 0.5, 0, 0, 1); //distinguish light layers
@@ -437,8 +457,9 @@
                 //return float4(baseColor.x, baseColor.y, baseColor.z, 1);
                 //return float4(illumination, illumination, illumination, 1);
                 //return float4(ambientOcclusion, ambientOcclusion, ambientOcclusion, 1);
-                return float4(light, light, light, 1);
+                //return float4(light, light, light, 1);
                 //return float4(light * baseColor.x + specular, light * baseColor.y + specular, light * baseColor.z + specular, 1);
+                return float4(light * baseColor.x, light * baseColor.y, light * baseColor.z, 1);
             }
             ENDHLSL
         }
