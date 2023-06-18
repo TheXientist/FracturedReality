@@ -33,9 +33,9 @@ public class SingleShot : AbilityScriptableObject
     /// <param name="bossPosition"></param>Current position of the boss.
     /// <param name="playerPosition"></param>Current position of the player.
     /// <returns></returns>
-    public override IEnumerator Execute(GameObject bossObject, GameObject playerObject)
+    public override IEnumerator Execute(Transform spawn, Vector3 targetPosition)
     {
-        ShootAtPredictedPlayerPosition(playerObject.transform.position, playerObject.GetComponent<Rigidbody>().velocity, bossObject.transform.position, m_bulletModuleSpeed, m_bulletPrefab, m_bulletModuleRotationSpeed);
+        ShootAtPredictedPlayerPosition(targetPosition, SpaceshipController.Instance.GetComponent<Rigidbody>().velocity, spawn.position, m_bulletModuleSpeed, m_bulletPrefab, m_bulletModuleRotationSpeed);
         //ShootAtPosition(playerObject.transform.position, bossObject.transform.position, m_bulletPrefab, m_spawnThreshold, m_bulletModuleSpeed, m_bulletModuleRotationSpeed);
 
         yield return null;

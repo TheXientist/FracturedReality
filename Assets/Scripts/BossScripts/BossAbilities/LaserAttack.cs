@@ -29,14 +29,14 @@ public class LaserAttack : AbilityScriptableObject
 
     private GameObject warningDisplay;
 
-    public override IEnumerator Execute(GameObject bossObject, GameObject playerObject)
+    public override IEnumerator Execute(Transform spawn, Vector3 targetPosition)
     {
-        yield return SpawnLaser(bossObject, playerObject);
+        yield return SpawnLaser(spawn, targetPosition);
 
         yield return null;
     }
 
-    public IEnumerator SpawnLaser(GameObject bossObject, GameObject playerObject)
+    public IEnumerator SpawnLaser(Transform spawn, Vector3 targetPosition)
     {
         m_currentSound = Instantiate(m_warningSound);
 
@@ -51,11 +51,11 @@ public class LaserAttack : AbilityScriptableObject
 
         Destroy(m_currentSound.gameObject);
        
-        m_currentLaserObject = Instantiate(m_laserPrefab, bossObject.transform.position, bossObject.transform.rotation);//, bossObject.transform);
+        m_currentLaserObject = Instantiate(m_laserPrefab, spawn.position, spawn.rotation);//, bossObject.transform);
 
         m_targetLaser = m_currentLaserObject.GetComponent<ObjectTargetLaser>();
 
-        m_targetLaser.laserTarget = playerObject;
+        m_targetLaser.laserTarget = SpaceshipController.Instance.transform;
 
         m_targetLaser.laser.isAttacking = true;
 

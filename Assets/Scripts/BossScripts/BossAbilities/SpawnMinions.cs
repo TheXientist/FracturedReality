@@ -8,9 +8,9 @@ public class SpawnMinions : AbilityScriptableObject
 
     [SerializeField] private GameObject m_MinionPrefab;
 
-    public override IEnumerator Execute(GameObject bossObject, GameObject playerObject)
+    public override IEnumerator Execute(Transform spawn, Vector3 targetPosition)
     {
-        SpawnObjectAtPosition(bossObject.transform.position, m_MinionPrefab);
+        SpawnObjectAtPosition(spawn.position, m_MinionPrefab);
 
         yield return null;
     }

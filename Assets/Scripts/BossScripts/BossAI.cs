@@ -48,6 +48,8 @@ public class BossAI : MonoBehaviour, IDamageable
 
     [SerializeField] private Animator animator;
 
+    [SerializeField] private Transform bulletSpawnPoint;
+
 
     private void SetupReferences()
     {
@@ -160,7 +162,7 @@ public class BossAI : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(currentAbility.abilityWindup);
         
         if (!destroyed) // Check if boss got killed during windup
-            yield return currentAbility.Execute(gameObject, player.gameObject);
+            yield return currentAbility.Execute(bulletSpawnPoint, player.transform.position);
     }
 
     private void CalculatePhaseAbilityPropabilities()
