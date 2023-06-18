@@ -67,7 +67,7 @@ Material:
     - _MirrorCount: 1
     - _Shininess: -28
     - _TransformCount: 0
-    - _VR: 1
+    - _VR: 0
     m_Floats:
     - _AO: 0.8
     - _Ambient: 0.07
