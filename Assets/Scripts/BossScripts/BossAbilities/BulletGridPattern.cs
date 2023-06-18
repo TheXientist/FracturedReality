@@ -16,9 +16,9 @@ public class BulletGridPattern : AbilityScriptableObject
 
     public int bulletSpawnPropability = 30;
 
-    public override IEnumerator Execute(GameObject bossObject, GameObject playerObject)
+    public override IEnumerator Execute(Transform spawn, Vector3 targetPosition)
     {
-        ShootGridAtPosition(playerObject.transform.position, bossObject.transform.position, m_bulletPrefab, 0, bulletSpeed, 20);
+        ShootGridAtPosition(targetPosition, spawn.position, m_bulletPrefab, 0, bulletSpeed, 20);
 
         yield return null;
     }

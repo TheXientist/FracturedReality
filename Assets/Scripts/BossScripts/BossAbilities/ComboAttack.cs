@@ -13,7 +13,7 @@ public class ComboAttack : AbilityScriptableObject
 
     private bool interrupted;
     
-    public override IEnumerator Execute(GameObject bossObject, GameObject playerObject)
+    public override IEnumerator Execute(Transform spawn, Vector3 targetPosition)
     {
         for (int i = 0; i < subAbilities.Length; i++)
         {
@@ -27,7 +27,7 @@ public class ComboAttack : AbilityScriptableObject
             if (interrupted) break;
 
             currentExecutingAbility = currentAbility;
-            yield return currentAbility.Execute(bossObject, playerObject);
+            yield return currentAbility.Execute(spawn, targetPosition);
             currentExecutingAbility = null;
 
             if (interrupted) break;

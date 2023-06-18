@@ -83,6 +83,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3761294575983076216
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7708639200789735373}
+  m_Layer: 7
+  m_Name: BulletSpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7708639200789735373
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3761294575983076216}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2.38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4796420687891172700}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3764602986980618844
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4796420687891172700}
   - component: {fileID: 6293280729080821923}
-  - component: {fileID: 6293280729080821924}
+  - component: {fileID: 3539561328378712853}
   m_Layer: 7
   m_Name: PR_FirstBoss
   m_TagString: Boss
@@ -110,11 +141,12 @@ Transform:
   m_GameObject: {fileID: 3764602986980618844}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13.900303, y: -2.2832022, z: -10.644268}
-  m_LocalScale: {x: 4.2266135, y: 4.2266135, z: 4.2266135}
+  m_LocalScale: {x: 22.29485, y: 22.29485, z: 22.29485}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1232567987}
   - {fileID: 1546929891558331584}
+  - {fileID: 7708639200789735373}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -131,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossMaxHealth: 1000
+  invincible: 0
   phaseList:
   - {fileID: 11400000, guid: 59f613395ea207b46be59768d3f47540, type: 2}
   - {fileID: 11400000, guid: 404fc808bd54630419d5aa3eefcfc461, type: 2}
@@ -139,8 +172,9 @@ MonoBehaviour:
   maxPlayerRange: 259.86
   damagePerSecondWhenOutOfRange: 5
   animator: {fileID: 0}
---- !u!65 &6293280729080821924
-BoxCollider:
+  bulletSpawnPoint: {fileID: 7708639200789735373}
+--- !u!135 &3539561328378712853
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -158,7 +192,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5, y: 5, z: 5}
+  m_Radius: 5.52
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &6293280728756015533
 PrefabInstance:
@@ -178,6 +212,11 @@ PrefabInstance:
       propertyPath: type
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4765360294351652204, guid: 710c5fd5258a83e4a9f3a9dfb164e840,
+        type: 3}
+      propertyPath: raymarchingMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: bb82580b05c806b4aa9ea8a3dbb0b672, type: 2}
     - target: {fileID: 4765360294351652205, guid: 710c5fd5258a83e4a9f3a9dfb164e840,
         type: 3}
       propertyPath: m_RootOrder
