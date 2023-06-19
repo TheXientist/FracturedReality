@@ -111,6 +111,13 @@ public class ConLaser : MonoBehaviour
                     {
                         currentBlockingObject = hit.transform.gameObject;
                         currentDamageReceiver = currentBlockingObject.GetComponent<IDamageable>();
+                        
+                        Obstacle temp = currentBlockingObject.GetComponent<Obstacle>();
+
+                        if(temp != null)
+                        {
+                         StartCoroutine(temp.FadeColor());
+                        }
                     }
                     
                     break;
