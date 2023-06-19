@@ -281,8 +281,8 @@ public class Player : MonoBehaviour, IDamageable
         foreach (var bullet in bullets)
         {
             if (bullet.tag.Equals("Boss")) continue;
-            // TODO: instead trigger destroy animation
-            Destroy(bullet.gameObject);
+
+            StartCoroutine(bullet.GetComponent<DefaultBullet>().PlayCollisionEffect());
         }
         
         // Cooldown

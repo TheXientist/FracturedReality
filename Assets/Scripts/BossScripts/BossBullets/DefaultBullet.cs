@@ -35,8 +35,9 @@ public class DefaultBullet : AbstractBullet, IBullet
         }
     }
 
-    private IEnumerator PlayCollisionEffect()
+    public IEnumerator PlayCollisionEffect()
     {
+        GetComponent<Collider>().enabled = false;
         transform.SetParent(null, true);
         m_bulletMesh.enabled = false;
         particleImpactEffect.Play();
