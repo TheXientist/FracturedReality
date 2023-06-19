@@ -5,13 +5,18 @@ using UnityEngine;
 
 public class DefaultBullet : AbstractBullet, IBullet
 {
+    public ParticleSystem particleImpactEffect;
+    private MeshRenderer m_bulletMesh;
+
+    private void Start()
+    {
+        m_bulletMesh = GetComponent<MeshRenderer>();
+    }
 
     public void DestroySelf()
     {
-        Destroy(gameObject);
+       Destroy(gameObject);
     }
-
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,14 +24,24 @@ public class DefaultBullet : AbstractBullet, IBullet
         if(other.CompareTag("Player"))
         {
             other.GetComponent<Player>().TakeDamage(m_DamageValue);
-            DestroySelf();
+            StartCoroutine(PlayCollisionEffect());
+            
         }
         else if(other.CompareTag("Obstacle"))
         {
             other.GetComponent<IDamageable>().TakeDamage(base.m_DamageValue);
-            DestroySelf();
-        }
+            StartCoroutine(PlayCollisionEffect());
 
+        }
+    }
+
+    private IEnumerator PlayCollisionEffect()
+    {
+        transform.SetParent(null, true);
+        m_bulletMesh.enabled = false;
+        particleImpactEffect.Play();
+        yield return new WaitForSeconds(1);
+        DestroySelf();
     }
 
 
