@@ -8,11 +8,13 @@ using Valve.VR;
 
 public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
 {
+    [SerializeField] private AudioClip menuTheme;
     private InputActions input;
     private GameObject panel;
     private bool paused;
     private bool started;
     private bool allowToggle = true;
+    private bool neverClosedYet = true;
     
     public SteamVR_Action_Boolean actionToggle = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("default", "TogglePause");
 
@@ -65,6 +67,12 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
         }
         
         Time.timeScale = paused ? 0f : 1f;
+
+        if (!paused && neverClosedYet)
+        {
+            StartCoroutine(FindObjectOfType<MusicFader>().FadeOut(0.5f));
+            BossAI.Instance.gameObject.SetActive(true);
+        }
     }
 
     public void OnToggle(InputAction.CallbackContext context)
@@ -78,6 +86,7 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
     public IEnumerator PauseOnReload(float s)
     {
         yield return new WaitForSeconds(s);
+        neverClosedYet = true;
         Toggle(true);
     }
 

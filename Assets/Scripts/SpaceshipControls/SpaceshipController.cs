@@ -27,7 +27,7 @@ public class SpaceshipController : MonoBehaviour
     
     private Rigidbody rb;
     
-    [SerializeField] private Transform target;
+    public Transform target;
 
     private void Awake()
     {

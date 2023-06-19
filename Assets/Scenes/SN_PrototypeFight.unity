@@ -123,6 +123,79 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &4639859
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7102136374920400054, guid: c1926e8d17351a14bb1a65d48683bc92,
+        type: 3}
+      propertyPath: m_Name
+      value: MusikController
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958100593406278006, guid: c1926e8d17351a14bb1a65d48683bc92,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958100593406278006, guid: c1926e8d17351a14bb1a65d48683bc92,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.645266
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958100593406278006, guid: c1926e8d17351a14bb1a65d48683bc92,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.634874
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958100593406278006, guid: c1926e8d17351a14bb1a65d48683bc92,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.516056
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958100593406278006, guid: c1926e8d17351a14bb1a65d48683bc92,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958100593406278006, guid: c1926e8d17351a14bb1a65d48683bc92,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958100593406278006, guid: c1926e8d17351a14bb1a65d48683bc92,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958100593406278006, guid: c1926e8d17351a14bb1a65d48683bc92,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958100593406278006, guid: c1926e8d17351a14bb1a65d48683bc92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958100593406278006, guid: c1926e8d17351a14bb1a65d48683bc92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958100593406278006, guid: c1926e8d17351a14bb1a65d48683bc92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c1926e8d17351a14bb1a65d48683bc92, type: 3}
 --- !u!1 &9269893
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,6 +1292,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 64854204, guid: c1d91ecf7a5e14a689fcef67f95363bf, type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 636533958}
     - target: {fileID: 62833022721870284, guid: c1d91ecf7a5e14a689fcef67f95363bf,
         type: 3}
       propertyPath: m_BossObject
@@ -2329,6 +2406,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PR_FirstBoss
       objectReference: {fileID: 0}
+    - target: {fileID: 3764602986980618844, guid: c9e3ea407176b544791a0efe22ae7e8c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4796420687891172700, guid: c9e3ea407176b544791a0efe22ae7e8c,
         type: 3}
       propertyPath: m_RootOrder
@@ -2414,6 +2496,21 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 73280226}
+    - target: {fileID: 6293280729080821923, guid: c9e3ea407176b544791a0efe22ae7e8c,
+        type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 4bd863876bbfadb4a820881daf5c242b, type: 3}
+    - target: {fileID: 6293280729080821923, guid: c9e3ea407176b544791a0efe22ae7e8c,
+        type: 3}
+      propertyPath: postFightMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 07da3af7e2a7f8744ba59658e9937d41, type: 3}
+    - target: {fileID: 6293280729080821923, guid: c9e3ea407176b544791a0efe22ae7e8c,
+        type: 3}
+      propertyPath: phaseList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

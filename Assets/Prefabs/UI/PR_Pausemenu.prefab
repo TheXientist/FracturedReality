@@ -110,7 +110,7 @@ RectTransform:
   m_Children:
   - {fileID: 3152548790235613110}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -129,6 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e8d7f42963c4ef0b4c3f8bfe18ff3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuTheme: {fileID: 8300000, guid: be2df2ae21b1c91478beba230b5b732e, type: 3}
+  boss: {fileID: 3764602986980618844, guid: c9e3ea407176b544791a0efe22ae7e8c, type: 3}
   actionToggle:
     actionPath: /actions/default/in/TogglePause
     needsReinit: 1

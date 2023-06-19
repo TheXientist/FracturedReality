@@ -8,12 +8,18 @@ using Random = UnityEngine.Random;
 
 public class BossAI : MonoBehaviour, IDamageable
 {
+    public static BossAI Instance { get; private set; }
+    
     [SerializeField] private float bossMaxHealth;
     private float bossCurrentHealth;
 
     [SerializeField]
     private bool invincible;
     
+    private MusicFader m_musicFader;
+
+    [SerializeField] private AudioClip deathSound, postFightMusic;
+
     public float BossCurrentHealth
     {
         private set
@@ -57,21 +63,33 @@ public class BossAI : MonoBehaviour, IDamageable
         SpaceshipController.Instance.GetComponent<Player>().m_BossObject = gameObject;
         player = SpaceshipController.Instance.GetComponent<Player>();
     }
-    
+
+    private void Awake()
+    {
+        Instance = this;
+        m_musicFader = FindAnyObjectByType<MusicFader>();
+        healthDisplay = GameObject.FindWithTag("BossHealthDisplay").GetComponent<TextMeshProUGUI>();
+        warningDisplay = GameObject.FindWithTag("RangeDisplay").transform.GetChild(0).gameObject;
+        gameObject.SetActive(false);
+    }
+
     // Start is called before the first frame update
     private void Start()
     {
         Debug.Log("BossAI.Start");
         
         SetupReferences();
-        
-        healthDisplay = GameObject.FindWithTag("BossHealthDisplay").GetComponent<TextMeshProUGUI>();
+
         BossCurrentHealth = bossMaxHealth;
 
         //to make sure, the last phase lasts till the end of the boss-fight
         phaseList[phaseList.Count-1].percentPhaseCondition = 0;
         
-        warningDisplay = GameObject.FindWithTag("RangeDisplay").transform.GetChild(0).gameObject;
+        
+        if (phaseList[0].phasePreMusic != null)
+            m_musicFader.PlayMusic(phaseList[0].phasePreMusic, true, false, () => m_musicFader.PlayMusic(phaseList[0].phaseMusic, false, true));
+        else
+            m_musicFader.PlayMusic(phaseList[0].phaseMusic, true, true);
 
         // Make boss invincible during spawn animation
         invincible = true;
@@ -124,9 +142,22 @@ public class BossAI : MonoBehaviour, IDamageable
         
         CalculatePhaseAbilityPropabilities();
 
-        while (bossCurrentHealth > bossMaxHealth * phaseList[currentPhase].percentPhaseCondition)
+        var phase = phaseList[currentPhase];
+        
+        if(phase.phaseMusic != null)
         {
-            yield return UseRandomPhaseAbility(phaseList[currentPhase].phaseAbilityScripts, phaseList[currentPhase].abilityPropabilityList);
+            if (phase.phasePreMusic != null)
+                // Fade premusic, then fade looping music
+                StartCoroutine(m_musicFader.PlayMusicCoroutine(phase.phasePreMusic, true, false,
+                    () => StartCoroutine(m_musicFader.PlayMusicCoroutine(phase.phaseMusic, false, true))));
+            
+            else
+                StartCoroutine(m_musicFader.PlayMusicCoroutine(phase.phaseMusic, true, true));
+        }
+
+        while (bossCurrentHealth > bossMaxHealth * phase.percentPhaseCondition )
+        {
+            yield return UseRandomPhaseAbility(phase.phaseAbilityScripts, phase.abilityPropabilityList);
             yield return new WaitForSeconds(abilityCooldownTime);
         }
 
@@ -186,6 +217,9 @@ public class BossAI : MonoBehaviour, IDamageable
             StopBossFight();
             destroyed = true;
             animator.SetTrigger("Death");
+            
+            // Play death sound, then loop post-fight music
+            StartCoroutine(m_musicFader.PlayMusicCoroutine(deathSound, true, false));
         }
         OnDamaged?.Invoke();
     }
@@ -193,6 +227,7 @@ public class BossAI : MonoBehaviour, IDamageable
     // Called by Death animation
     public void Despawn()
     {
+        m_musicFader.PlayMusic(postFightMusic, true, true);
         gameObject.SetActive(false);
         // Unlock player targeting
         FindObjectOfType<SpaceshipController>().RemoveTarget();
