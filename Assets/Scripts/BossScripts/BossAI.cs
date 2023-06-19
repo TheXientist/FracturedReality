@@ -71,6 +71,11 @@ public class BossAI : MonoBehaviour, IDamageable
         phaseList[phaseList.Count-1].percentPhaseCondition = 0;
         
         warningDisplay = GameObject.FindWithTag("RangeDisplay").transform.GetChild(0).gameObject;
+        
+        if (phaseList[0].phasePreMusic != null)
+            m_musicFader.PlayMusic(phaseList[0].phasePreMusic, true, false, () => m_musicFader.PlayMusic(phaseList[0].phaseMusic, false, true));
+        else
+            m_musicFader.PlayMusic(phaseList[0].phaseMusic, true, true);
 
         //start the main coroutine
         //StartCoroutine("StartBossScene"); --> start by Spawn animation       
@@ -119,11 +124,11 @@ public class BossAI : MonoBehaviour, IDamageable
         {
             if (phase.phasePreMusic != null)
                 // Fade premusic, then fade looping music
-                StartCoroutine(m_musicFader.PlayMusic(phase.phasePreMusic, true, false,
-                    () => StartCoroutine(m_musicFader.PlayMusic(phase.phaseMusic, false, true))));
+                StartCoroutine(m_musicFader.PlayMusicCoroutine(phase.phasePreMusic, true, false,
+                    () => StartCoroutine(m_musicFader.PlayMusicCoroutine(phase.phaseMusic, false, true))));
             
             else
-                StartCoroutine(m_musicFader.PlayMusic(phase.phaseMusic, true, true));
+                StartCoroutine(m_musicFader.PlayMusicCoroutine(phase.phaseMusic, true, true));
         }
 
         while (bossCurrentHealth > bossMaxHealth * phase.percentPhaseCondition )
@@ -184,8 +189,7 @@ public class BossAI : MonoBehaviour, IDamageable
             GetComponent<Animator>().SetTrigger("Death");
             
             // Play death sound, then loop post-fight music
-            StartCoroutine(m_musicFader.PlayMusic(deathSound, true, false,
-                () => StartCoroutine(m_musicFader.PlayMusic(postFightMusic, false, true)))); // Doesn't work, maybe because this gameobject will be inactive at that point?
+            StartCoroutine(m_musicFader.PlayMusicCoroutine(deathSound, true, false));
         }
         OnDamaged?.Invoke();
     }
@@ -193,6 +197,7 @@ public class BossAI : MonoBehaviour, IDamageable
     // Called by Death animation
     public void Despawn()
     {
+        m_musicFader.PlayMusic(postFightMusic, true, true);
         gameObject.SetActive(false);
         // Unlock player targeting
         FindObjectOfType<SpaceshipController>().RemoveTarget();

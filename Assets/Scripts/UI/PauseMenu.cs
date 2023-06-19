@@ -9,6 +9,7 @@ using Valve.VR;
 public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
 {
     [SerializeField] private AudioClip menuTheme;
+    [SerializeField] private GameObject boss; // Needs better solution, find single (inactive) boss object in scene automatically
     private InputActions input;
     private GameObject panel;
     private bool paused;
@@ -69,7 +70,10 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
         Time.timeScale = paused ? 0f : 1f;
 
         if (!paused && neverClosedYet)
+        {
             StartCoroutine(FindObjectOfType<MusicFader>().FadeOut(0.5f));
+            boss.SetActive(true);
+        }
     }
 
     public void OnToggle(InputAction.CallbackContext context)

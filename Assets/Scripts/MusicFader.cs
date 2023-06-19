@@ -17,8 +17,13 @@ public class MusicFader : MonoBehaviour
         trackB.volume = targetVolume;
     }
 
-    public IEnumerator PlayMusic(AudioClip clip, bool fade, bool loop, Action callback = null)
+    public void PlayMusic(AudioClip clip, bool fade, bool loop, Action callback = null) =>
+        StartCoroutine(PlayMusicCoroutine(clip, fade, loop, callback));
+    
+    public IEnumerator PlayMusicCoroutine(AudioClip clip, bool fade, bool loop, Action callback = null)
     {
+        if (trackA.clip.Equals(clip)) yield break; // Clip is already playing
+        
         // Current track is playing in A,
         // new clip will fade in in B
         trackB.clip = clip;
@@ -43,8 +48,8 @@ public class MusicFader : MonoBehaviour
         trackB.Stop();
         
         // If it's a non-looping track, inform caller that it has ended
-        if (loop) yield return null;
-
+        if (loop) yield break;
+        
         yield return new WaitForSeconds(clip.length - fadeDuration);
         callback?.Invoke();
     }
