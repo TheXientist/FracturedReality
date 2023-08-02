@@ -9,6 +9,7 @@ using Valve.VR;
 public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
 {
     [SerializeField] private AudioClip menuTheme;
+    [SerializeField] private GameObject UIPointer;
     private InputActions input;
     private GameObject panel;
     private bool paused;
@@ -64,6 +65,7 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
         if(panel != null)
         {
             panel.SetActive(shouldPause);
+            UIPointer.SetActive(shouldPause);
         }
         
         Time.timeScale = paused ? 0f : 1f;
