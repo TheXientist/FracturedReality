@@ -30,11 +30,9 @@ public class PointerHandler : MonoBehaviour
 
                 if (hit.collider.gameObject.GetComponent<Button>() != null)
                 {
-
                     hit.collider.gameObject.GetComponent<Button>().onClick.Invoke();
                     hit.collider.gameObject.GetComponent<VRButton>().ResetPressedTimer();
                     string hitObjectName = hit.collider.gameObject.name;
-                    print(hitObjectName);
                 }
 
             }
