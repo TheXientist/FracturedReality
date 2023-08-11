@@ -66,8 +66,13 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
         if(panel != null)
         {
             panel.SetActive(shouldPause);
-            UIPointer.SetActive(shouldPause);
-            m_repositionPanel.SetActive(false);
+
+            if (SpaceshipController.VR)
+            {
+                UIPointer.SetActive(shouldPause);
+                m_repositionPanel.SetActive(false);
+            }
+
         }
         
         Time.timeScale = paused ? 0f : 1f;
