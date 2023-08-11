@@ -80,6 +80,7 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
         if (!paused && neverClosedYet)
         {
             StartCoroutine(FindObjectOfType<MusicFader>().FadeOut(0.5f));
+            neverClosedYet = false;
             BossAI.Instance.gameObject.SetActive(true);
         }
     }
