@@ -18,10 +18,13 @@ public class HomingBullet : AbstractBullet, IBullet
 
     public float homingPercentage = 0;
 
+    public float homingDelay = 2f;
+
     private void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player");
         distance = (target.transform.position.magnitude - transform.position.magnitude) * homingPercentage;
+        StartCoroutine(Homing());
         Invoke("DestroySelf", 6);
     }
 
@@ -30,24 +33,30 @@ public class HomingBullet : AbstractBullet, IBullet
         Destroy(gameObject);
     }
 
+    private void SetDirectionToPlayer() => direction = (target.transform.position - transform.position).normalized;
+
     private void Update()
     {
-        if (m_homing)
-        {
-            direction = (target.transform.position - transform.position).normalized;
-        }
-        else
-        {
-            distance -= speed * Time.deltaTime;
-            if (distance <= 0)
-                m_homing = true;
-        }
-        
         Vector3 movement = direction * speed * Time.deltaTime;
         transform.position += movement;
     }
 
+    private IEnumerator Homing()
+    {
+        while(distance > 0)
+        {
+            distance -= speed * Time.deltaTime;
+            yield return null;
+        }
 
+        SetDirectionToPlayer();
+
+        yield return new WaitForSeconds(homingDelay);
+
+        SetDirectionToPlayer();
+
+        yield return null;
+    }
 
     private void OnTriggerEnter(Collider other)
     {

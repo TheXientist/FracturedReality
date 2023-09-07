@@ -27,7 +27,7 @@ public class ComboAttack : AbilityScriptableObject
             if (interrupted) break;
 
             currentExecutingAbility = currentAbility;
-            yield return currentAbility.Execute(spawn, targetPosition);
+            yield return currentAbility.Execute(spawn, SpaceshipController.Instance.transform.position);//targetPosition);
             currentExecutingAbility = null;
 
             if (interrupted) break;
