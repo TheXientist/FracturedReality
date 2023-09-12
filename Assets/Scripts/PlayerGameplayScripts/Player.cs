@@ -147,6 +147,8 @@ public class Player : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
+        if (PlayerCurrentHealth <= 0) return;
+        
         PlayerCurrentHealth -= damage;
         
         if (!animatingDamage)
