@@ -15,6 +15,8 @@ public class ComboAttack : AbilityScriptableObject
     
     public override IEnumerator Execute(Transform spawn, Vector3 targetPosition)
     {
+        interrupted = false;
+
         for (int i = 0; i < subAbilities.Length; i++)
         {
             if (interrupted) break;
