@@ -43,7 +43,8 @@ AudioSource:
   m_GameObject: {fileID: 4185635229755856287}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5058827712188334137, guid: fa82d77e826ddbf4f912868e00749493,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -148,6 +149,7 @@ MonoBehaviour:
   distance: 0
   direction: {x: 0, y: 0, z: 0}
   homingPercentage: 0
+  homingDelay: 2
 --- !u!1001 &523439880341322483
 PrefabInstance:
   m_ObjectHideFlags: 0

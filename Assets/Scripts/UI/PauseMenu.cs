@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
     [SerializeField] private AudioClip menuTheme;
     [SerializeField] private GameObject UIPointer;
     [SerializeField] private GameObject m_repositionPanel;
+    [SerializeField] private GameObject m_soundPanel;
     private InputActions input;
     private GameObject panel;
     private bool paused;
@@ -71,6 +72,7 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
             {
                 UIPointer.SetActive(shouldPause);
                 m_repositionPanel.SetActive(false);
+                m_soundPanel.SetActive(false);
             }
 
         }

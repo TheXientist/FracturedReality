@@ -3469,21 +3469,112 @@ PrefabInstance:
       propertyPath: UIPointer
       value: 
       objectReference: {fileID: 3907478548124629338}
+    - target: {fileID: 417819221076218535, guid: d924abef8d305ce40ba4978325887fb1,
+        type: 3}
+      propertyPath: m_soundPanel
+      value: 
+      objectReference: {fileID: 7501165517288441644}
+    - target: {fileID: 996567901280917529, guid: d924abef8d305ce40ba4978325887fb1,
+        type: 3}
+      propertyPath: m_VRPlayerRig
+      value: 
+      objectReference: {fileID: 9101574440703563527}
+    - target: {fileID: 1820732413182610003, guid: d924abef8d305ce40ba4978325887fb1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2845286955433754310, guid: d924abef8d305ce40ba4978325887fb1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -69
+      objectReference: {fileID: 0}
+    - target: {fileID: 3187119436082225984, guid: d924abef8d305ce40ba4978325887fb1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -237
+      objectReference: {fileID: 0}
+    - target: {fileID: 3607392939118042462, guid: d924abef8d305ce40ba4978325887fb1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4087667967053790475, guid: d924abef8d305ce40ba4978325887fb1,
         type: 3}
       propertyPath: m_Name
       value: Pausemenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 4087667967053790475, guid: d924abef8d305ce40ba4978325887fb1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4205311574592969075, guid: d924abef8d305ce40ba4978325887fb1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -380.00012
       objectReference: {fileID: 0}
     - target: {fileID: 4236575714777646842, guid: d924abef8d305ce40ba4978325887fb1,
         type: 3}
       propertyPath: m_VRPlayerRig
       value: 
       objectReference: {fileID: 9101574440703563527}
+    - target: {fileID: 4910245169844516429, guid: d924abef8d305ce40ba4978325887fb1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -58.999973
+      objectReference: {fileID: 0}
+    - target: {fileID: 5171438206325935449, guid: d924abef8d305ce40ba4978325887fb1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 277
+      objectReference: {fileID: 0}
+    - target: {fileID: 5296939661132678239, guid: d924abef8d305ce40ba4978325887fb1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -65.99997
+      objectReference: {fileID: 0}
+    - target: {fileID: 5772536213909350935, guid: d924abef8d305ce40ba4978325887fb1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 7.0000267
+      objectReference: {fileID: 0}
+    - target: {fileID: 6592112149891940653, guid: d924abef8d305ce40ba4978325887fb1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -244.99998
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473837201548250754, guid: d924abef8d305ce40ba4978325887fb1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -380
+      objectReference: {fileID: 0}
+    - target: {fileID: 7696989195033372903, guid: d924abef8d305ce40ba4978325887fb1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -226.99994
+      objectReference: {fileID: 0}
+    - target: {fileID: 7803805479241906865, guid: d924abef8d305ce40ba4978325887fb1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -184.99998
+      objectReference: {fileID: 0}
+    - target: {fileID: 8945114925437329660, guid: d924abef8d305ce40ba4978325887fb1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d924abef8d305ce40ba4978325887fb1, type: 3}
+--- !u!1 &7501165517288441644 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1820732413182610003, guid: d924abef8d305ce40ba4978325887fb1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8168953786747391359}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8475259021033580797 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 343363312887047554, guid: d924abef8d305ce40ba4978325887fb1,
