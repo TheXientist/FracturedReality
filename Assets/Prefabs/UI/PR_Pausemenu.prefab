@@ -421,7 +421,6 @@ GameObject:
   - component: {fileID: 6188913820890868803}
   - component: {fileID: 5953447118998397966}
   - component: {fileID: 7122231795332628152}
-  - component: {fileID: 996567901280917529}
   - component: {fileID: 4533149177649507507}
   m_Layer: 5
   m_Name: SoundPanel
@@ -502,19 +501,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &996567901280917529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1820732413182610003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 476e20ad624caca47a0c124b5174bfea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_VRPlayerRig: {fileID: 0}
 --- !u!114 &4533149177649507507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -668,7 +654,7 @@ RectTransform:
   - {fileID: 2964931305131677048}
   - {fileID: 6188913820890868803}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
