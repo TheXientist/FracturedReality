@@ -10,7 +10,7 @@
         _LightSteps ("Light Marching Steps", Integer) = 50
         _Fidelity ("Raymarching Detail", Float) = 0.001
         _AO ("Ambient Occlusion Strength", Float) = 5
-        _IAmbient ("Ambient Brightness", FLoat) = 0.07
+        _IAmbient ("Ambient Brightness", Float) = 0.07
         _ISpecular ("Specular Intensity", Float) = 5
         _Shininess ("Shininess", Float) = 5
         _NormalMode ("Normal Rendering Mode", Int) = 1
@@ -52,7 +52,7 @@
 
             StructuredBuffer<FractalData> _FractalBuffer;
             StructuredBuffer<TransformData> _TransformBuffer;
-            
+
             int _FractalCount;
             int _TransformCount;
             int _DepthSteps;
@@ -262,6 +262,7 @@
                         mPos = mul(_TransformBuffer[i].data, float4(mPos, 1));
                     }
                 }
+                mPos = mul(_FractalBuffer[0].worldToLocal, mPos); //intentionally ignoring translation
                 return mPos;
             }
 
