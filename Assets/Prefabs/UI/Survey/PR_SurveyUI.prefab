@@ -914,11 +914,6 @@ PrefabInstance:
       propertyPath: m_text
       value: Stress
       objectReference: {fileID: 0}
-    - target: {fileID: 3799666893274454369, guid: a953296622fcc6944b516fa704512047,
-        type: 3}
-      propertyPath: m_text
-      value: high
-      objectReference: {fileID: 0}
     - target: {fileID: 6314752855927690617, guid: a953296622fcc6944b516fa704512047,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1069,11 +1064,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3799666893274454369, guid: a953296622fcc6944b516fa704512047,
-        type: 3}
-      propertyPath: m_text
-      value: high
       objectReference: {fileID: 0}
     - target: {fileID: 6314752855927690617, guid: a953296622fcc6944b516fa704512047,
         type: 3}
@@ -1230,11 +1220,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: Enjoyment
-      objectReference: {fileID: 0}
-    - target: {fileID: 3799666893274454369, guid: a953296622fcc6944b516fa704512047,
-        type: 3}
-      propertyPath: m_text
-      value: high
       objectReference: {fileID: 0}
     - target: {fileID: 6314752855927690617, guid: a953296622fcc6944b516fa704512047,
         type: 3}

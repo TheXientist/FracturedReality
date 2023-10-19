@@ -58,7 +58,7 @@ public class SurveyManager : MonoBehaviour
         foreach (var slider in sliders)
         {
             slider.Save();
-            writer.WriteLine(slider.name + ": " + slider.previousValue);
+            writer.WriteLine(slider.name + ": " + RatingToText(slider.previousValue));
         }
         writer.Close();
         
@@ -76,4 +76,18 @@ public class SurveyManager : MonoBehaviour
         
         gameObject.SetActive(false);
     }
+
+    private string RatingToText(int rating)
+    {
+        switch (rating)
+        {
+            case 0: return "None";
+            case 1: return "Low";
+            case 2: return "Medium";
+            case 3: return "High";
+            case 4: return "Very High";
+            default: return rating.ToString();
+        }
+    }
+    
 }
