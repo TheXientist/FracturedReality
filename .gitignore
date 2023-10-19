@@ -77,3 +77,7 @@ crashlytics-build.properties
 # Rider
 .idea
 *.blend1*
+
+# Ignore Survey Results files
+Assets/SurveyResults/*.txt*
+Assets/SurveyResults/*.csv*
