@@ -67,6 +67,12 @@
             float _Fov;
             int _FovSteps;
 
+            //matrix to convert from yiq to rgb color space
+            float3x3 YIQtoRGB = float3x3(
+                1, 0.956, 0.621,
+                1, -0.272, -0.647,
+                1, -1.107, 1.705);
+
             struct VS_IN
             {
                 float4 positionOS   : POSITION; //objectspace
@@ -444,10 +450,12 @@
 
                 float light = max(illumination, ambientIllumination);
                 float3 baseColor = abs(ReverseTransforms(currentPos));
-                baseColor.r = sin(baseColor.r * 0.144);
-                baseColor.g = sin(baseColor.g * 0.333);
-                baseColor.b = sin(baseColor.b * 0.222);
 
+                baseColor.r = sin(baseColor.r * 0.144 + 0.1);
+                baseColor.g = sin(baseColor.g * 0.066 + 0.2);
+                baseColor.b = sin(baseColor.b * 0.222 + 0.3);
+
+                //baseColor = mul(YIQtoRGB, baseColor);
                 
                 //return  float4(steps % 2 * 0.5, 0, 0, 1); //distinguish marching layers
                 //return  float4(lightSteps % 2 * 0.5, 0, 0, 1); //distinguish light layers
