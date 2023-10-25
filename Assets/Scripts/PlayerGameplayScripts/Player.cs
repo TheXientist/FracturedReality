@@ -210,7 +210,7 @@ public class Player : MonoBehaviour, IDamageable
                 spawnPos = lastFiredRight ? m_bulletSpawnpointLeft.position : m_bulletSpawnpointRight.position;
                 lastFiredRight = !lastFiredRight;
             
-                direction = (m_BossObject.transform.position - spawnPos).normalized;
+                direction = m_BossObject.activeSelf ? (m_BossObject.transform.position - spawnPos) : transform.forward;
 
                 temp = Instantiate(m_currentBullet, spawnPos, Quaternion.LookRotation(direction, Vector3.up));
 
@@ -230,6 +230,8 @@ public class Player : MonoBehaviour, IDamageable
 
     private void OnFireInput(bool btnDown)
     {
+        if (PauseMenu.Paused) return;
+        
         if (IsOverheated)
         {
             // TODO: SFX & visual feedback
@@ -260,7 +262,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void OnDeflectInput()
     {
-        if (!empReady)
+        if (!empReady || PauseMenu.Paused)
         {
             // TODO: visual / sfx feedback
             return;

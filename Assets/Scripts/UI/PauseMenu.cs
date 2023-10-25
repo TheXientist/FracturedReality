@@ -14,7 +14,7 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
     [SerializeField] private GameObject m_soundPanel;
     private InputActions input;
     private GameObject panel;
-    private bool paused;
+    public static bool Paused { get; private set; }
     private bool started;
     private bool allowToggle = true;
     private bool neverClosedYet = true;
@@ -55,14 +55,14 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
 
     private void ToggleVR(SteamVR_Action_Boolean action, SteamVR_Input_Sources sources)
     {       
-        Toggle(!paused);
+        Toggle(!Paused);
     }
 
     private void Toggle(bool shouldPause)
     {
         if (!allowToggle) return;
 
-        paused = shouldPause;
+        Paused = shouldPause;
 
         if(panel != null)
         {
@@ -77,9 +77,9 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
 
         }
         
-        Time.timeScale = paused ? 0f : 1f;
+        Time.timeScale = Paused ? 0f : 1f;
 
-        if (!paused && neverClosedYet)
+        if (!Paused && neverClosedYet)
         {
             StartCoroutine(FindObjectOfType<MusicFader>().FadeOut(0.5f));
             neverClosedYet = false;
@@ -91,7 +91,7 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
     {
         if (context.started)
         {
-            Toggle(!paused);
+            Toggle(!Paused);
         }
     }
 
