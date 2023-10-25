@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DissolveSphere : MonoBehaviour {
+public class DissolveObject : MonoBehaviour {
 
     Material mat;
 
@@ -17,7 +17,7 @@ public class DissolveSphere : MonoBehaviour {
         //mat.SetFloat("_DissolveAmount", Mathf.Sin(Time.time) / 2 + 0.5f);
     }
 
-    public IEnumerator HideSphere()
+    public IEnumerator HideObject()
     {
         float startValue = 0.0f;
         float endValue = 1.0f;
@@ -28,12 +28,12 @@ public class DissolveSphere : MonoBehaviour {
             float t = (Time.time - startTime) / lerpDuration;
             float lerpedValue = Mathf.Lerp(startValue, endValue, t);
 
-            mat.SetFloat("_DissolveAmount", lerpedValue);
+            mat.SetFloat("_DissolveValue", lerpedValue);
             yield return null;
         }
     }
 
-    public IEnumerator ShowSphere()
+    public IEnumerator ShowObject()
     {
         float startValue = 1.0f;
         float endValue = 0.0f;
@@ -44,7 +44,7 @@ public class DissolveSphere : MonoBehaviour {
             float t = (Time.time - startTime) / lerpDuration;
             float lerpedValue = Mathf.Lerp(startValue, endValue, t);
 
-            mat.SetFloat("_DissolveAmount", lerpedValue);
+            mat.SetFloat("_DissolveValue", lerpedValue);
             yield return null;
         }
     }

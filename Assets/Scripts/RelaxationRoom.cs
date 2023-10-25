@@ -11,7 +11,7 @@ public class RelaxationRoom : MonoBehaviour
     private List<GameObject> m_relaxationRoomObjects;
 
     [SerializeField]
-    private DissolveSphere m_relaxSphere;
+    private DissolveObject m_relaxBox;
 
     [SerializeField]
     private AudioClip m_relaxMusic;
@@ -29,7 +29,16 @@ public class RelaxationRoom : MonoBehaviour
         m_musicFader = FindAnyObjectByType<MusicFader>();
         spaceshipController = playerObject.GetComponent<SpaceshipController>();
         playerRB = playerObject.GetComponent<Rigidbody>();
-        
+
+        for (int i = 0; i < playerObject.transform.childCount - 1; i++)
+        {
+            GameObject temp = playerObject.transform.GetChild(i).gameObject;
+            if (temp.activeSelf)
+            {
+                m_bossFightObjects.Add(temp);
+            }
+        }
+
     }
 
     // Update is called once per frame
@@ -56,11 +65,13 @@ public class RelaxationRoom : MonoBehaviour
 
         playerRB.velocity = Vector3.zero;
 
-        m_relaxSphere.transform.position = playerObject.transform.position;
+        transform.position = playerObject.transform.position;
 
-        m_relaxSphere.gameObject.SetActive(true);
+        transform.rotation = playerObject.transform.rotation;
 
-        yield return StartCoroutine(m_relaxSphere.ShowSphere());
+        m_relaxBox.gameObject.SetActive(true);
+
+        yield return StartCoroutine(m_relaxBox.ShowObject());
 
         foreach (GameObject obj in m_bossFightObjects)
         {
@@ -89,8 +100,8 @@ public class RelaxationRoom : MonoBehaviour
             obj.SetActive(false);
         }
 
-        yield return StartCoroutine(m_relaxSphere.HideSphere());
+        yield return StartCoroutine(m_relaxBox.HideObject());
 
-        m_relaxSphere.gameObject.SetActive(false);
+        m_relaxBox.gameObject.SetActive(false);
     }
 }
