@@ -90,14 +90,14 @@ public class RelaxationRoom : MonoBehaviour
     {
         spaceshipController.enabled = true;
 
-        foreach (GameObject obj in m_bossFightObjects)
-        {
-            obj.SetActive(true);
-        }
-
         foreach (GameObject obj in m_relaxationRoomObjects)
         {
             obj.SetActive(false);
+        }
+
+        foreach (GameObject obj in m_bossFightObjects)
+        {
+            obj.SetActive(true);
         }
 
         yield return StartCoroutine(m_relaxBox.HideObject());
