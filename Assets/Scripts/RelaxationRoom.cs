@@ -20,6 +20,7 @@ public class RelaxationRoom : MonoBehaviour
 
     private GameObject playerObject;
     private SpaceshipController spaceshipController;
+    private Player playerController;
     private Rigidbody playerRB;
 
     // Start is called before the first frame update
@@ -28,12 +29,13 @@ public class RelaxationRoom : MonoBehaviour
         playerObject = GameObject.FindGameObjectWithTag("Player");
         m_musicFader = FindAnyObjectByType<MusicFader>();
         spaceshipController = playerObject.GetComponent<SpaceshipController>();
+        playerController = playerObject.GetComponent<Player>();
         playerRB = playerObject.GetComponent<Rigidbody>();
 
         for (int i = 0; i < playerObject.transform.childCount - 1; i++)
         {
             GameObject temp = playerObject.transform.GetChild(i).gameObject;
-            if (temp.activeSelf)
+            if (temp.activeSelf && !temp.name.Equals("Main Camera"))
             {
                 m_bossFightObjects.Add(temp);
             }
@@ -62,6 +64,7 @@ public class RelaxationRoom : MonoBehaviour
         StartCoroutine ( m_musicFader.PlayMusicCoroutine(m_relaxMusic, true, true));
 
         spaceshipController.enabled = false;
+        playerController.enabled = false;
 
         playerRB.velocity = Vector3.zero;
 
@@ -88,7 +91,12 @@ public class RelaxationRoom : MonoBehaviour
 
     public IEnumerator ActivateBossFightRoom()
     {
+        yield return StartCoroutine(m_relaxBox.HideObject());
+
+        m_relaxBox.gameObject.SetActive(false);
+        
         spaceshipController.enabled = true;
+        playerController.enabled = true;
 
         foreach (GameObject obj in m_relaxationRoomObjects)
         {
@@ -99,9 +107,5 @@ public class RelaxationRoom : MonoBehaviour
         {
             obj.SetActive(true);
         }
-
-        yield return StartCoroutine(m_relaxBox.HideObject());
-
-        m_relaxBox.gameObject.SetActive(false);
     }
 }

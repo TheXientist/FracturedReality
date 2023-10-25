@@ -72,27 +72,18 @@ public class BossAI : MonoBehaviour, IDamageable
         warningDisplay = GameObject.FindWithTag("RangeDisplay").transform.GetChild(0).gameObject;
         gameObject.SetActive(false);
     }
-
-    // Start is called before the first frame update
-    private void Start()
+    
+    private void OnEnable()
     {
-        Debug.Log("BossAI.Start");
+        Debug.Log("BossAI.OnEnable");
         
+        // (Re)connect to player
         SetupReferences();
-
-        BossCurrentHealth = bossMaxHealth;
-
-        //to make sure, the last phase lasts till the end of the boss-fight
-        phaseList[phaseList.Count-1].percentPhaseCondition = 0;
-        
-        
-        if (phaseList[0].phasePreMusic != null)
-            m_musicFader.PlayMusic(phaseList[0].phasePreMusic, true, false, () => m_musicFader.PlayMusic(phaseList[0].phaseMusic, false, true));
-        else
-            m_musicFader.PlayMusic(phaseList[0].phaseMusic, true, true);
 
         // Make boss invincible during spawn animation
         invincible = true;
+        
+        animator.SetTrigger("Spawn");
 
         //start the main coroutine
         //StartCoroutine("StartBossScene"); --> start by Spawn animation       
@@ -128,11 +119,21 @@ public class BossAI : MonoBehaviour, IDamageable
     //Fight coroutine (Main)  possible to add "pre-events"
     public void StartBossScene()
     {
+        BossCurrentHealth = bossMaxHealth;
+
+        //to make sure, the last phase lasts till the end of the boss-fight
+        phaseList[phaseList.Count-1].percentPhaseCondition = 0;
+        
+        
+        if (phaseList[0].phasePreMusic != null)
+            m_musicFader.PlayMusic(phaseList[0].phasePreMusic, true, false, () => m_musicFader.PlayMusic(phaseList[0].phaseMusic, false, true));
+        else
+            m_musicFader.PlayMusic(phaseList[0].phaseMusic, true, true);
+        
         invincible = false;
         m_bossCoroutine = BeginFight();
 
         StartCoroutine(m_bossCoroutine);
-
     }
 
     private IEnumerator Phase()
@@ -206,6 +207,7 @@ public class BossAI : MonoBehaviour, IDamageable
     }
 
     public event Action OnDamaged;
+    public event Action OnDefeated;
 
     public void TakeDamage(float damage)
     {
@@ -231,6 +233,7 @@ public class BossAI : MonoBehaviour, IDamageable
         gameObject.SetActive(false);
         // Unlock player targeting
         FindObjectOfType<SpaceshipController>().RemoveTarget();
+        OnDefeated?.Invoke();
     }
 
     public void StopBossFight()
