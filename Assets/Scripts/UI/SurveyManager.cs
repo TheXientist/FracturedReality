@@ -74,6 +74,8 @@ public class SurveyManager : MonoBehaviour
         writer.WriteLine(line);
         writer.Close();
         
+        
+        FindObjectOfType<IntroManager>().OnSurveySubmitted();
         gameObject.SetActive(false);
     }
 
