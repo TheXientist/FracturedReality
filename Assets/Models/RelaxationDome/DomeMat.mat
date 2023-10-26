@@ -7,12 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RayMarchingMat
-  m_Shader: {fileID: 4800000, guid: 5030ab7dd3e3b5449b8f52c753805663, type: 3}
+  m_Name: DomeMat
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _MAPPING_LATITUDE_LONGITUDE_LAYOUT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -44,7 +45,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 0b3f4916a61261241bbcc69bdd3d747f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -59,36 +60,25 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Ints:
-    - _DepthSteps: 100
-    - _FovSteps: 200
-    - _FractalCount: 1
-    - _LightSteps: 80
-    - _MirrorCount: 1
-    - _Shininess: -28
-    - _TransformCount: 14
-    - _VR: 0
+    m_Ints: []
     m_Floats:
-    - _AO: 0.8
-    - _Ambient: 0.07
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Fidelity: 0
-    - _Fov: 0
-    - _FovSteps: 75
+    - _Exposure: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _IAmbient: 0.07
-    - _ISpecular: 0
+    - _ImageType: 0
+    - _Layout: 0
+    - _Mapping: 1
     - _Metallic: 0
+    - _MirrorOnBack: 0
     - _Mode: 0
-    - _NormalMode: 4
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Shininess: 1.5
+    - _Rotation: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -97,4 +87,5 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
   m_BuildTextureStacks: []
