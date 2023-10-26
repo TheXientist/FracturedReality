@@ -10,12 +10,16 @@
         _LightSteps ("Light Marching Steps", Integer) = 50
         _Fidelity ("Raymarching Detail", Float) = 0.001
         _AO ("Ambient Occlusion Strength", Float) = 5
+        _LightIntensity ("Light Intensity", Float) = 10
+        _LightExposure ("Light Exposure", Float) = 1
         _IAmbient ("Ambient Brightness", FLoat) = 0.07
         _ISpecular ("Specular Intensity", Float) = 5
         _Shininess ("Shininess", Float) = 5
         _NormalMode ("Normal Rendering Mode", Int) = 1
         _Fov ("Foveated Rendering Curve", Float) = 2.4
         _FovSteps ("FR Minimum Marching Steps", Integer) = 0
+
+        _LightMode ("Light Mode", Integer) = 0
     }
     SubShader
     {
@@ -61,11 +65,15 @@
             int _VR;
             float _AO;
             float _IAmbient;
+            float _LightIntensity;
+            float _LightExposure;
             float _ISpecular;
             float _Shininess;
             int _NormalMode;
             float _Fov;
             int _FovSteps;
+
+            bool _LightMode;
 
             //matrix to convert from yiq to rgb color space
             float3x3 YIQtoRGB = float3x3(
@@ -342,7 +350,6 @@
                     if (dot(currentPos - _WorldSpaceCameraPos, view) > worldDepth) return float4(0, 0, 0, 0); //return miss if depth is higher than normal geometry (=occluded)
                     fidelity = max(sqrt(length(currentPos - _WorldSpaceCameraPos)) / 1000, _Fidelity);
                     if (distance < fidelity) { //break if fidelity is reached
-
                         currentPos += direction * distance * (distance / fidelity) * (1 - dot(view, direction)) * 5; //extrapolate against depth banding
                         break;
                     }
@@ -356,10 +363,8 @@
                 //normals
                 float3 normal;
 
-                if (_NormalMode == 0) {
-                    //fast ddx/ddy normals
-                    normal = -normalize(cross(ddx(currentPos), ddy(currentPos)));
-                } else if (_NormalMode == 1) {
+                if (_NormalMode == 0) normal = -normalize(cross(ddx(currentPos), ddy(currentPos)));
+                else if (_NormalMode == 1) {
                     //fancy normals
                     float3 dir = normalize(IN.fragPosWS + ddx(IN.fragPosWS) - _WorldSpaceCameraPos);
                     float3 pos = _WorldSpaceCameraPos;
@@ -391,17 +396,21 @@
 
                     normal = -normalize(cross(nT, nB));
                 }
-                else {
-                    normal = float3(1, 1, 1);
-                }
+                else normal = float3(1, 1, 1);
 
                 if (_VR) normal = -normal;
 
                 //shadow ray
-                float3 lightDir = -float3(_WorldSpaceLightPos0.x, _WorldSpaceLightPos0.y, _WorldSpaceLightPos0.z);
-                float3 lightPos = currentPos - lightDir * _ProjectionParams.z;
-                float intensity = 3;
-                float exposure = 1;
+                float3 lightPos = float3(50 * sin(_Time.y / 16), -15 * sin(_Time.y / 16), 10 * sin(_Time.y / 8));
+                float3 lightDir = normalize(currentPos - lightPos);
+
+                if (_LightMode == 0) {
+                    lightDir = -float3(_WorldSpaceLightPos0.x, _WorldSpaceLightPos0.y, _WorldSpaceLightPos0.z);
+                    lightPos = currentPos - lightDir * _ProjectionParams.z;
+                }
+                
+                float intensity = _LightIntensity;
+                float exposure = _LightExposure;
                 float3 currentLightPos = lightPos; //current position of the marching ray
 
                 int lightSteps = 0;
@@ -430,9 +439,9 @@
 
                 float d = length(lightPos - currentPos); //distance from light source
                 float i = pow(intensity, exposure);
-                if (false) {
-                    i = pow(intensity, exposure) / (d * d); //inverse square law
-                }
+                if (false) i = pow(intensity, exposure) / (d * d); //inverse square law
+
+                if (true) i = pow(intensity, exposure) / (d); //linear brightness
 
                 if (!hit) {
                     float b = 1 / minRatio; //hypotenuse
@@ -440,15 +449,16 @@
 
                     float alpha = acos(c / b);
 
-                    illumination = min(dot(-lightDir, normal) * i, (alpha / 1.57) * i); //1.57 = PI/2
+                    if(_NormalMode == 1 || _NormalMode == 0) illumination = min(dot(-lightDir, normal) * i, (alpha / 1.57) * i); //1.57 = PI/2
+                    else illumination = (alpha / 1.57) * i; //1.57 = PI/2
                 }
 
                 //specular
                 float specular = pow(max(dot(normalize(currentPos - _WorldSpaceCameraPos), reflect(-lightDir, normal)), 0.0), pow(2, _Shininess)) * illumination * max(_ISpecular, 0);
 
-                float ambientIllumination = ambientOcclusion * _IAmbient;
+                float ambientIllumination = _IAmbient;
 
-                float light = max(illumination, ambientIllumination);
+                float light = max(illumination, _IAmbient) * ambientOcclusion;
                 float3 baseColor = abs(ReverseTransforms(currentPos));
 
                 baseColor.r = sin(baseColor.r * 0.144 + 0.1);
