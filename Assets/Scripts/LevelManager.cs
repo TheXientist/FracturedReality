@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
     
     private enum SwitchCondition
     {
-        BossDefeated, TimeOver
+        BossDefeated, TimeOver, ButtonPress
     }
 
     [SerializeField] private SwitchCondition condition;
@@ -39,17 +39,22 @@ public class LevelManager : MonoBehaviour
         
         if (isInRelaxationRoom)
         {
-            if (surveyAnswered && timer >= timeInRelaxationRoom)
+            if ((surveyAnswered && timer >= timeInRelaxationRoom) || (condition.Equals(SwitchCondition.ButtonPress) && Input.GetKeyDown(KeyCode.Return)))
             {
                 SwitchToBossFight();
             }
             return;
         }
         // If in Boss fight
-        
-        // Check time (death condition is checked by callback)
-        if (condition.Equals(SwitchCondition.TimeOver) && timer >= timeInBossFight)
-            boss.TakeDamage(100000); // death -> despawn -> automatic switch
+
+        switch (condition)
+        {
+            // Check time (death condition is checked by callback)
+            case SwitchCondition.TimeOver when timer >= timeInBossFight:
+            case SwitchCondition.ButtonPress when Input.GetKeyDown(KeyCode.Return):
+                boss.TakeDamage(100000); // death -> despawn -> automatic switch
+                break;
+        }
     }
 
     private void SwitchToBossFight()

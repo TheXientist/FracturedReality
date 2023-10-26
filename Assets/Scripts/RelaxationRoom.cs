@@ -43,22 +43,6 @@ public class RelaxationRoom : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //Temp: Switch between Relax-Room and Boss-Fight
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-          StartCoroutine(  ActivateBossFightRoom());
-        }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-           StartCoroutine( ActivateRelaxRoom());
-        }
-
-    }
-
     public IEnumerator ActivateRelaxRoom()
     {
         StartCoroutine ( m_musicFader.PlayMusicCoroutine(m_relaxMusic, true, true));
@@ -91,10 +75,6 @@ public class RelaxationRoom : MonoBehaviour
 
     public IEnumerator ActivateBossFightRoom()
     {
-        yield return StartCoroutine(m_relaxBox.HideObject());
-
-        m_relaxBox.gameObject.SetActive(false);
-        
         spaceshipController.enabled = true;
         playerController.enabled = true;
 
@@ -107,5 +87,8 @@ public class RelaxationRoom : MonoBehaviour
         {
             obj.SetActive(true);
         }
+        
+        yield return StartCoroutine(m_relaxBox.HideObject());
+        m_relaxBox.gameObject.SetActive(false);
     }
 }
