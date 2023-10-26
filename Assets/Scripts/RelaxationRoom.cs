@@ -53,7 +53,6 @@ public class RelaxationRoom : MonoBehaviour
         playerRB.velocity = Vector3.zero;
 
         transform.position = playerObject.transform.position;
-
         transform.rotation = playerObject.transform.rotation;
 
         m_relaxBox.gameObject.SetActive(true);
@@ -69,8 +68,6 @@ public class RelaxationRoom : MonoBehaviour
         {
             obj.SetActive(true);
         }
-
-        
     }
 
     public IEnumerator ActivateBossFightRoom()

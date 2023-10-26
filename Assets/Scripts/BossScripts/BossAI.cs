@@ -82,6 +82,8 @@ public class BossAI : MonoBehaviour, IDamageable
 
         // Make boss invincible during spawn animation
         invincible = true;
+        destroyed = false;
+        BossCurrentHealth = bossMaxHealth;
         
         animator.SetTrigger("Spawn");
 
@@ -119,11 +121,8 @@ public class BossAI : MonoBehaviour, IDamageable
     //Fight coroutine (Main)  possible to add "pre-events"
     public void StartBossScene()
     {
-        BossCurrentHealth = bossMaxHealth;
-
         //to make sure, the last phase lasts till the end of the boss-fight
         phaseList[phaseList.Count-1].percentPhaseCondition = 0;
-        
         
         if (phaseList[0].phasePreMusic != null)
             m_musicFader.PlayMusic(phaseList[0].phasePreMusic, true, false, () => m_musicFader.PlayMusic(phaseList[0].phaseMusic, false, true));
@@ -172,6 +171,7 @@ public class BossAI : MonoBehaviour, IDamageable
 
     private IEnumerator BeginFight()
     {
+        currentPhase = 0;
         foreach (var phase in phaseList)
         {
             yield return this.Phase();

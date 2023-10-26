@@ -1233,7 +1233,7 @@ PrefabInstance:
     - target: {fileID: 3061859875470130510, guid: c1d91ecf7a5e14a689fcef67f95363bf,
         type: 3}
       propertyPath: vr
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3061859875470130510, guid: c1d91ecf7a5e14a689fcef67f95363bf,
         type: 3}
@@ -2275,9 +2275,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6293280729080821924}
-  condition: 1
-  timeInRelaxationRoom: 10
-  timeInBossFight: 20
+  condition: 2
+  timeInRelaxationRoom: 5
+  timeInBossFight: 10
+  surveyAnswered: 0
 --- !u!4 &1965600914 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1996072375141257083, guid: 499d3dd135cf344439bbdbb3a36f15a0,
