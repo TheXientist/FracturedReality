@@ -62,14 +62,15 @@ Material:
     m_Ints:
     - _DepthSteps: 100
     - _FovSteps: 200
-    - _FractalCount: 1
+    - _FractalCount: 0
+    - _LightMode: 1
     - _LightSteps: 80
     - _MirrorCount: 1
     - _Shininess: -28
     - _TransformCount: 14
     - _VR: 0
     m_Floats:
-    - _AO: 0.8
+    - _AO: 4.5
     - _Ambient: 0.07
     - _BumpScale: 1
     - _Cutoff: 0.5
@@ -81,8 +82,10 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _IAmbient: 0.07
+    - _IAmbient: 0.5
     - _ISpecular: 0
+    - _LightExposure: 2.5
+    - _LightIntensity: 6
     - _Metallic: 0
     - _Mode: 0
     - _NormalMode: 4
