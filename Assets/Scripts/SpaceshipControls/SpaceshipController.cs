@@ -14,7 +14,6 @@ public class SpaceshipController : MonoBehaviour
     [SerializeField] private bool debug, vr; 
     public static bool VR => Instance.vr;
     private SteamVR_Action_Vector2 leftStickAction, rightStickAction;
-    private GameObject vrArmature;
 
     private Vector2 leftStickInput, rightStickInput;
 
@@ -74,8 +73,8 @@ public class SpaceshipController : MonoBehaviour
     {
         raymarchingMaterial.SetInteger("_VR", 1);
         
-        vrArmature = Instantiate(playerPrefabVR, transform);
-        vrArmature.SetActive(true);
+        //vrArmature = Instantiate(playerPrefabVR, transform);
+        playerPrefabVR.SetActive(true);
         camera.SetActive(false);
         
         SteamVR_Actions._default.Deactivate();
@@ -224,6 +223,11 @@ public class SpaceshipController : MonoBehaviour
     {
         target = null;
         SetControlSettings(defaultControls);
+    }
+
+    private void OnDisable()
+    {
+        rb.velocity = Vector3.zero;
     }
 }
 

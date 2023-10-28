@@ -230,7 +230,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void OnFireInput(bool btnDown)
     {
-        if (PauseMenu.Paused) return;
+        if (!enabled || PauseMenu.Paused) return;
         
         if (IsOverheated)
         {
@@ -262,7 +262,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void OnDeflectInput()
     {
-        if (!empReady || PauseMenu.Paused)
+        if (!enabled || !empReady || PauseMenu.Paused)
         {
             // TODO: visual / sfx feedback
             return;

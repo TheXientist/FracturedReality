@@ -397,7 +397,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7958100593406278006}
   - component: {fileID: 4393318309506627827}
-  - component: {fileID: 4159403640988699361}
   m_Layer: 0
   m_Name: MusikController
   m_TagString: Untagged
@@ -421,7 +420,7 @@ Transform:
   - {fileID: 206580344926641235}
   - {fileID: 4221629046800882931}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4393318309506627827
 MonoBehaviour:
@@ -440,15 +439,3 @@ MonoBehaviour:
   atmo: {fileID: 3746471162178659840}
   targetVolume: 0.5
   fadeDuration: 1
---- !u!114 &4159403640988699361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7102136374920400054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57cfce6858b744344b794e52711880a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

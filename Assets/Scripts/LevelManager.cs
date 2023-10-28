@@ -39,7 +39,7 @@ public class LevelManager : MonoBehaviour
         
         if (isInRelaxationRoom)
         {
-            if ((surveyAnswered && timer >= timeInRelaxationRoom) || (condition.Equals(SwitchCondition.ButtonPress) && Input.GetKeyDown(KeyCode.Return)))
+            if ((surveyAnswered && timer >= timeInRelaxationRoom) || (condition.Equals(SwitchCondition.ButtonPress) && Input.GetKeyDown(KeyCode.Backspace)))
             {
                 SwitchToBossFight();
             }
@@ -51,7 +51,7 @@ public class LevelManager : MonoBehaviour
         {
             // Check time (death condition is checked by callback)
             case SwitchCondition.TimeOver when timer >= timeInBossFight:
-            case SwitchCondition.ButtonPress when Input.GetKeyDown(KeyCode.Return):
+            case SwitchCondition.ButtonPress when Input.GetKeyDown(KeyCode.Backspace):
                 boss.TakeDamage(100000); // death -> despawn -> automatic switch
                 break;
         }

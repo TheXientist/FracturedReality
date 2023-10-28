@@ -712,7 +712,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1368894122317756116
 RectTransform:
   m_ObjectHideFlags: 0
@@ -905,7 +905,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press X to start!
+  m_text: Press X to continue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4d0bb7337f597634b94b9005947e8e28, type: 2}
   m_sharedMaterial: {fileID: 7503143391497007800, guid: 4d0bb7337f597634b94b9005947e8e28,
@@ -1146,7 +1146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -50}
+  m_AnchoredPosition: {x: -0, y: -73}
   m_SizeDelta: {x: -1, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4882235076676399850
@@ -1177,7 +1177,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fractured Reality Prototype
+  m_text: Paused
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4d0bb7337f597634b94b9005947e8e28, type: 2}
   m_sharedMaterial: {fileID: 7503143391497007800, guid: 4d0bb7337f597634b94b9005947e8e28,
@@ -1205,8 +1205,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3638,12 +3638,12 @@ PrefabInstance:
     - target: {fileID: 2973132267603439601, guid: 494c99639ce027542910a3429f1b56ec,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -217
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2973132267603439601, guid: 494c99639ce027542910a3429f1b56ec,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -274
+      value: -55
       objectReference: {fileID: 0}
     - target: {fileID: 2973132267603439601, guid: 494c99639ce027542910a3429f1b56ec,
         type: 3}
@@ -5976,12 +5976,12 @@ PrefabInstance:
     - target: {fileID: 2973132267603439601, guid: 494c99639ce027542910a3429f1b56ec,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 245
+      value: -0.25049
       objectReference: {fileID: 0}
     - target: {fileID: 2973132267603439601, guid: 494c99639ce027542910a3429f1b56ec,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -274
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 2973132267603439601, guid: 494c99639ce027542910a3429f1b56ec,
         type: 3}

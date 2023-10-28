@@ -43,7 +43,8 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
     {
         panel = transform.GetChild(0).gameObject;
 
-        StartCoroutine(PauseAfterSeconds(1f));
+        //StartCoroutine(PauseAfterSeconds(1f));
+        Toggle(false);
         Player.OnPlayerDeath += DisallowToggle;
     }
 
@@ -78,13 +79,6 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
         }
         
         Time.timeScale = Paused ? 0f : 1f;
-
-        if (!Paused && neverClosedYet)
-        {
-            StartCoroutine(FindObjectOfType<MusicFader>().FadeOut(0.5f));
-            neverClosedYet = false;
-            BossAI.Instance.gameObject.SetActive(true);
-        }
     }
 
     public void OnToggle(InputAction.CallbackContext context)

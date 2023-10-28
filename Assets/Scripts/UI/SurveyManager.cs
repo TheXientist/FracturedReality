@@ -92,4 +92,10 @@ public class SurveyManager : MonoBehaviour
         }
     }
     
+    // For testing without VR
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+            SubmitResults();
+    }
 }

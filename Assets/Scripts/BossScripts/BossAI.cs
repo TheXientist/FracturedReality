@@ -70,7 +70,6 @@ public class BossAI : MonoBehaviour, IDamageable
         m_musicFader = FindAnyObjectByType<MusicFader>();
         healthDisplay = GameObject.FindWithTag("BossHealthDisplay").GetComponent<TextMeshProUGUI>();
         warningDisplay = GameObject.FindWithTag("RangeDisplay").transform.GetChild(0).gameObject;
-        gameObject.SetActive(false);
     }
     
     private void OnEnable()
