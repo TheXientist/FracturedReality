@@ -18,11 +18,14 @@ public class FadeBlackScreen : MonoBehaviour
         {
             m_blackScreen = GetComponent<Image>();
         }
+
+        m_blackScreen.enabled = false;
     }
 
     public IEnumerator FadeOut(float fadeAmount)
     {
         float tempFade = 0;
+        m_blackScreen.enabled = true;
         
         while(m_blackScreen.color.a < 1f)
         {
@@ -51,6 +54,8 @@ public class FadeBlackScreen : MonoBehaviour
 
             yield return null;
         }
+
+        m_blackScreen.enabled = false;
 
         yield return null;
     }

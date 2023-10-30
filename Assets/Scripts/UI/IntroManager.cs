@@ -7,7 +7,9 @@ using UnityEngine.UI;
 
 public class IntroManager : MonoBehaviour
 {
-    [FormerlySerializedAs("step")] public int currentStep;
+    public int currentStep;
+    [SerializeField] private GameObject pointer;
+    private PauseMenu pauseController;
 
     [SerializeField, Header("Step 0")] private GameObject introText;
     [SerializeField] private GameObject header;
@@ -36,6 +38,13 @@ public class IntroManager : MonoBehaviour
     private void Awake()
     {
         background = GetComponent<Image>();
+        pauseController = FindObjectOfType<PauseMenu>();
+    }
+
+    private void Start()
+    {
+        pointer.SetActive(true);
+        pauseController.DisallowToggle();
     }
 
     public void OnNextButton()
@@ -101,6 +110,8 @@ public class IntroManager : MonoBehaviour
                 arena.SetActive(true);
                 // TODO: start timer etc.
                 
+                pointer.SetActive(false);
+                pauseController.AllowToggle();
                 gameObject.SetActive(false);
                 break;
         }

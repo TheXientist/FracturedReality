@@ -37,6 +37,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private TextMeshProUGUI healthDisplay, heatText;
     private Image heatDisplay, chargeDisplay, chargeMark;
+    private SpaceshipController controller;
 
     public float fireRate = 1f;
 
@@ -100,6 +101,7 @@ public class Player : MonoBehaviour, IDamageable
         chargeMark = GameObject.FindWithTag("ChargeMark").GetComponent<Image>();
         empText = GameObject.FindWithTag("EMPText").GetComponent<TextMeshProUGUI>();
         empDisplay = GameObject.FindWithTag("EMPBorder");
+        controller = GetComponent<SpaceshipController>();
         PlayerCurrentHealth = playerMaxHealth;
         fireAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("spaceship", "fire");
         fireAction.AddOnChangeListener(OnFireVR, SteamVR_Input_Sources.Any);
@@ -167,7 +169,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         animatingDamage = true;
 
-        if (SpaceshipController.VR)
+        if (controller.VR)
         {
             SteamVR_Fade.Start(new Color(1f, 0f, 0f, 0.1f), 0.25f);
             yield return new WaitForSeconds(0.25f);

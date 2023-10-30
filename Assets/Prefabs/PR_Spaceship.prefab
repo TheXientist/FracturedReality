@@ -2544,7 +2544,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3061859875343879193
 Transform:
   m_ObjectHideFlags: 0
@@ -2671,7 +2671,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3061859875470130509}
-  m_LocalRotation: {x: 0.011265654, y: -0.4552754, z: 0.005761205, w: 0.89026076}
+  m_LocalRotation: {x: 0.011265654, y: -0.45527542, z: 0.005761205, w: 0.8902608}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2681,6 +2681,7 @@ Transform:
   - {fileID: 5306537072445312531}
   - {fileID: 4343216014710163542}
   - {fileID: 918007562}
+  - {fileID: 4077365940308535708}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 1.45, y: -54.17, z: 0}
@@ -2696,12 +2697,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c148067ed48b394197463c8d67ba35a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefabVR: {fileID: 9101574440703911807, guid: 9fd09a23e178ce7448f876ee152b6358,
-    type: 3}
+  playerPrefabVR: {fileID: 4077365940308318692}
   camera: {fileID: 3061859875343879396}
   raymarchingMaterial: {fileID: 2100000, guid: 9b70661f60311954f843379b4ac45a8d, type: 2}
   debug: 0
-  vr: 0
+  vr: 1
   defaultControls: {fileID: 11400000, guid: 150cd2d3f21c94709972b1f5b94e2027, type: 2}
   lockedOnControls: {fileID: 11400000, guid: 157c2173bf11249bc8a4ac5124e19814, type: 2}
   target: {fileID: 0}
@@ -7003,6 +7003,116 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3675918492233233671}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5105673515956502171
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3061859875470130508}
+    m_Modifications:
+    - target: {fileID: 7592440085225587249, guid: 9fd09a23e178ce7448f876ee152b6358,
+        type: 3}
+      propertyPath: hud
+      value: 
+      objectReference: {fileID: 8623876648111058938}
+    - target: {fileID: 7592440085225587249, guid: 9fd09a23e178ce7448f876ee152b6358,
+        type: 3}
+      propertyPath: playerControls
+      value: 
+      objectReference: {fileID: 62833022721870284}
+    - target: {fileID: 7592440085225587249, guid: 9fd09a23e178ce7448f876ee152b6358,
+        type: 3}
+      propertyPath: spaceshipModel
+      value: 
+      objectReference: {fileID: 2647782339638470407}
+    - target: {fileID: 7592440085225587249, guid: 9fd09a23e178ce7448f876ee152b6358,
+        type: 3}
+      propertyPath: spaceshipController
+      value: 
+      objectReference: {fileID: 3061859875470130510}
+    - target: {fileID: 8399653582298488792, guid: 9fd09a23e178ce7448f876ee152b6358,
+        type: 3}
+      propertyPath: controls
+      value: 
+      objectReference: {fileID: 3061859875470130510}
+    - target: {fileID: 9101574440703563527, guid: 9fd09a23e178ce7448f876ee152b6358,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9101574440703563527, guid: 9fd09a23e178ce7448f876ee152b6358,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9101574440703563527, guid: 9fd09a23e178ce7448f876ee152b6358,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9101574440703563527, guid: 9fd09a23e178ce7448f876ee152b6358,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9101574440703563527, guid: 9fd09a23e178ce7448f876ee152b6358,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9101574440703563527, guid: 9fd09a23e178ce7448f876ee152b6358,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9101574440703563527, guid: 9fd09a23e178ce7448f876ee152b6358,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9101574440703563527, guid: 9fd09a23e178ce7448f876ee152b6358,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9101574440703563527, guid: 9fd09a23e178ce7448f876ee152b6358,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9101574440703563527, guid: 9fd09a23e178ce7448f876ee152b6358,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9101574440703563527, guid: 9fd09a23e178ce7448f876ee152b6358,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9101574440703911807, guid: 9fd09a23e178ce7448f876ee152b6358,
+        type: 3}
+      propertyPath: m_Name
+      value: VR Player Rig
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9fd09a23e178ce7448f876ee152b6358, type: 3}
+--- !u!1 &4077365940308318692 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9101574440703911807, guid: 9fd09a23e178ce7448f876ee152b6358,
+    type: 3}
+  m_PrefabInstance: {fileID: 5105673515956502171}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4077365940308535708 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9101574440703563527, guid: 9fd09a23e178ce7448f876ee152b6358,
+    type: 3}
+  m_PrefabInstance: {fileID: 5105673515956502171}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5663632798184577145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7116,6 +7226,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 417819221076218535, guid: d924abef8d305ce40ba4978325887fb1,
+        type: 3}
+      propertyPath: controls
+      value: 
+      objectReference: {fileID: 3061859875470130510}
     - target: {fileID: 417819221076218535, guid: d924abef8d305ce40ba4978325887fb1,
         type: 3}
       propertyPath: m_repositionPanel

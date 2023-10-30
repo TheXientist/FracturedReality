@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
     [SerializeField] private GameObject UIPointer;
     [SerializeField] private GameObject m_repositionPanel;
     [SerializeField] private GameObject m_soundPanel;
+    [SerializeField] private SpaceshipController controls;
     private InputActions input;
     private GameObject panel;
     public static bool Paused { get; private set; }
@@ -37,9 +38,8 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
     {
         actionToggle.RemoveOnStateDownListener(ToggleVR, SteamVR_Input_Sources.Any);
     }
-
-    // Start is called before the first frame update
-    void Start()
+    
+    void Awake()
     {
         panel = transform.GetChild(0).gameObject;
 
@@ -69,7 +69,7 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
         {
             panel.SetActive(shouldPause);
 
-            if (SpaceshipController.VR)
+            if (controls.VR)
             {
                 UIPointer.SetActive(shouldPause);
                 m_repositionPanel.SetActive(false);
@@ -96,7 +96,7 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
         Toggle(true);
     }
 
-    private void DisallowToggle()
+    public void DisallowToggle()
     {
         allowToggle = false;
     }

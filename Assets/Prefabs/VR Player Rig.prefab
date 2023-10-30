@@ -3191,7 +3191,7 @@ PrefabInstance:
     - target: {fileID: 436267620538338245, guid: 6a4fa116e29e80541bed2e3578ef8f1e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 436267620538338245, guid: 6a4fa116e29e80541bed2e3578ef8f1e,
         type: 3}
@@ -3403,6 +3403,11 @@ PrefabInstance:
       propertyPath: survey
       value: 
       objectReference: {fileID: 8003630594472165195}
+    - target: {fileID: 2878505878440623740, guid: 4cb771d16d2cf3a4ba5c4b50b75d0e86,
+        type: 3}
+      propertyPath: pointer
+      value: 
+      objectReference: {fileID: 3907478548124629338}
     - target: {fileID: 3390917172485881184, guid: 4cb771d16d2cf3a4ba5c4b50b75d0e86,
         type: 3}
       propertyPath: m_Name
