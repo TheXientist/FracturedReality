@@ -282,12 +282,9 @@ public class Player : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(0.2f);
         
         // Destroy bullets
-        // TODO: separate layer for bullets
-        Collider[] bullets = Physics.OverlapSphere(transform.position, empRange, LayerMask.GetMask("Enemy"));
+        Collider[] bullets = Physics.OverlapSphere(transform.position, empRange, LayerMask.GetMask("EnemyBullet"));
         foreach (var bullet in bullets)
         {
-            if (bullet.tag.Equals("Boss")) continue;
-
             StartCoroutine(bullet.GetComponent<DefaultBullet>().PlayCollisionEffect());
         }
         
