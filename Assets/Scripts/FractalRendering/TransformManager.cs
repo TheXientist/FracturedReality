@@ -132,6 +132,7 @@ public class TransformManager : MonoBehaviour
     private void RefreshBuffer()
     {
         CreateComputeBuffer(ref allTransformsBuffer, allTransformData, TransformData.SizeOf());
+        raymarchingMaterial = GameObject.FindWithTag("RenderPlane").GetComponent<MeshRenderer>().sharedMaterial;
         raymarchingMaterial.SetBuffer(BUFFER_ID, allTransformsBuffer);
         raymarchingMaterial.SetInteger(COUNT_ID, allTransformData.Count);
     }

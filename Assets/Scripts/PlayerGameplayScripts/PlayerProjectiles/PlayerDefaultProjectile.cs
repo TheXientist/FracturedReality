@@ -20,9 +20,17 @@ public class PlayerDefaultProjectile : AbstractBullet
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Boss") || other.CompareTag("Obstacle"))
+        //IMPLEMENT ADAPTIVE DAMAGE
+        
+        if(other.CompareTag("Boss"))
         {
-            other.GetComponent<IDamageable>().TakeDamage(base.m_DamageValue);
+            other.GetComponent<IDamageable>().TakeDamage(other.GetComponent<BossAI>().BossCurrentHealth / Mathf.Max(1f, LevelManager.instance.RemainingTime));
+            StartCoroutine(PlayCollisionEffect());
+        }
+
+        if(other.CompareTag("Obstacle"))
+        {
+            other.GetComponent<IDamageable>().TakeDamage(m_DamageValue);
             StartCoroutine(PlayCollisionEffect());
         }
     }

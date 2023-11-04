@@ -84,6 +84,13 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
             StartCoroutine(FindObjectOfType<MusicFader>().FadeOut(0.5f));
             neverClosedYet = false;
             BossAI.Instance.gameObject.SetActive(true);
+            Material material = GameObject.FindWithTag("RenderPlane").GetComponent<MeshRenderer>().material;
+            material.SetFloat("_AO", 0.8f);
+            material.SetFloat("_IAmbient", 0.7f);
+            material.SetFloat("_LightExposure", 5.7f);
+            material.SetFloat("_LightIntensity", 6f);
+            material.SetFloat("_SaturationGamma", 2f);
+            material.SetInteger("_LightMode", 0);
         }
     }
 

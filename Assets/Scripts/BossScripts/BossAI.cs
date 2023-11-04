@@ -20,12 +20,16 @@ public class BossAI : MonoBehaviour, IDamageable
 
     [SerializeField] private AudioClip deathSound, postFightMusic;
 
+    public float BossMaxHealth { get { return bossMaxHealth;  } }
     public float BossCurrentHealth
     {
         private set
         {
             bossCurrentHealth = value;
-            healthDisplay.text = (value <= 0f) ? "You won!" : "Boss Health:\n" + bossCurrentHealth;
+            string text = "    Boss Health:\n";
+            for (int i = 0; i < bossCurrentHealth / bossMaxHealth * 30; ++i) text += "|";
+            healthDisplay.text = text;
+            healthDisplay.text = (value <= 0f) ? "You won!" : text;
         }
         get => bossCurrentHealth;
     }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using GD.MinMaxSlider;
@@ -21,10 +21,13 @@ public class Player : MonoBehaviour, IDamageable
         set
         {
             playerCurrentHealth = value;
-            healthDisplay.text = "Ship Health:\n" + playerCurrentHealth;
+            string text = "    Ship Health:\n";
+            for (int i = 0; i < playerCurrentHealth / playerMaxHealth * 30; ++i) text += "|";
+            healthDisplay.text = text;
         }
     }
     public float playerMaxHealth = 100;
+    public float playerRegenSpeed = 50;
 
     [SerializeField]
     private Transform m_bulletSpawnpointLeft, m_bulletSpawnpointRight;
@@ -114,6 +117,8 @@ public class Player : MonoBehaviour, IDamageable
     {
         NextFireTime -= Time.deltaTime;
 
+        PlayerCurrentHealth = Mathf.Min(PlayerCurrentHealth + playerRegenSpeed * Time.deltaTime, playerMaxHealth);
+
         if (lastHeatAddTime > 0f && Time.time - lastHeatAddTime > cooldownAfterSeconds)
         {
             StartCoroutine(CooldownRoutine());
@@ -150,6 +155,9 @@ public class Player : MonoBehaviour, IDamageable
         if (PlayerCurrentHealth <= 0) return;
         
         PlayerCurrentHealth -= damage;
+
+        //disable death
+        PlayerCurrentHealth = Mathf.Clamp(PlayerCurrentHealth, 1, playerMaxHealth);
         
         if (!animatingDamage)
             StartCoroutine(FlashRed());

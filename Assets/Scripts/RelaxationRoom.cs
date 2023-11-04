@@ -50,7 +50,17 @@ public class RelaxationRoom : MonoBehaviour
         spaceshipController.enabled = false;
         playerController.enabled = false;
 
+        Material material = GameObject.FindWithTag("RenderPlane").GetComponent<MeshRenderer>().material;
+        material.SetFloat("_AO", 4.5f);
+        material.SetFloat("_IAmbient", 0.5f);
+        material.SetFloat("_LightExposure", 2.5f);
+        material.SetFloat("_LightIntensity", 6f);
+        material.SetFloat("_SaturationGamma", 1f);
+        material.SetInteger("_LightMode", 1);
+
         playerRB.velocity = Vector3.zero;
+        playerObject.transform.position = Vector3.zero;
+        playerObject.transform.rotation = Quaternion.identity;
 
         transform.position = playerObject.transform.position;
         transform.rotation = playerObject.transform.rotation;
@@ -74,6 +84,13 @@ public class RelaxationRoom : MonoBehaviour
     {
         spaceshipController.enabled = true;
         playerController.enabled = true;
+        Material material = GameObject.FindWithTag("RenderPlane").GetComponent<MeshRenderer>().material;
+        material.SetFloat("_AO", 0.8f);
+        material.SetFloat("_IAmbient", 0.7f);
+        material.SetFloat("_LightExposure", 5.7f);
+        material.SetFloat("_LightIntensity", 6f);
+        material.SetFloat("_SaturationGamma", 2f);
+        material.SetInteger("_LightMode", 0);
 
         foreach (GameObject obj in m_relaxationRoomObjects)
         {

@@ -8,6 +8,7 @@ using UnityEngine;
 /// </summary>
 public class LevelManager : MonoBehaviour
 {
+    public static LevelManager instance;
     private RelaxationRoom relaxationRoom;
     [SerializeField] private BossAI boss;
     
@@ -21,14 +22,17 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float timeInRelaxationRoom;
     [SerializeField, Header("Only used if condition == TimeOver")] private float timeInBossFight;
 
+    public float RemainingTime { get { return timeInBossFight - timer; } }
+    
     private float timer;
     private bool isInRelaxationRoom;
     [SerializeField] private bool surveyAnswered;
 
     private void Start()
     {
+        instance = this;
         timer = 0f;
-        
+
         relaxationRoom = FindObjectOfType<RelaxationRoom>();
         boss.OnDefeated += SwitchToRelaxationRoom;
     }

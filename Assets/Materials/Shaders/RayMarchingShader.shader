@@ -12,9 +12,10 @@
         _AO ("Ambient Occlusion Strength", Float) = 5
         _LightIntensity ("Light Intensity", Float) = 10
         _LightExposure ("Light Exposure", Float) = 1
-        _IAmbient ("Ambient Brightness", FLoat) = 0.07
+        _IAmbient ("Ambient Brightness", Float) = 0.07
         _ISpecular ("Specular Intensity", Float) = 5
         _Shininess ("Shininess", Float) = 5
+        _SaturationGamma ("Saturation Gamma", Float) = 0.5
         _NormalMode ("Normal Rendering Mode", Int) = 1
         _Fov ("Foveated Rendering Curve", Float) = 2.4
         _FovSteps ("FR Minimum Marching Steps", Integer) = 0
@@ -69,6 +70,7 @@
             float _LightExposure;
             float _ISpecular;
             float _Shininess;
+            float _SaturationGamma;
             int _NormalMode;
             float _Fov;
             int _FovSteps;
@@ -276,6 +278,7 @@
                         mPos = mul(_TransformBuffer[i].data, float4(mPos, 1));
                     }
                 }
+                mPos = mul(_FractalBuffer[0].worldToLocal, mPos); //intentionally ignoring translation
                 return mPos;
             }
 
@@ -461,9 +464,13 @@
                 float light = max(illumination, _IAmbient) * ambientOcclusion;
                 float3 baseColor = abs(ReverseTransforms(currentPos));
 
-                baseColor.r = sin(baseColor.r * 0.144 + 0.1);
-                baseColor.g = sin(baseColor.g * 0.066 + 0.2);
-                baseColor.b = sin(baseColor.b * 0.222 + 0.3);
+                baseColor.r = sin(baseColor.r * 0.144 + 0.1 * sin(_Time.y / 4));
+                baseColor.g = sin(baseColor.g * 0.066 + 0.2 * sin(_Time.y / 4));
+                baseColor.b = sin(baseColor.b * 0.222 + 0.3 * sin(_Time.y / 4));
+
+                baseColor.r = pow(baseColor.r, _SaturationGamma);
+                baseColor.g = pow(baseColor.g, _SaturationGamma);
+                baseColor.b = pow(baseColor.b, _SaturationGamma);
 
                 //baseColor = mul(YIQtoRGB, baseColor);
                 
