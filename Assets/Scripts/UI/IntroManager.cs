@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -18,6 +19,7 @@ public class IntroManager : MonoBehaviour
     [SerializeField, Header("Step 1 (Survey)")]
     private GameObject survey;
     [SerializeField] private GameObject nextBtn;
+    private TextMeshProUGUI btnText;
     
     [SerializeField, Header("Step 2")] private GameObject tutorialText1;
     [SerializeField] private GameObject spaceshipModel;
@@ -39,6 +41,7 @@ public class IntroManager : MonoBehaviour
     {
         background = GetComponent<Image>();
         pauseController = FindObjectOfType<PauseMenu>();
+        btnText = nextBtn.GetComponentInChildren<TextMeshProUGUI>();
     }
 
     private void Start()
@@ -66,6 +69,7 @@ public class IntroManager : MonoBehaviour
                 tutorialText1.SetActive(true);
                 nextBtn.SetActive(true);
                 spaceshipModel.SetActive(true);
+                btnText.text = "Test";
                 break;
             case 2:
                 // Only show button, enable controls
@@ -73,6 +77,7 @@ public class IntroManager : MonoBehaviour
                 header.SetActive(false);
                 tutorialText1.SetActive(false);
                 spaceshipController.enabled = true;
+                btnText.text = "Continue";
                 break;
             case 3:
                 // Show tutorial pt. 2
@@ -81,6 +86,7 @@ public class IntroManager : MonoBehaviour
                 spaceshipController.enabled = false;
                 tutorialText2.SetActive(true);
                 hud.alpha = 1f;
+                btnText.text = "Test";
                 break;
             case 4:
                 // Only show button, enable controls
@@ -89,6 +95,7 @@ public class IntroManager : MonoBehaviour
                 tutorialText2.SetActive(false);
                 spaceshipController.enabled = true;
                 playerControls.enabled = true;
+                btnText.text = "Continue";
                 break;
             case 5:
                 // Show tutorial pt. 3
@@ -97,6 +104,7 @@ public class IntroManager : MonoBehaviour
                 spaceshipController.enabled = false;
                 playerControls.enabled = false;
                 tutorialText3.SetActive(true);
+                btnText.text = "Start";
                 break;
             case 6:
                 // Begin fight
