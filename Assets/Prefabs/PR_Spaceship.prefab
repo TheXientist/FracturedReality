@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 2134981517}
   m_Layer: 2
   m_Name: Fractal Renderplane
-  m_TagString: Untagged
+  m_TagString: RenderPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2828,6 +2828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMaxHealth: 1000
+  playerRegenSpeed: 50
   m_bulletSpawnpointLeft: {fileID: 1119134888282380209}
   m_bulletSpawnpointRight: {fileID: 1355541430694139484}
   m_BossObject: {fileID: 0}
@@ -6706,6 +6707,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3061859875470130508}
     m_Modifications:
+    - target: {fileID: 8671698507532896964, guid: 7bbb47b4c20168243a121c36e4707bdc,
+        type: 3}
+      propertyPath: m_text
+      value: '    Boss Health:
+
+        ||||||||||||||||||||||||||||||'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8671698507532896964, guid: 7bbb47b4c20168243a121c36e4707bdc,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8671698507739385894, guid: 7bbb47b4c20168243a121c36e4707bdc,
         type: 3}
       propertyPath: m_Name
@@ -6815,6 +6828,18 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8671698508090172494, guid: 7bbb47b4c20168243a121c36e4707bdc,
+        type: 3}
+      propertyPath: m_text
+      value: '    Ship Health:
+
+        ||||||||||||||||||||||||||||||'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8671698508090172494, guid: 7bbb47b4c20168243a121c36e4707bdc,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

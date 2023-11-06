@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 1520465589156126858}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5660300507699776853
 MonoBehaviour:
@@ -45,8 +45,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f349069b9d2be4649855d6aa795c8177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_bossFightObjects: []
-  m_relaxationRoomObjects: []
+  m_bossFightObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_relaxationRoomObjects:
+  - {fileID: 0}
+  - {fileID: 0}
   m_relaxBox: {fileID: 1394733446988897864}
   m_relaxMusic: {fileID: 8300000, guid: ff59aa2ee088f4b40b96637f1d6b9cc2, type: 3}
 --- !u!1001 &7622033771675703861

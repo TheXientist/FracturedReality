@@ -17,6 +17,7 @@ TagManager:
   - ChargeMark
   - EMPText
   - EMPBorder
+  - RenderPlane
   layers:
   - Default
   - TransparentFX

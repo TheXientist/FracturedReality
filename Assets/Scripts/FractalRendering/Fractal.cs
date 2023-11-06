@@ -121,6 +121,7 @@ public class Fractal : MonoBehaviour
     private void RefreshBuffer()
     {
         CreateComputeBuffer(ref allFractalsBuffer, allFractalData, FractalData.SizeOf());
+        raymarchingMaterial = GameObject.FindWithTag("RenderPlane").GetComponent<MeshRenderer>().sharedMaterial;
         raymarchingMaterial.SetBuffer(BUFFER_ID, allFractalsBuffer);
         raymarchingMaterial.SetInteger(COUNT_ID, allFractalData.Count);
     }

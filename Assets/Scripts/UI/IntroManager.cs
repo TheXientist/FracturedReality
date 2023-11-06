@@ -106,6 +106,7 @@ public class IntroManager : MonoBehaviour
                 dummyTransforms.SetActive(false);
                 boss.SetActive(true);
                 bossAnimator.SetActive(true);
+                SetBossShaderParameters();
                 obstacles.SetActive(true);
                 arena.SetActive(true);
                 // TODO: start timer etc.
@@ -131,5 +132,16 @@ public class IntroManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return) && currentStep != 1)
             OnNextButton();
+    }
+
+    private void SetBossShaderParameters()
+    {
+        Material material = GameObject.FindWithTag("RenderPlane").GetComponent<MeshRenderer>().material;
+        material.SetFloat("_AO", 0.8f);
+        material.SetFloat("_IAmbient", 0.7f);
+        material.SetFloat("_LightExposure", 5.7f);
+        material.SetFloat("_LightIntensity", 6f);
+        material.SetFloat("_SaturationGamma", 2f);
+        material.SetInteger("_LightMode", 0);
     }
 }
