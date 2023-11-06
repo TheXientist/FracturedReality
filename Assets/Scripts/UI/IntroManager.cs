@@ -103,6 +103,7 @@ public class IntroManager : MonoBehaviour
                 spaceshipController.enabled = true;
                 playerControls.enabled = true;
                 dummyFractal.SetActive(false);
+                dummyFractal.GetComponent<Collider>().enabled = false; // not needed anymore
                 dummyTransforms.SetActive(false);
                 boss.SetActive(true);
                 bossAnimator.SetActive(true);

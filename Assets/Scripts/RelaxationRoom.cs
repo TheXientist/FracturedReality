@@ -59,8 +59,6 @@ public class RelaxationRoom : MonoBehaviour
         material.SetInteger("_LightMode", 1);
 
         playerRB.velocity = Vector3.zero;
-        playerObject.transform.position = Vector3.zero;
-        playerObject.transform.rotation = Quaternion.identity;
 
         transform.position = playerObject.transform.position;
         transform.rotation = playerObject.transform.rotation;
@@ -78,12 +76,20 @@ public class RelaxationRoom : MonoBehaviour
         {
             obj.SetActive(true);
         }
+        
+        playerObject.transform.position = Vector3.zero;
+        playerObject.transform.rotation = Quaternion.identity;
     }
 
     public IEnumerator ActivateBossFightRoom()
     {
         spaceshipController.enabled = true;
         playerController.enabled = true;
+
+        // Set to start position
+        playerObject.transform.position = new Vector3(140f, 20f, -120f);
+        playerRB.velocity = Vector3.zero;
+        
         Material material = GameObject.FindWithTag("RenderPlane").GetComponent<MeshRenderer>().material;
         material.SetFloat("_AO", 0.8f);
         material.SetFloat("_IAmbient", 0.7f);
