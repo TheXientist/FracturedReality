@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// Responsible for switching between boss fight and sanctuary "levels"
 /// </summary>
 public class LevelManager : MonoBehaviour
 {
+    private SurveyManager surveyUI;
     public static LevelManager instance;
     private RelaxationRoom relaxationRoom;
     [SerializeField] private BossAI boss;
@@ -26,7 +28,7 @@ public class LevelManager : MonoBehaviour
     
     private float timer;
     private bool isInRelaxationRoom;
-    [SerializeField] private bool surveyAnswered;
+    private bool firstSurveyAnswered, bothSurveysAnswered;
 
     private void Start()
     {
@@ -43,9 +45,12 @@ public class LevelManager : MonoBehaviour
         
         if (isInRelaxationRoom)
         {
-            if ((surveyAnswered && timer >= timeInRelaxationRoom) || (condition.Equals(SwitchCondition.ButtonPress) && Input.GetKeyDown(KeyCode.Backspace)))
+            if (bothSurveysAnswered || (condition.Equals(SwitchCondition.ButtonPress) && Input.GetKeyDown(KeyCode.Backspace)))
             {
                 SwitchToBossFight();
+            } else if (!SurveyManager.ShowingSurvey && firstSurveyAnswered && (timer >= timeInRelaxationRoom))
+            {
+                StartCoroutine(ShowSurveyAfterSeconds(0f));
             }
             return;
         }
@@ -61,10 +66,31 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    private IEnumerator ShowSurveyAfterSeconds(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        FindObjectOfType<PauseMenu>().DisallowToggle();
+        surveyUI.gameObject.SetActive(true);
+    }
+
+    private void OnSurveySubmitted()
+    {
+        if (firstSurveyAnswered)
+            bothSurveysAnswered = true;
+        else
+        {
+            timer = 0f;
+            firstSurveyAnswered = true;
+        }
+        FindObjectOfType<PauseMenu>().AllowToggle();
+    }
+
     private void SwitchToBossFight()
     {
         StartCoroutine(relaxationRoom.ActivateBossFightRoom());
 
+        SurveyManager.OnSubmitSurvey -= OnSurveySubmitted;
         isInRelaxationRoom = false;
         timer = 0f;
     }
@@ -72,8 +98,14 @@ public class LevelManager : MonoBehaviour
     private void SwitchToRelaxationRoom()
     {
         StartCoroutine(relaxationRoom.ActivateRelaxRoom());
+        StartCoroutine(ShowSurveyAfterSeconds(5f));
+        
+        if (surveyUI == null)
+            surveyUI = FindObjectsOfType<SurveyManager>(true)[0];
 
+        SurveyManager.OnSubmitSurvey += OnSurveySubmitted;
+        firstSurveyAnswered = false;
+        bothSurveysAnswered = false;
         isInRelaxationRoom = true;
-        timer = 0f;
     }
 }

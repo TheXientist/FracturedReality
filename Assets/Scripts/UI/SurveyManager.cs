@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SurveyManager : MonoBehaviour
 {
     [SerializeField] private SurveyData data;
     [SerializeField] private SurveySlider[] sliders;
+    public static event Action OnSubmitSurvey;
+    public static bool ShowingSurvey;
 
     private string textFilePath, csvFilePath;
 
@@ -43,6 +46,7 @@ public class SurveyManager : MonoBehaviour
 
     public void OnEnable()
     {
+        ShowingSurvey = true;
         foreach (var slider in sliders)
         {
             slider.Init();
@@ -74,9 +78,9 @@ public class SurveyManager : MonoBehaviour
         writer.WriteLine(line);
         writer.Close();
         
-        
-        FindObjectOfType<IntroManager>().OnSurveySubmitted();
         gameObject.SetActive(false);
+        OnSubmitSurvey?.Invoke();
+        ShowingSurvey = false;
     }
 
     private string RatingToText(int rating)
