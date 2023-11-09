@@ -18,7 +18,7 @@ MonoBehaviour:
   animationTriggerName: LaserAttack
   m_laserPrefab: {fileID: 1456456425288734, guid: a688f5f905455c74fa98f22c365a237d,
     type: 3}
-  laserDuration: 4
+  laserDuration: 1
   m_spawnThreshold: 20
   laserDealy: 5
   m_warningSound: {fileID: -2111358459812710707, guid: c1d88c22ab038864785d0476a5cd3325,
