@@ -23,6 +23,8 @@ public class RelaxationRoom : MonoBehaviour
     private Player playerController;
     private Rigidbody playerRB;
 
+    private FadeBlackScreen blackScreen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,7 @@ public class RelaxationRoom : MonoBehaviour
         spaceshipController = playerObject.GetComponent<SpaceshipController>();
         playerController = playerObject.GetComponent<Player>();
         playerRB = playerObject.GetComponent<Rigidbody>();
+        blackScreen = FindAnyObjectByType<FadeBlackScreen>();
 
         for (int i = 0; i < playerObject.transform.childCount - 1; i++)
         {
@@ -67,6 +70,8 @@ public class RelaxationRoom : MonoBehaviour
 
         yield return StartCoroutine(m_relaxBox.ShowObject());
 
+        yield return StartCoroutine( blackScreen.FadeAlpha(1, 2));
+
         foreach (GameObject obj in m_bossFightObjects)
         {
             obj.SetActive(false);
@@ -77,8 +82,12 @@ public class RelaxationRoom : MonoBehaviour
             obj.SetActive(true);
         }
         
+
         playerObject.transform.position = Vector3.zero;
         playerObject.transform.rotation = Quaternion.identity;
+
+        yield return StartCoroutine(blackScreen.FadeAlpha(0, 2));
+
     }
 
     public IEnumerator ActivateBossFightRoom()
@@ -98,6 +107,8 @@ public class RelaxationRoom : MonoBehaviour
         material.SetFloat("_SaturationGamma", 2f);
         material.SetInteger("_LightMode", 0);
 
+        yield return StartCoroutine(blackScreen.FadeAlpha(1, 2));
+
         foreach (GameObject obj in m_relaxationRoomObjects)
         {
             obj.SetActive(false);
@@ -110,5 +121,7 @@ public class RelaxationRoom : MonoBehaviour
         
         yield return StartCoroutine(m_relaxBox.HideObject());
         m_relaxBox.gameObject.SetActive(false);
+
+        yield return StartCoroutine(blackScreen.FadeAlpha(0, 2));
     }
 }

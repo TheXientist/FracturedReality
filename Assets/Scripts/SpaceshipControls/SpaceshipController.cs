@@ -50,7 +50,6 @@ public class SpaceshipController : MonoBehaviour
         }
         else
         {
-            camera.SetActive(true);
             Destroy(playerPrefabVR);
             raymarchingMaterial.SetInteger("_VR", 0);
         }

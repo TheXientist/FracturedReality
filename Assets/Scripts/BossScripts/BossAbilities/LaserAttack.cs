@@ -38,7 +38,7 @@ public class LaserAttack : AbilityScriptableObject
 
     public IEnumerator SpawnLaser(Transform spawn, Vector3 targetPosition)
     {
-        m_currentSound = Instantiate(m_warningSound);
+        m_currentSound = Instantiate(m_warningSound, Vector3.zero, Quaternion.identity);
 
         m_currentSound.Play();
 

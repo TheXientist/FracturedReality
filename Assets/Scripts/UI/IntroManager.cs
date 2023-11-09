@@ -10,7 +10,8 @@ public class IntroManager : MonoBehaviour
 {
     public int currentStep;
     [SerializeField] private GameObject pointer;
-    private PauseMenu pauseController;
+
+    [SerializeField] private bool skipIntro;
 
     [SerializeField, Header("Step 0")] private GameObject introText;
     [SerializeField] private GameObject header;
@@ -40,14 +41,11 @@ public class IntroManager : MonoBehaviour
     private void Awake()
     {
         background = GetComponent<Image>();
-        pauseController = FindObjectOfType<PauseMenu>();
-        btnText = nextBtn.GetComponentInChildren<TextMeshProUGUI>();
     }
 
     private void Start()
     {
         pointer.SetActive(true);
-        pauseController.DisallowToggle();
     }
 
     public void OnNextButton()
@@ -55,6 +53,13 @@ public class IntroManager : MonoBehaviour
         switch (currentStep)
         {
             case 0:
+                if (skipIntro)
+                {
+                    // Activate relevant graphics and skip to last step
+                    spaceshipModel.SetActive(true);
+                    hud.alpha = 1f;
+                    goto case 6;
+                }
                 // Disable everything, enable survey
                 background.enabled = false;
                 header.SetActive(false);
@@ -121,7 +126,7 @@ public class IntroManager : MonoBehaviour
                 // TODO: start timer etc.
                 
                 pointer.SetActive(false);
-                pauseController.AllowToggle();
+                FindObjectOfType<PauseMenu>().AllowToggle();
                 gameObject.SetActive(false);
                 break;
         }

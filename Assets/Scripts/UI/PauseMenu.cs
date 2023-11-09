@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 using Valve.VR;
 
 public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
@@ -36,15 +33,16 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
 
     private void OnDisable()
     {
+        input.PauseMenu.RemoveCallbacks(this);
         actionToggle.RemoveOnStateDownListener(ToggleVR, SteamVR_Input_Sources.Any);
     }
     
     void Awake()
     {
         panel = transform.GetChild(0).gameObject;
-
         //StartCoroutine(PauseAfterSeconds(1f));
         Toggle(false);
+        DisallowToggle();
         Player.OnPlayerDeath += DisallowToggle;
     }
 
@@ -64,18 +62,14 @@ public class PauseMenu : MonoBehaviour, InputActions.IPauseMenuActions
         if (!allowToggle) return;
 
         Paused = shouldPause;
+        
+        panel.SetActive(shouldPause);
 
-        if(panel != null)
+        if (controls.VR)
         {
-            panel.SetActive(shouldPause);
-
-            if (controls.VR)
-            {
-                UIPointer.SetActive(shouldPause);
-                m_repositionPanel.SetActive(false);
-                m_soundPanel.SetActive(false);
-            }
-
+            UIPointer.SetActive(shouldPause);
+            m_repositionPanel.SetActive(false);
+            m_soundPanel.SetActive(false);
         }
         
         Time.timeScale = Paused ? 0f : 1f;
