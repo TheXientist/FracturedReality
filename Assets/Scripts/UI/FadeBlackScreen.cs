@@ -60,10 +60,10 @@ public class FadeBlackScreen : MonoBehaviour
         yield return null;
     }
 
-    public IEnumerator FadeAlpha(float startAlpha , float fadeDuration)
+    public IEnumerator FadeAlpha(float targetAlpha , float fadeDuration)
     {
         Color startColor = m_blackScreen.color;//targetMaterial.color;
-        Color endColor = new Color(startColor.r, startColor.g, startColor.b, startAlpha);
+        Color endColor = new Color(startColor.r, startColor.g, startColor.b, targetAlpha);
 
         float elapsedTime = 0f;
 
