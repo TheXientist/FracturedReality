@@ -676,7 +676,9 @@ MonoBehaviour:
   menuTheme: {fileID: 0}
   UIPointer: {fileID: 0}
   m_repositionPanel: {fileID: 3607392939118042462}
-  m_soundPanel: {fileID: 0}
+  m_soundPanel: {fileID: 1820732413182610003}
+  controls: {fileID: 0}
+  panel: {fileID: 0}
   actionToggle:
     actionPath: /actions/default/in/TogglePause
     needsReinit: 1
