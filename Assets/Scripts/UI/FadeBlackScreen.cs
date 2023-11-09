@@ -19,7 +19,7 @@ public class FadeBlackScreen : MonoBehaviour
             m_blackScreen = GetComponent<Image>();
         }
 
-        m_blackScreen.enabled = false;
+        //m_blackScreen.enabled = false;
     }
 
     public IEnumerator FadeOut(float fadeAmount)
@@ -59,4 +59,23 @@ public class FadeBlackScreen : MonoBehaviour
 
         yield return null;
     }
+
+    public IEnumerator FadeAlpha(float startAlpha , float fadeDuration)
+    {
+        Color startColor = m_blackScreen.color;//targetMaterial.color;
+        Color endColor = new Color(startColor.r, startColor.g, startColor.b, startAlpha);
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
+        {
+            float t = elapsedTime / fadeDuration;
+            m_blackScreen.color = Color.Lerp(startColor, endColor, t);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        m_blackScreen.color = endColor;
+    }
+
 }
