@@ -117,7 +117,9 @@ public class IntroManager : MonoBehaviour
                 SetBossShaderParameters();
                 obstacles.SetActive(true);
                 arena.SetActive(true);
-                // TODO: start timer etc.
+                
+                // Start boss fight timer
+                FindObjectOfType<LevelManager>().RestartTimer();
                 
                 pointer.SetActive(false);
                 FindObjectOfType<PauseMenu>().AllowToggle();

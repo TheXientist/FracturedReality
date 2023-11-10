@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -29,6 +30,8 @@ public class LevelManager : MonoBehaviour
     private float timer;
     private bool isInRelaxationRoom;
     private bool firstSurveyAnswered, bothSurveysAnswered;
+
+    private static float bossFightTime = -1f;
 
     private void Start()
     {
@@ -97,6 +100,9 @@ public class LevelManager : MonoBehaviour
 
     private void SwitchToRelaxationRoom()
     {
+        bossFightTime = timer;
+        RestartTimer();
+        
         StartCoroutine(relaxationRoom.ActivateRelaxRoom());
         StartCoroutine(ShowSurveyAfterSeconds(5f));
         
@@ -107,5 +113,20 @@ public class LevelManager : MonoBehaviour
         firstSurveyAnswered = false;
         bothSurveysAnswered = false;
         isInRelaxationRoom = true;
+    }
+
+    /// <summary>
+    /// Returns the last boss fight time and removes it from the buffer
+    /// </summary>
+    public static float ReadBossFightTime()
+    {
+        float t = bossFightTime;
+        bossFightTime = -1f;
+        return t;
+    }
+
+    public void RestartTimer()
+    {
+        timer = 0f;
     }
 }

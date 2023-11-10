@@ -3336,7 +3336,7 @@ GameObject:
   - component: {fileID: 1914323459}
   - component: {fileID: 1914323460}
   m_Layer: 0
-  m_Name: SceneManager
+  m_Name: LevelManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3373,7 +3373,7 @@ MonoBehaviour:
   condition: 2
   timeInRelaxationRoom: 5
   timeInBossFight: 120
-  surveyAnswered: 0
+  timer: 0
 --- !u!4 &1965600914 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1996072375141257083, guid: 499d3dd135cf344439bbdbb3a36f15a0,
