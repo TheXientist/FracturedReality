@@ -476,6 +476,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 97317986}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &118433666 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8133738466335360961, guid: c1d91ecf7a5e14a689fcef67f95363bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1117523604}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &184898413 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1996072375141257083, guid: 499d3dd135cf344439bbdbb3a36f15a0,
@@ -1764,7 +1770,7 @@ PrefabInstance:
     - target: {fileID: 1509266337808665467, guid: c1d91ecf7a5e14a689fcef67f95363bf,
         type: 3}
       propertyPath: skipIntro
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1509266337808665467, guid: c1d91ecf7a5e14a689fcef67f95363bf,
         type: 3}
@@ -1781,6 +1787,11 @@ PrefabInstance:
       propertyPath: dummyTransforms
       value: 
       objectReference: {fileID: 432650164}
+    - target: {fileID: 2937413149666389079, guid: c1d91ecf7a5e14a689fcef67f95363bf,
+        type: 3}
+      propertyPath: pointer
+      value: 
+      objectReference: {fileID: 118433666}
     - target: {fileID: 3061859875470130508, guid: c1d91ecf7a5e14a689fcef67f95363bf,
         type: 3}
       propertyPath: m_RootOrder
@@ -1868,6 +1879,11 @@ PrefabInstance:
       objectReference: {fileID: 1201585835}
     - target: {fileID: 3424770934097722538, guid: c1d91ecf7a5e14a689fcef67f95363bf,
         type: 3}
+      propertyPath: skipIntro
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424770934097722538, guid: c1d91ecf7a5e14a689fcef67f95363bf,
+        type: 3}
       propertyPath: bossAnimator
       value: 
       objectReference: {fileID: 697955956}
@@ -1881,6 +1897,11 @@ PrefabInstance:
       propertyPath: dummyTransforms
       value: 
       objectReference: {fileID: 432650164}
+    - target: {fileID: 3843744605912839328, guid: c1d91ecf7a5e14a689fcef67f95363bf,
+        type: 3}
+      propertyPath: pointer
+      value: 
+      objectReference: {fileID: 118433666}
     - target: {fileID: 3997249107130002210, guid: c1d91ecf7a5e14a689fcef67f95363bf,
         type: 3}
       propertyPath: m_RepositionPanel

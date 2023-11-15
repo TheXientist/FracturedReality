@@ -9,6 +9,7 @@ public class SurveyManager : MonoBehaviour
 {
     [SerializeField] private SurveyData data;
     [SerializeField] private SurveySlider[] sliders;
+    [SerializeField] private GameObject pointer;
     public static event Action OnSubmitSurvey;
     public static bool ShowingSurvey;
 
@@ -52,6 +53,7 @@ public class SurveyManager : MonoBehaviour
         {
             slider.Init();
         }
+        pointer.SetActive(true);
     }
 
     public void SubmitResults()
@@ -92,6 +94,7 @@ public class SurveyManager : MonoBehaviour
         writer.WriteLine(line);
         writer.Close();
         
+        pointer.SetActive(false);
         gameObject.SetActive(false);
         OnSubmitSurvey?.Invoke();
         ShowingSurvey = false;
