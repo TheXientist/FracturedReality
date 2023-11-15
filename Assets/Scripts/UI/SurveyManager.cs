@@ -3,13 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SurveyManager : MonoBehaviour
 {
     [SerializeField] private SurveyData data;
     [SerializeField] private SurveySlider[] sliders;
+    public static event Action OnSubmitSurvey;
+    public static bool ShowingSurvey;
 
-    private string textFilePath, csvFilePath;
+    public static string textFilePath { get; private set; }
+    private string csvFilePath;
 
     private int iterationCounter = 0;
     
@@ -43,6 +47,7 @@ public class SurveyManager : MonoBehaviour
 
     public void OnEnable()
     {
+        ShowingSurvey = true;
         foreach (var slider in sliders)
         {
             slider.Init();
@@ -53,6 +58,14 @@ public class SurveyManager : MonoBehaviour
     {
         // Write Text file results
         StreamWriter writer = File.AppendText(textFilePath);
+
+        // Optionally log boss fight time
+        float bossFightTime = LevelManager.ReadBossFightTime();
+        if (bossFightTime > 0f) // valid data read
+        {
+            writer.WriteLine("\nAFTER " + bossFightTime + " s IN BOSS FIGHT...");
+        }
+        
         writer.WriteLine("\nITERATION #" + iterationCounter++);
         
         foreach (var slider in sliders)
@@ -64,6 +77,11 @@ public class SurveyManager : MonoBehaviour
         
         // Write csv file results
         writer = File.AppendText(csvFilePath);
+        
+        // Optionally log boss fight time
+        if (bossFightTime > 0f)
+            writer.WriteLine("Boss Fight Duration;" + bossFightTime + ";;;");
+        
         string line = "" + iterationCounter;
         
         foreach (var slider in sliders)
@@ -74,9 +92,9 @@ public class SurveyManager : MonoBehaviour
         writer.WriteLine(line);
         writer.Close();
         
-        
-        FindObjectOfType<IntroManager>().OnSurveySubmitted();
         gameObject.SetActive(false);
+        OnSubmitSurvey?.Invoke();
+        ShowingSurvey = false;
     }
 
     private string RatingToText(int rating)

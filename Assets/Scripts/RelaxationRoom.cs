@@ -70,7 +70,7 @@ public class RelaxationRoom : MonoBehaviour
 
         yield return StartCoroutine(m_relaxBox.ShowObject());
 
-        yield return StartCoroutine( blackScreen.FadeAlpha(1, 2));
+        yield return StartCoroutine( blackScreen.FadeAlpha(1, 1));
 
         foreach (GameObject obj in m_bossFightObjects)
         {
@@ -86,18 +86,19 @@ public class RelaxationRoom : MonoBehaviour
         playerObject.transform.position = Vector3.zero;
         playerObject.transform.rotation = Quaternion.identity;
 
-        yield return StartCoroutine(blackScreen.FadeAlpha(0, 2));
+        yield return StartCoroutine(blackScreen.FadeAlpha(0, 1));
 
     }
 
     public IEnumerator ActivateBossFightRoom()
     {
-        spaceshipController.enabled = true;
-        playerController.enabled = true;
-
+        yield return StartCoroutine(blackScreen.FadeAlpha(1, 1));
+        
         // Set to start position
         playerObject.transform.position = new Vector3(140f, 20f, -120f);
         playerRB.velocity = Vector3.zero;
+        // Face boss
+        playerObject.transform.rotation = Quaternion.LookRotation(playerController.m_BossObject.transform.position - playerObject.transform.position, playerObject.transform.up);
         
         Material material = GameObject.FindWithTag("RenderPlane").GetComponent<MeshRenderer>().material;
         material.SetFloat("_AO", 0.8f);
@@ -106,8 +107,6 @@ public class RelaxationRoom : MonoBehaviour
         material.SetFloat("_LightIntensity", 6f);
         material.SetFloat("_SaturationGamma", 2f);
         material.SetInteger("_LightMode", 0);
-
-        yield return StartCoroutine(blackScreen.FadeAlpha(1, 2));
 
         foreach (GameObject obj in m_relaxationRoomObjects)
         {
@@ -118,10 +117,12 @@ public class RelaxationRoom : MonoBehaviour
         {
             obj.SetActive(true);
         }
+        yield return StartCoroutine(blackScreen.FadeAlpha(0, 1));
         
         yield return StartCoroutine(m_relaxBox.HideObject());
         m_relaxBox.gameObject.SetActive(false);
-
-        yield return StartCoroutine(blackScreen.FadeAlpha(0, 2));
+        
+        spaceshipController.enabled = true;
+        playerController.enabled = true;
     }
 }

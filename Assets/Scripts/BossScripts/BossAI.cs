@@ -78,8 +78,6 @@ public class BossAI : MonoBehaviour, IDamageable
     
     private void OnEnable()
     {
-        Debug.Log("BossAI.OnEnable");
-        
         // (Re)connect to player
         SetupReferences();
 

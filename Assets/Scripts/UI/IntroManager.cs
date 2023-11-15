@@ -66,6 +66,7 @@ public class IntroManager : MonoBehaviour
                 introText.SetActive(false);
                 nextBtn.SetActive(false);
                 survey.SetActive(true);
+                SurveyManager.OnSubmitSurvey += OnSurveySubmitted;
                 break;
             case 1:
                 // Turn everything back on, show tutorial pt. 1
@@ -123,7 +124,9 @@ public class IntroManager : MonoBehaviour
                 SetBossShaderParameters();
                 obstacles.SetActive(true);
                 arena.SetActive(true);
-                // TODO: start timer etc.
+                
+                // Start boss fight timer
+                FindObjectOfType<LevelManager>().RestartTimer();
                 
                 pointer.SetActive(false);
                 FindObjectOfType<PauseMenu>().AllowToggle();
@@ -138,6 +141,7 @@ public class IntroManager : MonoBehaviour
     {
         if (currentStep != 1) return;
 
+        SurveyManager.OnSubmitSurvey -= OnSurveySubmitted;
         OnNextButton();
     }
     
