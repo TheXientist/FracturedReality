@@ -41,6 +41,7 @@ public class IntroManager : MonoBehaviour
     private void Awake()
     {
         background = GetComponent<Image>();
+        btnText = nextBtn.GetComponentInChildren<TextMeshProUGUI>();
     }
 
     private void Start()

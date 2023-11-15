@@ -517,6 +517,37 @@ MonoBehaviour:
   m_music: {fileID: 381720539247367940}
   m_SFX: {fileID: 2491689353724853970}
   m_master: {fileID: 8020787044590099370}
+--- !u!1 &3034357157487765345
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6087238490758274148}
+  m_Layer: 0
+  m_Name: RefDummy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6087238490758274148
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3034357157487765345}
+  m_LocalRotation: {x: -0, y: -0, z: -4.6566123e-10, w: 1}
+  m_LocalPosition: {x: -1782.3002, y: -1057.8, z: -117.099976}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 343363312887047554}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3607392939118042462
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,6 +684,7 @@ RectTransform:
   - {fileID: 694323174987551080}
   - {fileID: 2964931305131677048}
   - {fileID: 6188913820890868803}
+  - {fileID: 6087238490758274148}
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -674,11 +706,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuTheme: {fileID: 0}
-  UIPointer: {fileID: 0}
+  UIPointer: {fileID: 3034357157487765345}
   m_repositionPanel: {fileID: 3607392939118042462}
   m_soundPanel: {fileID: 1820732413182610003}
   controls: {fileID: 0}
-  panel: {fileID: 0}
   actionToggle:
     actionPath: /actions/default/in/TogglePause
     needsReinit: 1
