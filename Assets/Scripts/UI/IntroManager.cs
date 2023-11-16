@@ -53,6 +53,9 @@ public class IntroManager : MonoBehaviour
 
     public void OnNextButton()
     {
+        // Somehow this gets 1 call with the first RB after intro was closed
+        if (!gameObject.activeSelf) return;
+        
         switch (currentStep)
         {
             case 0:
@@ -61,7 +64,7 @@ public class IntroManager : MonoBehaviour
                     // Activate relevant graphics and skip to last step
                     spaceshipModel.SetActive(true);
                     hud.alpha = 1f;
-                    goto case 6;
+                    goto case 8;
                 }
                 // Disable everything, enable survey
                 background.enabled = false;
@@ -73,6 +76,7 @@ public class IntroManager : MonoBehaviour
                 break;
             case 1:
                 // Turn everything back on, show reposition text
+                pointer.SetActive(true);
                 background.enabled = true;
                 header.SetActive(true);
                 tutorialText0.SetActive(true);
@@ -81,14 +85,18 @@ public class IntroManager : MonoBehaviour
                 btnText.text = "Reposition Menu";
                 break;
             case 2:
+                // Show reposition panel
                 background.enabled = false;
                 header.SetActive(false);
                 tutorialText0.SetActive(false);
                 repositionPanel.SetActive(true);
+                repositionPanel.GetComponent<RepositionPlayer>()?.closeButton.SetActive(false);
                 btnText.text = "Done";
                 break;
             case 3:
                 // Show tutorial pt. 1
+                Time.timeScale = 1f; // is left at 0 by reposition panel
+                repositionPanel.GetComponent<RepositionPlayer>()?.closeButton.SetActive(true);
                 repositionPanel.SetActive(false);
                 background.enabled = true;
                 header.SetActive(true);
