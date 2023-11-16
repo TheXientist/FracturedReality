@@ -651,6 +651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_VRPlayerRig: {fileID: 0}
+  closeButton: {fileID: 0}
 --- !u!1 &4087667967053790475
 GameObject:
   m_ObjectHideFlags: 0
@@ -2692,7 +2693,7 @@ PrefabInstance:
     - target: {fileID: 1406741810038304426, guid: 494c99639ce027542910a3429f1b56ec,
         type: 3}
       propertyPath: m_text
-      value: Controls
+      value: Close
       objectReference: {fileID: 0}
     - target: {fileID: 1406741810038304426, guid: 494c99639ce027542910a3429f1b56ec,
         type: 3}
@@ -4838,7 +4839,7 @@ PrefabInstance:
     - target: {fileID: 1406741810038304426, guid: 494c99639ce027542910a3429f1b56ec,
         type: 3}
       propertyPath: m_text
-      value: Controls
+      value: Close
       objectReference: {fileID: 0}
     - target: {fileID: 1406741810038304426, guid: 494c99639ce027542910a3429f1b56ec,
         type: 3}

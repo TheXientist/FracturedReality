@@ -7,6 +7,7 @@ public class RepositionPlayer : MonoBehaviour
     private float m_movingDistance = 0.2f;
 
     [SerializeField] private Transform m_VRPlayerRig;
+    public GameObject closeButton;
 
     private Vector3 m_startPosCameraRig;
 
