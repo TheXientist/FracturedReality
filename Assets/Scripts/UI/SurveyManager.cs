@@ -53,7 +53,8 @@ public class SurveyManager : MonoBehaviour
         {
             slider.Init();
         }
-        pointer.SetActive(true);
+        if (pointer != null)
+            pointer.SetActive(true);
     }
 
     public void SubmitResults()
@@ -94,7 +95,9 @@ public class SurveyManager : MonoBehaviour
         writer.WriteLine(line);
         writer.Close();
         
-        pointer.SetActive(false);
+        if (pointer != null)
+            pointer.SetActive(false);
+        
         gameObject.SetActive(false);
         OnSubmitSurvey?.Invoke();
         ShowingSurvey = false;
