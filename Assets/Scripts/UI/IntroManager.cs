@@ -22,20 +22,22 @@ public class IntroManager : MonoBehaviour
     [SerializeField] private GameObject nextBtn;
     private TextMeshProUGUI btnText;
     
-    [SerializeField, Header("Step 2")] private GameObject tutorialText1;
-    [SerializeField] private GameObject spaceshipModel;
-    [SerializeField] private SpaceshipController spaceshipController;
+    [SerializeField, Header("Step 2")] private GameObject tutorialText0;
+    [SerializeField] private GameObject spaceshipModel, repositionPanel;
+    
+    [SerializeField, Header("Step 3")] private SpaceshipController spaceshipController;
+    [SerializeField] private GameObject tutorialText1;
 
-    [SerializeField, Header("Step 3")] private GameObject tutorialText2;
+    [SerializeField, Header("Step 4")] private GameObject tutorialText2;
     
     // ...
 
-    [SerializeField, Header("Step 4")] private Player playerControls;
+    [SerializeField, Header("Step 5")] private Player playerControls;
     [SerializeField] private CanvasGroup hud;
 
-    [SerializeField, Header("Step 5")] private GameObject tutorialText3;
+    [SerializeField, Header("Step 6")] private GameObject tutorialText3;
 
-    [SerializeField, Header("Step 6")] private GameObject boss;
+    [SerializeField, Header("Step 7")] private GameObject boss;
     [SerializeField] private GameObject bossAnimator, obstacles, arena, dummyFractal, dummyTransforms;
 
     private void Awake()
@@ -70,15 +72,31 @@ public class IntroManager : MonoBehaviour
                 SurveyManager.OnSubmitSurvey += OnSurveySubmitted;
                 break;
             case 1:
-                // Turn everything back on, show tutorial pt. 1
+                // Turn everything back on, show reposition text
                 background.enabled = true;
                 header.SetActive(true);
-                tutorialText1.SetActive(true);
+                tutorialText0.SetActive(true);
                 nextBtn.SetActive(true);
                 spaceshipModel.SetActive(true);
-                btnText.text = "Test";
+                btnText.text = "Reposition Menu";
                 break;
             case 2:
+                background.enabled = false;
+                header.SetActive(false);
+                tutorialText0.SetActive(false);
+                repositionPanel.SetActive(true);
+                btnText.text = "Done";
+                break;
+            case 3:
+                // Show tutorial pt. 1
+                repositionPanel.SetActive(false);
+                background.enabled = true;
+                header.SetActive(true);
+                tutorialText0.SetActive(false);
+                tutorialText1.SetActive(true);
+                btnText.text = "Test";
+                break;
+            case 4:
                 // Only show button, enable controls
                 background.enabled = false;
                 header.SetActive(false);
@@ -86,7 +104,7 @@ public class IntroManager : MonoBehaviour
                 spaceshipController.enabled = true;
                 btnText.text = "Continue";
                 break;
-            case 3:
+            case 5:
                 // Show tutorial pt. 2
                 background.enabled = true;
                 header.SetActive(true);
@@ -95,7 +113,7 @@ public class IntroManager : MonoBehaviour
                 hud.alpha = 1f;
                 btnText.text = "Test";
                 break;
-            case 4:
+            case 6:
                 // Only show button, enable controls
                 background.enabled = false;
                 header.SetActive(false);
@@ -104,7 +122,7 @@ public class IntroManager : MonoBehaviour
                 playerControls.enabled = true;
                 btnText.text = "Continue";
                 break;
-            case 5:
+            case 7:
                 // Show tutorial pt. 3
                 background.enabled = true;
                 header.SetActive(true);
@@ -113,7 +131,7 @@ public class IntroManager : MonoBehaviour
                 tutorialText3.SetActive(true);
                 btnText.text = "Start";
                 break;
-            case 6:
+            case 8:
                 // Begin fight
                 spaceshipController.enabled = true;
                 playerControls.enabled = true;
