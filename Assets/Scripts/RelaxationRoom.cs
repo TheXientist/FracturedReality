@@ -48,7 +48,7 @@ public class RelaxationRoom : MonoBehaviour
 
     public IEnumerator ActivateRelaxRoom()
     {
-        blackScreen = FindAnyObjectByType<FadeBlackScreen>();
+        blackScreen ??= FindAnyObjectByType<FadeBlackScreen>();
         StartCoroutine ( m_musicFader.PlayMusicCoroutine(m_relaxMusic, true, true));
 
         spaceshipController.enabled = false;
