@@ -221,7 +221,7 @@ public class Player : MonoBehaviour, IDamageable
                 lastFiredRight = !lastFiredRight;
             
                 direction = m_BossObject.activeSelf ? (m_BossObject.transform.position - spawnPos) : transform.forward;
-
+                direction.Normalize();
                 temp = Instantiate(m_currentBullet, spawnPos, Quaternion.LookRotation(direction, Vector3.up));
 
                 temp.direction = direction;
