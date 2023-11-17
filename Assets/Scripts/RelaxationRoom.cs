@@ -33,7 +33,7 @@ public class RelaxationRoom : MonoBehaviour
         spaceshipController = playerObject.GetComponent<SpaceshipController>();
         playerController = playerObject.GetComponent<Player>();
         playerRB = playerObject.GetComponent<Rigidbody>();
-        blackScreen = FindAnyObjectByType<FadeBlackScreen>();
+
 
         for (int i = 0; i < playerObject.transform.childCount - 1; i++)
         {
@@ -48,6 +48,7 @@ public class RelaxationRoom : MonoBehaviour
 
     public IEnumerator ActivateRelaxRoom()
     {
+        blackScreen = FindAnyObjectByType<FadeBlackScreen>();
         StartCoroutine ( m_musicFader.PlayMusicCoroutine(m_relaxMusic, true, true));
 
         spaceshipController.enabled = false;
