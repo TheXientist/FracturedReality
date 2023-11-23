@@ -22,7 +22,7 @@ public class Player : MonoBehaviour, IDamageable
         {
             playerCurrentHealth = value;
             string text = "    Ship Health:\n";
-            for (int i = 0; i < playerCurrentHealth / playerMaxHealth * 30; ++i) text += "|";
+            text += new string('|', (int)(playerCurrentHealth / playerMaxHealth * 30));
             healthDisplay.text = text;
         }
     }

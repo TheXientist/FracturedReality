@@ -27,7 +27,7 @@ public class BossAI : MonoBehaviour, IDamageable
         {
             bossCurrentHealth = value;
             string text = "    Boss Health:\n";
-            for (int i = 0; i < bossCurrentHealth / bossMaxHealth * 30; ++i) text += "|";
+            text += new string('|', (int)(bossCurrentHealth / bossMaxHealth * 30));
             healthDisplay.text = text;
             healthDisplay.text = (value <= 0f) ? "You won!" : text;
         }
