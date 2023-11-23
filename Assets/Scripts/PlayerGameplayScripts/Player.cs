@@ -55,18 +55,19 @@ public class Player : MonoBehaviour, IDamageable
         set => nextFireTime = value;
     }
 
-    [SerializeField]
-    private float projectileThreshold = 1f;
-
     private SteamVR_Action_Boolean fireAction, deflectAction;
 
-    [SerializeField, MinMaxSlider(0f, 5f)] private Vector2 chargeTime;
-    private float minChargeTime => chargeTime.x;
-    private float maxChargeTime => chargeTime.y;
+    [SerializeField, Tooltip("The maximum charge time, after which the shot is overcharged (if chargeTimeWindow.y==1)")]
+    private float chargeTime;
+    [SerializeField, MinMaxSlider(0f, 1f), Tooltip("Timeframe (relative) for charging a perfect shot")]
+    private Vector2 chargeTimeWindow;
+    private float minChargeTime => chargeTime * chargeTimeWindow.x;
+    private float maxChargeTime => chargeTime * chargeTimeWindow.y;
     private bool buttonDown;
     private float lastBtnDownTime;
     private float lastHeatAddTime;
     private float currentCharge;
+    private float lastOverChargeTime;
 
     [Header("Heat")] [SerializeField] private int maxHeat;
     [SerializeField] private int heatPerShot, heatPerOvercharge;
@@ -135,6 +136,7 @@ public class Player : MonoBehaviour, IDamageable
         {
             float btnDownTime = Time.time - lastBtnDownTime;
             overcharged = btnDownTime > maxChargeTime;
+            if (overcharged) lastOverChargeTime = Time.time;
             chargePercentage = btnDownTime / minChargeTime;
         }
         else if (chargePercentage > 0f)
@@ -144,7 +146,7 @@ public class Player : MonoBehaviour, IDamageable
         }
 
         currentCharge = chargePercentage;
-        CrosshairCharger.Instance.UpdateVisuals(currentCharge, overcharged);
+        CrosshairCharger.Instance.UpdateVisuals(currentCharge, Time.time - lastOverChargeTime < .5f); // half a second buffer for visual feedback of overcharge
     }
 
     public event Action OnDamaged;
