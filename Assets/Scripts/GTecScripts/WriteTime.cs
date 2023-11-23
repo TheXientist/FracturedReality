@@ -237,7 +237,7 @@ public class WriteTime : MonoBehaviour
                 //float gsrDataConvert = SensorReader.stack2.Pop() * 0.00015f;
                 //dataConverter = SensorReader.oneECurrentValue * 0.00015f;
                 //conversion is stored in the device type variable!
-                dataConverter = SensorReader.oneECurrentValue * twoeDeviceTypeOne;
+                dataConverter = SensorReaderFractured.oneECurrentValue * twoeDeviceTypeOne;
             }
             catch (Exception ex)
             {
