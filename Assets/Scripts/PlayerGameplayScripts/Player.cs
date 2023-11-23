@@ -95,14 +95,14 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private Transform explosionSpawnPosition;
 
     private TextMeshProUGUI empText;
-    private GameObject empDisplay;
+    private Image empDisplay;
 
     void Start()
     {
         healthDisplay = GameObject.FindWithTag("ShipHealthDisplay").GetComponent<TextMeshProUGUI>();
         heatDisplay = GameObject.FindWithTag("WeaponStateDisplay").GetComponent<TextMeshProUGUI>();
         empText = GameObject.FindWithTag("EMPText").GetComponent<TextMeshProUGUI>();
-        empDisplay = GameObject.FindWithTag("EMPBorder");
+        empDisplay = GameObject.FindWithTag("EMPBorder").GetComponent<Image>();
         controller = GetComponent<SpaceshipController>();
         PlayerCurrentHealth = playerMaxHealth;
         fireAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("spaceship", "fire");
@@ -295,12 +295,14 @@ public class Player : MonoBehaviour, IDamageable
         
         // Cooldown
         empReady = false;
-        empDisplay.gameObject.SetActive(false);
+        var originalColor = empDisplay.color;
+        empDisplay.color = new Color(originalColor.r, originalColor.g, originalColor.b,
+            0.1f);
         empText.text = "EMP on cooldown";
         
         yield return new WaitForSeconds(empCooldown);
         empReady = true;
-        empDisplay.gameObject.SetActive(true);
+        empDisplay.color = originalColor;
         empText.text = "EMP ready";
     }
 
