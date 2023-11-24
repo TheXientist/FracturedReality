@@ -188,8 +188,16 @@ public class SensorReaderFractured : MonoBehaviour
             Debug.Log(ex.StackTrace);
         }
 
-        ContinueDeviceSetup();
-        OnPressRecordButton();
+        try
+        {
+            ContinueDeviceSetup();
+            OnPressRecordButton();
+        }
+        catch 
+        {
+            Debug.Log("No sensors found");
+        }
+
     }
 
     public void ContinueDeviceSetup()
