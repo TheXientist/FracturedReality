@@ -22,7 +22,7 @@ public class Player : MonoBehaviour, IDamageable
         {
             playerCurrentHealth = value;
             string text = "    Ship Health:\n";
-            for (int i = 0; i < playerCurrentHealth / playerMaxHealth * 30; ++i) text += "|";
+            text += new string('|', (int)(playerCurrentHealth / playerMaxHealth * 30));
             healthDisplay.text = text;
         }
     }
@@ -38,8 +38,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField]
     private AmmunationModule m_currentBullet;
 
-    private TextMeshProUGUI healthDisplay, heatText;
-    private Image heatDisplay, chargeDisplay, chargeMark;
+    private TextMeshProUGUI healthDisplay, heatDisplay;
     private SpaceshipController controller;
 
     public float fireRate = 1f;
@@ -56,24 +55,26 @@ public class Player : MonoBehaviour, IDamageable
         set => nextFireTime = value;
     }
 
-    [SerializeField]
-    private float projectileThreshold = 1f;
-
     private SteamVR_Action_Boolean fireAction, deflectAction;
 
-    [SerializeField, MinMaxSlider(0f, 5f)] private Vector2 chargeTime;
-    private float minChargeTime => chargeTime.x;
-    private float maxChargeTime => chargeTime.y;
+    [SerializeField, Tooltip("The maximum charge time, after which the shot is overcharged (if chargeTimeWindow.y==1)")]
+    private float chargeTime;
+    [SerializeField, MinMaxSlider(0f, 1f), Tooltip("Timeframe (relative) for charging a perfect shot")]
+    private Vector2 chargeTimeWindow;
+    private float minChargeTime => chargeTime * chargeTimeWindow.x;
+    private float maxChargeTime => chargeTime * chargeTimeWindow.y;
     private bool buttonDown;
     private float lastBtnDownTime;
     private float lastHeatAddTime;
+    private float currentCharge;
+    private float lastOverChargeTime;
 
     [Header("Heat")] [SerializeField] private int maxHeat;
     [SerializeField] private int heatPerShot, heatPerOvercharge;
     [SerializeField, Tooltip("Heat loss per 10ms when cooling down")]
     private int cooldownRate;
     [SerializeField] private float cooldownAfterSeconds;
-    private int currentHeat;
+    [SerializeField] private int currentHeat;
 
     private int CurrentHeat
     {
@@ -81,7 +82,9 @@ public class Player : MonoBehaviour, IDamageable
         set
         {
             currentHeat = value;
-            heatDisplay.fillAmount = (float)currentHeat / maxHeat;
+            string text = IsOverheated ? "    Overheated!\n" : "    Blaster Heat:\n";
+            text += new string('|', (int)(currentHeat / (float)maxHeat * 30));
+            heatDisplay.text = text;
         }
     }
     public bool IsOverheated { get; private set; }
@@ -93,25 +96,20 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private Transform explosionSpawnPosition;
 
     private TextMeshProUGUI empText;
-    private GameObject empDisplay;
+    private Image empDisplay;
 
     void Start()
     {
         healthDisplay = GameObject.FindWithTag("ShipHealthDisplay").GetComponent<TextMeshProUGUI>();
-        heatText = GameObject.FindWithTag("WeaponStateDisplay").GetComponent<TextMeshProUGUI>();
-        heatDisplay = GameObject.FindWithTag("HeatDisplay").GetComponent<Image>();
-        chargeDisplay = GameObject.FindWithTag("ChargeDisplay").GetComponent<Image>();
-        chargeMark = GameObject.FindWithTag("ChargeMark").GetComponent<Image>();
+        heatDisplay = GameObject.FindWithTag("WeaponStateDisplay").GetComponent<TextMeshProUGUI>();
         empText = GameObject.FindWithTag("EMPText").GetComponent<TextMeshProUGUI>();
-        empDisplay = GameObject.FindWithTag("EMPBorder");
+        empDisplay = GameObject.FindWithTag("EMPBorder").GetComponent<Image>();
         controller = GetComponent<SpaceshipController>();
         PlayerCurrentHealth = playerMaxHealth;
         fireAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("spaceship", "fire");
         fireAction.AddOnChangeListener(OnFireVR, SteamVR_Input_Sources.Any);
         deflectAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("spaceship", "deflect");
         deflectAction.AddOnStateDownListener(OnDeflectVR, SteamVR_Input_Sources.Any);
-
-        chargeMark.fillAmount = 1f - (minChargeTime / maxChargeTime);
     }
 
     // Update is called once per frame
@@ -131,23 +129,24 @@ public class Player : MonoBehaviour, IDamageable
 
     private void UpdateChargeDisplay()
     {
-        float chargePercentage = chargeDisplay.fillAmount;
+        float chargePercentage = currentCharge;
+        bool overcharged = false;
+        
         if (buttonDown)
         {
             float btnDownTime = Time.time - lastBtnDownTime;
-            chargePercentage = btnDownTime / maxChargeTime;
-            if (chargePercentage > 1f)
-                chargeDisplay.color = Color.red;
-            else if (btnDownTime >= minChargeTime)
-                chargeDisplay.color = Color.green;
+            overcharged = btnDownTime > maxChargeTime;
+            if (overcharged) lastOverChargeTime = Time.time;
+            chargePercentage = btnDownTime / minChargeTime;
         }
         else if (chargePercentage > 0f)
         {
+            if (chargePercentage > 1f) chargePercentage = 1f;
             chargePercentage -= 2f * Time.deltaTime;
-            chargeDisplay.color = Color.white;
         }
-        
-        chargeDisplay.fillAmount = chargePercentage;
+
+        currentCharge = chargePercentage;
+        CrosshairCharger.Instance.UpdateVisuals(currentCharge, Time.time - lastOverChargeTime < .5f); // half a second buffer for visual feedback of overcharge
     }
 
     public event Action OnDamaged;
@@ -298,12 +297,14 @@ public class Player : MonoBehaviour, IDamageable
         
         // Cooldown
         empReady = false;
-        empDisplay.gameObject.SetActive(false);
+        var originalColor = empDisplay.color;
+        empDisplay.color = new Color(originalColor.r, originalColor.g, originalColor.b,
+            0.1f);
         empText.text = "EMP on cooldown";
         
         yield return new WaitForSeconds(empCooldown);
         empReady = true;
-        empDisplay.gameObject.SetActive(true);
+        empDisplay.color = originalColor;
         empText.text = "EMP ready";
     }
 
@@ -322,9 +323,9 @@ public class Player : MonoBehaviour, IDamageable
     {
         // TODO: SFX
         IsOverheated = true;
+        heatDisplay.text = "    Overheated!\n" + new string('|', 30);
         heatDisplay.color = Color.red;
-        heatText.text = "Overheated!";
-        heatText.color = Color.red;
+        CrosshairCharger.Instance.SetOverheat(true);
         
         yield return new WaitForSeconds(3f);
         while (currentHeat > 0)
@@ -333,9 +334,9 @@ public class Player : MonoBehaviour, IDamageable
             yield return new WaitForSeconds(0.1f);
         }
         IsOverheated = false;
+        heatDisplay.text = "    Blaster Heat:";
         heatDisplay.color = new Color(1f, .7f, .2f);
-        heatText.text = "Blaster Heat";
-        heatText.color = new Color(1f, .7f, .2f);
+        CrosshairCharger.Instance.SetOverheat(false);
     }
 
     private IEnumerator CooldownRoutine()
