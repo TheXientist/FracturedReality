@@ -41,7 +41,18 @@ public class WriteTime : MonoBehaviour
     private string twoeDeviceStrngOne;
     private string twoeDeviceStringTwo;
 
-    public static string currentEvent = "";
+    private static string currentEvent = "Start+Survey";
+
+    public static void SetCurrentEvent(string eventName)
+    {
+        currentEvent = eventName;
+    }
+
+    public static string GetCurrentEvent()
+    {
+        return currentEvent;
+    }
+
 
     private void Start()
     {
@@ -249,7 +260,7 @@ public class WriteTime : MonoBehaviour
             oneeEntry.ONEEdata = dataConverter.ToString();
             oneeFile.Add(oneeEntry);
             oneeEntry = new ONEEntry();
-            oneeEntry.currentEvent = currentEvent;
+            oneeEntry.currentEvent = GetCurrentEvent();
 
         }
         else if (writtenONEE)
