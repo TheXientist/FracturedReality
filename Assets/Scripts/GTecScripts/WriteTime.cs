@@ -41,6 +41,8 @@ public class WriteTime : MonoBehaviour
     private string twoeDeviceStrngOne;
     private string twoeDeviceStringTwo;
 
+    public static string currentEvent = "";
+
     private void Start()
     {
         oneeEntry = new ONEEntry();
@@ -247,6 +249,7 @@ public class WriteTime : MonoBehaviour
             oneeEntry.ONEEdata = dataConverter.ToString();
             oneeFile.Add(oneeEntry);
             oneeEntry = new ONEEntry();
+            oneeEntry.currentEvent = currentEvent;
 
         }
         else if (writtenONEE)

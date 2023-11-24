@@ -58,16 +58,21 @@ public class SensorReaderFractured : MonoBehaviour
     //public static Stack<float> stack1;
 
     //trasmit information between UI and SensorReader.
-    [SerializeField] private UIHandel uiHandel;
+    //[SerializeField] private UIHandel uiHandel;
     [SerializeField] private WriteTime writeTime;
 
     // The amount of data to wait for before the "dataReadyFlag" triggered in milliseconds.
     const int DataReadyThresholdInMs = 30;
 
+    //Variables for UI-less System
+    [SerializeField] int hzRate = 5;
+
+
     // Start is called before the first frame update
     void Start()
     {
         startConnetion();
+        Debug.Log("Sensor init started. Wait for connection...");
     }
 
     // Update is called once per frame
@@ -77,24 +82,22 @@ public class SensorReaderFractured : MonoBehaviour
         {
             readUpdate();
         }
-
-        writeTime.measureONEEinHz = int.Parse("5");
-
+    /*
         if (Input.GetKeyDown(KeyCode.J))
         {
+            writeTime.measureONEEinHz = hzRate;
             ContinueDeviceSetup();
-        }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            OnPressRecordButton();
         }
 
         if (Input.GetKeyDown(KeyCode.L))
         {
             OnPressWriteButton();
         }
-
+    */
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            OnPressRecordButton();
+        }
 
 
     }
@@ -135,6 +138,7 @@ public class SensorReaderFractured : MonoBehaviour
     private IEnumerator InitConnection()
     {
         yield return new WaitForSeconds(1f);
+        
         DataReadyCallback = OnDataReadyCallback;
         DataAcquisitionErrorCallback = OnDataAcquisitionError;
         remoteEndpoint =
@@ -154,7 +158,7 @@ public class SensorReaderFractured : MonoBehaviour
 
             //communicate to UI the names of the devices:
             //uiHandel.SetTexts(serialNumber);
-            Debug.Log("SerialNumber" + serialNumber);
+            //Debug.Log("SerialNumber" + serialNumber);
             
 
         }
@@ -183,16 +187,22 @@ public class SensorReaderFractured : MonoBehaviour
             Debug.Log("GENERAL ERROR:");
             Debug.Log(ex.StackTrace);
         }
+
+        ContinueDeviceSetup();
+        OnPressRecordButton();
     }
 
     public void ContinueDeviceSetup()
     {
+        //CHANGE IF SECOND DEVIE IS IN USE
         int firstDeviceType = 2;
         int secondDeviceType = 0;
         bool doubleDeviceUsage = false;
         bool secondToggleDoubleUse = false;
-        writeTime.oneDevice = 2;
         int doubleDeviceType = 0;
+        writeTime.oneDevice = 2;
+        writeTime.measureONEEinHz = hzRate;
+
         //Deivce Types:
         // 0 - None
         // 1 - EEG
@@ -579,6 +589,7 @@ public class SensorReaderFractured : MonoBehaviour
             writeTime.write = false;
             //recordButton.interactable = false;
             //writeButton.interactable = true;
+            OnPressWriteButton();
         }
         else if (!writeTime.write && writeTime.writeWasTrue)
         {
@@ -587,7 +598,7 @@ public class SensorReaderFractured : MonoBehaviour
             writeTime.writtenTWOE = true;
         }
 
-        Debug.Log("Record Successfull");
+        Debug.Log("Record Successfull, press K to stop recording");
     }
 
 
