@@ -6,7 +6,7 @@ public class ControlSettings : ScriptableObject
 {
     public enum DOF
     {
-        moveX = 1, moveY = 2, moveZ = 4,
+        none = 0, moveX = 1, moveY = 2, moveZ = 4,
         rotateX = 8, rotateY = 16, rotateZ = 32
     }
     
@@ -60,6 +60,8 @@ public class ControlSettings : ScriptableObject
                 break;
             case DOF.rotateZ:
                 rotationInput.z = input;
+                break;
+            case DOF.none:
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(map), map, null);

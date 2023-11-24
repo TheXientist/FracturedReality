@@ -16,9 +16,9 @@ MonoBehaviour:
   invertLX: 0
   leftStickY: 2
   invertLY: 0
-  rightStickX: 16
+  rightStickX: 0
   invertRX: 0
-  rightStickY: 4
+  rightStickY: 0
   invertRY: 0
   deadzonePerAxis: 0.25
   moveSpeed: 30
