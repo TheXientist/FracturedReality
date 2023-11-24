@@ -77,5 +77,7 @@ public class LaserAttack : AbilityScriptableObject
         {
             Destroy(m_currentLaserObject);
         }
+
+        warningDisplay.SetActive(false);
     }
 }
