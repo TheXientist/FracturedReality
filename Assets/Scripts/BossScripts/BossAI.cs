@@ -156,6 +156,8 @@ public class BossAI : MonoBehaviour, IDamageable
                 StartCoroutine(m_musicFader.PlayMusicCoroutine(phase.phaseMusic, true, true));
         }
 
+        WriteTime.SetCurrentEvent("BossPhase " + currentPhase);
+
         while (bossCurrentHealth > bossMaxHealth * phase.percentPhaseCondition )
         {
             yield return UseRandomPhaseAbility(phase.phaseAbilityScripts, phase.abilityPropabilityList);
@@ -220,6 +222,8 @@ public class BossAI : MonoBehaviour, IDamageable
             StopBossFight();
             destroyed = true;
             animator.SetTrigger("Death");
+
+            WriteTime.SetCurrentEvent("Boss Death");
             
             // Play death sound, then loop post-fight music
             StartCoroutine(m_musicFader.PlayMusicCoroutine(deathSound, true, false));

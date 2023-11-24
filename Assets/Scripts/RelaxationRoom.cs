@@ -48,6 +48,8 @@ public class RelaxationRoom : MonoBehaviour
 
     public IEnumerator ActivateRelaxRoom()
     {
+        WriteTime.SetCurrentEvent("Relax Room");
+
         blackScreen ??= FindAnyObjectByType<FadeBlackScreen>();
         StartCoroutine ( m_musicFader.PlayMusicCoroutine(m_relaxMusic, true, true));
 
@@ -94,7 +96,9 @@ public class RelaxationRoom : MonoBehaviour
     public IEnumerator ActivateBossFightRoom()
     {
         yield return StartCoroutine(blackScreen.FadeAlpha(1, 1));
-        
+
+        WriteTime.SetCurrentEvent("Leave Relax Room");
+
         // Set to start position
         playerObject.transform.position = new Vector3(140f, 20f, -120f);
         playerRB.velocity = Vector3.zero;

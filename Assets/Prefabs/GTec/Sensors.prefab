@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2809059580699619757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2972281343684322471}
+  - component: {fileID: 5293587390597249596}
+  - component: {fileID: 2266074209352043315}
+  m_Layer: 0
+  m_Name: Sensors
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2972281343684322471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2809059580699619757}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 849.3302, y: 508.41324, z: -694.8245}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5293587390597249596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2809059580699619757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3b53ee19244f764391209285f11f3ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oneeFile: []
+  seceFile: []
+  eegFile: []
+  write: 0
+  writeWasTrue: 0
+  writtenEEG: 0
+  writtenONEE: 0
+  writtenTWOE: 0
+  measureEEGinHz: 1
+  measureONEEinHz: 1
+  inEEGCoroutine: 0
+  inONEECoroutine: 0
+  inTWOECoroutine: 0
+  oneDevice: 0
+--- !u!114 &2266074209352043315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2809059580699619757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebf1b496e70ab604d99dc5aa475c6a9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serialNumber: []
+  connectionEst: 0
+  channelsForFirstDevice: 
+  firstEnabledChannels: 0000000000000000
+  channelsForSecondDevice: 
+  secondEnabledChannels: 0000000000000000
+  uiHandel: {fileID: 0}
+  writeTime: {fileID: 5293587390597249596}
+  hzRate: 5
