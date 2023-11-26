@@ -29,16 +29,18 @@ public class IntroManager : MonoBehaviour
     [SerializeField] private GameObject tutorialText1;
 
     [SerializeField, Header("Step 4")] private GameObject tutorialText2;
+    [SerializeField] private CanvasGroup hud;
+
+    [SerializeField, Header("Step 5")] private GameObject tutorialText3;
     
     // ...
 
-    [SerializeField, Header("Step 5")] private Player playerControls;
-    [SerializeField] private CanvasGroup hud;
+    [SerializeField, Header("Step 6")] private Player playerControls;
 
-    [SerializeField, Header("Step 6")] private GameObject tutorialText3;
+    [SerializeField, Header("Step 7")] private GameObject tutorialText4;
 
-    [SerializeField, Header("Step 7")] private GameObject boss;
-    [SerializeField] private GameObject bossAnimator, obstacles, arena, dummyFractal, dummyTransforms;
+    [SerializeField, Header("Step 8")] private GameObject boss;
+    [SerializeField] private GameObject bossAnimator, arena, dummyFractal, dummyTransforms;
 
     private void Awake()
     {
@@ -64,7 +66,7 @@ public class IntroManager : MonoBehaviour
                     // Activate relevant graphics and skip to last step
                     spaceshipModel.SetActive(true);
                     hud.alpha = 1f;
-                    goto case 8;
+                    goto case 9;
                 }
                 // Disable everything, enable survey
                 background.enabled = false;
@@ -119,27 +121,33 @@ public class IntroManager : MonoBehaviour
                 spaceshipController.enabled = false;
                 tutorialText2.SetActive(true);
                 hud.alpha = 1f;
-                btnText.text = "Test";
+                btnText.text = "Next";
                 break;
             case 6:
+                // Show tutorial pt. 3
+                tutorialText2.SetActive(false);
+                tutorialText3.SetActive(true);
+                btnText.text = "Test";
+                break;
+            case 7:
                 // Only show button, enable controls
                 background.enabled = false;
                 header.SetActive(false);
-                tutorialText2.SetActive(false);
+                tutorialText3.SetActive(false);
                 spaceshipController.enabled = true;
                 playerControls.enabled = true;
                 btnText.text = "Continue";
                 break;
-            case 7:
+            case 8:
                 // Show tutorial pt. 3
                 background.enabled = true;
                 header.SetActive(true);
                 spaceshipController.enabled = false;
                 playerControls.enabled = false;
-                tutorialText3.SetActive(true);
+                tutorialText4.SetActive(true);
                 btnText.text = "Start";
                 break;
-            case 8:
+            case 9:
                 // Begin fight
                 spaceshipController.enabled = true;
                 playerControls.enabled = true;
@@ -149,7 +157,6 @@ public class IntroManager : MonoBehaviour
                 boss.SetActive(true);
                 bossAnimator.SetActive(true);
                 SetBossShaderParameters();
-                obstacles.SetActive(true);
                 arena.SetActive(true);
                 
                 // Start boss fight timer

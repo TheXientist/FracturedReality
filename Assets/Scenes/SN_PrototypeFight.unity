@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.024967156, g: 0.022754043, b: 0.070475414, a: 1}
+  m_IndirectSpecularColor: {r: 0.024951262, g: 0.022750102, b: 0.07044999, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2776,9 +2776,19 @@ PrefabInstance:
       objectReference: {fileID: 1123354448}
     - target: {fileID: 1509266337808665467, guid: c1d91ecf7a5e14a689fcef67f95363bf,
         type: 3}
+      propertyPath: asteroids
+      value: 
+      objectReference: {fileID: 1201585835}
+    - target: {fileID: 1509266337808665467, guid: c1d91ecf7a5e14a689fcef67f95363bf,
+        type: 3}
       propertyPath: obstacles
       value: 
       objectReference: {fileID: 1201585835}
+    - target: {fileID: 1509266337808665467, guid: c1d91ecf7a5e14a689fcef67f95363bf,
+        type: 3}
+      propertyPath: skipIntro
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1509266337808665467, guid: c1d91ecf7a5e14a689fcef67f95363bf,
         type: 3}
       propertyPath: bossAnimator
@@ -2861,6 +2871,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3061859875470130510, guid: c1d91ecf7a5e14a689fcef67f95363bf,
         type: 3}
+      propertyPath: vr
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3061859875470130510, guid: c1d91ecf7a5e14a689fcef67f95363bf,
+        type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 6293280729080821922}
@@ -2874,6 +2889,11 @@ PrefabInstance:
       propertyPath: arena
       value: 
       objectReference: {fileID: 1123354448}
+    - target: {fileID: 3424770934097722538, guid: c1d91ecf7a5e14a689fcef67f95363bf,
+        type: 3}
+      propertyPath: asteroids
+      value: 
+      objectReference: {fileID: 1201585835}
     - target: {fileID: 3424770934097722538, guid: c1d91ecf7a5e14a689fcef67f95363bf,
         type: 3}
       propertyPath: obstacles
