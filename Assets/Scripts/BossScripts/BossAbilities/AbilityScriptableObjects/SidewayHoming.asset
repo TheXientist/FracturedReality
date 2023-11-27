@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityPropability: 3
   abilityWindup: 2
-  abilityCooldown: 5
+  abilityCooldown: 0
   animationTriggerName: HomingAttack
   firingAngle: 70
-  bulletModuleSpeed: 60
+  bulletModuleSpeed: 80
   m_bulletPrefab: {fileID: 4185635229755856287, guid: 72cfe63fe54089745b3834e77f3aefdd,
     type: 3}
   homingPercentage: 0.9
