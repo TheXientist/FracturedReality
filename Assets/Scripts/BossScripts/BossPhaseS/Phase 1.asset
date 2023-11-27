@@ -20,4 +20,4 @@ MonoBehaviour:
   abilityPropabilityList: 0000000000000000000000000100000001000000010000000200000002000000020000000300000003000000
   percentPhaseCondition: 0.9
   phaseMusic: {fileID: 8300000, guid: ee48155dee39fd8419ebcca4b904dd0e, type: 3}
-  phasePreMusic: {fileID: 0}
+  phasePreMusic: {fileID: 8300000, guid: a27b2240276f7e147b24eeb79ca1b4e3, type: 3}
