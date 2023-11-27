@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class SensorReaderFractured : MonoBehaviour
@@ -132,12 +133,13 @@ public class SensorReaderFractured : MonoBehaviour
 
     public void startConnetion()
     {
-        StartCoroutine(InitConnection());
+        //StartCoroutine(InitConnection());
+        InitConnection();
     }
 
-    private IEnumerator InitConnection()
+    private async void InitConnection()
     {
-        yield return new WaitForSeconds(1f);
+        //yield return new WaitForSeconds(1f);
         
         DataReadyCallback = OnDataReadyCallback;
         DataAcquisitionErrorCallback = OnDataAcquisitionError;
@@ -148,6 +150,7 @@ public class SensorReaderFractured : MonoBehaviour
 
         //initialize the library
         GdsClientApiLibraryWrapper.Initialize();
+        await Task.Yield();
 
         try
         {
