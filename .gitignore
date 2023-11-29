@@ -81,3 +81,4 @@ crashlytics-build.properties
 # Ignore Survey Results files
 Assets/SurveyResults/*.txt*
 Assets/SurveyResults/*.csv*
+Assets/Sound/Music/Atmosphäre v2.mp3.meta

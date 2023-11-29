@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5abf039c8c673ed4c835340e5a046734, type: 3}
-  m_Name: 6BulletsCrossRotating
+  m_Script: {fileID: 11500000, guid: b8d5b063b3a707643af1835446674f58, type: 3}
+  m_Name: 6BulletGridCombo
   m_EditorClassIdentifier: 
   abilityPropability: 3
   abilityWindup: 0
   abilityCooldown: 1
   animationTriggerName: DefaultAttack
-  m_bulletPrefab: {fileID: 4185635229755856287, guid: f295c3bceb73db74b96e28c64f09c827,
-    type: 3}
-  m_spawnThreshold: 3
-  m_bulletModuleSpeed: 100
-  m_bulletModuleRotationSpeed: 100
+  subAbilities:
+  - {fileID: 11400000, guid: 428d228bbff0d094db6b3cd98e52b6b6, type: 2}
+  - {fileID: 11400000, guid: 52f449b6890e6954f81d459ae1632dde, type: 2}
+  useIndividualCooldowns: 0
+  useIndividualWindups: 0

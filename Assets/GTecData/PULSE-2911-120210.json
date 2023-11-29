@@ -1,0 +1,4084 @@
+{
+    "Items": [
+        {
+            "time": "11:59:11:764",
+            "SECEdata": "30,54203",
+            "currentEvent": "Empty"
+        },
+        {
+            "time": "11:59:12:111",
+            "SECEdata": "27,72761",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:12:517",
+            "SECEdata": "27,90489",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:12:704",
+            "SECEdata": "29,7664",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:12:910",
+            "SECEdata": "32,49218",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:13:112",
+            "SECEdata": "31,05173",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:13:314",
+            "SECEdata": "29,52263",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:13:518",
+            "SECEdata": "32,09328",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:13:720",
+            "SECEdata": "29,98801",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:13:923",
+            "SECEdata": "30,71932",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:14:122",
+            "SECEdata": "32,20409",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:14:325",
+            "SECEdata": "29,89937",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:14:527",
+            "SECEdata": "32,62515",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:14:737",
+            "SECEdata": "29,98801",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:14:941",
+            "SECEdata": "32,71379",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:15:166",
+            "SECEdata": "29,56695",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:15:391",
+            "SECEdata": "29,05725",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:15:591",
+            "SECEdata": "29,83288",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:15:794",
+            "SECEdata": "31,93816",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:16:010",
+            "SECEdata": "30,58635",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:16:223",
+            "SECEdata": "31,05173",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:16:425",
+            "SECEdata": "30,05449",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:16:624",
+            "SECEdata": "33,13485",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:16:849",
+            "SECEdata": "30,18746",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:21:773",
+            "SECEdata": "32,38137",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:21:985",
+            "SECEdata": "28,90213",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:22:194",
+            "SECEdata": "35,085",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:22:403",
+            "SECEdata": "34,13208",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:22:611",
+            "SECEdata": "35,63902",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:22:817",
+            "SECEdata": "31,71655",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:23:018",
+            "SECEdata": "31,22902",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:23:230",
+            "SECEdata": "31,22902",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:23:440",
+            "SECEdata": "41,62244",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:23:652",
+            "SECEdata": "34,59746",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:23:861",
+            "SECEdata": "37,50053",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:24:070",
+            "SECEdata": "33,35645",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:24:279",
+            "SECEdata": "37,05731",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:24:487",
+            "SECEdata": "28,6362",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:24:698",
+            "SECEdata": "35,15148",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:24:905",
+            "SECEdata": "31,71655",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:25:114",
+            "SECEdata": "35,1958",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:25:332",
+            "SECEdata": "28,06002",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:25:549",
+            "SECEdata": "35,15148",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:25:753",
+            "SECEdata": "30,56419",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:25:968",
+            "SECEdata": "36,1044",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:26:171",
+            "SECEdata": "26,77469",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:26:374",
+            "SECEdata": "32,58083",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:26:577",
+            "SECEdata": "33,9548",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:26:781",
+            "SECEdata": "25,9769",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:26:993",
+            "SECEdata": "31,11821",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:27:199",
+            "SECEdata": "28,48107",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:29:019",
+            "SECEdata": "32,97972",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:29:225",
+            "SECEdata": "30,69715",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:29:431",
+            "SECEdata": "33,37861",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:29:635",
+            "SECEdata": "31,45062",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:29:850",
+            "SECEdata": "30,74148",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:30:062",
+            "SECEdata": "27,57248",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:30:262",
+            "SECEdata": "28,39243",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:30:463",
+            "SECEdata": "30,49771",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:30:668",
+            "SECEdata": "28,87997",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:30:890",
+            "SECEdata": "32,00464",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:31:104",
+            "SECEdata": "29,43399",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:31:327",
+            "SECEdata": "27,92705",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:31:552",
+            "SECEdata": "31,916",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:31:775",
+            "SECEdata": "30,60851",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:31:987",
+            "SECEdata": "28,37027",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:32:198",
+            "SECEdata": "31,00741",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:32:402",
+            "SECEdata": "27,28439",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:32:608",
+            "SECEdata": "27,77192",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:32:829",
+            "SECEdata": "28,6362",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:33:033",
+            "SECEdata": "29,67776",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:33:233",
+            "SECEdata": "30,34258",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:33:452",
+            "SECEdata": "30,23178",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:33:651",
+            "SECEdata": "32,73595",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:33:853",
+            "SECEdata": "28,79132",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:34:077",
+            "SECEdata": "31,09605",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:34:302",
+            "SECEdata": "29,01293",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:34:526",
+            "SECEdata": "25,22343",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:34:750",
+            "SECEdata": "22,36469",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:34:973",
+            "SECEdata": "23,07383",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:35:197",
+            "SECEdata": "25,17911",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:35:405",
+            "SECEdata": "24,7359",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:35:617",
+            "SECEdata": "23,51705",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:35:841",
+            "SECEdata": "25,68881",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:36:051",
+            "SECEdata": "25,09047",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:36:265",
+            "SECEdata": "26,79685",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:36:473",
+            "SECEdata": "27,92705",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:36:850",
+            "SECEdata": "26,5974",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:37:101",
+            "SECEdata": "27,37303",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:37:305",
+            "SECEdata": "29,94369",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:37:525",
+            "SECEdata": "30,49771",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:37:725",
+            "SECEdata": "29,89937",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:37:932",
+            "SECEdata": "29,85504",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:38:133",
+            "SECEdata": "30,49771",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:38:343",
+            "SECEdata": "31,96032",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:38:568",
+            "SECEdata": "31,33982",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:38:782",
+            "SECEdata": "34,79691",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:39:011",
+            "SECEdata": "36,65842",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:39:212",
+            "SECEdata": "33,31213",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:39:424",
+            "SECEdata": "31,916",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:39:649",
+            "SECEdata": "31,49495",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:39:867",
+            "SECEdata": "31,84952",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:40:074",
+            "SECEdata": "30,98525",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:40:287",
+            "SECEdata": "32,75811",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:40:498",
+            "SECEdata": "30,85228",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:40:704",
+            "SECEdata": "30,98525",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:40:920",
+            "SECEdata": "29,45615",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:41:131",
+            "SECEdata": "26,79685",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:41:368",
+            "SECEdata": "27,94921",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:41:581",
+            "SECEdata": "27,21791",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:41:812",
+            "SECEdata": "26,15419",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:42:022",
+            "SECEdata": "30,71932",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:42:225",
+            "SECEdata": "32,24841",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:42:449",
+            "SECEdata": "36,01575",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:42:671",
+            "SECEdata": "32,27058",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:42:906",
+            "SECEdata": "30,71932",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:43:106",
+            "SECEdata": "28,25946",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:43:309",
+            "SECEdata": "31,16253",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:43:519",
+            "SECEdata": "29,98801",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:43:725",
+            "SECEdata": "26,9963",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:43:961",
+            "SECEdata": "26,30931",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:44:232",
+            "SECEdata": "26,13203",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:44:435",
+            "SECEdata": "26,26499",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:44:657",
+            "SECEdata": "29,54479",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:44:879",
+            "SECEdata": "30,2761",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:45:103",
+            "SECEdata": "26,53092",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:45:327",
+            "SECEdata": "32,73595",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:45:552",
+            "SECEdata": "31,93816",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:45:777",
+            "SECEdata": "27,68328",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:46:001",
+            "SECEdata": "33,28997",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:46:225",
+            "SECEdata": "40,24847",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:46:449",
+            "SECEdata": "38,91882",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:46:673",
+            "SECEdata": "35,61686",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:46:897",
+            "SECEdata": "32,75811",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:47:108",
+            "SECEdata": "35,74982",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:47:308",
+            "SECEdata": "33,82183",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:47:517",
+            "SECEdata": "28,52539",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:47:726",
+            "SECEdata": "36,25952",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:47:935",
+            "SECEdata": "33,79967",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:48:145",
+            "SECEdata": "42,68616",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:48:353",
+            "SECEdata": "36,39249",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:48:563",
+            "SECEdata": "38,85234",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:48:773",
+            "SECEdata": "35,66118",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:48:985",
+            "SECEdata": "36,03791",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:49:194",
+            "SECEdata": "28,96861",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:49:403",
+            "SECEdata": "33,64455",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:49:612",
+            "SECEdata": "29,12374",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:49:823",
+            "SECEdata": "32,00464",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:50:031",
+            "SECEdata": "27,06278",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:50:239",
+            "SECEdata": "30,49771",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:50:448",
+            "SECEdata": "23,47273",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:50:656",
+            "SECEdata": "25,88826",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:50:865",
+            "SECEdata": "23,22896",
+            "currentEvent": "Start+Survey"
+        },
+        {
+            "time": "11:59:51:072",
+            "SECEdata": "26,5974",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:51:281",
+            "SECEdata": "23,16248",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:51:491",
+            "SECEdata": "26,28715",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:51:700",
+            "SECEdata": "22,25388",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:51:910",
+            "SECEdata": "28,28163",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:52:119",
+            "SECEdata": "23,11815",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:52:328",
+            "SECEdata": "28,03786",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:52:538",
+            "SECEdata": "24,49213",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:52:746",
+            "SECEdata": "29,89937",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:52:954",
+            "SECEdata": "27,68328",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:53:164",
+            "SECEdata": "34,04344",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:53:372",
+            "SECEdata": "30,32042",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:53:582",
+            "SECEdata": "34,26505",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:53:790",
+            "SECEdata": "27,94921",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:54:000",
+            "SECEdata": "31,14037",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:54:207",
+            "SECEdata": "30,94092",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:54:417",
+            "SECEdata": "27,26223",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:54:625",
+            "SECEdata": "30,23178",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:54:835",
+            "SECEdata": "24,91318",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:55:043",
+            "SECEdata": "30,36474",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:55:253",
+            "SECEdata": "26,81901",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:55:462",
+            "SECEdata": "30,80796",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:55:670",
+            "SECEdata": "26,50876",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:55:880",
+            "SECEdata": "30,7858",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:56:089",
+            "SECEdata": "27,21791",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:56:298",
+            "SECEdata": "29,8772",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:56:506",
+            "SECEdata": "25,53368",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:56:715",
+            "SECEdata": "31,2955",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:56:924",
+            "SECEdata": "26,73037",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:57:133",
+            "SECEdata": "28,76917",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:57:343",
+            "SECEdata": "25,95474",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:57:552",
+            "SECEdata": "32,95756",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:57:773",
+            "SECEdata": "27,99353",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:57:981",
+            "SECEdata": "30,76364",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:58:190",
+            "SECEdata": "24,62509",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:58:399",
+            "SECEdata": "30,85228",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:58:608",
+            "SECEdata": "26,55308",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:58:817",
+            "SECEdata": "28,54756",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:59:027",
+            "SECEdata": "26,3758",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:59:235",
+            "SECEdata": "29,32318",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:59:444",
+            "SECEdata": "26,10987",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:59:654",
+            "SECEdata": "30,25394",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "11:59:59:862",
+            "SECEdata": "27,08494",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:00:072",
+            "SECEdata": "30,40907",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:00:281",
+            "SECEdata": "27,01846",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:00:489",
+            "SECEdata": "29,92153",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:00:698",
+            "SECEdata": "27,04062",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:00:907",
+            "SECEdata": "29,94369",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:01:116",
+            "SECEdata": "28,90213",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:01:325",
+            "SECEdata": "30,83012",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:01:534",
+            "SECEdata": "27,66112",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:01:742",
+            "SECEdata": "31,53926",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:01:951",
+            "SECEdata": "26,77469",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:02:160",
+            "SECEdata": "29,05725",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:02:368",
+            "SECEdata": "31,09605",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:02:577",
+            "SECEdata": "29,12374",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:02:791",
+            "SECEdata": "28,39243",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:02:995",
+            "SECEdata": "26,22067",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:03:205",
+            "SECEdata": "31,65007",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:03:413",
+            "SECEdata": "27,6168",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:03:622",
+            "SECEdata": "34,55314",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:03:831",
+            "SECEdata": "29,94369",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:04:039",
+            "SECEdata": "32,0268",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:04:248",
+            "SECEdata": "29,67776",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:04:457",
+            "SECEdata": "28,43675",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:04:666",
+            "SECEdata": "24,20403",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:04:875",
+            "SECEdata": "27,90489",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:05:084",
+            "SECEdata": "26,44228",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:05:293",
+            "SECEdata": "27,46168",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:05:503",
+            "SECEdata": "24,51429",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:05:712",
+            "SECEdata": "28,2373",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:05:920",
+            "SECEdata": "26,79685",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:06:129",
+            "SECEdata": "28,1265",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:06:338",
+            "SECEdata": "26,28715",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:06:548",
+            "SECEdata": "29,7664",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:06:755",
+            "SECEdata": "27,99353",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:06:964",
+            "SECEdata": "28,96861",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:07:173",
+            "SECEdata": "26,06554",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:07:380",
+            "SECEdata": "29,27886",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:07:588",
+            "SECEdata": "29,47831",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:07:797",
+            "SECEdata": "28,45891",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:08:005",
+            "SECEdata": "31,56143",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:08:213",
+            "SECEdata": "29,78856",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:08:422",
+            "SECEdata": "27,94921",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:08:630",
+            "SECEdata": "27,24007",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:08:839",
+            "SECEdata": "29,21238",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:09:049",
+            "SECEdata": "28,68052",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:09:257",
+            "SECEdata": "29,23454",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:09:467",
+            "SECEdata": "27,72761",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:09:676",
+            "SECEdata": "28,21514",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:09:885",
+            "SECEdata": "28,79132",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:10:094",
+            "SECEdata": "28,30379",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:10:303",
+            "SECEdata": "27,72761",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:10:513",
+            "SECEdata": "30,56419",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:10:723",
+            "SECEdata": "37,36756",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:10:933",
+            "SECEdata": "34,10992",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:11:142",
+            "SECEdata": "34,10992",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:11:352",
+            "SECEdata": "33,93264",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:11:559",
+            "SECEdata": "32,04897",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:11:768",
+            "SECEdata": "31,47278",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:11:977",
+            "SECEdata": "28,76917",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:12:186",
+            "SECEdata": "30,76364",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:12:395",
+            "SECEdata": "28,41459",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:12:604",
+            "SECEdata": "27,63896",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:12:813",
+            "SECEdata": "24,53645",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:13:022",
+            "SECEdata": "27,506",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:13:231",
+            "SECEdata": "25,91042",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:13:438",
+            "SECEdata": "26,33147",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:13:648",
+            "SECEdata": "23,96027",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:13:856",
+            "SECEdata": "25,33424",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:14:065",
+            "SECEdata": "24,66941",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:14:274",
+            "SECEdata": "25,00183",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:14:483",
+            "SECEdata": "25,11263",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:14:692",
+            "SECEdata": "26,95198",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:14:901",
+            "SECEdata": "24,07107",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:15:109",
+            "SECEdata": "25,11263",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:15:317",
+            "SECEdata": "26,95198",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:15:526",
+            "SECEdata": "27,01846",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:15:735",
+            "SECEdata": "25,99906",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:15:943",
+            "SECEdata": "26,55308",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:16:153",
+            "SECEdata": "26,95198",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:16:362",
+            "SECEdata": "28,06002",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:16:571",
+            "SECEdata": "26,9963",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:16:780",
+            "SECEdata": "28,17082",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:16:989",
+            "SECEdata": "28,43675",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:17:199",
+            "SECEdata": "29,32318",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:17:407",
+            "SECEdata": "27,46168",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:17:616",
+            "SECEdata": "27,94921",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:17:824",
+            "SECEdata": "27,79409",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:18:034",
+            "SECEdata": "29,19022",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:18:242",
+            "SECEdata": "28,34811",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:18:452",
+            "SECEdata": "27,66112",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:18:661",
+            "SECEdata": "28,94645",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:19:001",
+            "SECEdata": "29,45615",
+            "currentEvent": "BossPhase 0"
+        },
+        {
+            "time": "12:00:19:186",
+            "SECEdata": "27,08494",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:19:394",
+            "SECEdata": "27,43952",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:19:603",
+            "SECEdata": "28,72484",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:19:813",
+            "SECEdata": "26,95198",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:20:022",
+            "SECEdata": "28,1265",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:20:231",
+            "SECEdata": "26,39796",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:20:439",
+            "SECEdata": "27,17358",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:20:648",
+            "SECEdata": "25,84394",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:20:857",
+            "SECEdata": "27,01846",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:21:066",
+            "SECEdata": "27,88273",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:21:276",
+            "SECEdata": "28,2373",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:21:485",
+            "SECEdata": "26,30931",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:21:694",
+            "SECEdata": "28,41459",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:21:903",
+            "SECEdata": "27,01846",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:22:114",
+            "SECEdata": "26,95198",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:22:322",
+            "SECEdata": "25,4672",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:22:531",
+            "SECEdata": "27,99353",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:22:740",
+            "SECEdata": "26,39796",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:22:948",
+            "SECEdata": "24,91318",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:23:156",
+            "SECEdata": "27,21791",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:23:366",
+            "SECEdata": "27,57248",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:23:575",
+            "SECEdata": "28,45891",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:23:783",
+            "SECEdata": "24,93534",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:23:991",
+            "SECEdata": "27,35087",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:24:200",
+            "SECEdata": "26,02122",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:24:409",
+            "SECEdata": "26,95198",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:24:619",
+            "SECEdata": "25,66665",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:24:828",
+            "SECEdata": "26,39796",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:25:037",
+            "SECEdata": "25,82177",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:25:246",
+            "SECEdata": "28,06002",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:25:454",
+            "SECEdata": "25,37856",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:25:663",
+            "SECEdata": "27,90489",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:25:872",
+            "SECEdata": "28,37027",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:26:081",
+            "SECEdata": "34,04344",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:26:290",
+            "SECEdata": "30,74148",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:26:499",
+            "SECEdata": "29,63344",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:26:709",
+            "SECEdata": "32,49218",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:26:917",
+            "SECEdata": "32,5365",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:27:126",
+            "SECEdata": "26,44228",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:27:335",
+            "SECEdata": "29,7664",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:27:544",
+            "SECEdata": "29,78856",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:27:753",
+            "SECEdata": "29,47831",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:27:961",
+            "SECEdata": "26,64172",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:28:169",
+            "SECEdata": "26,73037",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:28:379",
+            "SECEdata": "27,79409",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:28:587",
+            "SECEdata": "29,01293",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:28:796",
+            "SECEdata": "31,62791",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:29:005",
+            "SECEdata": "29,94369",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:29:214",
+            "SECEdata": "30,67499",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:29:423",
+            "SECEdata": "29,21238",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:29:631",
+            "SECEdata": "29,83288",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:29:840",
+            "SECEdata": "28,72484",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:30:049",
+            "SECEdata": "29,43399",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:30:258",
+            "SECEdata": "23,22896",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:30:467",
+            "SECEdata": "23,96027",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:30:676",
+            "SECEdata": "22,85222",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:30:884",
+            "SECEdata": "26,39796",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:31:093",
+            "SECEdata": "24,27052",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:31:302",
+            "SECEdata": "27,55032",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:31:512",
+            "SECEdata": "24,66941",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:31:721",
+            "SECEdata": "24,51429",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:31:930",
+            "SECEdata": "20,81343",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:32:139",
+            "SECEdata": "22,6971",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:32:348",
+            "SECEdata": "22,36469",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:32:555",
+            "SECEdata": "24,46996",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:32:764",
+            "SECEdata": "19,5281",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:32:973",
+            "SECEdata": "24,20403",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:33:181",
+            "SECEdata": "23,62785",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:33:390",
+            "SECEdata": "27,57248",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:33:598",
+            "SECEdata": "26,79685",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:33:807",
+            "SECEdata": "25,37856",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:34:015",
+            "SECEdata": "26,81901",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:34:224",
+            "SECEdata": "24,18187",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:34:433",
+            "SECEdata": "26,33147",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:34:643",
+            "SECEdata": "25,79961",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:34:852",
+            "SECEdata": "27,57248",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:35:061",
+            "SECEdata": "23,02951",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:35:270",
+            "SECEdata": "26,22067",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:35:479",
+            "SECEdata": "26,88549",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:35:687",
+            "SECEdata": "28,39243",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:35:895",
+            "SECEdata": "26,06554",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:36:103",
+            "SECEdata": "28,99077",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:36:313",
+            "SECEdata": "28,14866",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:36:522",
+            "SECEdata": "29,83288",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:36:732",
+            "SECEdata": "28,14866",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:36:941",
+            "SECEdata": "31,33982",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:37:150",
+            "SECEdata": "32,11545",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:37:359",
+            "SECEdata": "33,82183",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:37:568",
+            "SECEdata": "30,29826",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:37:776",
+            "SECEdata": "33,13485",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:37:984",
+            "SECEdata": "30,32042",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:38:193",
+            "SECEdata": "31,93816",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:38:402",
+            "SECEdata": "28,48107",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:38:613",
+            "SECEdata": "26,81901",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:38:822",
+            "SECEdata": "25,48936",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:39:031",
+            "SECEdata": "26,86333",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:39:240",
+            "SECEdata": "23,22896",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:39:448",
+            "SECEdata": "24,09323",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:39:657",
+            "SECEdata": "23,18464",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:39:866",
+            "SECEdata": "20,23725",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:40:074",
+            "SECEdata": "23,60569",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:40:284",
+            "SECEdata": "21,07936",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:40:492",
+            "SECEdata": "24,11539",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:40:701",
+            "SECEdata": "23,40624",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:40:910",
+            "SECEdata": "23,65001",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:41:118",
+            "SECEdata": "26,24283",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:41:326",
+            "SECEdata": "26,33147",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:41:536",
+            "SECEdata": "24,62509",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:41:745",
+            "SECEdata": "26,26499",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:41:954",
+            "SECEdata": "23,96027",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:42:164",
+            "SECEdata": "28,10434",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:42:372",
+            "SECEdata": "24,8467",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:42:582",
+            "SECEdata": "27,79409",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:42:792",
+            "SECEdata": "27,30655",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:43:000",
+            "SECEdata": "28,28163",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:43:209",
+            "SECEdata": "26,04338",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:43:418",
+            "SECEdata": "28,54756",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:43:627",
+            "SECEdata": "25,28992",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:43:836",
+            "SECEdata": "28,72484",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:44:045",
+            "SECEdata": "26,04338",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:44:254",
+            "SECEdata": "27,17358",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:44:462",
+            "SECEdata": "26,24283",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:44:671",
+            "SECEdata": "29,16806",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:44:879",
+            "SECEdata": "26,22067",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:45:087",
+            "SECEdata": "26,24283",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:45:296",
+            "SECEdata": "28,52539",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:45:504",
+            "SECEdata": "25,44504",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:45:713",
+            "SECEdata": "28,17082",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:45:922",
+            "SECEdata": "27,21791",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:46:131",
+            "SECEdata": "29,52263",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:46:340",
+            "SECEdata": "26,42012",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:46:548",
+            "SECEdata": "28,92429",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:46:757",
+            "SECEdata": "26,53092",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:46:966",
+            "SECEdata": "27,52816",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:47:175",
+            "SECEdata": "24,13755",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:47:426",
+            "SECEdata": "25,24559",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:47:631",
+            "SECEdata": "28,68052",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:47:839",
+            "SECEdata": "26,46444",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:48:048",
+            "SECEdata": "30,2761",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:48:258",
+            "SECEdata": "27,21791",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:48:467",
+            "SECEdata": "27,77192",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:48:677",
+            "SECEdata": "26,28715",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:48:885",
+            "SECEdata": "29,01293",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:49:095",
+            "SECEdata": "24,4478",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:49:303",
+            "SECEdata": "28,41459",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:49:512",
+            "SECEdata": "27,92705",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:49:722",
+            "SECEdata": "34,81907",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:49:931",
+            "SECEdata": "29,81072",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:50:140",
+            "SECEdata": "31,98248",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:50:349",
+            "SECEdata": "32,00464",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:50:558",
+            "SECEdata": "34,19857",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:50:768",
+            "SECEdata": "29,85504",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:50:976",
+            "SECEdata": "30,83012",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:51:185",
+            "SECEdata": "24,22619",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:51:395",
+            "SECEdata": "25,55585",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:51:603",
+            "SECEdata": "21,96579",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:51:812",
+            "SECEdata": "25,3564",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:52:021",
+            "SECEdata": "25,37856",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:52:230",
+            "SECEdata": "27,94921",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:52:440",
+            "SECEdata": "24,62509",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:52:648",
+            "SECEdata": "24,78022",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:52:856",
+            "SECEdata": "28,50323",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:53:065",
+            "SECEdata": "24,20403",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:53:275",
+            "SECEdata": "26,77469",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:53:483",
+            "SECEdata": "25,62233",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:53:694",
+            "SECEdata": "29,54479",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:53:901",
+            "SECEdata": "25,55585",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:54:110",
+            "SECEdata": "28,39243",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:54:319",
+            "SECEdata": "26,90766",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:54:528",
+            "SECEdata": "28,99077",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:54:737",
+            "SECEdata": "25,26776",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:54:945",
+            "SECEdata": "28,2373",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:55:155",
+            "SECEdata": "27,17358",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:55:364",
+            "SECEdata": "28,37027",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:55:573",
+            "SECEdata": "25,8661",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:55:782",
+            "SECEdata": "33,99912",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:55:991",
+            "SECEdata": "28,50323",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:56:200",
+            "SECEdata": "29,61127",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:56:404",
+            "SECEdata": "28,30379",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:56:604",
+            "SECEdata": "27,1071",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:56:812",
+            "SECEdata": "29,36751",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:57:020",
+            "SECEdata": "25,84394",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:57:229",
+            "SECEdata": "29,67776",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:57:438",
+            "SECEdata": "29,78856",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:57:647",
+            "SECEdata": "31,47278",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:57:878",
+            "SECEdata": "31,98248",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:58:090",
+            "SECEdata": "27,24007",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:58:298",
+            "SECEdata": "28,94645",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:58:507",
+            "SECEdata": "25,26776",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:58:716",
+            "SECEdata": "28,10434",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:58:925",
+            "SECEdata": "21,96579",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:59:133",
+            "SECEdata": "25,68881",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:59:343",
+            "SECEdata": "22,96303",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:59:551",
+            "SECEdata": "27,74977",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:59:760",
+            "SECEdata": "24,66941",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:00:59:970",
+            "SECEdata": "28,06002",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:00:177",
+            "SECEdata": "27,79409",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:00:385",
+            "SECEdata": "24,02675",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:00:593",
+            "SECEdata": "29,94369",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:00:802",
+            "SECEdata": "26,06554",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:01:012",
+            "SECEdata": "31,02957",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:01:220",
+            "SECEdata": "25,71097",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:01:429",
+            "SECEdata": "30,3869",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:01:638",
+            "SECEdata": "27,6168",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:01:847",
+            "SECEdata": "32,0268",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:02:057",
+            "SECEdata": "25,84394",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:02:268",
+            "SECEdata": "29,89937",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:02:476",
+            "SECEdata": "26,53092",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:02:685",
+            "SECEdata": "30,67499",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:02:894",
+            "SECEdata": "25,17911",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:03:102",
+            "SECEdata": "31,62791",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:03:313",
+            "SECEdata": "28,61404",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:03:520",
+            "SECEdata": "32,78027",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:03:729",
+            "SECEdata": "27,17358",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:03:939",
+            "SECEdata": "31,25118",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:04:148",
+            "SECEdata": "27,79409",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:04:358",
+            "SECEdata": "30,67499",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:04:568",
+            "SECEdata": "25,99906",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:04:775",
+            "SECEdata": "29,8772",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:04:984",
+            "SECEdata": "26,75253",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:05:192",
+            "SECEdata": "34,08776",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:05:401",
+            "SECEdata": "26,68605",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:05:610",
+            "SECEdata": "33,40078",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:05:818",
+            "SECEdata": "33,75535",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:06:027",
+            "SECEdata": "27,12926",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:06:250",
+            "SECEdata": "27,66112",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:06:459",
+            "SECEdata": "35,15148",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:06:668",
+            "SECEdata": "30,91876",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:06:876",
+            "SECEdata": "33,31213",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:07:085",
+            "SECEdata": "28,72484",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:07:293",
+            "SECEdata": "33,4451",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:07:501",
+            "SECEdata": "29,61127",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:07:711",
+            "SECEdata": "34,26505",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:07:922",
+            "SECEdata": "27,99353",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:08:130",
+            "SECEdata": "32,9354",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:08:340",
+            "SECEdata": "28,87997",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:08:550",
+            "SECEdata": "32,15977",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:08:757",
+            "SECEdata": "34,10992",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:08:966",
+            "SECEdata": "31,56143",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:09:174",
+            "SECEdata": "39,36204",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:09:383",
+            "SECEdata": "31,93816",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:09:592",
+            "SECEdata": "35,10716",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:09:800",
+            "SECEdata": "33,48942",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:10:009",
+            "SECEdata": "38,32048",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:10:219",
+            "SECEdata": "28,59188",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:10:427",
+            "SECEdata": "31,09605",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:10:636",
+            "SECEdata": "27,6168",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:10:845",
+            "SECEdata": "30,09881",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:11:054",
+            "SECEdata": "24,64725",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:11:264",
+            "SECEdata": "29,85504",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:11:473",
+            "SECEdata": "28,94645",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:11:681",
+            "SECEdata": "34,28721",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:11:890",
+            "SECEdata": "29,67776",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:12:100",
+            "SECEdata": "32,20409",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:12:308",
+            "SECEdata": "27,99353",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:12:517",
+            "SECEdata": "33,20133",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:12:725",
+            "SECEdata": "27,19575",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:12:934",
+            "SECEdata": "31,71655",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:13:143",
+            "SECEdata": "29,74424",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:13:352",
+            "SECEdata": "32,97972",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:13:562",
+            "SECEdata": "28,30379",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:13:770",
+            "SECEdata": "30,80796",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:13:978",
+            "SECEdata": "32,11545",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:14:187",
+            "SECEdata": "26,90766",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:14:396",
+            "SECEdata": "32,20409",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:14:604",
+            "SECEdata": "29,16806",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:14:814",
+            "SECEdata": "32,71379",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:15:021",
+            "SECEdata": "29,61127",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:15:230",
+            "SECEdata": "31,93816",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:15:439",
+            "SECEdata": "31,11821",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:15:648",
+            "SECEdata": "35,15148",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:15:857",
+            "SECEdata": "31,09605",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:16:066",
+            "SECEdata": "33,48942",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:16:276",
+            "SECEdata": "28,28163",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:16:483",
+            "SECEdata": "32,33706",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:16:693",
+            "SECEdata": "29,8772",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:16:902",
+            "SECEdata": "33,37861",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:17:111",
+            "SECEdata": "30,67499",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:17:320",
+            "SECEdata": "34,0656",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:17:529",
+            "SECEdata": "29,89937",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:17:738",
+            "SECEdata": "32,49218",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:17:947",
+            "SECEdata": "30,65283",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:18:156",
+            "SECEdata": "33,99912",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:18:365",
+            "SECEdata": "28,52539",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:18:574",
+            "SECEdata": "31,42846",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:18:783",
+            "SECEdata": "30,63067",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:18:992",
+            "SECEdata": "33,6667",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:19:201",
+            "SECEdata": "29,94369",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:19:408",
+            "SECEdata": "31,76087",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:19:618",
+            "SECEdata": "34,30937",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:19:826",
+            "SECEdata": "29,43399",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:20:035",
+            "SECEdata": "33,51158",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:20:244",
+            "SECEdata": "29,74424",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:20:453",
+            "SECEdata": "34,04344",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:20:662",
+            "SECEdata": "27,28439",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:20:871",
+            "SECEdata": "31,67223",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:21:080",
+            "SECEdata": "28,6362",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:21:289",
+            "SECEdata": "32,82459",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:21:498",
+            "SECEdata": "25,68881",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:21:707",
+            "SECEdata": "30,49771",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:21:915",
+            "SECEdata": "28,59188",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:22:125",
+            "SECEdata": "31,45062",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:22:333",
+            "SECEdata": "28,17082",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:22:543",
+            "SECEdata": "31,89384",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:22:752",
+            "SECEdata": "30,34258",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:22:960",
+            "SECEdata": "32,5365",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:23:169",
+            "SECEdata": "27,48384",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:23:379",
+            "SECEdata": "31,05173",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:23:587",
+            "SECEdata": "28,14866",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:23:795",
+            "SECEdata": "31,11821",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:24:004",
+            "SECEdata": "28,56972",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:24:213",
+            "SECEdata": "31,65007",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:24:421",
+            "SECEdata": "28,83565",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:24:631",
+            "SECEdata": "29,8772",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:24:838",
+            "SECEdata": "32,24841",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:25:047",
+            "SECEdata": "27,77192",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:25:256",
+            "SECEdata": "31,51711",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:25:465",
+            "SECEdata": "25,95474",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:25:674",
+            "SECEdata": "32,4257",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:25:883",
+            "SECEdata": "29,01293",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:26:092",
+            "SECEdata": "33,53374",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:26:301",
+            "SECEdata": "27,48384",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:26:509",
+            "SECEdata": "32,44786",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:26:718",
+            "SECEdata": "29,19022",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:26:927",
+            "SECEdata": "32,20409",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:27:136",
+            "SECEdata": "27,32871",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:27:346",
+            "SECEdata": "31,47278",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:27:555",
+            "SECEdata": "28,68052",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:27:763",
+            "SECEdata": "32,51434",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:27:973",
+            "SECEdata": "27,26223",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:28:181",
+            "SECEdata": "30,67499",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:28:389",
+            "SECEdata": "26,55308",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:28:599",
+            "SECEdata": "31,05173",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:28:806",
+            "SECEdata": "25,22343",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:29:015",
+            "SECEdata": "32,44786",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:29:223",
+            "SECEdata": "28,1265",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:29:432",
+            "SECEdata": "34,22072",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:29:642",
+            "SECEdata": "27,6168",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:29:848",
+            "SECEdata": "27,19575",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:30:057",
+            "SECEdata": "30,8966",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:30:266",
+            "SECEdata": "25,22343",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:30:475",
+            "SECEdata": "31,27334",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:30:684",
+            "SECEdata": "26,79685",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:30:893",
+            "SECEdata": "31,84952",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:31:102",
+            "SECEdata": "26,15419",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:31:311",
+            "SECEdata": "31,07389",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:31:521",
+            "SECEdata": "26,70821",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:31:730",
+            "SECEdata": "32,35921",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:31:939",
+            "SECEdata": "26,35363",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:32:147",
+            "SECEdata": "31,73871",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:32:355",
+            "SECEdata": "27,63896",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:32:563",
+            "SECEdata": "30,98525",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:32:773",
+            "SECEdata": "24,89102",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:32:982",
+            "SECEdata": "29,12374",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:33:192",
+            "SECEdata": "26,84117",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:33:401",
+            "SECEdata": "29,58911",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:33:610",
+            "SECEdata": "24,58077",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:33:819",
+            "SECEdata": "29,19022",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:34:027",
+            "SECEdata": "25,42288",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:34:236",
+            "SECEdata": "30,43122",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:34:445",
+            "SECEdata": "24,27052",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:34:653",
+            "SECEdata": "29,98801",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:34:862",
+            "SECEdata": "25,8661",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:35:071",
+            "SECEdata": "30,34258",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:35:281",
+            "SECEdata": "23,65001",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:35:491",
+            "SECEdata": "29,23454",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:35:699",
+            "SECEdata": "24,02675",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:35:907",
+            "SECEdata": "24,51429",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:36:116",
+            "SECEdata": "28,59188",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:36:324",
+            "SECEdata": "24,18187",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:36:533",
+            "SECEdata": "29,32318",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:36:741",
+            "SECEdata": "21,78851",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:36:950",
+            "SECEdata": "28,54756",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:37:159",
+            "SECEdata": "25,33424",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:37:368",
+            "SECEdata": "28,83565",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:37:578",
+            "SECEdata": "23,29544",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:37:787",
+            "SECEdata": "29,01293",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:37:994",
+            "SECEdata": "23,78298",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:38:203",
+            "SECEdata": "28,92429",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:38:412",
+            "SECEdata": "22,45333",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:38:620",
+            "SECEdata": "28,17082",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:38:829",
+            "SECEdata": "25,28992",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:39:038",
+            "SECEdata": "28,65836",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:39:248",
+            "SECEdata": "21,87715",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:39:458",
+            "SECEdata": "27,72761",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:39:666",
+            "SECEdata": "22,89655",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:39:875",
+            "SECEdata": "27,79409",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:40:084",
+            "SECEdata": "22,94087",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:40:293",
+            "SECEdata": "26,55308",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:40:502",
+            "SECEdata": "23,18464",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:40:711",
+            "SECEdata": "27,21791",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:40:920",
+            "SECEdata": "21,65554",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:41:129",
+            "SECEdata": "26,30931",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:41:338",
+            "SECEdata": "26,70821",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:41:546",
+            "SECEdata": "21,89931",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:41:755",
+            "SECEdata": "26,4866",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:41:964",
+            "SECEdata": "24,20403",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:42:173",
+            "SECEdata": "28,32595",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:42:382",
+            "SECEdata": "22,67494",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:42:591",
+            "SECEdata": "25,4672",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:42:800",
+            "SECEdata": "24,46996",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:43:009",
+            "SECEdata": "27,06278",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:43:218",
+            "SECEdata": "23,58353",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:43:427",
+            "SECEdata": "26,92982",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:43:635",
+            "SECEdata": "24,46996",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:43:845",
+            "SECEdata": "25,99906",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:44:053",
+            "SECEdata": "25,06831",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:44:263",
+            "SECEdata": "25,93258",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:44:472",
+            "SECEdata": "23,40624",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:44:682",
+            "SECEdata": "25,4672",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:44:891",
+            "SECEdata": "22,27604",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:45:102",
+            "SECEdata": "23,38408",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:45:310",
+            "SECEdata": "24,60293",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:45:518",
+            "SECEdata": "25,68881",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:45:726",
+            "SECEdata": "22,14308",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:45:934",
+            "SECEdata": "24,27052",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:46:143",
+            "SECEdata": "24,31484",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:46:352",
+            "SECEdata": "27,37303",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:46:561",
+            "SECEdata": "23,51705",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:46:770",
+            "SECEdata": "25,22343",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:46:979",
+            "SECEdata": "23,78298",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:47:187",
+            "SECEdata": "22,40901",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:47:395",
+            "SECEdata": "25,31208",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:47:604",
+            "SECEdata": "23,33976",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:47:813",
+            "SECEdata": "24,64725",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:48:022",
+            "SECEdata": "22,23172",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:48:231",
+            "SECEdata": "23,42841",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:48:440",
+            "SECEdata": "23,58353",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:48:649",
+            "SECEdata": "24,86886",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:48:858",
+            "SECEdata": "22,8079",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:49:066",
+            "SECEdata": "23,78298",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:49:275",
+            "SECEdata": "24,80238",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:49:483",
+            "SECEdata": "25,22343",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:49:693",
+            "SECEdata": "22,96303",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:49:903",
+            "SECEdata": "21,94363",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:50:111",
+            "SECEdata": "23,40624",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:50:319",
+            "SECEdata": "24,29268",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:50:544",
+            "SECEdata": "24,09323",
+            "currentEvent": "BossPhase 1"
+        },
+        {
+            "time": "12:01:50:749",
+            "SECEdata": "22,03227",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:50:957",
+            "SECEdata": "24,38132",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:51:167",
+            "SECEdata": "23,33976",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:51:378",
+            "SECEdata": "25,55585",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:51:587",
+            "SECEdata": "22,65278",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:51:794",
+            "SECEdata": "25,4672",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:52:003",
+            "SECEdata": "22,54198",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:52:211",
+            "SECEdata": "24,49213",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:52:418",
+            "SECEdata": "21,92147",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:52:628",
+            "SECEdata": "24,58077",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:52:839",
+            "SECEdata": "22,0766",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:53:046",
+            "SECEdata": "24,24836",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:53:255",
+            "SECEdata": "20,81343",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:53:464",
+            "SECEdata": "25,53368",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:53:674",
+            "SECEdata": "20,48102",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:53:883",
+            "SECEdata": "23,36192",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:54:092",
+            "SECEdata": "20,59182",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:54:301",
+            "SECEdata": "25,51152",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:54:509",
+            "SECEdata": "24,80238",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:54:719",
+            "SECEdata": "19,99348",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:54:928",
+            "SECEdata": "25,62233",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:55:137",
+            "SECEdata": "19,94916",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:55:346",
+            "SECEdata": "23,76082",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:55:556",
+            "SECEdata": "18,66383",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:55:767",
+            "SECEdata": "25,37856",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:55:975",
+            "SECEdata": "21,52258",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:56:184",
+            "SECEdata": "25,4672",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:56:393",
+            "SECEdata": "20,81343",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:56:602",
+            "SECEdata": "26,19851",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:56:811",
+            "SECEdata": "19,97132",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:57:020",
+            "SECEdata": "24,24836",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:57:229",
+            "SECEdata": "18,9076",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:57:996",
+            "SECEdata": "26,26499",
+            "currentEvent": "Boss Death"
+        },
+        {
+            "time": "12:01:58:199",
+            "SECEdata": "20,01564",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:01:58:407",
+            "SECEdata": "23,96027",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:01:58:616",
+            "SECEdata": "20,5475",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:01:58:826",
+            "SECEdata": "23,8273",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:01:59:035",
+            "SECEdata": "20,90207",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:01:59:244",
+            "SECEdata": "25,06831",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:01:59:453",
+            "SECEdata": "20,85775",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:01:59:662",
+            "SECEdata": "23,91595",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:01:59:871",
+            "SECEdata": "21,43393",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:00:080",
+            "SECEdata": "23,45057",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:00:290",
+            "SECEdata": "19,70539",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:00:500",
+            "SECEdata": "22,40901",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:00:709",
+            "SECEdata": "21,07936",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:00:918",
+            "SECEdata": "22,43117",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:01:127",
+            "SECEdata": "19,35081",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:01:336",
+            "SECEdata": "21,12368",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:01:544",
+            "SECEdata": "18,77464",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:01:754",
+            "SECEdata": "21,41177",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:01:963",
+            "SECEdata": "20,85775",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:02:172",
+            "SECEdata": "22,40901",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:02:382",
+            "SECEdata": "21,0572",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:02:590",
+            "SECEdata": "21,65554",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:02:817",
+            "SECEdata": "19,21785",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:03:024",
+            "SECEdata": "19,90484",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:03:246",
+            "SECEdata": "20,68046",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:03:462",
+            "SECEdata": "19,43946",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:03:678",
+            "SECEdata": "21,85499",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:03:887",
+            "SECEdata": "20,63614",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:04:101",
+            "SECEdata": "19,86051",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:04:320",
+            "SECEdata": "19,5281",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:04:565",
+            "SECEdata": "19,46162",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:04:786",
+            "SECEdata": "17,57795",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:04:991",
+            "SECEdata": "21,01288",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:05:233",
+            "SECEdata": "19,70539",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:05:455",
+            "SECEdata": "18,35358",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:05:677",
+            "SECEdata": "18,42006",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:05:921",
+            "SECEdata": "19,12921",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:06:133",
+            "SECEdata": "18,9076",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:06:340",
+            "SECEdata": "18,64167",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:06:569",
+            "SECEdata": "18,59735",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:06:785",
+            "SECEdata": "18,15413",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:06:995",
+            "SECEdata": "16,31478",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:07:223",
+            "SECEdata": "10,95187",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:07:460",
+            "SECEdata": "7,494777",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:07:665",
+            "SECEdata": "7,649903",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:07:870",
+            "SECEdata": "9,644377",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:08:071",
+            "SECEdata": "9,289804",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:08:283",
+            "SECEdata": "12,01558",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:08:485",
+            "SECEdata": "12,10423",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:08:707",
+            "SECEdata": "13,25659",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:08:914",
+            "SECEdata": "14,51976",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:09:148",
+            "SECEdata": "12,17071",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:09:352",
+            "SECEdata": "15,42835",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:09:575",
+            "SECEdata": "14,47544",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:09:784",
+            "SECEdata": "15,80508",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:09:993",
+            "SECEdata": "16,00453",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:10:217",
+            "SECEdata": "15,05162",
+            "currentEvent": "Relax Room"
+        },
+        {
+            "time": "12:02:10:441",
+            "SECEdata": "17,04609",
+            "currentEvent": "Relax Room"
+        }
+    ]
+}

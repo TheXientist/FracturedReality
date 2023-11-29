@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.024951262, g: 0.022750102, b: 0.07044999, a: 1}
+  m_IndirectSpecularColor: {r: 0.02495846, g: 0.02274444, b: 0.07047759, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -910,37 +910,37 @@ PrefabInstance:
     - target: {fileID: 4765360294351652205, guid: 710c5fd5258a83e4a9f3a9dfb164e840,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -48
       objectReference: {fileID: 0}
     - target: {fileID: 4765360294351652205, guid: 710c5fd5258a83e4a9f3a9dfb164e840,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -11.19
       objectReference: {fileID: 0}
     - target: {fileID: 4765360294351652205, guid: 710c5fd5258a83e4a9f3a9dfb164e840,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 31.1
       objectReference: {fileID: 0}
     - target: {fileID: 4765360294351652205, guid: 710c5fd5258a83e4a9f3a9dfb164e840,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.90685576
+      value: 0.1748373
       objectReference: {fileID: 0}
     - target: {fileID: 4765360294351652205, guid: 710c5fd5258a83e4a9f3a9dfb164e840,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.1748373
+      value: 0.90685576
       objectReference: {fileID: 0}
     - target: {fileID: 4765360294351652205, guid: 710c5fd5258a83e4a9f3a9dfb164e840,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.1363038
+      value: -0.35842142
       objectReference: {fileID: 0}
     - target: {fileID: 4765360294351652205, guid: 710c5fd5258a83e4a9f3a9dfb164e840,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.35842142
+      value: 0.1363038
       objectReference: {fileID: 0}
     - target: {fileID: 4765360294351652205, guid: 710c5fd5258a83e4a9f3a9dfb164e840,
         type: 3}
@@ -1097,32 +1097,32 @@ PrefabInstance:
     - target: {fileID: 5561901740685984082, guid: c5e5a0b57fdc70f459dc1f9a91af88ce,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.46990848
+      value: 0.5536268
       objectReference: {fileID: 0}
     - target: {fileID: 5561901740685984082, guid: c5e5a0b57fdc70f459dc1f9a91af88ce,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.37556237
+      value: 0.29871902
       objectReference: {fileID: 0}
     - target: {fileID: 5561901740685984082, guid: c5e5a0b57fdc70f459dc1f9a91af88ce,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.62402225
+      value: -0.68411326
       objectReference: {fileID: 0}
     - target: {fileID: 5561901740685984082, guid: c5e5a0b57fdc70f459dc1f9a91af88ce,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.49873352
+      value: 0.36912525
       objectReference: {fileID: 0}
     - target: {fileID: 5561901740685984082, guid: c5e5a0b57fdc70f459dc1f9a91af88ce,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 102.734985
+      value: -236.7
       objectReference: {fileID: 0}
     - target: {fileID: 5561901740685984082, guid: c5e5a0b57fdc70f459dc1f9a91af88ce,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 73.962
+      value: 77.964
       objectReference: {fileID: 0}
     - target: {fileID: 5561901740685984082, guid: c5e5a0b57fdc70f459dc1f9a91af88ce,
         type: 3}
@@ -2776,19 +2776,9 @@ PrefabInstance:
       objectReference: {fileID: 1123354448}
     - target: {fileID: 1509266337808665467, guid: c1d91ecf7a5e14a689fcef67f95363bf,
         type: 3}
-      propertyPath: asteroids
-      value: 
-      objectReference: {fileID: 1201585835}
-    - target: {fileID: 1509266337808665467, guid: c1d91ecf7a5e14a689fcef67f95363bf,
-        type: 3}
       propertyPath: obstacles
       value: 
       objectReference: {fileID: 1201585835}
-    - target: {fileID: 1509266337808665467, guid: c1d91ecf7a5e14a689fcef67f95363bf,
-        type: 3}
-      propertyPath: skipIntro
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1509266337808665467, guid: c1d91ecf7a5e14a689fcef67f95363bf,
         type: 3}
       propertyPath: bossAnimator
@@ -2805,6 +2795,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 432650164}
     - target: {fileID: 2647782339638470407, guid: c1d91ecf7a5e14a689fcef67f95363bf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791247174744547357, guid: c1d91ecf7a5e14a689fcef67f95363bf,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2871,11 +2866,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3061859875470130510, guid: c1d91ecf7a5e14a689fcef67f95363bf,
         type: 3}
-      propertyPath: vr
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3061859875470130510, guid: c1d91ecf7a5e14a689fcef67f95363bf,
-        type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 6293280729080821922}
@@ -2889,11 +2879,6 @@ PrefabInstance:
       propertyPath: arena
       value: 
       objectReference: {fileID: 1123354448}
-    - target: {fileID: 3424770934097722538, guid: c1d91ecf7a5e14a689fcef67f95363bf,
-        type: 3}
-      propertyPath: asteroids
-      value: 
-      objectReference: {fileID: 1201585835}
     - target: {fileID: 3424770934097722538, guid: c1d91ecf7a5e14a689fcef67f95363bf,
         type: 3}
       propertyPath: obstacles
@@ -2938,6 +2923,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077365940318473094, guid: c1d91ecf7a5e14a689fcef67f95363bf,
+        type: 3}
+      propertyPath: renderModelPrefab
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3699,6 +3689,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RelaxRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520465589156126858, guid: 385476661e7fe4b44ad581d2ed79c73c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 20000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520465589156126858, guid: 385476661e7fe4b44ad581d2ed79c73c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 20000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520465589156126858, guid: 385476661e7fe4b44ad581d2ed79c73c,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 20000
       objectReference: {fileID: 0}
     - target: {fileID: 5660300507699776853, guid: 385476661e7fe4b44ad581d2ed79c73c,
         type: 3}
@@ -4998,8 +5003,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boss: {fileID: 6293280729080821924}
   condition: 2
-  timeInRelaxationRoom: 5
-  timeInBossFight: 120
+  timeInRelaxationRoom: 120
+  timeInBossFight: 1
 --- !u!1001 &1919570048
 PrefabInstance:
   m_ObjectHideFlags: 0

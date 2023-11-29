@@ -26,6 +26,8 @@ public class SidewayHomingAttack : AbilityScriptableObject
 
     public void ShootHomingAtPosition(Vector3 targetPos, Vector3 firingPosition)
     {
+        firingAngle = Random.Range(0, 360);
+
         var player = SpaceshipController.Instance.GetComponent<Rigidbody>();
         Vector3 interceptPosition = Intercept(targetPos,
             player.velocity, firingPosition, bulletModuleSpeed);

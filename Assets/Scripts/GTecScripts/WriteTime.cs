@@ -303,8 +303,8 @@ public class WriteTime : MonoBehaviour
 
             try
             {
-                dataConverter = SensorReader.twoECurrentValue[0] * twoeDeviceTypeOne;
-                dataConverter2 = SensorReader.twoECurrentValue[1] * twoeDeviceTypeTwo;
+                dataConverter = SensorReaderFractured.twoECurrentValue[0] * twoeDeviceTypeOne;
+                dataConverter2 = SensorReaderFractured.twoECurrentValue[1] * twoeDeviceTypeTwo;
             }
             catch (Exception ex)
             {
@@ -317,6 +317,8 @@ public class WriteTime : MonoBehaviour
             seceFile.Add(seceEntry);
             oneeEntry = new ONEEntry();
             seceEntry = new SECEEntry();
+            oneeEntry.currentEvent = GetCurrentEvent();
+            seceEntry.currentEvent = GetCurrentEvent();
 
         }
         else if (writtenTWOE)
@@ -330,7 +332,7 @@ public class WriteTime : MonoBehaviour
             string path2 = "Assets/GTecData/" + twoeDeviceStringTwo + "-" + DateTime.Now.ToString("%d%M-hhmmss") +
                            ".json";
             try
-            {
+            {                
                 File.WriteAllText(path, oneeJson);
                 File.WriteAllText(path2, twoeeJson);
             }
