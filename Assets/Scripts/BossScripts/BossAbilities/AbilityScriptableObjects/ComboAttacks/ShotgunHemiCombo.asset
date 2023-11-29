@@ -15,7 +15,7 @@ MonoBehaviour:
   abilityPropability: 3
   abilityWindup: 0
   abilityCooldown: 1
-  animationTriggerName: 
+  animationTriggerName: SprayAttack
   subAbilities:
   - {fileID: 11400000, guid: 1b0d0b9390034354794045a4d6fdc7ef, type: 2}
   - {fileID: 11400000, guid: c133620d0bc77b14f9f677d095437230, type: 2}
