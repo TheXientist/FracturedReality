@@ -10,16 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8d5b063b3a707643af1835446674f58, type: 3}
-  m_Name: 6BulletCombo
+  m_Name: Shotgun
   m_EditorClassIdentifier: 
   abilityPropability: 3
   abilityWindup: 0
   abilityCooldown: 1
-  animationTriggerName: DefaultAttack
+  animationTriggerName: DefaultAnimation
   subAbilities:
   - {fileID: 11400000, guid: 2a62890425ac0104789b0b33abd17e0d, type: 2}
-  - {fileID: 11400000, guid: 2a62890425ac0104789b0b33abd17e0d, type: 2}
-  - {fileID: 11400000, guid: 2a62890425ac0104789b0b33abd17e0d, type: 2}
-  - {fileID: 11400000, guid: 2a62890425ac0104789b0b33abd17e0d, type: 2}
-  useIndividualCooldowns: 1
+  - {fileID: 11400000, guid: 9bb0fe5e2c8851d489c880f40139d1ce, type: 2}
+  - {fileID: 11400000, guid: 9bb0fe5e2c8851d489c880f40139d1ce, type: 2}
+  - {fileID: 11400000, guid: 9bb0fe5e2c8851d489c880f40139d1ce, type: 2}
+  - {fileID: 11400000, guid: 9bb0fe5e2c8851d489c880f40139d1ce, type: 2}
+  - {fileID: 11400000, guid: 9bb0fe5e2c8851d489c880f40139d1ce, type: 2}
+  - {fileID: 11400000, guid: 9bb0fe5e2c8851d489c880f40139d1ce, type: 2}
+  useIndividualCooldowns: 0
   useIndividualWindups: 0
