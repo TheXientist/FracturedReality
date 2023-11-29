@@ -53,6 +53,26 @@ public class IntroManager : MonoBehaviour
         pointer.SetActive(true);
     }
 
+    public void OnBackButton()
+    {
+        if (!gameObject.activeSelf) return;
+
+        switch (currentStep)
+        {
+            case 4:
+                // Back to reposition panel
+                background.enabled = false;
+                header.SetActive(false);
+                tutorialText1.SetActive(false);
+                repositionPanel.SetActive(true);
+                repositionPanel.GetComponent<RepositionPlayer>()?.closeButton.SetActive(false);
+                btnText.text = "Done";
+
+                currentStep--;
+                break;
+        }
+    }
+
     public void OnNextButton()
     {
         // Somehow this gets 1 call with the first RB after intro was closed
@@ -184,6 +204,9 @@ public class IntroManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return) && currentStep != 1)
             OnNextButton();
+        
+        if (Input.GetKeyDown(KeyCode.Backspace))
+            OnBackButton();
     }
 
     private void SetBossShaderParameters()
