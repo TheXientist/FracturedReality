@@ -25,6 +25,8 @@ public class RelaxationRoom : MonoBehaviour
 
     private FadeBlackScreen blackScreen;
 
+    private Vector3 playerStartPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,7 @@ public class RelaxationRoom : MonoBehaviour
         spaceshipController = playerObject.GetComponent<SpaceshipController>();
         playerController = playerObject.GetComponent<Player>();
         playerRB = playerObject.GetComponent<Rigidbody>();
+        playerStartPos = playerObject.transform.position;
 
 
         for (int i = 0; i < playerObject.transform.childCount - 1; i++)
@@ -100,7 +103,7 @@ public class RelaxationRoom : MonoBehaviour
         WriteTime.SetCurrentEvent("Leave Relax Room");
 
         // Set to start position
-        playerObject.transform.position = new Vector3(140f, 20f, -120f);
+        playerObject.transform.position = playerStartPos;
         playerRB.velocity = Vector3.zero;
         // Face boss
         playerObject.transform.rotation = Quaternion.LookRotation(playerController.m_BossObject.transform.position - playerObject.transform.position, playerObject.transform.up);
