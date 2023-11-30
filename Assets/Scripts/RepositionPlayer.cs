@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,11 +12,27 @@ public class RepositionPlayer : MonoBehaviour
 
     private Vector3 m_startPosCameraRig;
 
-
+    private FollowViewport ownFollowScript;
+    [SerializeField] private FollowViewport followScriptIntro;
+    
     private void Start()
     {
         //m_target = FindObjectOfType<SpaceshipController>().transform;
         m_startPosCameraRig = m_VRPlayerRig.localPosition;
+    }
+    
+    // Combination of these two scripts break button collider detection
+    private void OnEnable()
+    {
+        ownFollowScript ??= transform.parent.GetComponent<FollowViewport>();
+        ownFollowScript.enabled = false;
+        followScriptIntro.enabled = false;
+    }
+        
+    private void OnDisable()
+    {
+        ownFollowScript.enabled = true;
+        followScriptIntro.enabled = true;
     }
 
     public void MovePlayerUp()
