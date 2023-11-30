@@ -4240,9 +4240,19 @@ PrefabInstance:
       objectReference: {fileID: 5487323647904207760}
     - target: {fileID: 4236575714777646842, guid: d924abef8d305ce40ba4978325887fb1,
         type: 3}
+      propertyPath: followScript
+      value: 
+      objectReference: {fileID: 4395036426747065403}
+    - target: {fileID: 4236575714777646842, guid: d924abef8d305ce40ba4978325887fb1,
+        type: 3}
       propertyPath: m_VRPlayerRig
       value: 
       objectReference: {fileID: 9101574440703563527}
+    - target: {fileID: 4236575714777646842, guid: d924abef8d305ce40ba4978325887fb1,
+        type: 3}
+      propertyPath: followScriptIntro
+      value: 
+      objectReference: {fileID: 669622391765797311}
     - target: {fileID: 4910245169844516429, guid: d924abef8d305ce40ba4978325887fb1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4299,7 +4309,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4087667967053790475, guid: d924abef8d305ce40ba4978325887fb1,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2436753714175448603}
+      addedObject: {fileID: 4395036426747065403}
   m_SourcePrefab: {fileID: 100100000, guid: d924abef8d305ce40ba4978325887fb1, type: 3}
 --- !u!1 &972384519268445571 stripped
 GameObject:
@@ -4319,7 +4329,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8168953786747391359}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2436753714175448603
+--- !u!114 &4395036426747065403
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -499,7 +499,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2878505878440623740}
         m_TargetAssemblyTypeName: IntroManager, Assembly-CSharp
-        m_MethodName: OnNextButton
+        m_MethodName: OnBackButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -49,6 +49,7 @@ public class FollowViewport : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
+        transform.hasChanged = true;
         moving = false;
     }
 }
