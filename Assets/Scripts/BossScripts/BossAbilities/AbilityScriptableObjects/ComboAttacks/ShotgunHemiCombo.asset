@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d5b063b3a707643af1835446674f58, type: 3}
   m_Name: ShotgunHemiCombo
   m_EditorClassIdentifier: 
-  abilityPropability: 3
+  abilityPropability: 4
   abilityWindup: 0
   abilityCooldown: 1
   animationTriggerName: SprayAttack
