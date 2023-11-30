@@ -11,8 +11,6 @@ public class ConsolePanel : MonoBehaviour
     private Dictionary<string, string> staticLogs = new Dictionary<string, string>();
     private Queue<string> dynamicLogs = new Queue<string>();
 
-    public SteamVR_Action_Boolean actionToggle = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("default", "ToggleConsole");
-
     public GameObject panel;
     public Text staticDisplay, scrollingDisplay;
 
@@ -21,18 +19,11 @@ public class ConsolePanel : MonoBehaviour
     private void OnEnable()
     {
         Application.logMessageReceived += HandleLog;
-        actionToggle.onChange += ToggleConsole;
     }
 
     private void OnDisable()
     {
         Application.logMessageReceived -= HandleLog;
-        actionToggle.onChange -= ToggleConsole;
-    }
-
-    void ToggleConsole(SteamVR_Action_Boolean action, SteamVR_Input_Sources sources, bool value)
-    {
-        panel.SetActive(value);
     }
 
     private void Update()

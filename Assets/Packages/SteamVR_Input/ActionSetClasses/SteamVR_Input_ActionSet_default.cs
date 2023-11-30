@@ -105,14 +105,6 @@ namespace Valve.VR
             }
         }
         
-        public virtual SteamVR_Action_Boolean ToggleConsole
-        {
-            get
-            {
-                return SteamVR_Actions.default_ToggleConsole;
-            }
-        }
-        
         public virtual SteamVR_Action_Boolean TogglePause
         {
             get
