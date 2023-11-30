@@ -73,6 +73,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private int heatPerShot, heatPerOvercharge;
     [SerializeField, Tooltip("Heat loss per 10ms when cooling down")]
     private int cooldownRate;
+    public int cooldownRateOverheated;
     [SerializeField] private float cooldownAfterSeconds;
     [SerializeField] private int currentHeat;
 
@@ -82,6 +83,7 @@ public class Player : MonoBehaviour, IDamageable
         set
         {
             currentHeat = value;
+            if (currentHeat < 0) currentHeat = 0;
             string text = IsOverheated ? "    Overheated!\n" : "    Blaster Heat:\n";
             text += new string('|', (int)(currentHeat / (float)maxHeat * 30));
             heatDisplay.text = text;
@@ -119,7 +121,7 @@ public class Player : MonoBehaviour, IDamageable
 
         PlayerCurrentHealth = Mathf.Min(PlayerCurrentHealth + playerRegenSpeed * Time.deltaTime, playerMaxHealth);
 
-        if (lastHeatAddTime > 0f && Time.time - lastHeatAddTime > cooldownAfterSeconds)
+        if (!IsOverheated && lastHeatAddTime > 0f && Time.time - lastHeatAddTime > cooldownAfterSeconds)
         {
             StartCoroutine(CooldownRoutine());
         }
@@ -327,10 +329,10 @@ public class Player : MonoBehaviour, IDamageable
         heatDisplay.color = Color.red;
         CrosshairCharger.Instance.SetOverheat(true);
         
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(cooldownAfterSeconds);
         while (currentHeat > 0)
         {
-            CurrentHeat -= cooldownRate;
+            CurrentHeat -= cooldownRateOverheated;
             yield return new WaitForSeconds(0.1f);
         }
         IsOverheated = false;

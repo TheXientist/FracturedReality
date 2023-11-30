@@ -36,6 +36,7 @@ public class IntroManager : MonoBehaviour
     // ...
 
     [SerializeField, Header("Step 6")] private Player playerControls;
+    private int defaultCooldownRate;
 
     [SerializeField, Header("Step 7")] private GameObject tutorialText4;
 
@@ -156,6 +157,8 @@ public class IntroManager : MonoBehaviour
                 tutorialText3.SetActive(false);
                 spaceshipController.enabled = true;
                 playerControls.enabled = true;
+                defaultCooldownRate = playerControls.cooldownRateOverheated;
+                playerControls.cooldownRateOverheated = 10;
                 btnText.text = "Continue";
                 break;
             case 8:
@@ -171,6 +174,7 @@ public class IntroManager : MonoBehaviour
                 // Begin fight
                 spaceshipController.enabled = true;
                 playerControls.enabled = true;
+                playerControls.cooldownRateOverheated = defaultCooldownRate;
                 dummyFractal.SetActive(false);
                 dummyFractal.GetComponent<Collider>().enabled = false; // not needed anymore
                 dummyTransforms.SetActive(false);

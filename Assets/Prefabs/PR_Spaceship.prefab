@@ -2840,9 +2840,10 @@ MonoBehaviour:
   chargeTimeWindow: {x: 0.8, y: 1}
   maxHeat: 100
   heatPerShot: 10
-  heatPerOvercharge: 50
+  heatPerOvercharge: 30
   cooldownRate: 1
-  cooldownAfterSeconds: 3
+  cooldownRateOverheated: 2
+  cooldownAfterSeconds: 1
   currentHeat: 0
   empCooldown: 5
   empRange: 50
