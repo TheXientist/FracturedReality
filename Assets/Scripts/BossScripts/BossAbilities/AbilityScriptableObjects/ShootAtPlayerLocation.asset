@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fa097a37c11afb4dbee60f07f5e8d6d, type: 3}
-  m_Name: HemispherePattern
+  m_Script: {fileID: 11500000, guid: 49878685efb4f624a832a7e46297b9fc, type: 3}
+  m_Name: ShootAtPlayerLocation
   m_EditorClassIdentifier: 
   abilityPropability: 3
-  abilityWindup: 1
+  abilityWindup: 0
   abilityCooldown: 1
-  animationTriggerName: SprayAttack
-  m_bulletPrefab: {fileID: 4185635229755856287, guid: a2eb47fc14d607f48889e469f39bd95a,
+  animationTriggerName: DefaultAnimation
+  m_bulletPrefab: {fileID: 4185635229755856287, guid: f295c3bceb73db74b96e28c64f09c827,
     type: 3}
-  m_bulletCount: 50
-  m_bulletModuleSpeed: 40
-  spawnRadius: 10
+  m_spawnThreshold: 3
+  m_bulletModuleSpeed: 100
+  m_bulletModuleRotationSpeed: 100

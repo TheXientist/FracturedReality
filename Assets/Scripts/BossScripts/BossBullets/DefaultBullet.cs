@@ -7,10 +7,12 @@ public class DefaultBullet : AbstractBullet, IBullet
 {
     public ParticleSystem particleImpactEffect;
     private MeshRenderer m_bulletMesh;
+    private AudioSource m_audioSource;
 
     private void Start()
     {
         m_bulletMesh = GetComponent<MeshRenderer>();
+        m_audioSource = GetComponent<AudioSource>();
     }
 
     public void DestroySelf()
@@ -23,6 +25,7 @@ public class DefaultBullet : AbstractBullet, IBullet
         //implement player trigger enter and call DestroySelf() afterwards
         if(other.CompareTag("Player"))
         {
+            m_audioSource.Play();
             other.GetComponent<Player>().TakeDamage(m_DamageValue);
             StartCoroutine(PlayCollisionEffect());
             
