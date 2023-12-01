@@ -43,6 +43,8 @@ public class IntroManager : MonoBehaviour
     [SerializeField, Header("Step 8")] private GameObject boss;
     [SerializeField] private GameObject bossAnimator, arena, dummyFractal, dummyTransforms;
 
+    [SerializeField, Header("Endscreen")] private GameObject endScreen;
+
     private void Awake()
     {
         background = GetComponent<Image>();
@@ -222,5 +224,15 @@ public class IntroManager : MonoBehaviour
         material.SetFloat("_LightIntensity", 6f);
         material.SetFloat("_SaturationGamma", 2f);
         material.SetInteger("_LightMode", 0);
+    }
+
+    public void ShowEndscreen()
+    {
+        FindObjectOfType<PauseMenu>().DisallowToggle();
+        gameObject.SetActive(true);
+        endScreen.SetActive(true);
+        tutorialText4.SetActive(false);
+        nextBtn.SetActive(false);
+        header.SetActive(false);
     }
 }

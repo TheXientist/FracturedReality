@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance;
     private RelaxationRoom relaxationRoom;
     [SerializeField] private BossAI boss;
+    private IntroManager introManager;
     
     private enum SwitchCondition
     {
@@ -33,12 +34,16 @@ public class LevelManager : MonoBehaviour
 
     private static float bossFightTime = -1f;
 
+    private int breakroomCounter;
+    private bool showingEndscreen;
+
     private void Start()
     {
         instance = this;
         timer = 0f;
 
         relaxationRoom = FindObjectOfType<RelaxationRoom>();
+        introManager = FindObjectOfType<IntroManager>();
         boss.OnDefeated += SwitchToRelaxationRoom;
     }
 
@@ -48,6 +53,15 @@ public class LevelManager : MonoBehaviour
         
         if (isInRelaxationRoom)
         {
+            if (bothSurveysAnswered && breakroomCounter == 2)
+            {
+                if (showingEndscreen) return;
+                
+                introManager.ShowEndscreen();
+                showingEndscreen = true;
+                return;
+            }
+            
             if (bothSurveysAnswered || (condition.Equals(SwitchCondition.ButtonPress) && Input.GetKeyDown(KeyCode.Backspace)))
             {
                 SwitchToBossFight();
@@ -100,6 +114,7 @@ public class LevelManager : MonoBehaviour
 
     private void SwitchToRelaxationRoom()
     {
+        breakroomCounter++;
         bossFightTime = timer;
         RestartTimer();
         
