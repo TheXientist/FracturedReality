@@ -46,7 +46,7 @@ public class FollowViewport : MonoBehaviour
         {
             transform.position = Vector3.Lerp(startPos, viewportMarker.position, i / 100f);
             transform.rotation = Quaternion.Lerp(startRot, viewportMarker.rotation, i / 100f);
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
         }
 
         transform.hasChanged = true;
