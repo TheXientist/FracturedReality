@@ -99,6 +99,8 @@ public class RelaxationRoom : MonoBehaviour
     public IEnumerator ActivateBossFightRoom()
     {
         yield return StartCoroutine(blackScreen.FadeAlpha(1, 1));
+        
+        playerController.ResetValues();
 
         WriteTime.SetCurrentEvent("Leave Relax Room");
 

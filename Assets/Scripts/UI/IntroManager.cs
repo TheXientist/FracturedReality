@@ -176,6 +176,7 @@ public class IntroManager : MonoBehaviour
                 // Begin fight
                 spaceshipController.enabled = true;
                 playerControls.enabled = true;
+                playerControls.ResetValues();
                 playerControls.cooldownRateOverheated = defaultCooldownRate;
                 dummyFractal.SetActive(false);
                 dummyFractal.GetComponent<Collider>().enabled = false; // not needed anymore

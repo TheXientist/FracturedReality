@@ -351,6 +351,14 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
+    public void ResetValues()
+    {
+        CurrentHeat = 0;
+        IsOverheated = false;
+        currentCharge = 0f;
+        CrosshairCharger.Instance.UpdateVisuals(0f);
+    }
+
     // Callback func for Unity InputSystem (non-VR)
     public void OnFire(InputValue v) => OnFireInput(v.isPressed);
     private void OnDeflect() => OnDeflectInput();
