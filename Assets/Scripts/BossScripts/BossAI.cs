@@ -75,7 +75,12 @@ public class BossAI : MonoBehaviour, IDamageable
         healthDisplay = GameObject.FindWithTag("BossHealthDisplay").GetComponent<TextMeshProUGUI>();
         warningDisplay = GameObject.FindWithTag("RangeDisplay").transform.GetChild(0).gameObject;
     }
-    
+
+    private void Start()
+    {
+        InvokeRepeating("LogBossHealth", 0, 1);
+    }
+
     private void OnEnable()
     {
         // (Re)connect to player
@@ -215,7 +220,7 @@ public class BossAI : MonoBehaviour, IDamageable
     public void TakeDamage(float damage)
     {
         if (destroyed || invincible) return;
-        
+
         BossCurrentHealth -= damage;
         if (bossCurrentHealth <= 0)
         {
@@ -252,6 +257,11 @@ public class BossAI : MonoBehaviour, IDamageable
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, maxPlayerRange);
+    }
+
+    public void LogBossHealth()
+    {
+        WriteTime.bossHealth = bossCurrentHealth;
     }
 #endif
 }

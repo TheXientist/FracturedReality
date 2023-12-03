@@ -112,6 +112,8 @@ public class Player : MonoBehaviour, IDamageable
         fireAction.AddOnChangeListener(OnFireVR, SteamVR_Input_Sources.Any);
         deflectAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("spaceship", "deflect");
         deflectAction.AddOnStateDownListener(OnDeflectVR, SteamVR_Input_Sources.Any);
+
+        InvokeRepeating("LogPlayerHealthAndPosition", 0, 1);
     }
 
     // Update is called once per frame
@@ -368,6 +370,12 @@ public class Player : MonoBehaviour, IDamageable
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, empRange);
+    }
+
+    private void LogPlayerHealthAndPosition()
+    {
+        WriteTime.playerHealth = playerCurrentHealth;
+        WriteTime.playerPosition = transform.position;
     }
 #endif
 }
