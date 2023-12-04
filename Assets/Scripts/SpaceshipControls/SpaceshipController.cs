@@ -57,6 +57,11 @@ public class SpaceshipController : MonoBehaviour
         SetControlSettings(target ? lockedOnControls : defaultControls);
     }
 
+    private void Start()
+    {
+        InvokeRepeating("LogPlayerVelocity", 0, 1);
+    }
+
     private void SetControlSettings(ControlSettings controls)
     {
         currentControls = controls;
@@ -233,6 +238,11 @@ public class SpaceshipController : MonoBehaviour
     {
         rb.velocity = Vector3.zero;
     }
+
+    public void LogPlayerVelocity()
+    {
+        WriteTime.playerVelocity = rb.velocity.magnitude;
+    }
 }
 
 public static class Vector3Extensions
@@ -245,3 +255,5 @@ public static class Vector3Extensions
         return new Vector3(x, y, z);
     }
 }
+
+

@@ -41,7 +41,13 @@ public class WriteTime : MonoBehaviour
     private string twoeDeviceStrngOne;
     private string twoeDeviceStringTwo;
 
+    //Log Parameter
     private static string currentEvent = "Start+Survey";
+    public static bool gameIsPaused = false;
+    public static Vector3 playerPosition = Vector3.zero;
+    public static float playerVelocity = 0.0f;
+    public static float playerHealth = 0;
+    public static float bossHealth = 0;
 
     public static void SetCurrentEvent(string eventName)
     {
@@ -261,6 +267,10 @@ public class WriteTime : MonoBehaviour
             oneeFile.Add(oneeEntry);
             oneeEntry = new ONEEntry();
             oneeEntry.currentEvent = GetCurrentEvent();
+            oneeEntry.playerVelocity = playerVelocity;
+            oneeEntry.playerHealth = playerHealth;
+            oneeEntry.bossHealth = bossHealth;
+
 
         }
         else if (writtenONEE)
@@ -317,8 +327,18 @@ public class WriteTime : MonoBehaviour
             seceFile.Add(seceEntry);
             oneeEntry = new ONEEntry();
             seceEntry = new SECEEntry();
+
             oneeEntry.currentEvent = GetCurrentEvent();
+            oneeEntry.playerVelocity = playerVelocity;
+            oneeEntry.playerHealth = playerHealth;
+            oneeEntry.bossHealth = bossHealth;
+            oneeEntry.playerPosition = playerPosition.ToString();
+
             seceEntry.currentEvent = GetCurrentEvent();
+            seceEntry.playerVelocity = playerVelocity;
+            seceEntry.playerHealth = playerHealth;
+            seceEntry.bossHealth = bossHealth;
+            seceEntry.playerPosition = playerPosition.ToString();
 
         }
         else if (writtenTWOE)
