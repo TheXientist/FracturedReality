@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -37,6 +38,8 @@ public class LevelManager : MonoBehaviour
     private int breakroomCounter;
     private bool showingEndscreen;
 
+    [SerializeField] private TextMeshProUGUI timerTextField;
+
     private void Start()
     {
         instance = this;
@@ -47,12 +50,21 @@ public class LevelManager : MonoBehaviour
         boss.OnDefeated += SwitchToRelaxationRoom;
     }
 
+    private void UpdateTimerDisplay()
+    {
+        int timeLeft = (int)(timeInRelaxationRoom - timer);
+        timerTextField.text = "" + (timeLeft / 60) + ":"
+                              + ((timeLeft%60 < 10) ? "0" : "")
+                              + timeLeft % 60;
+    }
+
     private void Update()
     {
         timer += Time.deltaTime;
         
         if (isInRelaxationRoom)
         {
+            UpdateTimerDisplay();
             if (bothSurveysAnswered && breakroomCounter == 2)
             {
                 if (showingEndscreen) return;
