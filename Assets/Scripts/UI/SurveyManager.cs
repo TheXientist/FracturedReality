@@ -59,6 +59,8 @@ public class SurveyManager : MonoBehaviour
 
     public void SubmitResults()
     {
+        if (!gameObject.activeSelf) return;
+        
         // Write Text file results
         StreamWriter writer = File.AppendText(textFilePath);
 
@@ -114,12 +116,5 @@ public class SurveyManager : MonoBehaviour
             case 4: return "Very High";
             default: return rating.ToString();
         }
-    }
-    
-    // For testing without VR
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Return))
-            SubmitResults();
     }
 }
