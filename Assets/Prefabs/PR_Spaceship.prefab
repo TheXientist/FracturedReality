@@ -2827,7 +2827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da4b8a6a4465a9147b9aff0c08a54c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMaxHealth: 1000
+  playerMaxHealth: 100
   playerRegenSpeed: 50
   m_bulletSpawnpointLeft: {fileID: 1119134888282380209}
   m_bulletSpawnpointRight: {fileID: 1355541430694139484}

@@ -129,6 +129,8 @@ public class Player : MonoBehaviour, IDamageable
         }
         
         UpdateChargeDisplay();
+
+        SteamVR_Fade.Start(new Color(1f, 0f, 0f, 0.2f * (playerMaxHealth - playerCurrentHealth) / playerMaxHealth), Time.deltaTime);
     }
 
     private void UpdateChargeDisplay()
@@ -164,9 +166,6 @@ public class Player : MonoBehaviour, IDamageable
         //disable death
         PlayerCurrentHealth = Mathf.Clamp(PlayerCurrentHealth, 1, playerMaxHealth);
         
-        if (!animatingDamage)
-            StartCoroutine(FlashRed());
-        
         if (playerCurrentHealth <= 0)
         {
             PlayerCurrentHealth = 0;
@@ -174,24 +173,6 @@ public class Player : MonoBehaviour, IDamageable
             OnPlayerDeath?.Invoke();
         }
         OnDamaged?.Invoke();
-    }
-
-    private IEnumerator FlashRed()
-    {
-        animatingDamage = true;
-
-        if (controller.VR)
-        {
-            SteamVR_Fade.Start(new Color(1f, 0f, 0f, 0.1f), 0.25f);
-            yield return new WaitForSeconds(0.25f);
-            SteamVR_Fade.Start(Color.clear, 0.5f);
-        }
-        else
-        {
-            // TODO: non-VR alternative
-        }
-        
-        animatingDamage = false;
     }
 
     public IEnumerator DestroySelf()

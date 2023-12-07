@@ -15,6 +15,8 @@ public class Obstacle : MonoBehaviour, IDamageable
 
     private bool m_isWhite = true;
 
+    public int m_DamageValue;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -90,6 +92,8 @@ public class Obstacle : MonoBehaviour, IDamageable
         m_obstacleMaterial.SetFloat("_BumpScale", 1 + ((obstacleMaxHealth-obstacleCurrentHealth)/obstacleMaxHealth) * 4f);
     }
 
-
-
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Player")) other.gameObject.GetComponent<Player>().TakeDamage(m_DamageValue * other.gameObject.GetComponent<Rigidbody>().velocity.magnitude);
+    }
 }
