@@ -55,7 +55,7 @@ public class LevelManager : MonoBehaviour
         int timeLeft = (int)(timeInRelaxationRoom - timer);
         timerTextField.text = "" + (timeLeft / 60) + ":"
                               + ((timeLeft%60 < 10) ? "0" : "")
-                              + timeLeft % 60;
+                              + (timeLeft % 60 > 0 ? (timeLeft%60) : "0");
     }
 
     private void Update()
