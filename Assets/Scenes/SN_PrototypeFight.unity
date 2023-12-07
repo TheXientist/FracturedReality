@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.02495846, g: 0.02274444, b: 0.07047759, a: 1}
+  m_IndirectSpecularColor: {r: 0.024951262, g: 0.022750102, b: 0.07044999, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2961,6 +2961,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3061859875470130510, guid: c1d91ecf7a5e14a689fcef67f95363bf,
         type: 3}
+      propertyPath: vr
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3061859875470130510, guid: c1d91ecf7a5e14a689fcef67f95363bf,
+        type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 6293280729080821922}
@@ -3835,6 +3840,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 20000
       objectReference: {fileID: 0}
+    - target: {fileID: 5660300507699776853, guid: 385476661e7fe4b44ad581d2ed79c73c,
+        type: 3}
+      propertyPath: m_relaxMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 6d3396b4dc590d14b8637c21b3bc056a, type: 3}
     - target: {fileID: 5660300507699776853, guid: 385476661e7fe4b44ad581d2ed79c73c,
         type: 3}
       propertyPath: m_bossFightObjects.Array.data[0]
