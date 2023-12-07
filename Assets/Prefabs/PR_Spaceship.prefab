@@ -2836,8 +2836,8 @@ MonoBehaviour:
     type: 3}
   fireRate: 2
   m_fadeBlackScreen: {fileID: 0}
-  chargeTime: 1
-  chargeTimeWindow: {x: 0.8, y: 1}
+  chargeTime: 1.2
+  chargeTimeWindow: {x: 0.7, y: 1}
   maxHeat: 100
   heatPerShot: 10
   heatPerOvercharge: 30
