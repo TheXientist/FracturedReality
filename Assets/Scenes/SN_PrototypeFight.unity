@@ -3318,6 +3318,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1000011547835092, guid: d5082f7d9f947374197e0a97786f4e40,
         type: 3}
+    - target: {fileID: 5444918143235088993, guid: c1d91ecf7a5e14a689fcef67f95363bf,
+        type: 3}
+      propertyPath: distanceThreshold
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5733087855336355620, guid: c1d91ecf7a5e14a689fcef67f95363bf,
+        type: 3}
+      propertyPath: distanceThreshold
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801354576702589600, guid: c1d91ecf7a5e14a689fcef67f95363bf,
+        type: 3}
+      propertyPath: distanceThreshold
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
