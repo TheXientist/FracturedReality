@@ -126,6 +126,13 @@ public class WriteTime : MonoBehaviour
         }
     }
 
+    private void OnApplicationQuit()
+    {
+        write = false;
+        writtenTWOE = true;
+        StartCoroutine(WriteTWOEFileCoroutine());
+    }
+
     // Update is called once per frame
     //case 0: not ONE device is measured but TWO
     //case 1: ONE device is measured, its EEG

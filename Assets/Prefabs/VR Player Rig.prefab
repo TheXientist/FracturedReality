@@ -2659,6 +2659,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9101574440703563527}
   - component: {fileID: 9101574440692561419}
+  - component: {fileID: 2115261293148983202}
   m_Layer: 3
   m_Name: VR Player Rig
   m_TagString: Untagged
@@ -2686,7 +2687,7 @@ Transform:
   - {fileID: 9097689362707526109}
   - {fileID: 9097689362810405973}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9101574440692561419
 MonoBehaviour:
@@ -2716,6 +2717,18 @@ MonoBehaviour:
     actionPath: /actions/default/in/HeadsetOnHead
     needsReinit: 0
   allowToggleTo2D: 1
+--- !u!114 &2115261293148983202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9101574440703911807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edcc6b1826c4ad84cb4cc7e52c413103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9101574440703912119
 GameObject:
   m_ObjectHideFlags: 0
