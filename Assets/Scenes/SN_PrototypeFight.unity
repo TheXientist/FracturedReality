@@ -3270,7 +3270,7 @@ PrefabInstance:
     - target: {fileID: 3424770934097722538, guid: c1d91ecf7a5e14a689fcef67f95363bf,
         type: 3}
       propertyPath: skipIntro
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3424770934097722538, guid: c1d91ecf7a5e14a689fcef67f95363bf,
         type: 3}
@@ -5647,8 +5647,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boss: {fileID: 6293280729080821924}
   condition: 0
-  timeInRelaxationRoom: 100
-  timeInBossFight: 1
+  timeInRelaxationRoom: 60
+  timeInBossFight: 180
   timerTextField: {fileID: 923589856}
 --- !u!1001 &1919570048
 PrefabInstance:
