@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 179b3f4e99f8a4640b68a20b857c5922, type: 3}
   m_Name: LaserAttack
   m_EditorClassIdentifier: 
-  abilityPropability: 4
+  abilityPropability: 3
   abilityWindup: 1
   abilityCooldown: 1
   animationTriggerName: LaserAttack
