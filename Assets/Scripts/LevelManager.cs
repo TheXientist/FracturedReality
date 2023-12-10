@@ -62,13 +62,11 @@ public class LevelManager : MonoBehaviour
     {
         timer += Time.deltaTime;
         
-        if (isInRelaxationRoom)
+        if (isInRelaxationRoom && !showingEndscreen)
         {
             UpdateTimerDisplay();
-            if (bothSurveysAnswered && breakroomCounter == 2)
+            if (firstSurveyAnswered && breakroomCounter == 2)
             {
-                if (showingEndscreen) return;
-                
                 introManager.ShowEndscreen();
                 showingEndscreen = true;
                 return;
@@ -90,7 +88,7 @@ public class LevelManager : MonoBehaviour
             // Check time (death condition is checked by callback)
             case SwitchCondition.TimeOver when timer >= timeInBossFight:
             case SwitchCondition.ButtonPress when Input.GetKeyDown(KeyCode.Backspace):
-                boss.TakeDamage(100000); // death -> despawn -> automatic switch
+                boss.TakeDamage(boss.BossCurrentHealth); // death -> despawn -> automatic switch
                 break;
         }
     }
