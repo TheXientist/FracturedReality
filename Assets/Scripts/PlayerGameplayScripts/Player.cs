@@ -160,19 +160,23 @@ public class Player : MonoBehaviour, IDamageable
     public void TakeDamage(float damage)
     {
         if (PlayerCurrentHealth <= 0) return;
+
+        // Don't go below zero
+        if (damage >= PlayerCurrentHealth)
+            damage = PlayerCurrentHealth - 1;
         
         PlayerCurrentHealth -= damage;
-
-        //disable death
-        PlayerCurrentHealth = Mathf.Clamp(PlayerCurrentHealth, 1, playerMaxHealth);
         
+        OnDamaged?.Invoke();
+        
+        // *** not used ***
         if (playerCurrentHealth <= 0)
         {
             PlayerCurrentHealth = 0;
             StartCoroutine( DestroySelf());
             OnPlayerDeath?.Invoke();
         }
-        OnDamaged?.Invoke();
+        // ****************
     }
 
     public IEnumerator DestroySelf()

@@ -110,6 +110,10 @@ public class RelaxationRoom : MonoBehaviour
         // Face boss
         playerObject.transform.rotation = Quaternion.LookRotation(playerController.m_BossObject.transform.position - playerObject.transform.position, playerObject.transform.up);
         
+        // Update Skybox cube pos aswell
+        transform.position = playerObject.transform.position;
+        transform.rotation = playerObject.transform.rotation;
+        
         Material material = GameObject.FindWithTag("RenderPlane").GetComponent<MeshRenderer>().material;
         material.SetFloat("_AO", 0.8f);
         material.SetFloat("_IAmbient", 0.7f);
