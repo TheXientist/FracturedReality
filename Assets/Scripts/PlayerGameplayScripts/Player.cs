@@ -121,15 +121,16 @@ public class Player : MonoBehaviour, IDamageable
     {
         NextFireTime -= Time.deltaTime;
 
-        PlayerCurrentHealth = Mathf.Min(PlayerCurrentHealth + playerRegenSpeed * Time.deltaTime, playerMaxHealth);
-
         if (!IsOverheated && lastHeatAddTime > 0f && Time.time - lastHeatAddTime > cooldownAfterSeconds)
         {
             StartCoroutine(CooldownRoutine());
         }
         
-        UpdateChargeDisplay();
+        if (!IsOverheated)
+            UpdateChargeDisplay();
 
+        // Regen health & display vignette
+        PlayerCurrentHealth = Mathf.Min(PlayerCurrentHealth + playerRegenSpeed * Time.deltaTime, playerMaxHealth);
         SteamVR_Fade.Start(new Color(1f, 0f, 0f, 0.2f * (playerMaxHealth - playerCurrentHealth) / playerMaxHealth), Time.deltaTime);
     }
 
